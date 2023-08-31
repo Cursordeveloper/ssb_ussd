@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Shared;
 
 use App\Traits\ResponseBuilder;
 use Illuminate\Contracts\Validation\Validator;
@@ -18,7 +18,7 @@ class ApiRequest extends FormRequest
             status: true,
             code: Response::HTTP_UNPROCESSABLE_ENTITY,
             message: 'Unprocessable request.',
-            description: 'The request is invalid. Check the request and try again.',
+            description: 'The request is invalid. Check it and try again.',
             error: $validator->errors()->all()
         ));
     }
