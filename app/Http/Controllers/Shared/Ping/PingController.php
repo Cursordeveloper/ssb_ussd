@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class PingController extends Controller
+final class PingController extends Controller
 {
     public function __invoke(): JsonResponse
     {

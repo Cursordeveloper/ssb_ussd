@@ -9,7 +9,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IPWhiteListMiddleware
+final class IPWhiteListMiddleware
 {
     protected array $ips = ['172.18.0.1', '172.21.0.1'];
 

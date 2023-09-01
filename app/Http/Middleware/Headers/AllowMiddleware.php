@@ -9,7 +9,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AllowMiddleware
+final class AllowMiddleware
 {
     public function handle(Request $request, Closure $next, string ...$methods): Response
     {
