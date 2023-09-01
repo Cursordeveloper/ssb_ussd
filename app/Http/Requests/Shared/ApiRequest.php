@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Shared;
 
-use App\Traits\ResponseBuilder;
+use App\Common\ResponseBuilder;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -10,11 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApiRequest extends FormRequest
 {
-    use ResponseBuilder;
-
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException($this->unprocessableEntityResponseBuilder(
+        throw new HttpResponseException(ResponseBuilder::unprocessableEntityResponseBuilder(
             status: true,
             code: Response::HTTP_UNPROCESSABLE_ENTITY,
             message: 'Unprocessable request.',

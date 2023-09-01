@@ -1,15 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Ping;
+declare(strict_types=1);
 
+namespace App\Http\Controllers\Shared\Ping;
+
+use App\Common\ResponseBuilder;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class PingController extends Controller
 {
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        return response()->json('Service is online');
+        return ResponseBuilder::resourcesResponseBuilder(
+            status: true,
+            code: Response::HTTP_OK,
+            message: 'Service is online.'
+        );
     }
 }

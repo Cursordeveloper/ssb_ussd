@@ -2,14 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Traits;
+namespace App\Common;
 
 use Illuminate\Http\JsonResponse;
 
-trait ResponseBuilder
+final class ResponseBuilder
 {
-    public function collectionResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
-    {
+    public static function collectionResponseBuilder(
+        bool $status,
+        int $code,
+        string $message,
+        ?string $description = null,
+        mixed $data = null
+    ): JsonResponse {
         return response()->json([
             'status' => $status,
             'code' => $code,
@@ -24,8 +29,13 @@ trait ResponseBuilder
         ]);
     }
 
-    public function resourcesResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
-    {
+    public static function resourcesResponseBuilder(
+        bool $status,
+        int $code,
+        string $message,
+        ?string $description = null,
+        mixed $data = null
+    ): JsonResponse {
         return response()->json([
             'status' => $status,
             'code' => $code,
@@ -39,8 +49,13 @@ trait ResponseBuilder
         ]);
     }
 
-    public function unprocessableEntityResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $error = null): JsonResponse
-    {
+    public static function unprocessableEntityResponseBuilder(
+        bool $status,
+        int $code,
+        string $message,
+        ?string $description = null,
+        mixed $error = null
+    ): JsonResponse {
         return response()->json([
             'status' => $status,
             'code' => $code,
@@ -54,8 +69,12 @@ trait ResponseBuilder
         ]);
     }
 
-    public function errorResponseBuilder(bool $status, int $code, string $message, string $description = null): JsonResponse
-    {
+    public static function errorResponseBuilder(
+        bool $status,
+        int $code,
+        string $message,
+        ?string $description = null
+    ): JsonResponse {
         return response()->json([
             'status' => $status,
             'code' => $code,
@@ -68,8 +87,13 @@ trait ResponseBuilder
         ]);
     }
 
-    public function tokenResponseBuilder(bool $status, int $code, string $message, mixed $token = null, mixed $user = null): JsonResponse
-    {
+    public static function tokenResponseBuilder(
+        bool $status,
+        int $code,
+        string $message,
+        mixed $token = null,
+        mixed $user = null
+    ): JsonResponse {
         return response()->json([
             'status' => $status,
             'code' => $code,
@@ -78,8 +102,8 @@ trait ResponseBuilder
                 'version' => '1.0',
                 'timestamp' => now()->toDateTime(),
             ],
-            'token' => $token,
             'data' => $user,
+            'token' => $token,
         ]);
     }
 }
