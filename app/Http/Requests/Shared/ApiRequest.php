@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ApiRequest extends FormRequest
 {
-    protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator): void
     {
         throw new HttpResponseException(ResponseBuilder::unprocessableEntityResponseBuilder(
             status: true,

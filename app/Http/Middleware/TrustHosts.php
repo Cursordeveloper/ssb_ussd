@@ -9,7 +9,7 @@ use Illuminate\Http\Middleware\TrustHosts as Middleware;
 final class TrustHosts extends Middleware
 {
     /**
-     * @return array
+     * @return array<string>
      */
     public function hosts(): array
     {
