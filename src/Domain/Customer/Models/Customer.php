@@ -15,7 +15,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 final class Customer extends Authenticatable implements JWTSubject
 {
     use HasFactory;
-    use HasUuid;
 
     protected string $guard = 'customer';
 
