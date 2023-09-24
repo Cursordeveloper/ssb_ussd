@@ -9,9 +9,11 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 final class Kernel extends ConsoleKernel
 {
+    protected $commands = [];
+
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command(command: 'app:message-consumer')->everySecond();
     }
 
     protected function commands(): void
