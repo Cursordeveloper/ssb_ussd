@@ -28,6 +28,15 @@ final class MessageConsumer extends Command
                 );
                 if ($register) $message->ack();
             }
+            elseif (data_get(target: $headers, key: 'action') === 'ActivateCustomerAction'){
+                $register = ActivateCustomerAction::execute(
+                    json_decode(
+                        json: $message->getBody(),
+                        associative: true
+                    )
+                );
+                if ($register) $message->ack();
+            }
         });
     }
 }
