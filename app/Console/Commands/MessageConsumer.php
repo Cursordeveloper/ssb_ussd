@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Services\RabbitMQService;
+use Domain\Customer\Actions\Registration\ActivateCustomerAction;
 use Domain\Customer\Actions\Registration\CreateCustomerAction;
+use Domain\Customer\Actions\Registration\PinCreatedAction;
 use Illuminate\Console\Command;
 
 final class MessageConsumer extends Command
@@ -30,6 +32,15 @@ final class MessageConsumer extends Command
             }
             elseif (data_get(target: $headers, key: 'action') === 'ActivateCustomerAction'){
                 $register = ActivateCustomerAction::execute(
+                    json_decode(
+                        json: $message->getBody(),
+                        associative: true
+                    )
+                );
+                if ($register) $message->ack();
+            }
+            elseif (data_get(target: $headers, key: 'action') === 'PinCreatedAction'){
+                $register = PinCreatedAction::execute(
                     json_decode(
                         json: $message->getBody(),
                         associative: true
