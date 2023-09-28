@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create(table: 'customers', callback: function (Blueprint $table) {
             // Table ids
-            $table->unsignedBigInteger(column: 'id')->primary();
+            $table->id();
             $table->uuid(column: 'resource_id')->unique()->nullable(value: false);
 
             // Table main attributes
-            $table->string(column: 'first_name')->nullable(value: false);
-            $table->string(column: 'last_name')->nullable(value: false);
+            $table->string(column: 'first_name')->nullable();
+            $table->string(column: 'last_name')->nullable();
 
             $table->string(column: 'phone_number')->unique()->nullable();
 
