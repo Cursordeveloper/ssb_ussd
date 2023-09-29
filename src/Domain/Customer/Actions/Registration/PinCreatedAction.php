@@ -12,9 +12,9 @@ final class PinCreatedAction
     {
         // Get the customer with the resource_id
         $customer = GetCustomerAction::execute(
-            data_get(
+            resource: data_get(
                 target: $data,
-                key: 'data.attributes.resource_id'
+                key: 'data.included.customer.attributes.resource_id',
             )
         );
 

@@ -11,7 +11,13 @@ final class GetCustomerAction
     public static function execute(string $resource): Customer
     {
         return Customer::where(
-            'resource_id', '=', $resource
+            column: 'phone_number',
+            operator: '=',
+            value: $resource
+        )->orWhere(
+            column: 'resource_id',
+            operator: '=',
+            value: $resource
         )->first();
     }
 }
