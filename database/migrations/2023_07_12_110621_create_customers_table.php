@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create(table: 'customers', callback: function (Blueprint $table) {
             // Table ids
             $table->id();
-            $table->uuid(column: 'resource_id')->unique()->nullable(value: false);
+            $table->uuid(column: 'resource_id')->unique()->nullable(value: false)->index();
 
             // Table main attributes
             $table->string(column: 'first_name')->nullable();
             $table->string(column: 'last_name')->nullable();
 
-            $table->string(column: 'phone_number')->unique()->nullable();
+            $table->string(column: 'phone_number')->unique()->nullable()->index();
 
             $table->boolean(column: 'has_pin')->default(value: false);
             $table->string(column: 'status')->default(CustomerStatus::Pending->value);
