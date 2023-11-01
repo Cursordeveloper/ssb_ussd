@@ -24,6 +24,5 @@ final class ChangePinJob implements ShouldQueue
 
     public function handle(): void
     {
-
     }
 }

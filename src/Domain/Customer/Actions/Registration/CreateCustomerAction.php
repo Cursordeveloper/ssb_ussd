@@ -39,6 +39,6 @@ final class CreateCustomerAction
             ),
         ]);
 
-        return (bool)$create_customer;
+        return (bool) $create_customer;
     }
 }
