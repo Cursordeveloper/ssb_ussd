@@ -8,16 +8,11 @@ use Domain\Customer\Models\Customer;
 
 final class GetCustomerAction
 {
-    public static function execute(string $resource): Customer
-    {
+    public static function execute(string $resource) {
         return Customer::where(
             column: 'phone_number',
-            operator: '=',
-            value: $resource
-        )->orWhere(
-            column: 'resource_id',
-            operator: '=',
-            value: $resource
+            operator: "=",
+            value: $resource,
         )->first();
     }
 }

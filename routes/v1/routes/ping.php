@@ -11,3 +11,4 @@ Route::group(['prefix' => 'ping'], function (): void {
         action: PingController::class
     )->name(name: 'ping');
 });
+
