@@ -10,7 +10,7 @@ final class GetSessionAction
 {
     public static function execute(
         string $session_id,
-    ) {
+    ): Session {
         return Session::where(
             column: 'session_id',
             operator: "=",

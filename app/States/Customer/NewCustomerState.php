@@ -3,6 +3,8 @@
 namespace App\States\Customer;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Action\GetSessionAction;
+use Domain\Shared\Action\UpdateSessionAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class NewCustomerState
@@ -13,9 +15,16 @@ class NewCustomerState
         // Create the expected input arrays
         $options = ['1', '2'];
 
+        // Get the customer session
+        $session = GetSessionAction::execute(data_get(target: $request, key: 'SessionId'));
+
         // Check if use input is in the array
         if (in_array(data_get(target: $request, key: 'Message'), haystack: $options) && data_get(target: $request, key: 'Message') === "1") {
             // Update the customer session action
+            UpdateSessionAction::execute(
+                session: $session,
+                state: 'RegistrationState',
+            );
 
             // Return the registration state
             return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -24,10 +33,14 @@ class NewCustomerState
             );
         } elseif (in_array(data_get(target: $request, key: 'Message'), haystack: $options) && data_get(target: $request, key: 'Message') === "2") {
             // Update the customer session action
+            UpdateSessionAction::execute(
+                session: $session,
+                state: 'TermsAndConditionsState',
+            );
 
             // Return the terms and conditions state
             return ResponseBuilder::ussdResourcesResponseBuilder(
-                message: "1. Some terms and conditions goes here. You can enter 1\n",
+                message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n #. Next",
                 session_id: data_get(target: $request, key: 'SessionId'),
             );
         }

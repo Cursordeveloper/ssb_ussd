@@ -18,7 +18,7 @@ final class WelcomeState
         // Customer exist and status is active
         if (!$customer == null && data_get(target: $customer, key: 'status') === 'active') {
             // Create new session
-            CreateSessionAction::execute(request: $request, action: 'CustomerState');
+            CreateSessionAction::execute(request: $request, state: 'CustomerState');
 
             // Return the registered customer menu
             return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -28,7 +28,7 @@ final class WelcomeState
         }
 
         // Return the registration menu
-        CreateSessionAction::execute(request: $request, action: 'NewCustomerState');
+        CreateSessionAction::execute(request: $request, state: 'NewCustomerState');
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Menu\n1. Register now\n2. Terms & Conditions\n0. Exit",
             session_id: data_get(target: $request, key: 'SessionId'),

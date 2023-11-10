@@ -10,7 +10,7 @@ final class CreateSessionAction
 {
     public static function execute(
         array $request,
-        ?string $action = null,
+        ?string $state = null,
     ): Session {
         return Session::updateOrCreate([
             'session_id' => data_get(
@@ -26,7 +26,7 @@ final class CreateSessionAction
                 target: $request,
                 key: 'Sequence',
             ),
-            'action' => $action,
+            'state' => $state,
         ]);
     }
 }

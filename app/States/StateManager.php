@@ -27,12 +27,16 @@ final class StateManager
 
         // Get the session
         $session = GetSessionAction::execute(
-            session_id: data_get(target: $request, key: 'SessionId'),
+            session_id: data_get(
+                target: $request,
+                key: 'SessionId',
+            ),
         );
 
         if (!$session == null) {
-            $action = data_get(target: $session, key: 'action');
-            return NewCustomerState::execute($request);
+            return NewCustomerState::execute(
+                request: $request,
+            );
         }
 
         // Return a system failure message.

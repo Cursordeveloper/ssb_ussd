@@ -21,8 +21,6 @@ class Session extends Model
         'session_id',
         'phone_number',
         'sequence',
-        'action',
-        'created_at',
-        'updated_at',
+        'state',
     ];
 }
