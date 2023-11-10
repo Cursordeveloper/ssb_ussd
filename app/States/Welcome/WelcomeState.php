@@ -20,6 +20,7 @@ final class WelcomeState
             // Create new session
             CreateSessionAction::execute(request: $request, action: 'CustomerState');
 
+            // Return the registered customer menu
             return ResponseBuilder::ussdResourcesResponseBuilder(
                 message: "Menu\n1. Some Menu 2\n2. Some Menu 2\n3. Some Menu 3\n4. My Account\n0. Exit",
                 session_id: data_get(target: $request, key: 'SessionId'),
