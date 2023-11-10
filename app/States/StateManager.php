@@ -3,7 +3,9 @@
 namespace App\States;
 
 use App\Common\ResponseBuilder;
+use App\States\Customer\NewCustomerState;
 use App\States\Welcome\WelcomeState;
+use Domain\Shared\Action\GetSessionAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StateManager
@@ -14,11 +16,23 @@ final class StateManager
         // Check if the type is "initiation"
         if (strtolower(data_get(target: $request, key: 'Type')) === 'initiation') {
             return WelcomeState::execute($request);
-        } elseif (data_get(target: $request, key: 'Message') === 0) {
-            return ResponseBuilder::invalidResponseBuilder(
-                message: 'Thank you for using ssb. See you soon.',
-                session_id: data_get($request, key: 'SessionId'),
+        }
+
+        // If the user entered 0, then exit the application
+        if (data_get(target: $request, key: 'Message') === "0") {
+            return ResponseBuilder::terminateResponseBuilder(
+                session_id: data_get(target: $request, key: 'SessionId'),
             );
+        }
+
+        // Get the session
+        $session = GetSessionAction::execute(
+            session_id: data_get(target: $request, key: 'SessionId'),
+        );
+
+        if (!$session == null) {
+            $action = data_get(target: $session, key: 'action');
+            return NewCustomerState::execute($request);
         }
 
         // Return a system failure message.
