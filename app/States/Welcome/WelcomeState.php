@@ -18,11 +18,11 @@ final class WelcomeState
         // Customer exist and status is active
         if (!$customer == null && data_get(target: $customer, key: 'status') === 'active') {
             // Create new session
-            CreateSessionAction::execute(request: $request, state: 'RegisteredCustomerState');
+            CreateSessionAction::execute(request: $request, state: 'ExistingCustomerState');
 
             // Return the registered customer menu
             return ResponseBuilder::ussdResourcesResponseBuilder(
-                message: "Menu\n1. Some Menu 2\n2. Some Menu 2\n3. Some Menu 3\n4. My Account\n0. Exit",
+                message: "Welcome Back\n\nMenu\n1. Some Menu 2\n2. Some Menu 2\n3. Some Menu 3\n4. My Account\n0. Exit",
                 session_id: data_get(target: $request, key: 'SessionId'),
             );
         }

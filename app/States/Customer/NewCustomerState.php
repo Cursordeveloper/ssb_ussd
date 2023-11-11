@@ -17,7 +17,7 @@ class NewCustomerState
         array $request,
     ): JsonResponse {
         // Create the expected input arrays
-        $options = ['1', '2'];
+        $options = ['1', '2', '0'];
 
         // Get the customer session
         $session = GetSessionAction::execute(data_get(target: $request, key: 'SessionId'));
@@ -36,6 +36,11 @@ class NewCustomerState
             UpdateSessionAction::execute(session: $session, state: 'TermsAndConditionsState');
 
             return TermsAndConditionsState::execute($request);
+        } elseif (in_array($customer_input, haystack: $options) && $customer_input == "0") {
+            // Delete customer session
+            return ResponseBuilder::terminateResponseBuilder(
+                session_id: data_get(target: $request, key: 'SessionId'),
+            );
         }
 
         // The customer input is invalid

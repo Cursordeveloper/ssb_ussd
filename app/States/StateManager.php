@@ -10,6 +10,7 @@ use App\States\Registration\RegistrationState;
 use App\States\TermsAndConditions\TermsAndConditionsState;
 use App\States\Welcome\WelcomeState;
 use Domain\Shared\Action\GetSessionAction;
+use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StateManager
@@ -20,10 +21,6 @@ final class StateManager
         // Check if the type is "initiation"
         if (strtolower(data_get(target: $request, key: 'Type')) === 'initiation') {
             return WelcomeState::execute($request);
-        } elseif (strtolower(data_get(target: $request, key: 'Type')) === 'initiation' && data_get(target: $request, key: 'Message') === "0") {
-            return ResponseBuilder::terminateResponseBuilder(
-                session_id: data_get(target: $request, key: 'SessionId'),
-            );
         }
 
         $states = [
