@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Domain\Shared\Action;
 
 use Domain\Shared\Models\Session;
+use Illuminate\Http\Request;
 
 final class CreateSessionAction
 {
     public static function execute(
-        array $request,
+        Request $request,
         ?string $state = null,
     ): Session {
         return Session::updateOrCreate([

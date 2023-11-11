@@ -8,35 +8,12 @@ use Domain\Customer\Models\Customer;
 
 final class CreateCustomerAction
 {
-    public static function execute(array $data): bool
-    {
+    public static function execute(
+        string $phone_number,
+    ): bool {
         // Create the Customer
-        $create_customer = Customer::query()->updateOrCreate([
-            'resource_id' => data_get(
-                target: $data,
-                key: 'data.attributes.resource_id'
-            ),
-        ], [
-            'id' => data_get(
-                target: $data,
-                key: 'data.id'
-            ),
-            'resource_id' => data_get(
-                target: $data,
-                key: 'data.attributes.resource_id'
-            ),
-            'first_name' => data_get(
-                target: $data,
-                key: 'data.attributes.first_name'
-            ),
-            'last_name' => data_get(
-                target: $data,
-                key: 'data.attributes.last_name'
-            ),
-            'phone_number' => data_get(
-                target: $data,
-                key: 'data.attributes.phone_number'
-            ),
+        $create_customer = Customer::query()->create([
+            'phone_number' => $phone_number,
         ]);
 
         return (bool) $create_customer;

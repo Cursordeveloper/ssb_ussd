@@ -130,6 +130,7 @@ final class ResponseBuilder
             'Message' => $message,
         ]);
     }
+
     public static function terminateResponseBuilder(
         string $session_id,
     ): JsonResponse {

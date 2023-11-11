@@ -12,7 +12,7 @@ use Domain\Shared\Action\UpdateSessionAction;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class NewCustomerState
+class ExistingCustomerState
 {
     public static function execute(
         Request $request,
@@ -28,20 +28,8 @@ class NewCustomerState
 
         // Check if use input is in the array
         if (in_array($customer_input, haystack: $options) && $customer_input == "1") {
-            // Update the customer session action
-            UpdateSessionAction::execute(session: $session, state: 'RegistrationState');
-
-            return RegistrationState::execute($request);
         } elseif (in_array($customer_input, haystack: $options) && $customer_input == "2") {
-            // Update the customer session action
-            UpdateSessionAction::execute(session: $session, state: 'TermsAndConditionsState');
-
-            return TermsAndConditionsState::execute($request);
         } elseif (in_array($customer_input, haystack: $options) && $customer_input == "0") {
-            // Delete customer session
-            return ResponseBuilder::terminateResponseBuilder(
-                session_id: data_get(target: $request, key: 'SessionId'),
-            );
         }
 
         // The customer input is invalid

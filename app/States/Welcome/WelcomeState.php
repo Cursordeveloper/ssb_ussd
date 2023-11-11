@@ -5,12 +5,13 @@ namespace App\States\Welcome;
 use App\Common\ResponseBuilder;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Action\CreateSessionAction;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class WelcomeState
 {
     public static function execute(
-        array $request,
+        Request $request,
     ): JsonResponse {
         // Get the customer
         $customer = GetCustomerAction::execute(phone(data_get(target: $request, key: 'Mobile')));

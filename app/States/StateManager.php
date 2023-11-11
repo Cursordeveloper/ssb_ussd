@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace App\States;
 
 use App\Common\ResponseBuilder;
+use App\States\Customer\ExistingCustomerState;
 use App\States\Customer\NewCustomerState;
 use App\States\Registration\RegistrationState;
 use App\States\TermsAndConditions\TermsAndConditionsState;
 use App\States\Welcome\WelcomeState;
 use Domain\Shared\Action\GetSessionAction;
 use Domain\Shared\Models\Session;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StateManager
 {
     public static function execute(
-        array $request
+        Request $request,
     ): JsonResponse {
         // Check if the type is "initiation"
         if (strtolower(data_get(target: $request, key: 'Type')) === 'initiation') {
@@ -25,6 +27,7 @@ final class StateManager
 
         $states = [
             'NewCustomerState' => new NewCustomerState,
+            'ExistingCustomerState' => new ExistingCustomerState,
             'RegistrationState' => new RegistrationState,
             'TermsAndConditionsState' => new TermsAndConditionsState,
         ];
