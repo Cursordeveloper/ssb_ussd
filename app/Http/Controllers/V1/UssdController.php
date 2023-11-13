@@ -7,7 +7,7 @@ use App\States\StateManager;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class UssdController extends Controller
+final class UssdController extends Controller
 {
     public function __invoke(
         Request $request,

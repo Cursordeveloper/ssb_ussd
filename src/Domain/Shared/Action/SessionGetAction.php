@@ -6,7 +6,7 @@ namespace Domain\Shared\Action;
 
 use Domain\Shared\Models\Session;
 
-final class GetSessionAction
+final class SessionGetAction
 {
     public static function execute(
         string $session_id,

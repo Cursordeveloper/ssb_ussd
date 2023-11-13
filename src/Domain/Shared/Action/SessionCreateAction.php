@@ -7,7 +7,7 @@ namespace Domain\Shared\Action;
 use Domain\Shared\Models\Session;
 use Illuminate\Http\Request;
 
-final class CreateSessionAction
+final class SessionCreateAction
 {
     public static function execute(
         Request $request,

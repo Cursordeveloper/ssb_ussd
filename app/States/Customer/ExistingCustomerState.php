@@ -7,12 +7,12 @@ namespace App\States\Customer;
 use App\Common\ResponseBuilder;
 use App\States\Registration\RegistrationState;
 use App\States\TermsAndConditions\TermsAndConditionsState;
-use Domain\Shared\Action\GetSessionAction;
-use Domain\Shared\Action\UpdateSessionAction;
+use Domain\Shared\Action\SessionGetAction;
+use Domain\Shared\Action\SessionUpdateAction;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ExistingCustomerState
+final class ExistingCustomerState
 {
     public static function execute(
         Request $request,
@@ -21,7 +21,7 @@ class ExistingCustomerState
         $options = ['1', '2', '0'];
 
         // Get the customer session
-        $session = GetSessionAction::execute(data_get(target: $request, key: 'SessionId'));
+        $session = SessionGetAction::execute(data_get(target: $request, key: 'SessionId'));
 
         // Assign the customer input to a variable
         $customer_input = data_get(target: $request, key: 'Message');

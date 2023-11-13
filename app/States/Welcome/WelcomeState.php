@@ -2,37 +2,29 @@
 
 namespace App\States\Welcome;
 
-use App\Common\ResponseBuilder;
+use App\Menus\Welcome\WelcomeMenu;
 use Domain\Customer\Actions\Common\GetCustomerAction;
-use Domain\Shared\Action\CreateSessionAction;
+use Domain\Shared\Action\SessionCreateAction;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class WelcomeState
 {
-    public static function execute(
-        Request $request,
-    ): JsonResponse {
+    public static function execute(Request $request): JsonResponse {
         // Get the customer
         $customer = GetCustomerAction::execute(phone(data_get(target: $request, key: 'Mobile')));
 
         // Customer exist and status is active
         if (!$customer == null && data_get(target: $customer, key: 'status') === 'active') {
             // Create new session
-            CreateSessionAction::execute(request: $request, state: 'ExistingCustomerState');
+            SessionCreateAction::execute(request: $request, state: 'ExistingCustomerState');
 
             // Return the registered customer menu
-            return ResponseBuilder::ussdResourcesResponseBuilder(
-                message: "Welcome Back\n\nMenu\n1. Some Menu 2\n2. Some Menu 2\n3. Some Menu 3\n4. My Account\n0. Exit",
-                session_id: data_get(target: $request, key: 'SessionId'),
-            );
+            return WelcomeMenu::existingCustomer(data_get(target: $request, key: 'SessionId'));
         }
 
         // Return the registration menu
-        CreateSessionAction::execute(request: $request, state: 'NewCustomerState');
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Menu\n1. Register now\n2. Terms & Conditions\n0. Exit",
-            session_id: data_get(target: $request, key: 'SessionId'),
-        );
+        SessionCreateAction::execute(request: $request, state: 'NewCustomerState');
+        return WelcomeMenu::newCustomer(data_get(target: $request, key: 'SessionId'));
     }
 }

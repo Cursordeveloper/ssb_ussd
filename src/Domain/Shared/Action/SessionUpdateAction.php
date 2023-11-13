@@ -6,7 +6,7 @@ namespace Domain\Shared\Action;
 
 use Domain\Shared\Models\Session;
 
-final class UpdateSessionAction
+final class SessionUpdateAction
 {
     public static function execute(
         Session $session,
