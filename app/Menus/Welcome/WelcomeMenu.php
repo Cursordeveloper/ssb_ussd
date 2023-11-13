@@ -27,7 +27,7 @@ final class WelcomeMenu
 
     public static function existingCustomer($session): JsonResponse {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Welcome Back\n\nMenu\n1. Loans 2\n2. Investments 2\n3. Insurance 3\n4. My Account\n0. Exit",
+            message: "Welcome Back\n\nMenu\n1. Loans\n2. Investments\n3. Insurance\n4. My Account\n0. Exit",
             session_id: $session,
         );
     }
