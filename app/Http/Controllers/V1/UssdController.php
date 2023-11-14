@@ -12,6 +12,6 @@ final class UssdController extends Controller
     public function __invoke(
         Request $request,
     ): JsonResponse {
-        return StateManager::execute($request);
+        return StateManager::execute(request: $request);
     }
 }

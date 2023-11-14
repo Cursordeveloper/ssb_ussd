@@ -16,6 +16,7 @@ return new class extends Migration
 
             // Table main attributes
             $table->string(column: 'session_id')->unique();
+            $table->string(column: 'msisdn');
             $table->string(column: 'phone_number');
             $table->string(column: 'sequence');
             $table->string(column: 'state')->nullable();

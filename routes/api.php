@@ -13,4 +13,3 @@ Route::post(
     uri: 'api/main',
     action: UssdController::class
 )->name(name: 'main');
-

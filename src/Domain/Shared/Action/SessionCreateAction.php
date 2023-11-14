@@ -11,17 +11,18 @@ final class SessionCreateAction
 {
     public static function execute(
         Request $request,
-        ?string $state = null,
+        $state,
     ): Session {
-        return Session::updateOrCreate([
+        return Session::create([
             'session_id' => data_get(
                 target: $request,
                 key: 'SessionId',
             ),
-        ], [
-            'phone_number' => data_get(
+            'msisdn' => data_get(
                 target: $request,
                 key: 'Mobile',
+            ),'phone_number' => phone(
+                data_get(target: $request, key: 'Mobile'),
             ),
             'sequence' => data_get(
                 target: $request,

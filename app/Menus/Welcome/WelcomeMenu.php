@@ -9,14 +9,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class WelcomeMenu
 {
-    public static function newCustomer($session): JsonResponse {
+    public static function newCustomer($session): JsonResponse
+    {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Menu\n1. Register now\n2. Terms & Conditions\n0. Exit",
             session_id: $session,
         );
     }
 
-    public static function newCustomerInvalidOption($session): JsonResponse {
+    public static function newCustomerInvalidOption($session): JsonResponse
+    {
         // Customer attempts will be handled here
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -25,16 +27,18 @@ final class WelcomeMenu
         );
     }
 
-    public static function existingCustomer($session): JsonResponse {
+    public static function existingCustomer($session): JsonResponse
+    {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Welcome Back\n\nMenu\n1. Loans\n2. Investments\n3. Insurance\n4. My Account\n0. Exit",
+            message: "Welcome Back\n\nMenu\n1. Susu Savings\n2. Loans\n3. Investments\n4 Insurance\n5. My Account\n0. Exit",
             session_id: $session,
         );
     }
 
-    public static function existingCustomerInvalidOption($session): JsonResponse {
+    public static function existingCustomerInvalidOption($session): JsonResponse
+    {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input. Try again\n\nMenu\n1. Loans 2\n2. Investments 2\n3. Insurance 3\n4. My Account\n0. Exit",
+            message: "Invalid input. Try again.\n\nMenu\n1. Susu Savings\n2. Loans\n3. Investments\n4 Insurance\n5. My Account\n0. Exit",
             session_id: $session,
         );
     }

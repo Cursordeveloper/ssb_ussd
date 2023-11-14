@@ -17,7 +17,7 @@ final class ResponseBuilder
             'SessionId' => $session_id,
             'Message' => $message,
             'DataType' => 'input',
-            'FieldType' => 'text'
+            'FieldType' => 'text',
         ]);
     }
 

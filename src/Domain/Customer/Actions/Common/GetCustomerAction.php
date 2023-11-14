@@ -6,14 +6,14 @@ namespace Domain\Customer\Actions\Common;
 
 use Domain\Customer\Models\Customer;
 
-final class GetCustomerAction
+class GetCustomerAction
 {
     public static function execute(
         string $resource,
     ) {
         return Customer::where(
             column: 'phone_number',
-            operator: "=",
+            operator: '=',
             value: $resource,
         )->first();
     }

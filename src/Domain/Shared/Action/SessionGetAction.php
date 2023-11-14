@@ -13,7 +13,7 @@ final class SessionGetAction
     ): Session {
         return Session::where(
             column: 'session_id',
-            operator: "=",
+            operator: '=',
             value: $session_id,
         )->first();
     }

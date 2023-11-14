@@ -19,6 +19,7 @@ class Session extends Model
     protected $fillable = [
         'id',
         'session_id',
+        'msisdn',
         'phone_number',
         'sequence',
         'state',
