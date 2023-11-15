@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\States;
 
 use App\Common\ResponseBuilder;
+use App\Menus\Shared\GeneralMenu;
 use App\States\Account\MyAccountState;
 use App\States\Customer\ExistingCustomerState;
 use App\States\Customer\NewCustomerState;
@@ -39,6 +40,7 @@ final class StateManager
             'RegistrationState' => new RegistrationState,
             'ExistingCustomerState' => new ExistingCustomerState,
             'TermsAndConditionsState' => new TermsAndConditionsState,
+
             'SusuSavingsState' => new SusuSavingsState,
             'LoansState' => new LoansState,
             'InvestmentsState' => new InvestmentsState,
@@ -57,9 +59,6 @@ final class StateManager
         }
 
         // Return a system failure message.
-        return ResponseBuilder::invalidResponseBuilder(
-            message: 'There was a problem with your request. Try again later.',
-            session_id: data_get($request, key: 'SessionId'),
-        );
+        return GeneralMenu::invalidInput(session: $session);
     }
 }

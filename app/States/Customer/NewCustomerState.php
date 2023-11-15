@@ -23,39 +23,33 @@ final class NewCustomerState
         // Create the expected input arrays
         $options = ['1', '2', '0'];
 
-        // Get the customer session
-        $session = SessionGetAction::execute(session_id: data_get(target: $session, key: 'session_id'));
-
         // Assign the customer input to a variable
         $customer_input = data_get(target: $request, key: 'Message');
 
-        // Execute if customer option valid and its 1
-        if (in_array($customer_input, $options) && $customer_input === '1') {
+        // Define a mapping between customer input and states
+        $stateMappings = [
+            '1' => new RegistrationState,
+            '2' => new TermsAndConditionsState,
+            '0' => null,
+        ];
+
+        // Check if the customer input is a valid option
+        if (in_array($customer_input, $options) && array_key_exists($customer_input, $stateMappings)) {
+            $customer_state = $stateMappings[$customer_input];
+
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'RegistrationState');
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
 
-            // Return the RegistrationState
-            return RegistrationState::execute(session: $session, request: $request);
+            // If the input is '0', terminate the session
+            if ($customer_input === '0') {
+                return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+            }
+
+            // Execute the state
+            return $customer_state::execute(session: $session, request: $request);
         }
 
-        // Execute if customer option valid and its 2
-        if (in_array($customer_input, $options) && $customer_input === '2') {
-            // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'TermsAndConditionsState');
-
-            // Return the TermsAndConditionsState
-            return TermsAndConditionsState::execute(session: $session, request: $request);
-        }
-
-        // Execute if customer option valid and its 0
-        if (in_array($customer_input, $options) && $customer_input === '0') {
-            // Delete customer session
-
-            // Return the terminateResponseBuilder
-            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
-        }
-
-        // Return the newCustomerInvalidOption
+        // The customer input is invalid
         return WelcomeMenu::newCustomerInvalidOption(data_get(target: $session, key: 'session_id'));
     }
 }
