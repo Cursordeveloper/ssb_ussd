@@ -6,11 +6,11 @@ namespace App\States\Registration;
 
 use App\Menus\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
+use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\Registration\CustomerCreateAction;
 use Domain\Customer\Actions\Registration\CustomerCreatePinAction;
 use Domain\Customer\Actions\Registration\CustomerUpdateFirstNameAction;
 use Domain\Customer\Actions\Registration\CustomerUpdateLastNameAction;
-use Domain\Customer\Models\Customer;
 use Domain\Shared\Models\Session;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,7 +22,7 @@ final class RegistrationState
         Request $request,
     ): JsonResponse {
         // Get the customer
-        $customer = Customer::query()->where(column: 'phone_number', operator: '=', value: data_get(target: $session, key: 'phone_number'))->first();
+        $customer = GetCustomerAction::execute(data_get(target: $session, key: 'phone_number'));
 
         // Create the customer if not existed
         if (! $customer) {
@@ -33,34 +33,18 @@ final class RegistrationState
             return RegistrationMenu::firstName(data_get(target: $session, key: 'session_id'));
         }
 
-        // Validate the customer first_name input and update database
-        if (data_get(target: $customer, key: 'first_name') === null) {
-            return CustomerUpdateFirstNameAction::execute(
-                customer: $customer,
-                session: $session,
-                request: $request,
-            );
-        }
+        // Validate inputs and update the database
+        return match (true) {
+            data_get(target: $customer, key: 'first_name') === null =>
+            CustomerUpdateFirstNameAction::execute(customer: $customer, session: $session, request: $request),
 
-        // Validate the customer last_name input and update database
-        if (data_get(target: $customer, key: 'last_name') === null) {
-            return CustomerUpdateLastNameAction::execute(
-                customer: $customer,
-                session: $session,
-                request: $request,
-            );
-        }
+            data_get(target: $customer, key: 'last_name') === null =>
+            CustomerUpdateLastNameAction::execute(customer: $customer, session: $session, request: $request),
 
-        // Validate the customer pin input and update database
-        if (data_get(target: $customer, key: 'has_pin') === false) {
-            return CustomerCreatePinAction::execute(
-                customer: $customer,
-                session: $session,
-                request: $request,
-            );
-        }
+            data_get(target: $customer, key: 'has_pin') === false =>
+            CustomerCreatePinAction::execute(customer: $customer, session: $session, request: $request),
 
-        // Terminate the session
-        return GeneralMenu::invalidInput(data_get(target: $session, key: 'session_id'));
+            default => GeneralMenu::invalidInput(data_get(target: $session, key: 'session_id')),
+        };
     }
 }

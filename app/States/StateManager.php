@@ -54,6 +54,7 @@ final class StateManager
         if (array_key_exists($customer_session, $states)) {
             $customer_state = $states[$customer_session];
 
+            // Return the state menu
             return $customer_state::execute($session, $request);
         }
 
