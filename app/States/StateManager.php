@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\States;
 
-use App\Common\ResponseBuilder;
 use App\Menus\Shared\GeneralMenu;
 use App\States\Account\MyAccountState;
 use App\States\Customer\ExistingCustomerState;

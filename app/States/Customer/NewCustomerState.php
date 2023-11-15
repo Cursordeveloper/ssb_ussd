@@ -8,7 +8,6 @@ use App\Common\ResponseBuilder;
 use App\Menus\Welcome\WelcomeMenu;
 use App\States\Registration\RegistrationState;
 use App\States\TermsAndConditions\TermsAndConditionsState;
-use Domain\Shared\Action\SessionGetAction;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Illuminate\Http\Request;
