@@ -25,6 +25,11 @@ final class MyAccountState
         // Assign the customer input to a variable
         $customer_input = data_get(target: $request, key: 'Message');
 
+        // If the input is '0', terminate the session
+        if ($customer_input === '0') {
+            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+        }
+
         // Define a mapping between customer input and states
         $stateMappings = ['1' => new LinkedWalletsState(), '2' => new LinkNewWalletState(), '3' => new ChangePinState(), '0' => null];
 
@@ -35,16 +40,11 @@ final class MyAccountState
             // Update the customer session action
             SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
 
-            // If the input is '0', terminate the session
-            if ($customer_input === '0') {
-                return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
-            }
-
             // Execute the state
             return $customer_state::execute(session: $session, request: $request);
         }
 
         // Return the MyAccountMenu
-        return MyAccountMenu::invalidMainMenu(session: data_get(target: $session, key: 'session_id'));
+        return MyAccountMenu::invalidMainMenu(session: $session);
     }
 }
