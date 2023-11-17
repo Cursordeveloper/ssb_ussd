@@ -35,14 +35,9 @@ final class RegistrationState
 
         // Validate inputs and update the database
         return match (true) {
-            data_get(target: $customer, key: 'first_name') === null =>
-            CustomerUpdateFirstNameAction::execute(customer: $customer, session: $session, request: $request),
-
-            data_get(target: $customer, key: 'last_name') === null =>
-            CustomerUpdateLastNameAction::execute(customer: $customer, session: $session, request: $request),
-
-            data_get(target: $customer, key: 'has_pin') === false =>
-            CustomerCreatePinAction::execute(customer: $customer, session: $session, request: $request),
+            data_get(target: $customer, key: 'first_name') === null => CustomerUpdateFirstNameAction::execute(customer: $customer, session: $session, request: $request),
+            data_get(target: $customer, key: 'last_name') === null => CustomerUpdateLastNameAction::execute(customer: $customer, session: $session, request: $request),
+            data_get(target: $customer, key: 'has_pin') === false => CustomerCreatePinAction::execute(customer: $customer, session: $session, request: $request),
 
             default => GeneralMenu::invalidInput(data_get(target: $session, key: 'session_id')),
         };

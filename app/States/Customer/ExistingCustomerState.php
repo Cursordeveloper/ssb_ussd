@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace App\States\Customer;
 
 use App\Common\ResponseBuilder;
+use App\Menus\Account\MyAccountMenu;
+use App\Menus\Insurance\InsuranceMenu;
+use App\Menus\Investment\InvestmentsMenu;
+use App\Menus\Loans\LoansMenu;
+use App\Menus\Susu\SusuSavingsMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use App\States\Account\MyAccountState;
 use App\States\Insurance\InsuranceState;
@@ -28,13 +33,18 @@ final class ExistingCustomerState
         // Assign the customer input to a variable
         $customer_input = data_get(target: $request, key: 'Message');
 
+        // If the input is '0', terminate the session
+        if ($customer_input === '0') {
+            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+        }
+
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => new SusuSavingsState,
-            '2' => new LoansState,
-            '3' => new InvestmentsState,
-            '4' => new InsuranceState,
-            '5' => new MyAccountState,
+            '1' => ['class' => new SusuSavingsState(), 'menu' => new SusuSavingsMenu()],
+            '2' => ['class' => new LoansState(), 'menu' => new LoansMenu()],
+            '3' => ['class' => new InvestmentsState(), 'menu' => new InvestmentsMenu()],
+            '4' => ['class' => new InsuranceState(), 'menu' => new InsuranceMenu()],
+            '5' => ['class' => new MyAccountState(), 'menu' => new MyAccountMenu()],
             '0' => null,
         ];
 
@@ -43,15 +53,10 @@ final class ExistingCustomerState
             $customer_state = $stateMappings[$customer_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
-
-            // If the input is '0', terminate the session
-            if ($customer_input === '0') {
-                return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
-            }
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']));
 
             // Execute the state
-            return $customer_state::execute(session: $session, request: $request);
+            return $customer_state['menu']::mainMenu(session: $session);
         }
 
         // The customer input is invalid

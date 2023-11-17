@@ -11,7 +11,7 @@ final class CustomerCreatedListener implements ShouldQueue
     public function handle(object $event): void
     {
         $headers = ['origin' => 'ussd', 'action' => 'CreateCustomerAction'];
-        $data = ['data' =>  CustomerDTO::toArray($event->customer)];
+        $data = ['data' => CustomerDTO::toArray($event->customer)];
 
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->publish(

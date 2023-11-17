@@ -11,7 +11,6 @@ final class CustomerDTO
     public static function toArray(
         Customer $customer,
     ): array {
-
         return [
             // Resource type and id
             'type' => 'Customer',

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\States\Account;
 
 use App\Common\ResponseBuilder;
-use App\Menus\Account\AccountMenu;
+use App\Menus\Account\MyAccountMenu;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Illuminate\Http\Request;
@@ -26,12 +26,7 @@ final class MyAccountState
         $customer_input = data_get(target: $request, key: 'Message');
 
         // Define a mapping between customer input and states
-        $stateMappings = [
-            '1' => new LinkedWalletsState(),
-            '2' => new LinkNewWalletState(),
-            '3' => new ChangePinState(),
-            '0' => null,
-        ];
+        $stateMappings = ['1' => new LinkedWalletsState(), '2' => new LinkNewWalletState(), '3' => new ChangePinState(), '0' => null];
 
         // Check if the customer input is a valid option
         if (in_array($customer_input, $options) && array_key_exists($customer_input, $stateMappings)) {
@@ -49,7 +44,7 @@ final class MyAccountState
             return $customer_state::execute(session: $session, request: $request);
         }
 
-        // Return the AccountMenu
-        return AccountMenu::invalidAccountMenu(session: data_get(target: $session, key: 'session_id'));
+        // Return the MyAccountMenu
+        return MyAccountMenu::invalidMainMenu(session: data_get(target: $session, key: 'session_id'));
     }
 }
