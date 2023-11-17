@@ -7,6 +7,7 @@ namespace Domain\Customer\Actions\Registration;
 use App\Menus\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Enums\CustomerStatus;
+use Domain\Customer\Models\Customer;
 use Domain\Shared\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 final class CustomerCreatePinAction
 {
     public static function execute(
-        $customer,
+        Customer $customer,
         Session $session,
         Request $request
     ): JsonResponse {
@@ -26,6 +27,8 @@ final class CustomerCreatePinAction
         if (! $validator->fails()) {
             // Update the customer pin and status
             $customer->update(['has_pin' => true, 'status' => CustomerStatus::Active->value]);
+
+            // Create the customer pin
 
             // Return registrations success
             return RegistrationMenu::successResponse(data_get(target: $session, key: 'session_id'));

@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\States;
 
 use App\Menus\Shared\GeneralMenu;
+use App\States\Account\ChangePinState;
+use App\States\Account\LinkedWalletsState;
+use App\States\Account\LinkNewWalletState;
 use App\States\Account\MyAccountState;
 use App\States\Customer\ExistingCustomerState;
 use App\States\Customer\NewCustomerState;
@@ -35,16 +38,20 @@ final class StateManager
         }
 
         $states = [
-            'NewCustomerState' => new NewCustomerState,
-            'RegistrationState' => new RegistrationState,
-            'ExistingCustomerState' => new ExistingCustomerState,
-            'TermsAndConditionsState' => new TermsAndConditionsState,
+            'NewCustomerState' => new NewCustomerState(),
+            'RegistrationState' => new RegistrationState(),
+            'ExistingCustomerState' => new ExistingCustomerState(),
+            'TermsAndConditionsState' => new TermsAndConditionsState(),
 
-            'SusuSavingsState' => new SusuSavingsState,
-            'LoansState' => new LoansState,
-            'InvestmentsState' => new InvestmentsState,
-            'InsuranceState' => new InsuranceState,
-            'MyAccountState' => new MyAccountState,
+            'SusuSavingsState' => new SusuSavingsState(),
+            'LoansState' => new LoansState(),
+            'InvestmentsState' => new InvestmentsState(),
+            'InsuranceState' => new InsuranceState(),
+            'MyAccountState' => new MyAccountState(),
+
+            'LinkedWalletsState' => new LinkedWalletsState(),
+            'LinkNewWalletState' => new LinkNewWalletState(),
+            'ChangePinState' => new ChangePinState(),
         ];
 
         // Get the session

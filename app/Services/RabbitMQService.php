@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Exception;
+use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use PhpAmqpLib\Wire\AMQPTable;
 
 final class RabbitMQService
 {
     protected AMQPStreamConnection $connection;
-    protected \PhpAmqpLib\Channel\AMQPChannel $channel;
+    protected AMQPChannel $channel;
 
     /**
      * @throws Exception
@@ -38,10 +40,14 @@ final class RabbitMQService
         $this->connection->close();
     }
 
-    public function publish(string $exchange, string $type, string $queue, string $routingKey, array $data): void
+    public function publish(string $exchange, string $type, string $queue, string $routingKey, array $data, array $headers): void
     {
         $this->setupQueueAndExchange($exchange, $type, $queue, $routingKey);
         $message = new AMQPMessage(body: json_encode($data));
+
+        $headers = new AMQPTable($headers);
+        $message->set('application_headers', $headers);
+
         $this->channel->basic_publish(
             msg: $message,
             exchange: $exchange,
@@ -52,6 +58,7 @@ final class RabbitMQService
     public function consume(string $exchange, string $type, string $queue, string $routingKey, callable $callback): void
     {
         $this->setupQueueAndExchange($exchange, $type, $queue, $routingKey);
+
         $this->channel->basic_consume(
             queue: $queue,
             callback: $callback

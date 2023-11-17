@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\States\Account;
 
-use App\Menus\Shared\GeneralMenu;
+use App\Common\ResponseBuilder;
+use App\Menus\Account\AccountMenu;
+use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,10 +17,39 @@ final class MyAccountState
         Session $session,
         Request $request,
     ): JsonResponse {
-        // Terminate the session
-        return GeneralMenu::infoNotification(
-            message: 'Dear valued customer, the account features are being worked on. Try again later.',
-            session: data_get(target: $session, key: 'session_id'),
-        );
+        // Pin validation
+
+        // Create the expected input arrays
+        $options = ['1', '2', '3', '0'];
+
+        // Assign the customer input to a variable
+        $customer_input = data_get(target: $request, key: 'Message');
+
+        // Define a mapping between customer input and states
+        $stateMappings = [
+            '1' => new LinkedWalletsState(),
+            '2' => new LinkNewWalletState(),
+            '3' => new ChangePinState(),
+            '0' => null,
+        ];
+
+        // Check if the customer input is a valid option
+        if (in_array($customer_input, $options) && array_key_exists($customer_input, $stateMappings)) {
+            $customer_state = $stateMappings[$customer_input];
+
+            // Update the customer session action
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
+
+            // If the input is '0', terminate the session
+            if ($customer_input === '0') {
+                return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+            }
+
+            // Execute the state
+            return $customer_state::execute(session: $session, request: $request);
+        }
+
+        // Return the AccountMenu
+        return AccountMenu::invalidAccountMenu(session: data_get(target: $session, key: 'session_id'));
     }
 }
