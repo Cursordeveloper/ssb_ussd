@@ -13,7 +13,7 @@ final class TermsAndConditionsState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'This is the TermsAndConditions state.',

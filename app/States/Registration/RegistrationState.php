@@ -19,7 +19,7 @@ final class RegistrationState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Get the customer
         $customer = GetCustomerAction::execute(data_get(target: $session, key: 'phone_number'));
@@ -35,9 +35,9 @@ final class RegistrationState
 
         // Validate inputs and update the database
         return match (true) {
-            data_get(target: $customer, key: 'first_name') === null => CustomerUpdateFirstNameAction::execute(customer: $customer, session: $session, request: $request),
-            data_get(target: $customer, key: 'last_name') === null => CustomerUpdateLastNameAction::execute(customer: $customer, session: $session, request: $request),
-            data_get(target: $customer, key: 'has_pin') === false => CustomerCreatePinAction::execute(customer: $customer, session: $session, request: $request),
+            data_get(target: $customer, key: 'first_name') === null => CustomerUpdateFirstNameAction::execute($customer, $session, $session_data),
+            data_get(target: $customer, key: 'last_name') === null => CustomerUpdateLastNameAction::execute($customer, $session, $session_data),
+            data_get(target: $customer, key: 'has_pin') === false => CustomerCreatePinAction::execute($customer, $session, $session_data),
 
             default => GeneralMenu::invalidInput(data_get(target: $session, key: 'session_id')),
         };

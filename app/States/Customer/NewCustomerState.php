@@ -17,35 +17,28 @@ final class NewCustomerState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Create the expected input arrays
         $options = ['1', '2', '0'];
 
-        // Assign the customer input to a variable
-        $customer_input = data_get(target: $request, key: 'Message');
+        // If the input is '0', terminate the session
+        if ($session_data->user_input === '0') {
+            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+        }
 
         // Define a mapping between customer input and states
-        $stateMappings = [
-            '1' => new RegistrationState,
-            '2' => new TermsAndConditionsState,
-            '0' => null,
-        ];
+        $stateMappings = ['1' => new RegistrationState, '2' => new TermsAndConditionsState, '0' => null];
 
         // Check if the customer input is a valid option
-        if (in_array($customer_input, $options) && array_key_exists($customer_input, $stateMappings)) {
-            $customer_state = $stateMappings[$customer_input];
+        if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {
+            $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
             SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
 
-            // If the input is '0', terminate the session
-            if ($customer_input === '0') {
-                return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
-            }
-
             // Execute the state
-            return $customer_state::execute(session: $session, request: $request);
+            return $customer_state::execute($session, $session_data);
         }
 
         // The customer input is invalid

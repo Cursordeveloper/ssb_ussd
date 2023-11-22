@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Models;
 
-use Domain\Customer\DTO\CustomerData;
 use Domain\Shared\Models\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -14,21 +13,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 final class Customer extends Authenticatable implements JWTSubject
 {
     use HasFactory;
-    use HasUuid;
 
-    protected string $guard = 'customer';
-
+    public $timestamps = false;
     protected $guarded = ['id'];
-
-    protected $fillable = [
-        'id',
-        'resource_id',
-        'first_name',
-        'last_name',
-        'phone_number',
-        'has_pin',
-        'status',
-    ];
+    protected string $guard = 'customer';
+    protected $fillable = ['id', 'resource_id', 'first_name', 'last_name', 'phone_number', 'email', 'has_pin', 'status'];
 
     public function getRouteKeyName(): string
     {

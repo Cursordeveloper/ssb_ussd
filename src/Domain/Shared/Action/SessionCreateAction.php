@@ -9,25 +9,13 @@ use Illuminate\Http\Request;
 
 final class SessionCreateAction
 {
-    public static function execute(
-        Request $request,
-        $state,
-    ): Session {
+    public static function execute($ussd_service, $state): Session
+    {
         return Session::create([
-            'session_id' => data_get(
-                target: $request,
-                key: 'SessionId',
-            ),
-            'msisdn' => data_get(
-                target: $request,
-                key: 'Mobile',
-            ),'phone_number' => phone(
-                data_get(target: $request, key: 'Mobile'),
-            ),
-            'sequence' => data_get(
-                target: $request,
-                key: 'Sequence',
-            ),
+            'session_id' => $ussd_service->session_id,
+            'msisdn' => $ussd_service->msisdn,
+            'phone_number' => phone($ussd_service->msisdn),
+            'sequence' => $ussd_service->sequence,
             'state' => $state,
         ]);
     }

@@ -8,14 +8,13 @@ use App\Common\ResponseBuilder;
 use App\Menus\Account\MyAccountMenu;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MyAccountState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Pin validation
 
@@ -23,7 +22,7 @@ final class MyAccountState
         $options = ['1', '2', '3', '0'];
 
         // Assign the customer input to a variable
-        $customer_input = data_get(target: $request, key: 'Message');
+        $customer_input = $session_data->input_user;
 
         // If the input is '0', terminate the session
         if ($customer_input === '0') {
@@ -41,7 +40,7 @@ final class MyAccountState
             SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
 
             // Execute the state
-            return $customer_state::execute(session: $session, request: $request);
+            return $customer_state::execute(session: $session, request: $session_data);
         }
 
         // Return the MyAccountMenu

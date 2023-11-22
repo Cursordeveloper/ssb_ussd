@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\States\Susu;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Menus\Susu\SusuSavingsMenu;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuSavingsState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Pin validation
 
@@ -22,7 +20,7 @@ final class SusuSavingsState
         $options = ['1', '2', '3', '0'];
 
         // Assign the customer input to a variable
-        $customer_input = data_get(target: $request, key: 'Message');
+        $customer_input = $session_data->user_input;
 
         // Return the MyAccountMenu
         return SusuSavingsMenu::invalidMainMenu(session: $session);

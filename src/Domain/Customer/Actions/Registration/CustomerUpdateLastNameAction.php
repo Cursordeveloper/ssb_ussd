@@ -19,18 +19,15 @@ final class CustomerUpdateLastNameAction
     public static function execute(
         Customer $customer,
         Session $session,
-        Request $request
+        $session_data,
     ): JsonResponse {
-        // Validate the last_name input
-        $validator = Validator::make($request->all(), ['Message' => ['required', 'alpha', 'between:2,20']]);
-
         // Terminate the session if validation failed
-        if (! $validator->fails()) {
+        if(preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
             // Update the customer record with the last_name
-            $customer->update(['last_name' => data_get(target: $request, key: 'Message'), 'status' => CustomerStatus::Active->value]);
+            $customer->update(['last_name' => $session_data->user_input, 'status' => CustomerStatus::Active->value]);
 
             // Dispatch CustomerCreatedEvent
-            CustomerCreatedEvent::dispatch($customer);
+            CustomerCreatedEvent::dispatch($customer->refresh());
 
             // Return the last name prompt to the customer
             return RegistrationMenu::choosePin(data_get(target: $session, key: 'session_id'));

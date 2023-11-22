@@ -26,12 +26,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 final class StateManager
 {
     public static function execute(
-        Request $request,
+        $state_data,
     ): JsonResponse {
         // Check if the type is "initiation"
-        if (strtolower(data_get(target: $request, key: 'Type')) === 'initiation') {
+        if ($state_data->new_session) {
             // Create session
-            $session = SessionCreateAction::execute(request: $request, state: 'WelcomeState');
+            $session = SessionCreateAction::execute($state_data, state: 'WelcomeState');
 
             // Return the WelcomeState
             return WelcomeState::execute(session: $session);
@@ -55,14 +55,14 @@ final class StateManager
         ];
 
         // Get the session
-        $session = SessionGetAction::execute(session_id: data_get(target: $request, key: 'SessionId'));
+        $session = SessionGetAction::execute(session_id: $state_data->session_id);
         $customer_session = data_get(target: $session, key: 'state');
 
         if (array_key_exists($customer_session, $states)) {
             $customer_state = $states[$customer_session];
 
             // Return the state menu
-            return $customer_state::execute($session, $request);
+            return $customer_state::execute($session, $state_data);
         }
 
         // Return a system failure message.

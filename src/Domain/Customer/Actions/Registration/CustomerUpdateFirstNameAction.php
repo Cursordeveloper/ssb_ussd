@@ -17,15 +17,12 @@ final class CustomerUpdateFirstNameAction
     public static function execute(
         Customer $customer,
         Session $session,
-        Request $request
+        $session_data
     ): JsonResponse {
-        // Validate the first_name input
-        $validator = Validator::make($request->all(), ['Message' => ['required', 'alpha', 'between:2,20']]);
-
         // Terminate the session if validation failed
-        if (! $validator->fails()) {
+        if(preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
             // Update the customer record with the first_name
-            $customer->update(['first_name' => data_get(target: $request, key: 'Message')]);
+            $customer->update(['first_name' => $session_data->user_input]);
 
             // Return the last name prompt to the customer
             return RegistrationMenu::lastName(data_get(target: $session, key: 'session_id'));

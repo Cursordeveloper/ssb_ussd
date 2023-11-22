@@ -6,14 +6,13 @@ namespace App\States\Insurance;
 
 use App\Menus\Insurance\InsuranceMenu;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class InsuranceState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Pin validation
 
@@ -21,7 +20,7 @@ final class InsuranceState
         $options = ['1', '2', '3', '0'];
 
         // Assign the customer input to a variable
-        $customer_input = data_get(target: $request, key: 'Message');
+        $customer_input = $session_data->user_input;
 
         // Return the MyAccountMenu
         return InsuranceMenu::invalidMainMenu(session: $session);

@@ -13,7 +13,7 @@ final class LinkedWalletsState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Terminate the session
         return GeneralMenu::infoNotification(

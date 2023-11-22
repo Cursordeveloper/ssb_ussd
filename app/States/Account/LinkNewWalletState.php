@@ -6,14 +6,13 @@ namespace App\States\Account;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkNewWalletState
 {
     public static function execute(
         Session $session,
-        Request $request,
+        $session_data,
     ): JsonResponse {
         // Terminate the session
         return GeneralMenu::infoNotification(
