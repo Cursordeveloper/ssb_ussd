@@ -5,7 +5,6 @@ namespace Domain\Customer\Listeners;
 use App\Services\RabbitMQService;
 use Domain\Customer\DTO\CustomerDTO;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Http;
 
 final class CustomerCreatedListener implements ShouldQueue
 {
@@ -13,14 +12,6 @@ final class CustomerCreatedListener implements ShouldQueue
     {
         // Prepare the message data
         $data = ['data' => CustomerDTO::toArray($event->customer)];
-
-        // Dispatch the message ssb_customer service through http
-//        Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json',]
-//        )->post(url: env(key: 'SSB_CUSTOMER'), data: $data);
-
-        // Dispatch the message ssb_mobile service through http
-//        Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json']
-//        )->post(url: env(key: 'SSB_MOBILE').'registration/customer', data: $data);
 
         // Dispatch the message to the message broker (RabbitMQ)
         $headers = ['origin' => 'ussd', 'action' => 'CreateCustomerAction'];

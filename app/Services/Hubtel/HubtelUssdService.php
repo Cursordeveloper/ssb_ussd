@@ -20,7 +20,8 @@ class HubtelUssdService
             data_get(
                 target: $request,
                 key: 'Type',
-            ));
+            )
+        );
         $this->service_code = data_get(
             target: $request,
             key: 'ServiceCode',
@@ -47,7 +48,8 @@ class HubtelUssdService
         );
     }
 
-    private function checkSession(string $type): bool {
+    private function checkSession(string $type): bool
+    {
         return strtolower($type) === 'initiation';
     }
 }

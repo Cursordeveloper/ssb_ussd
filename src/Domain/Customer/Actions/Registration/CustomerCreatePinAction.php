@@ -21,7 +21,7 @@ final class CustomerCreatePinAction
         $session_data,
     ): JsonResponse {
         // Terminate the session if validation failed
-        if (is_numeric($session_data->user_input) && strlen((string)$session_data->user_input) == 4) {
+        if (is_numeric($session_data->user_input) && strlen((string) $session_data->user_input) === 4) {
             // Create the customer pin
             $pin_created = CreatePinAction::execute($customer, $session_data);
 

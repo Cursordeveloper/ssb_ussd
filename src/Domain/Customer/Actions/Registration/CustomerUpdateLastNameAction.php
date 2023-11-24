@@ -22,7 +22,7 @@ final class CustomerUpdateLastNameAction
         $session_data,
     ): JsonResponse {
         // Terminate the session if validation failed
-        if(preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
+        if (preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
             // Update the customer record with the last_name
             $customer->update(['last_name' => $session_data->user_input, 'status' => CustomerStatus::Active->value]);
 

@@ -20,7 +20,7 @@ final class CustomerUpdateFirstNameAction
         $session_data
     ): JsonResponse {
         // Terminate the session if validation failed
-        if(preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
+        if (preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
             // Update the customer record with the first_name
             $customer->update(['first_name' => $session_data->user_input]);
 

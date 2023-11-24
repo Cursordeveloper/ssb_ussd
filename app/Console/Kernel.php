@@ -15,7 +15,6 @@ final class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(command: 'app:message-consumer')->everySecond();
     }
 
     protected function shortSchedule(ShortSchedule $shortSchedule): void
