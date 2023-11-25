@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Action;
 
+use App\Common\Helpers;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 
 final class SessionCreateAction
 {
@@ -14,7 +14,7 @@ final class SessionCreateAction
         return Session::create([
             'session_id' => $ussd_service->session_id,
             'msisdn' => $ussd_service->msisdn,
-            'phone_number' => phone($ussd_service->msisdn),
+            'phone_number' => Helpers::Phone($ussd_service->msisdn),
             'sequence' => $ussd_service->sequence,
             'state' => $state,
         ]);
