@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 final class Handler extends ExceptionHandler
 {
@@ -63,7 +64,10 @@ final class Handler extends ExceptionHandler
 
     public function register(): void
     {
-        $this->reportable(function (): void {
+        $this->reportable(static function (Throwable $e): void {
         });
+
+//        $this->reportable(function (MethodNotAllowedHttpException $e): void {});
+//        $this->reportable(function (): void {});
     }
 }
