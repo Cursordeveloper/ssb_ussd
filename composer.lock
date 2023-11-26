@@ -4,52 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f351870ce566b2decb6af4e79d843027",
+    "content-hash": "bcc91eeab1e4cabdad05c30c758aef88",
     "packages": [
-        {
-            "name": "anik/amqp",
-            "version": "v2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ssi-anik/amqp.git",
-                "reference": "d63ae01701a6f28551abb6feb49c3842117966a2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ssi-anik/amqp/zipball/d63ae01701a6f28551abb6feb49c3842117966a2",
-                "reference": "d63ae01701a6f28551abb6feb49c3842117966a2",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2|^8.0",
-                "php-amqplib/php-amqplib": "^3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5|^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Anik\\Amqp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Syed Sirajul Islam Anik",
-                    "email": "sirajul.islam.anik@gmail.com"
-                }
-            ],
-            "description": "php-amqplib wrapper that eases the consumption of RabbitMQ. A painless way of using RabbitMQ",
-            "support": {
-                "issues": "https://github.com/ssi-anik/amqp/issues",
-                "source": "https://github.com/ssi-anik/amqp/tree/v2.3"
-            },
-            "time": "2023-03-08T00:36:09+00:00"
-        },
         {
             "name": "brick/math",
             "version": "0.11.0",

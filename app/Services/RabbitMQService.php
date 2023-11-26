@@ -15,12 +15,18 @@ final class RabbitMQService
     protected AMQPStreamConnection $connection;
     protected AMQPChannel $channel;
 
+    private function __construct(AMQPStreamConnection $connection, AMQPChannel $channel)
+    {
+        $this->connection = $connection;
+        $this->channel = $channel;
+    }
+
     /**
      * @throws Exception
      */
-    public function __construct()
+    public static function create(): RabbitMQService
     {
-        $this->connection = new AMQPStreamConnection(
+        $connection = new AMQPStreamConnection(
             env(key: 'RABBITMQ_HOST'),
             env(key: 'RABBITMQ_PORT'),
             env(key: 'RABBITMQ_USER'),
@@ -28,12 +34,12 @@ final class RabbitMQService
             env(key: 'RABBITMQ_VHOST'),
             env(key: 'RABBITMQ_QUEUE_NAME')
         );
-        $this->channel = $this->connection->channel();
+
+        $channel = $connection->channel();
+
+        return new self($connection, $channel);
     }
 
-    /**
-     * @throws Exception
-     */
     public function __destruct()
     {
         $this->channel->close();
