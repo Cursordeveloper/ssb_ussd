@@ -23,10 +23,10 @@ final class RabbitMQService
         $this->connection = new AMQPStreamConnection(
             env(key: 'RABBITMQ_HOST'),
             env(key: 'RABBITMQ_PORT'),
-            env(key: 'RABBITMQ_USER'),
+            env(key: 'RABBITMQ_USERNAME'),
             env(key: 'RABBITMQ_PASSWORD'),
             env(key: 'RABBITMQ_VHOST'),
-            env(key: 'RABBITMQ_QUEUE_NAME')
+            env(key: 'RABBITMQ_QUEUE'),
         );
         $this->channel = $this->connection->channel();
     }
