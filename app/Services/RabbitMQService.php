@@ -26,7 +26,6 @@ final class RabbitMQService
             env(key: 'RABBITMQ_USERNAME'),
             env(key: 'RABBITMQ_PASSWORD'),
             env(key: 'RABBITMQ_VHOST'),
-            env(key: 'RABBITMQ_QUEUE'),
         );
         $this->channel = $this->connection->channel();
     }
