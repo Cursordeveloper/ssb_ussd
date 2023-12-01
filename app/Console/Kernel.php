@@ -11,15 +11,13 @@ use Spatie\ShortSchedule\ShortSchedule;
 
 final class Kernel extends ConsoleKernel
 {
-    protected $commands = [];
-
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command(command: MessageConsumer::class)->everySecond()->withoutOverlapping();
     }
 
     protected function shortSchedule(ShortSchedule $shortSchedule): void
     {
-        $shortSchedule->command(command: MessageConsumer::class)->everySecond()->withoutOverlapping();
     }
 
     protected function commands(): void

@@ -25,9 +25,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StateManager
 {
-    public static function execute(
-        $state_data,
-    ): JsonResponse {
+    public static function execute($state_data): JsonResponse
+    {
         // Check if the type is "initiation"
         if ($state_data->new_session) {
             // Create session

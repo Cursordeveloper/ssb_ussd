@@ -17,7 +17,7 @@ final class CreatePinAction
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->post(
-            url: config(key: 'services.ssb_customer.base_url').data_get(target: $customer, key: 'resource_id').'/pin',
+            url: config(key: 'services.ssb_customer.base_url').$customer['resource_id'].'/pin',
             data: [
                 'data' => [
                     'type' => 'Pin',

@@ -9,8 +9,6 @@ use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\Pin\CreatePinAction;
 use Domain\Customer\Models\Customer;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CustomerCreatePinAction
@@ -35,7 +33,7 @@ final class CustomerCreatePinAction
             }
 
             // Return registrations success
-            return GeneralMenu::infoNotification(message: 'Pin creation failed. Try again later', session: $session);
+            return GeneralMenu::infoNotification(message: 'Pin creation failed. Try again later', session: $session['session_id']);
         }
 
         // Terminate the session

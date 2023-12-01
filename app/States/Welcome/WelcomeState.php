@@ -2,6 +2,7 @@
 
 namespace App\States\Welcome;
 
+use App\Menus\Registration\RegistrationMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Action\SessionUpdateAction;
@@ -15,6 +16,15 @@ final class WelcomeState
     ): JsonResponse {
         // Get the customer
         $customer = GetCustomerAction::execute(data_get(target: $session, key: 'phone_number'));
+
+        // Customer has not created a pin
+        if ($customer && data_get(target: $customer, key: 'status') === 'active' && $customer['has_pin'] !== true) {
+            // Update the customer session action
+            SessionUpdateAction::execute(session: $session, state: 'RegistrationState');
+
+            // Return the choose pin prompt to the customer
+            return RegistrationMenu::choosePin(data_get(target: $session, key: 'session_id'));
+        }
 
         // Customer exist and status is active
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {

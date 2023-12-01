@@ -32,20 +32,6 @@ final class Customer extends Authenticatable implements JWTSubject
         );
     }
 
-    public function toData(): CustomerData
-    {
-        return new CustomerData(
-            id: $this->id,
-            resource_id: $this->resource_id,
-            first_name: $this->first_name,
-            phone_number: $this->phone_number,
-            email: $this->email,
-            status: $this->status,
-            created_at: $this->created_at,
-            updated_at: $this->updated_at
-        );
-    }
-
     public function getJWTIdentifier(): mixed
     {
         return $this->getKey();

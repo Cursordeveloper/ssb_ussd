@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create(table: 'customers', callback: function (Blueprint $table) {
             // Table ids
             $table->id();
-            $table->uuid(column: 'resource_id')->unique()->index();
+            $table->uuid(column: 'resource_id')->unique()->nullable()->index();
 
             // Table main attributes
             $table->string(column: 'first_name')->nullable();

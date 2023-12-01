@@ -19,6 +19,9 @@ final class PinCreatedAction
         );
 
         // Update the customer status
-        return $customer->update(['has_pin' => true]);
+        return $customer->update([
+            'resource_id' => data_get(target: $data, key: 'data.included.customer.attributes.resource_id'),
+            'has_pin' => true,
+        ]);
     }
 }
