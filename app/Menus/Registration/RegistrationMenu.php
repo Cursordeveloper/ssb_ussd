@@ -36,7 +36,7 @@ final class RegistrationMenu
     public static function successResponse($session): JsonResponse
     {
         return ResponseBuilder::invalidResponseBuilder(
-            message: 'Congratulations! Registration successful.',
+            message: 'Registration successful.',
             session_id: $session,
         );
     }
