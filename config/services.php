@@ -40,6 +40,17 @@ return [
     ],
 
     'ssb_customer' => [
-        'base_url' => env('SSB_CUSTOMER'),
+        'base_url' => env('SSB_CUSTOMER_BASE_URL'),
+        'api_key' => env('SSB_CUSTOMER_API_KEY'),
+    ],
+
+    'ssb_mobile' => [
+        'base_url' => env('SSB_MOBILE_BASE_URL'),
+        'api_key' => env('SSB_MOBILE_API_KEY'),
+    ],
+
+    'ssb_susu' => [
+        'base_url' => env('SSB_SUSU_BASE_URL'),
+        'api_key' => env('SSB_SUSU_API_KEY'),
     ],
 ];
