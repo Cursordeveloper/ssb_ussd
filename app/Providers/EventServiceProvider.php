@@ -16,6 +16,7 @@ final class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
         CustomerCreatedEvent::class => [
             CustomerCreatedListener::class,
         ],

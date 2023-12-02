@@ -17,11 +17,12 @@ final class CreatePinAction
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json',
         ])->post(
-            url: config(key: 'services.ssb_customer.base_url').$customer['resource_id'].'/pin',
+            url: config(key: 'services.ssb_customer.base_url').'pin',
             data: [
                 'data' => [
                     'type' => 'Pin',
                     'attributes' => [
+                        'phone_number' => data_get(target: $customer, key: 'phone_number'),
                         'pin' => $session_data->user_input,
                     ],
                 ],

@@ -23,16 +23,12 @@ final class CustomerCreatePinAction
             // Create the customer pin
             $pin_created = CreatePinAction::execute($customer, $session_data);
 
-            // Update the customer pin and status
+            // Return a success response
             if (data_get($pin_created, key: 'status') === true) {
-                // Update the customer table
-                $customer->update(['has_pin' => true]);
-
-                // Return registrations success
                 return RegistrationMenu::successResponse(data_get(target: $session, key: 'session_id'));
             }
 
-            // Return registrations success
+            // Return registrations failed response
             return GeneralMenu::infoNotification(message: 'Pin creation failed. Try again later', session: $session['session_id']);
         }
 

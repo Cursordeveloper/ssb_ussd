@@ -39,6 +39,13 @@ final class RabbitMQService
         $this->connection->close();
     }
 
+    /**
+     * @param string $exchange
+     * @param string $routingKey
+     * @param array $data
+     * @param array $headers
+     * @return void
+     */
     public function publish(string $exchange, string $routingKey, array $data, array $headers): void
     {
         $message = new AMQPMessage(body: json_encode($data));
@@ -49,7 +56,12 @@ final class RabbitMQService
         $this->channel->basic_publish(msg: $message, exchange: $exchange, routing_key: $routingKey);
     }
 
-    public function consume(string $exchange, string $type, string $queue, string $routingKey, callable $callback): void
+    /**
+     * @param string $queue
+     * @param callable $callback
+     * @return void
+     */
+    public function consume(string $queue, callable $callback): void
     {
         $this->channel->basic_consume(queue: $queue, callback: $callback);
         while ($this->channel->is_consuming()) {
