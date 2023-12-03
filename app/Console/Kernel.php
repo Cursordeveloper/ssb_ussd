@@ -17,7 +17,7 @@ final class Kernel extends ConsoleKernel
 
     protected function shortSchedule(ShortSchedule $shortSchedule): void
     {
-        $shortSchedule->command(command: MessageConsumer::class)->everySecond()->withoutOverlapping();
+//        $shortSchedule->command(command: MessageConsumer::class)->everySecond()->withoutOverlapping();
     }
 
     protected function commands(): void

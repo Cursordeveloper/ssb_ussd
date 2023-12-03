@@ -49,6 +49,11 @@ return [
         'api_key' => env('SSB_MOBILE_API_KEY'),
     ],
 
+    'ssb_notification' => [
+        'base_url' => env('SSB_NOTIFICATION_BASE_URL'),
+        'api_key' => env('SSB_NOTIFICATION_API_KEY'),
+    ],
+
     'ssb_susu' => [
         'base_url' => env('SSB_SUSU_BASE_URL'),
         'api_key' => env('SSB_SUSU_API_KEY'),

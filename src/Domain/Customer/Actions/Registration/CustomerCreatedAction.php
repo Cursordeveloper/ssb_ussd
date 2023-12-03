@@ -6,7 +6,7 @@ namespace Domain\Customer\Actions\Registration;
 
 use Domain\Customer\Models\Customer;
 
-final class CreateCustomerAction
+final class CustomerCreatedAction
 {
     public static function execute(array $data): bool
     {

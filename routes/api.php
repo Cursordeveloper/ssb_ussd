@@ -9,6 +9,10 @@ Route::prefix('v1/ussd')
     ->as('v1.ussd:')
     ->group(base_path('routes/v1/routes.php'));
 
+Route::prefix('v1/ussd')
+    ->as('v1.ussd:')
+    ->group(base_path('routes/v1/common.php'));
+
 Route::post(
     uri: 'api/main',
     action: UssdController::class

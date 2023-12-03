@@ -6,7 +6,7 @@ namespace Domain\Customer\Actions\Registration;
 
 use App\Menus\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\Pin\CreatePinAction;
+use App\Services\Customer\CustomerService;
 use Domain\Customer\Models\Customer;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,7 +21,7 @@ final class CustomerCreatePinAction
         // Terminate the session if validation failed
         if (is_numeric($session_data->user_input) && strlen((string) $session_data->user_input) === 4) {
             // Create the customer pin
-            $pin_created = CreatePinAction::execute($customer, $session_data);
+            $pin_created = (new CustomerService())->createPin(customer: $customer, data: $session_data);
 
             // Return a success response
             if (data_get($pin_created, key: 'status') === true) {

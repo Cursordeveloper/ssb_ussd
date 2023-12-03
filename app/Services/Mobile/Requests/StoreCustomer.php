@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Customer\Requests;
+namespace App\Services\Mobile\Requests;
 
 use App\Services\Customer\CustomerService;
 use Illuminate\Support\Facades\Http;
-
