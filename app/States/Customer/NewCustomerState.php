@@ -10,15 +10,12 @@ use App\States\Registration\RegistrationState;
 use App\States\TermsAndConditions\TermsAndConditionsState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class NewCustomerState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Create the expected input arrays
         $options = ['1', '2', '0'];
 
@@ -35,7 +32,7 @@ final class NewCustomerState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state), session_data: $session_data);
 
             // Execute the state
             return $customer_state::execute($session, $session_data);

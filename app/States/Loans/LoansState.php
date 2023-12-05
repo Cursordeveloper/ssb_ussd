@@ -10,10 +10,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LoansState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Pin validation
 
         // Create the expected input arrays

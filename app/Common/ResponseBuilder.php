@@ -8,29 +8,20 @@ use Illuminate\Http\JsonResponse;
 
 final class ResponseBuilder
 {
-    public static function resourcesResponseBuilder(
-        bool $status,
-        int $code,
-        string $message,
-        ?string $description = null,
-        mixed $data = null
-    ): JsonResponse {
+    public static function resourcesResponseBuilder(bool $status, int $code, string $message, ?string $description = null, mixed $data = null): JsonResponse
+    {
         return response()->json([
             'status' => $status,
             'code' => $code,
             'message' => $message,
             'description' => $description,
-            'meta' => [
-                'version' => '1.0',
-            ],
+            'meta' => ['version' => '1.0'],
             'data' => $data,
         ]);
     }
 
-    public static function ussdResourcesResponseBuilder(
-        string $message,
-        string $session_id,
-    ): JsonResponse {
+    public static function ussdResourcesResponseBuilder(string $message, string $session_id): JsonResponse
+    {
         return response()->json([
             'Type' => 'response',
             'SessionId' => $session_id,
@@ -40,10 +31,8 @@ final class ResponseBuilder
         ]);
     }
 
-    public static function invalidResponseBuilder(
-        string $message,
-        string $session_id,
-    ): JsonResponse {
+    public static function invalidResponseBuilder(string $message, string $session_id): JsonResponse
+    {
         return response()->json([
             'Type' => 'release',
             'SessionId' => $session_id,
@@ -51,9 +40,8 @@ final class ResponseBuilder
         ]);
     }
 
-    public static function terminateResponseBuilder(
-        string $session_id,
-    ): JsonResponse {
+    public static function terminateResponseBuilder(string $session_id): JsonResponse
+    {
         return response()->json([
             'Type' => 'release',
             'SessionId' => $session_id,

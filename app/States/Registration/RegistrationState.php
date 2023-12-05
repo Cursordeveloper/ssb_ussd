@@ -17,10 +17,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class RegistrationState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Get the customer
         $customer = GetCustomerAction::execute(data_get(target: $session, key: 'phone_number'));
 

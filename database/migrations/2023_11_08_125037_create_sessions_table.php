@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string(column: 'session_id')->unique();
             $table->string(column: 'msisdn');
             $table->string(column: 'phone_number');
-            $table->string(column: 'sequence');
+            $table->string(column: 'sequence')->nullable();
             $table->string(column: 'state')->nullable();
+            $table->json(column: 'user_inputs')->nullable();
 
             // Table timestamps
             $table->timestamps();

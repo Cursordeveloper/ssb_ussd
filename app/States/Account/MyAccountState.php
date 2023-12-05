@@ -12,20 +12,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MyAccountState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Pin validation
 
         // Create the expected input arrays
         $options = ['1', '2', '3', '0'];
 
-        // Assign the customer input to a variable
-        $customer_input = $session_data->input_user;
-
         // If the input is '0', terminate the session
-        if ($customer_input === '0') {
+        if ($session_data->user_input === '0') {
             return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
         }
 
@@ -33,14 +28,14 @@ final class MyAccountState
         $stateMappings = ['1' => new LinkedWalletsState(), '2' => new LinkNewWalletState(), '3' => new ChangePinState(), '0' => null];
 
         // Check if the customer input is a valid option
-        if (in_array($customer_input, $options) && array_key_exists($customer_input, $stateMappings)) {
-            $customer_state = $stateMappings[$customer_input];
+        if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {
+            $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state));
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state), session_data: $session_data);
 
             // Execute the state
-            return $customer_state::execute(session: $session, request: $session_data);
+            return $customer_state::execute(session: $session, session_data: $session_data);
         }
 
         // Return the MyAccountMenu

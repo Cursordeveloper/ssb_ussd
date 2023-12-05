@@ -11,10 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class TermsAndConditionsState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'This is the TermsAndConditions state.',
             session_id: data_get(target: $session, key: 'session_id'),

@@ -11,10 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ChangePinState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Terminate the session
         return GeneralMenu::infoNotification(
             message: 'Dear valued customer, change pin features coming soon.',

@@ -11,10 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkedWalletsState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Terminate the session
         return GeneralMenu::infoNotification(
             message: 'Dear valued customer, linked wallets features coming soon.',

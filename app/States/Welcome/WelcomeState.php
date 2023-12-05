@@ -20,7 +20,7 @@ final class WelcomeState
         // Customer has not created a pin
         if ($customer && data_get(target: $customer, key: 'status') === 'active' && $customer['has_pin'] !== true) {
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'RegistrationState');
+            SessionUpdateAction::execute(session: $session, state: 'RegistrationState', session_data: $session);
 
             // Return the choose pin prompt to the customer
             return RegistrationMenu::choosePin(data_get(target: $session, key: 'session_id'));
@@ -29,14 +29,14 @@ final class WelcomeState
         // Customer exist and status is active
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {
             // Update the session's state
-            SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState');
+            SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState', session_data: $session);
 
             // Return the existing customer menu
             return WelcomeMenu::existingCustomer(data_get(target: $session, key: 'session_id'));
         }
 
         // Update the session's state
-        SessionUpdateAction::execute(session: $session, state: 'NewCustomerState');
+        SessionUpdateAction::execute(session: $session, state: 'NewCustomerState', session_data: $session);
 
         // Return the new customer menu
         return WelcomeMenu::newCustomer(data_get(target: $session, key: 'session_id'));

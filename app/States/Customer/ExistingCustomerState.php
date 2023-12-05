@@ -24,10 +24,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ExistingCustomerState
 {
-    public static function execute(
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Session $session, $session_data): JsonResponse
+    {
         // Create the expected input arrays
         $options = ['1', '2', '3', '4', '5', '0'];
 
@@ -54,7 +52,7 @@ final class ExistingCustomerState
             $customer_state = $stateMappings[$customer_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']));
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);
