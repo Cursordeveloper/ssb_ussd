@@ -12,9 +12,6 @@ final class CustomerUpdateController extends Controller
 {
     public function __invoke(Request $request): void
     {
-        logger('Inside PinCreatedController');
-        logger($request);
-
         // Execute the CreatePinAction
         CustomerUpdateAction::execute(data: $request->all());
     }

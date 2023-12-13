@@ -10,9 +10,6 @@ final class CustomerUpdateAction
 {
     public static function execute(array $data): bool
     {
-        logger('Inside PinCreatedAction');
-        logger($data);
-
         // Get the customer with the resource_id
         $customer = GetCustomerAction::execute(resource: data_get(target: $data, key: 'data.attributes.phone_number'));
 
