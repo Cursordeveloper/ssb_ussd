@@ -9,6 +9,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuSavingsMenu
 {
+    public static function mainMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Susu\n1. My Susu Accounts\n2. Create New Susu",
+            session_id: data_get(target: $session, key: 'session_id'),
+        );
+    }
+
     public static function chooseSusuSchemesMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -60,7 +68,7 @@ final class SusuSavingsMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\n\n1. Personal Susu Account\n2. Biz Susu Account 2\n3. Goal Getter Account",
+            message: "Invalid input\n\n1. My Susu Accounts\n2. Create New Susu",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
