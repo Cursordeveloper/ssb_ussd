@@ -21,11 +21,6 @@ final class SusuSavingsState
         // Create the expected input arrays
         $options = ['1', '2', '0'];
 
-        // If the input is '0', terminate the session
-        if ($session_data->user_input === '0') {
-            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
-        }
-
         // Define a mapping between customer input and states
         $stateMappings = ['1' => new MySusuAccountsState, '2' => new CreateNewSusuState, '0' => null];
 
