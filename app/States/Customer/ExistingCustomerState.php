@@ -9,7 +9,6 @@ use App\Menus\Account\MyAccountMenu;
 use App\Menus\Insurance\InsuranceMenu;
 use App\Menus\Investment\InvestmentsMenu;
 use App\Menus\Loans\LoansMenu;
-use App\Menus\Registration\RegistrationMenu;
 use App\Menus\Susu\SusuSavingsMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use App\States\Account\MyAccountState;
@@ -17,7 +16,6 @@ use App\States\Insurance\InsuranceState;
 use App\States\Investments\InvestmentsState;
 use App\States\Loans\LoansState;
 use App\States\Susu\SusuSavingsState;
-use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -39,11 +37,11 @@ final class ExistingCustomerState
 
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new SusuSavingsState(), 'menu' => new SusuSavingsMenu()],
-            '2' => ['class' => new LoansState(), 'menu' => new LoansMenu()],
-            '3' => ['class' => new InvestmentsState(), 'menu' => new InvestmentsMenu()],
-            '4' => ['class' => new InsuranceState(), 'menu' => new InsuranceMenu()],
-            '5' => ['class' => new MyAccountState(), 'menu' => new MyAccountMenu()],
+            '1' => ['class' => new SusuSavingsState, 'menu' => new SusuSavingsMenu],
+            '2' => ['class' => new LoansState, 'menu' => new LoansMenu],
+            '3' => ['class' => new InvestmentsState, 'menu' => new InvestmentsMenu],
+            '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
+            '5' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
             '0' => null,
         ];
 

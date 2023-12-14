@@ -12,6 +12,8 @@ class Session extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $casts = ['user_inputs'  => 'array'];
+
+    protected $casts = ['user_inputs' => 'array'];
+
     protected $fillable = ['id', 'session_id', 'msisdn', 'phone_number', 'sequence', 'user_inputs', 'state'];
 }

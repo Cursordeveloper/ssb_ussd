@@ -11,7 +11,7 @@ use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class StepFountAction
+final class StepFourAction
 {
     public static function execute(Session $session, $session_data, array $steps_data): JsonResponse
     {
@@ -28,7 +28,10 @@ final class StepFountAction
         $response = (new CustomerService)->linkNewAccountApproval(customer: $customer, data: $data);
 
         if (data_get(target: $response, key: 'status') === true) {
-            return GeneralMenu::infoNotification(message: 'Successful: You will receive confirmation shortly.', session: $session->session_id);
+            return GeneralMenu::infoNotification(
+                message: 'Successful: You will receive confirmation shortly.',
+                session: data_get(target: $session, key: 'session_id'),
+            );
         }
 
         // Terminate the session

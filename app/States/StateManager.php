@@ -15,12 +15,13 @@ use App\States\Insurance\InsuranceState;
 use App\States\Investments\InvestmentsState;
 use App\States\Loans\LoansState;
 use App\States\Registration\RegistrationState;
+use App\States\Susu\CreateNewSusu\CreateNewSusuState;
+use App\States\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\Susu\SusuSavingsState;
 use App\States\TermsAndConditions\TermsAndConditionsState;
 use App\States\Welcome\WelcomeState;
 use Domain\Shared\Action\SessionCreateAction;
 use Domain\Shared\Action\SessionGetAction;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StateManager
@@ -37,20 +38,23 @@ final class StateManager
         }
 
         $states = [
-            'NewCustomerState' => new NewCustomerState(),
-            'RegistrationState' => new RegistrationState(),
-            'ExistingCustomerState' => new ExistingCustomerState(),
-            'TermsAndConditionsState' => new TermsAndConditionsState(),
+            'NewCustomerState' => new NewCustomerState,
+            'RegistrationState' => new RegistrationState,
+            'ExistingCustomerState' => new ExistingCustomerState,
+            'TermsAndConditionsState' => new TermsAndConditionsState,
 
-            'SusuSavingsState' => new SusuSavingsState(),
-            'LoansState' => new LoansState(),
-            'InvestmentsState' => new InvestmentsState(),
-            'InsuranceState' => new InsuranceState(),
-            'MyAccountState' => new MyAccountState(),
+            'SusuSavingsState' => new SusuSavingsState,
+            'LoansState' => new LoansState,
+            'InvestmentsState' => new InvestmentsState,
+            'InsuranceState' => new InsuranceState,
+            'MyAccountState' => new MyAccountState,
 
-            'LinkedWalletsState' => new LinkedWalletsState(),
-            'LinkNewWalletState' => new LinkNewWalletState(),
-            'ChangePinState' => new ChangePinState(),
+            'LinkedWalletsState' => new LinkedWalletsState,
+            'LinkNewWalletState' => new LinkNewWalletState,
+            'ChangePinState' => new ChangePinState,
+
+            'MySusuAccountsState' => new MySusuAccountsState,
+            'CreateNewSusuState' => new CreateNewSusuState,
         ];
 
         // Get the session

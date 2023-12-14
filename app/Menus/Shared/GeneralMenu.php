@@ -17,7 +17,7 @@ final class GeneralMenu
         );
     }
 
-    public static function infoNotification($message, $session): JsonResponse
+    public static function infoNotification(string $message, string $session): JsonResponse
     {
         return ResponseBuilder::invalidResponseBuilder(
             message: $message,

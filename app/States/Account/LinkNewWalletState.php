@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\States\Account;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\LinkNewAccount\StepFountAction;
+use Domain\Customer\Actions\LinkNewAccount\StepFourAction;
 use Domain\Customer\Actions\LinkNewAccount\StepOneAction;
 use Domain\Customer\Actions\LinkNewAccount\StepThreeAction;
 use Domain\Customer\Actions\LinkNewAccount\StepTwoAction;
@@ -26,9 +26,12 @@ final class LinkNewWalletState
         } elseif (! array_key_exists(key: 'step3', array: $steps)) {
             return StepThreeAction::execute(session: $session, session_data: $session_data, steps_data: $steps);
         } elseif (! array_key_exists(key: 'step4', array: $steps)) {
-            return StepFountAction::execute(session: $session, session_data: $session_data, steps_data: $steps);
+            return StepFourAction::execute(session: $session, session_data: $session_data, steps_data: $steps);
         }
 
-        return GeneralMenu::infoNotification(message: 'There was a problem. Try again later.', session: $session);
+        return GeneralMenu::infoNotification(
+            message: 'There was a problem. Try again later.',
+            session: data_get(target: $session, key: 'session_id'),
+        );
     }
 }
