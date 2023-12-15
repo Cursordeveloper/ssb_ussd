@@ -15,8 +15,8 @@ class CustomerService
 
     public function __construct()
     {
-        $this->base_url = config(key: 'services.ssb_customer.base_url');
-        $this->api_key = config(key: 'services.ssb_customer.api_key');
+        $this->base_url = config(key: 'services.susubox.ssb_customer.base_url');
+        $this->api_key = config(key: 'services.susubox.ssb_customer.api_key');
     }
 
     public function storeCustomer(array $data): void
@@ -28,11 +28,8 @@ class CustomerService
 
     public function createPin(Customer $customer, $data): array
     {
-        return Http::withHeaders([
-            'Content-Type' => 'application/vnd.api+json',
-            'Accept' => 'application/vnd.api+json',
-        ])->post(
-            url: config(key: 'services.ssb_customer.base_url').'pin',
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
+            url: config(key: 'services.susubox.ssb_customer.base_url').'pin',
             data: ['data' => [
                 'type' => 'Pin',
                 'attributes' => [
@@ -45,11 +42,8 @@ class CustomerService
 
     public function linkNewAccount(Customer $customer, $data): array
     {
-        return Http::withHeaders([
-            'Content-Type' => 'application/vnd.api+json',
-            'Accept' => 'application/vnd.api+json',
-        ])->post(
-            url: config(key: 'services.ssb_customer.base_url').$customer->resource_id.'/linked-accounts',
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
+            url: config(key: 'services.susubox.ssb_customer.base_url').$customer->resource_id.'/linked-accounts',
             data: [
                 'data' => [
                     'type' => 'LinkedAccount',
@@ -71,11 +65,8 @@ class CustomerService
 
     public function linkNewAccountApproval(Customer $customer, $data): array
     {
-        return Http::withHeaders([
-            'Content-Type' => 'application/vnd.api+json',
-            'Accept' => 'application/vnd.api+json',
-        ])->post(
-            url: config(key: 'services.ssb_customer.base_url').$customer->resource_id.'/linked-accounts/approval',
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
+            url: config(key: 'services.susubox.ssb_customer.base_url').$customer->resource_id.'/linked-accounts/approval',
             data: ['data' => [
                 'type' => 'LinkedAccount',
                 'attributes' => [

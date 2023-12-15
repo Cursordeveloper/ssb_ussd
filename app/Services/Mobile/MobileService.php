@@ -13,8 +13,8 @@ class MobileService
 
     public function __construct()
     {
-        $this->base_url = config(key: 'services.ssb_mobile.base_url');
-        $this->api_key = config(key: 'services.ssb_mobile.api_key');
+        $this->base_url = config(key: 'services.susubox.ssb_mobile.base_url');
+        $this->api_key = config(key: 'services.susubox.ssb_mobile.api_key');
     }
 
     public function storeCustomer(array $data): void
