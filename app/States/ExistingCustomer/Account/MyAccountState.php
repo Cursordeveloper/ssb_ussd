@@ -2,27 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\States\Susu;
+namespace App\States\ExistingCustomer\Account;
 
 use App\Common\ResponseBuilder;
-use App\Menus\Susu\SusuSavingsMenu;
-use App\States\Susu\CreateNewSusu\CreateNewSusuState;
-use App\States\Susu\MySusuAccounts\MySusuAccountsState;
+use App\Menus\Account\MyAccountMenu;
+use App\States\ExistingCustomer\Account\ChangePin\ChangePinState;
+use App\States\ExistingCustomer\Account\LinkedWallets\LinkedWalletsState;
+use App\States\ExistingCustomer\Account\LinkNewWallet\LinkNewWalletState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuSavingsState
+final class MyAccountState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Pin validation
 
         // Create the expected input arrays
-        $options = ['1', '2', '0'];
+        $options = ['1', '2', '3', '0'];
+
+        // If the input is '0', terminate the session
+        if ($session_data->user_input === '0') {
+            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+        }
 
         // Define a mapping between customer input and states
-        $stateMappings = ['1' => new MySusuAccountsState, '2' => new CreateNewSusuState, '0' => null];
+        $stateMappings = ['1' => new LinkedWalletsState, '2' => new LinkNewWalletState, '3' => new ChangePinState, '0' => null];
 
         // Check if the customer input is a valid option
         if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {
@@ -36,6 +42,6 @@ final class SusuSavingsState
         }
 
         // Return the MyAccountMenu
-        return SusuSavingsMenu::invalidMainMenu(session: $session);
+        return MyAccountMenu::invalidMainMenu(session: $session);
     }
 }

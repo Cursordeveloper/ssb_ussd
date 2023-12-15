@@ -11,9 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class WelcomeState
 {
-    public static function execute(
-        Session $session,
-    ): JsonResponse {
+    public static function execute(Session $session): JsonResponse
+    {
         // Get the customer
         $customer = GetCustomerAction::execute(data_get(target: $session, key: 'phone_number'));
 
@@ -28,14 +27,14 @@ final class WelcomeState
 
         // Customer exist and status is active
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {
-            // Update the session's state
+            // Update the session state
             SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState', session_data: $session);
 
             // Return the existing customer menu
             return WelcomeMenu::existingCustomer(data_get(target: $session, key: 'session_id'));
         }
 
-        // Update the session's state
+        // Update the session state
         SessionUpdateAction::execute(session: $session, state: 'NewCustomerState', session_data: $session);
 
         // Return the new customer menu

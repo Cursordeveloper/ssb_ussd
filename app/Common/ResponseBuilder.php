@@ -31,7 +31,7 @@ final class ResponseBuilder
         ]);
     }
 
-    public static function invalidResponseBuilder(string $message, string $session_id): JsonResponse
+    public static function infoResponseBuilder(string $message, string $session_id): JsonResponse
     {
         return response()->json([
             'Type' => 'release',
@@ -45,7 +45,7 @@ final class ResponseBuilder
         return response()->json([
             'Type' => 'release',
             'SessionId' => $session_id,
-            'Message' => 'Thank you for using ssb. See you soon.',
+            'Message' => 'Thank you for using susubox. See you soon.',
         ]);
     }
 }

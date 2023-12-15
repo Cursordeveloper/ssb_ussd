@@ -19,8 +19,6 @@ final class WelcomeMenu
 
     public static function newCustomerInvalidOption($session): JsonResponse
     {
-        // Customer attempts will be handled here
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid input. Try again\n\n1. Register now\n2. Terms & Conditions\n0. Exit",
             session_id: $session,

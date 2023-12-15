@@ -20,20 +20,12 @@ final class LinkNewAccountMenu
     public static function enterNumberMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your momo number',
+            message: 'Enter your mobile money number',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
 
     public static function enterPinMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your susubox pin',
-            session_id: data_get(target: $session, key: 'session_id'),
-        );
-    }
-
-    public static function successMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter your susubox pin',

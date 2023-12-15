@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Investments;
+namespace App\States\ExistingCustomer\Investments;
 
 use App\Menus\Investment\InvestmentsMenu;
 use Domain\Shared\Models\Session;

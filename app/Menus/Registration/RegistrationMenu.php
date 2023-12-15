@@ -28,14 +28,14 @@ final class RegistrationMenu
     public static function choosePin($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Choose your 4 digit ssb pin.',
+            message: 'Choose your 4 digit susubox pin.',
             session_id: $session,
         );
     }
 
     public static function successResponse($session): JsonResponse
     {
-        return ResponseBuilder::invalidResponseBuilder(
+        return ResponseBuilder::infoResponseBuilder(
             message: 'Registration successful.',
             session_id: $session,
         );

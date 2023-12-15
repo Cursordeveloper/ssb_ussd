@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Registration;
+namespace App\States\NewCustomer\Registration;
 
 use App\Menus\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;

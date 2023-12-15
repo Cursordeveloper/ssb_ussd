@@ -11,7 +11,7 @@ final class GeneralMenu
 {
     public static function invalidInput($session): JsonResponse
     {
-        return ResponseBuilder::invalidResponseBuilder(
+        return ResponseBuilder::infoResponseBuilder(
             message: 'There was a problem with your request. Try again later.',
             session_id: $session,
         );
@@ -19,7 +19,7 @@ final class GeneralMenu
 
     public static function infoNotification(string $message, string $session): JsonResponse
     {
-        return ResponseBuilder::invalidResponseBuilder(
+        return ResponseBuilder::infoResponseBuilder(
             message: $message,
             session_id: $session,
         );

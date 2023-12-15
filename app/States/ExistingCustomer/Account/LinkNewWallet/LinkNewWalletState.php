@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Account;
+namespace App\States\ExistingCustomer\Account\LinkNewWallet;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\LinkNewAccount\StepFourAction;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Customer;
+namespace App\States\ExistingCustomer;
 
 use App\Common\ResponseBuilder;
 use App\Menus\Account\MyAccountMenu;

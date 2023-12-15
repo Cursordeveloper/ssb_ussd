@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\States\Customer;
+namespace App\States\NewCustomer;
 
 use App\Common\ResponseBuilder;
 use App\Menus\Welcome\WelcomeMenu;
-use App\States\Registration\RegistrationState;
-use App\States\TermsAndConditions\TermsAndConditionsState;
+use App\States\NewCustomer\Registration\RegistrationState;
+use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

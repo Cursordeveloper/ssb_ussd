@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Susu\CreateNewSusu;
+namespace App\States\ExistingCustomer\Susu\CreateNewSusu;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\CreateNewSusu\AccountNameAction;

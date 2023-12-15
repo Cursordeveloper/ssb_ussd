@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Susu\MySusuAccounts;
+namespace App\States\ExistingCustomer\Susu\MySusuAccounts;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Models\Session;

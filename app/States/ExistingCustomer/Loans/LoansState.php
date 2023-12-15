@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\Loans;
+namespace App\States\ExistingCustomer\Loans;
 
 use App\Menus\Loans\LoansMenu;
 use Domain\Shared\Models\Session;
@@ -15,7 +15,7 @@ final class LoansState
         // Pin validation
 
         // Create the expected input arrays
-//        $options = ['1', '2', '3', '0'];
+        //        $options = ['1', '2', '3', '0'];
 
         // Assign the customer input to a variable
         $customer_input = $session_data->user_input;
