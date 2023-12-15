@@ -4,7 +4,6 @@ namespace Domain\Customer\Listeners;
 
 use App\Services\Customer\CustomerService;
 use App\Services\Mobile\MobileService;
-use App\Services\Notification\NotificationService;
 use Domain\Customer\DTO\CustomerDTO;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -24,12 +23,12 @@ final class CustomerCreatedListener implements ShouldQueue
         (new MobileService)->storeCustomer($data);
 
         // Initialize the RabbitMQService and publish messages
-//        $rabbitMQService = new RabbitMQService;
+        //        $rabbitMQService = new RabbitMQService;
 
         // Define the message headers
-//        $headers = ['origin' => 'ussd', 'action' => 'CreateCustomerAction'];
+        //        $headers = ['origin' => 'ussd', 'action' => 'CreateCustomerAction'];
 
-//        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_mob', data: $data, headers: $headers);
-//        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_cus', data: $data, headers: $headers);
+        //        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_mob', data: $data, headers: $headers);
+        //        $rabbitMQService->publish(exchange: 'ssb_direct', routingKey: 'ssb_cus', data: $data, headers: $headers);
     }
 }
