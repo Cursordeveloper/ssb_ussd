@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Account\LinkNewWallet;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\LinkNewAccount\StepFourAction;
-use Domain\Customer\Actions\LinkNewAccount\StepOneAction;
-use Domain\Customer\Actions\LinkNewAccount\StepThreeAction;
-use Domain\Customer\Actions\LinkNewAccount\StepTwoAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepFourAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepOneAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepThreeAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepTwoAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

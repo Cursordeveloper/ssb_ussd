@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\Registration;
+namespace App\Menus\NewCustomer\Registration;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Investments;
 
-use App\Menus\Investment\InvestmentsMenu;
+use App\Menus\ExistingCustomer\Investment\InvestmentsMenu;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

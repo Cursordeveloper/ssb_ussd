@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\Registration;
 
-use App\Menus\Registration\RegistrationMenu;
+use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Models\Customer;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CustomerUpdateFirstNameAction

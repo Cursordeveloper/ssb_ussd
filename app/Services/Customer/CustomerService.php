@@ -40,6 +40,13 @@ class CustomerService
         )->json();
     }
 
+    public function linkedAccount(Customer $customer): array
+    {
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->get(
+            url: config(key: 'services.susubox.ssb_customer.base_url').$customer->resource_id.'/linked-accounts',
+        )->json();
+    }
+
     public function linkNewAccount(Customer $customer, $data): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Loans;
 
-use App\Menus\Loans\LoansMenu;
+use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -21,6 +21,6 @@ final class LoansState
         $customer_input = $session_data->user_input;
 
         // Return the MyAccountMenu
-        return LoansMenu::invalidMainMenu(session: $session);
+        return LoanMenu::invalidMainMenu(session: $session);
     }
 }

@@ -8,9 +8,8 @@ use Domain\Customer\Models\Customer;
 
 class GetCustomerAction
 {
-    public static function execute(
-        string $resource,
-    ) {
+    public static function execute(string $resource)
+    {
         return Customer::where(
             column: 'phone_number',
             operator: '=',

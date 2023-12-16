@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\LinkNewAccount;
+namespace Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount;
 
-use App\Menus\Account\LinkNewAccount\LinkNewAccountMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewAccountMenu;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu;
 
-use App\Menus\Susu\SusuSavingsMenu;
+use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use Domain\Shared\Action\SessionUpdateAction;

@@ -38,21 +38,25 @@ final class StateManager
         }
 
         $states = [
+            // New customer states
             'NewCustomerState' => new NewCustomerState,
             'RegistrationState' => new RegistrationState,
-            'ExistingCustomerState' => new ExistingCustomerState,
             'TermsAndConditionsState' => new TermsAndConditionsState,
 
+            // Existing customer states
+            'ExistingCustomerState' => new ExistingCustomerState,
             'SusuSavingsState' => new SusuSavingsState,
             'LoansState' => new LoansState,
             'InvestmentsState' => new InvestmentsState,
             'InsuranceState' => new InsuranceState,
             'MyAccountState' => new MyAccountState,
 
+            // MyAccountState options
             'LinkedWalletsState' => new LinkedWalletsState,
             'LinkNewWalletState' => new LinkNewWalletState,
             'ChangePinState' => new ChangePinState,
 
+            // SusuSavingsState options
             'MySusuAccountsState' => new MySusuAccountsState,
             'CreateNewSusuState' => new CreateNewSusuState,
         ];

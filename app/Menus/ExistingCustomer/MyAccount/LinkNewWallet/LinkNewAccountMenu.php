@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\Account\LinkNewAccount;
+namespace App\Menus\ExistingCustomer\MyAccount\LinkNewWallet;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;

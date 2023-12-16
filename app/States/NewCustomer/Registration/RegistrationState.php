@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\NewCustomer\Registration;
 
-use App\Menus\Registration\RegistrationMenu;
+use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\Registration\CustomerCreateAction;
@@ -12,7 +12,6 @@ use Domain\Customer\Actions\Registration\CustomerCreatePinAction;
 use Domain\Customer\Actions\Registration\CustomerUpdateFirstNameAction;
 use Domain\Customer\Actions\Registration\CustomerUpdateLastNameAction;
 use Domain\Shared\Models\Session;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class RegistrationState

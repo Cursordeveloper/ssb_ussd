@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\Registration;
 
-use App\Menus\Registration\RegistrationMenu;
+use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\CustomerService;
 use Domain\Customer\Models\Customer;

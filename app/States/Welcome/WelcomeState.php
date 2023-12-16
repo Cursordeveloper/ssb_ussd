@@ -2,7 +2,7 @@
 
 namespace App\States\Welcome;
 
-use App\Menus\Registration\RegistrationMenu;
+use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Action\SessionUpdateAction;

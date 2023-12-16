@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\Account;
+namespace App\Menus\ExistingCustomer\MyAccount;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;

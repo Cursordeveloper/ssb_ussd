@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\Investment;
+namespace App\Menus\ExistingCustomer\Investment;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;

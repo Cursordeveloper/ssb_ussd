@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\LinkNewAccount;
+namespace Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount;
 
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\CustomerService;

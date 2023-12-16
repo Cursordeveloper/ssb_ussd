@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\CreateNewSusu;
 
-use App\Menus\Susu\SusuSavingsMenu;
+use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

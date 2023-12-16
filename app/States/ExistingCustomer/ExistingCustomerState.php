@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer;
 
 use App\Common\ResponseBuilder;
-use App\Menus\Account\MyAccountMenu;
-use App\Menus\Insurance\InsuranceMenu;
-use App\Menus\Investment\InvestmentsMenu;
-use App\Menus\Loans\LoansMenu;
-use App\Menus\Susu\SusuSavingsMenu;
+use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
+use App\Menus\ExistingCustomer\Investment\InvestmentsMenu;
+use App\Menus\ExistingCustomer\Loan\LoanMenu;
+use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
+use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use App\States\ExistingCustomer\Account\MyAccountState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
@@ -38,7 +38,7 @@ final class ExistingCustomerState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new SusuSavingsState, 'menu' => new SusuSavingsMenu],
-            '2' => ['class' => new LoansState, 'menu' => new LoansMenu],
+            '2' => ['class' => new LoansState, 'menu' => new LoanMenu],
             '3' => ['class' => new InvestmentsState, 'menu' => new InvestmentsMenu],
             '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
             '5' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],

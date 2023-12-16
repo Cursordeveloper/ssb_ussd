@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\LinkNewAccount;
+namespace Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount;
 
-use App\Menus\Account\LinkNewAccount\LinkNewAccountMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewAccountMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\CustomerService;
 use Domain\Customer\Actions\Common\GetCustomerAction;

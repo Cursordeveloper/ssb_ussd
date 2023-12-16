@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\Susu;
+namespace App\Menus\ExistingCustomer\Susu;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
