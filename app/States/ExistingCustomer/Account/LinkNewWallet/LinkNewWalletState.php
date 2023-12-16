@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Account\LinkNewWallet;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepFourAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepOneAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepThreeAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\StepTwoAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\PinConfirmationAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\BeginProcessAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\MobileMoneyNumberAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\SelectNetworkAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -16,22 +16,19 @@ final class LinkNewWalletState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // TODO: Step 1 - Check if customer has exceeded the add wallet count
-        $steps = json_decode(json: $session->user_inputs, associative: true);
+        // Get the process flow array from the customer session (user inputs)
+        $process_flow = json_decode($session->user_inputs, associative: true);
 
-        if (! array_key_exists(key: 'step1', array: $steps)) {
-            return StepOneAction::execute(session: $session, session_data: $session_data);
-        } elseif (! array_key_exists(key: 'step2', array: $steps)) {
-            return StepTwoAction::execute(session: $session, session_data: $session_data);
-        } elseif (! array_key_exists(key: 'step3', array: $steps)) {
-            return StepThreeAction::execute(session: $session, session_data: $session_data, steps_data: $steps);
-        } elseif (! array_key_exists(key: 'step4', array: $steps)) {
-            return StepFourAction::execute(session: $session, session_data: $session_data, steps_data: $steps);
-        }
-
-        return GeneralMenu::infoNotification(
-            message: 'There was a problem. Try again later.',
-            session: data_get(target: $session, key: 'session_id'),
-        );
+        // Evaluate the process flow and execute the corresponding action
+        return match (true) {
+            ! array_key_exists(key: 'beginProcess', array: $process_flow) => BeginProcessAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'selectNetwork', array: $process_flow) => SelectNetworkAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'mobileMoneyNumber', array: $process_flow) => MobileMoneyNumberAction::execute(session: $session, session_data: $session_data, steps_data: $process_flow),
+            ! array_key_exists(key: 'pinConfirmation', array: $process_flow) => PinConfirmationAction::execute(session: $session, session_data: $session_data, steps_data: $process_flow),
+            default => GeneralMenu::infoNotification(
+                message: 'There was a problem. Try again later.',
+                session: data_get(target: $session, key: 'session_id')
+            ),
+        };
     }
 }
