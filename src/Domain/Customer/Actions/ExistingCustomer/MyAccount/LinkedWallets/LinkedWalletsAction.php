@@ -18,8 +18,7 @@ final class LinkedWalletsAction
         // Get the linked accounts
         $linked_wallets = (new CustomerService)->linkedAccount(customer: $customer);
 
-        //        if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
-        if (! empty($linked_wallets)) {
+        if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
             return "My Linked Wallets\n1. 0244294960 - MTN\n2. 0244637602 - AirtelTigo";
         }
 
