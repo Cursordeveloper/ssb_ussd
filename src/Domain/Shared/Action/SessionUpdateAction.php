@@ -12,7 +12,7 @@ final class SessionUpdateAction
     {
         $session->update([
             'state' => $state,
-            'sequence' => data_get(target: $session, key: 'sequence')."*".$session_data->sequence,
+            'sequence' => data_get(target: $session, key: 'sequence').'*'.$session_data->sequence,
         ]);
     }
 }
