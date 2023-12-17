@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 class MobileService
 {
     public string $base_url;
+
     public string $api_key;
 
     public function __construct()
@@ -20,7 +21,8 @@ class MobileService
     public function storeCustomer(array $data): void
     {
         Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->base_url.'customers', data: $data
+            url: $this->base_url.'customers',
+            data: $data
         )->json();
     }
 }

@@ -57,6 +57,14 @@ final class SusuSavingsMenu
         );
     }
 
+    public static function accountSummaryMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Account summary\n Account Name: Some Name\nSusu Amount: GHS10\nDebit Frequency: Daily\nEnter your susubox pin",
+            session_id: data_get(target: $session, key: 'session_id'),
+        );
+    }
+
     public static function pinConfirmationMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(

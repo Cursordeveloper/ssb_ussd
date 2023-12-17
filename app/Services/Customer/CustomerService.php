@@ -22,7 +22,8 @@ class CustomerService
     public function storeCustomer(array $data): void
     {
         Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->base_url, data: $data
+            url: $this->base_url,
+            data: $data
         )->json();
     }
 
@@ -30,13 +31,15 @@ class CustomerService
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
             url: config(key: 'services.susubox.ssb_customer.base_url').'pin',
-            data: ['data' => [
-                'type' => 'Pin',
-                'attributes' => [
-                    'phone_number' => data_get(target: $customer, key: 'phone_number'),
-                    'pin' => $data->user_input,
+            data: [
+                'data' => [
+                    'type' => 'Pin',
+                    'attributes' => [
+                        'phone_number' => data_get(target: $customer, key: 'phone_number'),
+                        'pin' => $data->user_input,
+                    ],
                 ],
-            ]],
+            ],
         )->json();
     }
 
@@ -74,13 +77,15 @@ class CustomerService
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
             url: config(key: 'services.susubox.ssb_customer.base_url').$customer->resource_id.'/linked-accounts/approval',
-            data: ['data' => [
-                'type' => 'LinkedAccount',
-                'attributes' => [
-                    'account_number' => data_get(target: $data, key: 'phone_number'),
-                    'pin' => data_get(target: $data, key: 'pin'),
+            data: [
+                'data' => [
+                    'type' => 'LinkedAccount',
+                    'attributes' => [
+                        'account_number' => data_get(target: $data, key: 'phone_number'),
+                        'pin' => data_get(target: $data, key: 'pin'),
+                    ],
                 ],
-            ]],
+            ],
         )->json();
     }
 }

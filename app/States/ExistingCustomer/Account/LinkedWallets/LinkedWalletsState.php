@@ -16,7 +16,7 @@ final class LinkedWalletsState
         // Get all customer linked wallets
         $linked_wallets = LinkedWalletsAction::execute(session: $session);
 
-        // Terminate the session
+        // Return the linked wallets and terminate the session
         return GeneralMenu::infoNotification(
             message: $linked_wallets,
             session: data_get(target: $session, key: 'session_id'),

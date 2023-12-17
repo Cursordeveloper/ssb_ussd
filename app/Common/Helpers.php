@@ -11,17 +11,6 @@ final class Helpers
         return substr_replace($phone_number, '0', 0, 3);
     }
 
-    public static function FormatLinkedWallet(array $linked_wallets): string
-    {
-        $outputString = '';
-
-        foreach ($linked_wallets as $key => $value) {
-            $outputString .= $key.': '.$value."\n";
-        }
-
-        return $outputString;
-    }
-
     public static function GetLinkedAccountNumbers($linked_wallets): string
     {
         $outputs = '';

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\CreateNewSusu;
+namespace Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu;
 
 use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuAmountAction
+final class AccountNameAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['accountName' => $session_data->user_input]);
 
-        // Terminate the session
-        return SusuSavingsMenu::chooseLinkedWalletMenu(session: $session);
+        // Return the enterSusuAmountMenu
+        return SusuSavingsMenu::enterSusuAmountMenu(session: $session);
     }
 }

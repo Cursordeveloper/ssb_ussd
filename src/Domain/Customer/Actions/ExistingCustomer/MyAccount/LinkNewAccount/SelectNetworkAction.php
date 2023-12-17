@@ -13,7 +13,7 @@ final class SelectNetworkAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // TODO: Step 3 - Get the selected network, store
+        // Get the
         $networks = ['1' => 'mtn', '2' => 'airteltigo', '3' => 'vodafone'];
 
         // Execute the SessionInputUpdateAction

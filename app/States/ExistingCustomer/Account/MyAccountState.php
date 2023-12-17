@@ -17,8 +17,6 @@ final class MyAccountState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Pin validation
-
         // Create the expected input arrays
         $options = ['1', '2', '3', '0'];
 
