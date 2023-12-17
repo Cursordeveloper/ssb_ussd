@@ -60,7 +60,7 @@ final class SusuSavingsMenu
     public static function accountSummaryMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Account summary\nAccount Name: Some Name\nSusu Amount: GHS10\nDebit Frequency: Daily\n1. Accept\n2. Reject",
+            message: "Account summary\n1. Account Name: Some Name\n2. Susu Amount: GHS10\n3. Debit Frequency: Daily\n#. Continue",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
