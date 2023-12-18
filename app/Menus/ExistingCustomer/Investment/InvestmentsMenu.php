@@ -19,7 +19,7 @@ final class InvestmentsMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\n\nInvestments\n1. Investment Menu 1\n2. Investment Menu 2\n3. Investment Menu 3\n0. Exit",
+            message: "Invalid input\nInvestments\n1. Investment Menu 1\n2. Investment Menu 2\n3. Investment Menu 3\n0. Exit",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

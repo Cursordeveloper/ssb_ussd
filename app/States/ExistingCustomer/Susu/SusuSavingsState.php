@@ -7,6 +7,7 @@ namespace App\States\ExistingCustomer\Susu;
 use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
+use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,6 +20,7 @@ final class SusuSavingsState
         $stateMappings = [
             '1' => new MySusuAccountsState,
             '2' => new CreateNewSusuState,
+            '3' => new SettlementState,
         ];
 
         // Check if the customer input is a valid option

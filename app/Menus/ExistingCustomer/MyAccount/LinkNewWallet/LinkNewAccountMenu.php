@@ -36,7 +36,7 @@ final class LinkNewAccountMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\n\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
+            message: "Invalid input\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

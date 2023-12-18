@@ -12,7 +12,7 @@ final class CreateGoalGetterSusuMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Goal Getter Savings\n\nWhat is your goal?",
+            message: "Goal Getter Savings\nWhat is your goal?",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

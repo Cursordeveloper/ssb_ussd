@@ -12,7 +12,7 @@ final class SusuSavingsMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Susu\n1. My Susu Accounts\n2. Create New Susu",
+            message: "Susu\n1. My Susu Accounts\n2. Create Susu\n3. Settlements",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -20,7 +20,7 @@ final class SusuSavingsMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\n\n1. My Susu Accounts\n2. Create New Susu",
+            message: "Invalid input\n1. My Susu Accounts\n2. Create Susu\n3. Settlements",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

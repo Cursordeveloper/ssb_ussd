@@ -19,6 +19,7 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuStat
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
+use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
 use App\States\ExistingCustomer\Susu\SusuSavingsState;
 use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
@@ -63,6 +64,7 @@ final class StateManager
             // SusuSavingsState options
             'MySusuAccountsState' => new MySusuAccountsState,
             'CreateNewSusuState' => new CreateNewSusuState,
+            'SettlementState' => new SettlementState,
 
             // CreateNewSusuState options
             'CreatePersonalSusuState' => new CreatePersonalSusuState,

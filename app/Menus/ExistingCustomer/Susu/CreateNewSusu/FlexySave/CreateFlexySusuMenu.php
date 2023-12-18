@@ -12,7 +12,7 @@ final class CreateFlexySusuMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Flexy Susu Savings\n\nEnter the account name",
+            message: "Flexy Susu Savings\nEnter the account name",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
