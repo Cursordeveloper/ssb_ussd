@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Customer\Actions\Registration;
 
 use Domain\Customer\Models\Customer;
-use Illuminate\Support\Str;
 
 final class CustomerCreateAction
 {
