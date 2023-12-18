@@ -28,7 +28,7 @@ final class WelcomeMenu
     public static function existingCustomer($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Menu\n1. Susu Savings\n2. Loans\n3. Investments\n4. Insurance\n5. My Account\n0. Exit",
+            message: "Menu\n1. Susu Savings\n2. Loans\n3. Investments\n4. Insurance\n5. My Account",
             session_id: $session,
         );
     }
@@ -36,7 +36,7 @@ final class WelcomeMenu
     public static function existingCustomerInvalidOption($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input. Try again.\nMenu\n1. Susu Savings\n2. Loans\n3. Investments\n4. Insurance\n5. My Account\n0. Exit",
+            message: "Invalid input. Try again.\nMenu\n1. Susu Savings\n2. Loans\n3. Investments\n4. Insurance\n5. My Account",
             session_id: $session,
         );
     }

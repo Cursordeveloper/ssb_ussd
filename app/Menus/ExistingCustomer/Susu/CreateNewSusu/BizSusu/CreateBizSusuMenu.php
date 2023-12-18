@@ -44,7 +44,7 @@ final class CreateBizSusuMenu
     public static function narrationMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "A new business susu (Account Name) with savings amount of GHS10 to be debited weekly from your 0244294960 mobile money wallet. \nEnter your susubox pin to confirm.",
+            message: 'You are creating a (Account Name) Biz savings. GHS10 will be debited weekly from your 0244294960 mobile money wallet. Enter your susubox pin to confirm.',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

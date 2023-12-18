@@ -36,7 +36,7 @@ final class CreatePersonalSusuMenu
     public static function accountSummaryMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "A new personal susu (Account Name) with savings amount of GHS10 to be debited daily from your 0244294960 mobile money wallet. \nEnter your susubox pin to confirm.",
+            message: 'You are creating a (Account Name) Personal susu savings. GHS10 will be debited daily from your 0244294960 mobile money wallet. Enter your susubox pin to confirm.',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

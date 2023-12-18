@@ -12,7 +12,7 @@ final class CreateGoalGetterSusuMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Goal Getter Savings\nWhat is your goal?",
+            message: 'What is your goal?',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -52,8 +52,7 @@ final class CreateGoalGetterSusuMenu
     public static function narrationMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating (Business Startup) Goal Getter savings. GHS30,000 target by 17th Dec. 2024.
-            Your weekly debit is GH24.00 from your 0244294960 wallet. Enter your susubox pin to confirm.',
+            message: 'You are creating a Goal Getter to (Purpose). GHS30,000 target by 17/12/24. GH24.00 will be debited weekly from 0244294960 wallet. Enter your susubox pin to confirm.',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
