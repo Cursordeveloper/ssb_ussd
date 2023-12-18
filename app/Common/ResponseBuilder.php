@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 
 final class ResponseBuilder
 {
-    public static function resourcesResponseBuilder(bool $status, int $code, string $message, string $description = null, mixed $data = null): JsonResponse
+    public static function resourcesResponseBuilder(bool $status, int $code, string $message, ?string $description = null, mixed $data = null): JsonResponse
     {
         return response()->json([
             'status' => $status,

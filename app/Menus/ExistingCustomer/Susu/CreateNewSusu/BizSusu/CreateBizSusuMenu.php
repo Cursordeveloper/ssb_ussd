@@ -12,7 +12,7 @@ final class CreateBizSusuMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Biz Susu Savings\nEnter the business name",
+            message: 'Enter business name',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -20,7 +20,7 @@ final class CreateBizSusuMenu
     public static function susuAmountMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter the susu amount',
+            message: 'Enter susu amount',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -36,7 +36,7 @@ final class CreateBizSusuMenu
     public static function linkedWalletMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n1. 0244294960\n2. 0244637602\n3. 0244294960",
+            message: "Choose wallet\n1. 0244294960 - MTN\n2. 0244637602 - Vodafone\n3. 0244294960 - AirtelTigo",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -44,7 +44,7 @@ final class CreateBizSusuMenu
     public static function narrationMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a (Account Name) Biz savings. GHS10 will be debited weekly from your 0244294960 mobile money wallet. Enter your susubox pin to confirm.',
+            message: 'You are creating a (Account Name) Biz savings. GHS10 will be debited weekly from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
