@@ -25,7 +25,6 @@ final class WelcomeState
             return RegistrationMenu::choosePin(data_get(target: $session, key: 'session_id'));
         }
 
-        // Customer exist and status is active
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {
             // Update the session state
             SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState', session_data: $session);

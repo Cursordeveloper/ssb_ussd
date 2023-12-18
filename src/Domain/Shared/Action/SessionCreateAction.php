@@ -14,7 +14,7 @@ final class SessionCreateAction
         return Session::create([
             'session_id' => $ussd_service->session_id,
             'msisdn' => $ussd_service->msisdn,
-            'phone_number' => Helpers::Phone($ussd_service->msisdn),
+            'phone_number' => Helpers::formatPhoneNumber($ussd_service->msisdn),
             'sequence' => $ussd_service->sequence,
             'user_inputs' => json_encode([]),
             'state' => $state,

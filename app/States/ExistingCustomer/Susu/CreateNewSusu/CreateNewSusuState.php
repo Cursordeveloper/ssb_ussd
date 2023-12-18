@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\CreateNewSusu;
 
-use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\AccountNameAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\AccountSummaryAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\ChooseLinkedAccountAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\ChooseSusuSchemeAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\PinConfirmationAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\SusuAmountAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\TermsAgreementAction;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuMenu;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuMenu;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
+use Domain\Shared\Action\SessionInputUpdateAction;
+use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -23,20 +25,39 @@ final class CreateNewSusuState
         // Get the process flow array from the customer session (user inputs)
         $process_flow = json_decode($session->user_inputs, associative: true);
 
-        // Evaluate the process flow and execute the corresponding action
-        return match (true) {
-            ! array_key_exists(key: 'beginProcess', array: $process_flow) => CreateNewSusuAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'chooseScheme', array: $process_flow) => ChooseSusuSchemeAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'accountName', array: $process_flow) => AccountNameAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'susuAmount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'ChooseLinkedWallet', array: $process_flow) => ChooseLinkedAccountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'acceptTermsConditions', array: $process_flow) => TermsAgreementAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'accountSummary', array: $process_flow) => AccountSummaryAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'pinConfirmation', array: $process_flow) => PinConfirmationAction::execute(session: $session, session_data: $session_data),
-            default => GeneralMenu::infoNotification(
-                message: 'There was a problem. Try again later.',
-                session: data_get(target: $session, key: 'session_id')
-            ),
-        };
+        // Check if the beginProcess is set
+        if (! array_key_exists(key: 'beginProcess', array: $process_flow)) {
+            // Execute the SessionInputUpdateAction
+            SessionInputUpdateAction::execute(session: $session, user_input: ['beginProcess' => true]);
+
+            // Return the CreateNewSusuMenu
+            return CreateNewSusuMenu::mainMenu(session: $session);
+        }
+
+        // Define a mapping between customer input and states
+        $stateMappings = [
+            '1' => ['class' => new CreatePersonalSusuState, 'menu' => new CreatePersonalSusuMenu],
+            '2' => ['class' => new CreateBizSusuState, 'menu' => new CreateBizSusuMenu],
+            '3' => ['class' => new CreateGoalGetterSusuState, 'menu' => new CreateGoalGetterSusuMenu],
+            '4' => ['class' => new CreateFlexySusuState, 'menu' => new CreateFlexySusuMenu],
+        ];
+
+        // Check if the customer input is a valid option
+        if (array_key_exists(key: $session_data->user_input, array: $stateMappings)) {
+            // Get the customer option state
+            $customer_state = $stateMappings[$session_data->user_input];
+
+            // Update the customer session action
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+
+            // Execute the SessionInputUpdateAction
+            SessionInputUpdateAction::execute(session: $session, user_input: ['susuScheme' => $session_data->user_input]);
+
+            // Execute the state
+            return $customer_state['menu']::mainMenu(session: $session);
+        }
+
+        // The customer input is invalid
+        return CreateNewSusuMenu::invalidMainMenu(session: $session);
     }
 }

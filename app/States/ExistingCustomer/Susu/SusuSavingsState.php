@@ -15,16 +15,15 @@ final class SusuSavingsState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Pin validation
-
-        // Create the expected input arrays
-        $options = ['1', '2', '0'];
-
         // Define a mapping between customer input and states
-        $stateMappings = ['1' => new MySusuAccountsState, '2' => new CreateNewSusuState, '0' => null];
+        $stateMappings = [
+            '1' => new MySusuAccountsState,
+            '2' => new CreateNewSusuState,
+        ];
 
         // Check if the customer input is a valid option
-        if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {
+        if (array_key_exists($session_data->user_input, $stateMappings)) {
+            // Get the customer option state
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action

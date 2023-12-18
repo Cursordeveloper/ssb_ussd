@@ -15,16 +15,15 @@ final class MessageConsumer extends Command
 
     public function handle(): void
     {
-        $rabbitMQService = new RabbitMQService();
+        $rabbitMQService = new RabbitMQService;
         $rabbitMQService->consume(queue: 'ussd', callback: function ($message) {
-
             // Get the message headers
             $headers = $message->get('application_headers')->getNativeData();
 
             // Define the action classes array
             $actionMappings = [
-                'CustomerCreatedAction' => new CustomerCreatedAction(),
-                'PinCreatedAction' => new CustomerUpdateAction(),
+                'CustomerCreatedAction' => new CustomerCreatedAction,
+                'PinCreatedAction' => new CustomerUpdateAction,
             ];
 
             // Get the action

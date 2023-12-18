@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Account\LinkNewWallet;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\PinConfirmationAction;
 use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\BeginProcessAction;
 use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\MobileMoneyNumberAction;
+use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\PinConfirmationAction;
 use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\SelectNetworkAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

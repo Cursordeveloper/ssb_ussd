@@ -6,12 +6,12 @@ namespace App\Common;
 
 final class Helpers
 {
-    public static function Phone($phone_number): string
+    public static function formatPhoneNumber($phone_number): string
     {
         return substr_replace($phone_number, '0', 0, 3);
     }
 
-    public static function GetLinkedAccountNumbers($linked_wallets): string
+    public static function getLinkedAccountNumbers($linked_wallets): string
     {
         $outputs = '';
         foreach ($linked_wallets as $key => $value) {

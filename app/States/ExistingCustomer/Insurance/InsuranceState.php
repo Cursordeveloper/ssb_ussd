@@ -15,10 +15,10 @@ final class InsuranceState
         // Pin validation
 
         // Create the expected input arrays
-        $options = ['1', '2', '3', '0'];
+        //        $options = ['1', '2', '3', '0'];
 
         // Assign the customer input to a variable
-        $customer_input = $session_data->user_input;
+        //        $customer_input = $session_data->user_input;
 
         // Return the MyAccountMenu
         return InsuranceMenu::invalidMainMenu(session: $session);
