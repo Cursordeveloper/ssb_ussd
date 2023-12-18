@@ -13,7 +13,11 @@ use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentsState;
 use App\States\ExistingCustomer\Loans\LoansState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\SusuSavingsState;
 use App\States\NewCustomer\NewCustomerState;
@@ -59,6 +63,12 @@ final class StateManager
             // SusuSavingsState options
             'MySusuAccountsState' => new MySusuAccountsState,
             'CreateNewSusuState' => new CreateNewSusuState,
+
+            // CreateNewSusuState options
+            'CreatePersonalSusuState' => new CreatePersonalSusuState,
+            'CreateBizSusuState' => new CreateBizSusuState,
+            'CreateGoalGetterSusuState' => new CreateGoalGetterSusuState,
+            'CreateFlexySusuState' => new CreateFlexySusuState,
         ];
 
         // Get the session

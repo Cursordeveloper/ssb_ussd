@@ -17,7 +17,7 @@ final class CreatePersonalSusuMenu
         );
     }
 
-    public static function enterSusuAmountMenu($session): JsonResponse
+    public static function susuAmountMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter the susu amount',
@@ -25,18 +25,10 @@ final class CreatePersonalSusuMenu
         );
     }
 
-    public static function chooseLinkedWalletMenu($session): JsonResponse
+    public static function linkedWalletMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose linked wallet\n1. 0244294960\n2. 0244637602\n3. 0244294960",
-            session_id: data_get(target: $session, key: 'session_id'),
-        );
-    }
-
-    public static function confirmTermsConditionsMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Accept terms\n1. Yes\n2. No\n3. Terms & Conditions",
+            message: "Choose wallet\n1. 0244294960\n2. 0244637602\n3. 0244294960",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -44,15 +36,7 @@ final class CreatePersonalSusuMenu
     public static function accountSummaryMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Account summary\n1. Account Name: Some Name\n2. Susu Amount: GHS10\n3. Debit Frequency: Daily\n#. Continue",
-            session_id: data_get(target: $session, key: 'session_id'),
-        );
-    }
-
-    public static function pinConfirmationMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your susubox pin',
+            message: "A new personal susu (Account Name) with savings amount of GHS10 to be debited daily from your 0244294960 mobile money wallet. \nEnter your susubox pin to confirm.",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu;
+namespace Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu;
 
 use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
 use Domain\Shared\Action\SessionInputUpdateAction;
