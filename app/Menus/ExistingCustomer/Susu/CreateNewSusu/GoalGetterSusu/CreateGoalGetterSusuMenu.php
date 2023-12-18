@@ -17,18 +17,43 @@ final class CreateGoalGetterSusuMenu
         );
     }
 
-    public static function accountSummaryMenu($session): JsonResponse
+    public static function targetAmountMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Account summary\n1. Account Name: Some Name\n2. Susu Amount: GHS10\n3. Debit Frequency: Daily\n#. Continue",
+            message: 'What is your target amount?',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
 
-    public static function pinConfirmationMenu($session): JsonResponse
+    public static function targetDurationMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your susubox pin',
+            message: "Choose duration\n1. One month\n2. Three months\n3. Six months\n4. Nine months\n5. One year",
+            session_id: data_get(target: $session, key: 'session_id'),
+        );
+    }
+
+    public static function debitFrequencyMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Choose debit frequency\n1. Daily\n2. Weekly\n3. Monthly",
+            session_id: data_get(target: $session, key: 'session_id'),
+        );
+    }
+
+    public static function linkedWalletMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Choose wallet\n1. 0244294960\n2. 0244637602\n3. 0244294960",
+            session_id: data_get(target: $session, key: 'session_id'),
+        );
+    }
+
+    public static function narrationMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: 'You are creating (Business Startup) Goal Getter savings. GHS30,000 target by 17th Dec. 2024.
+            Your weekly debit is GH24.00 from your 0244294960 wallet. Enter your susubox pin to confirm.',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
