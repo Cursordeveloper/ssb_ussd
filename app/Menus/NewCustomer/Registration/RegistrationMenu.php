@@ -12,7 +12,7 @@ final class RegistrationMenu
     public static function firstName($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your first name.',
+            message: 'Enter first name.',
             session_id: $session,
         );
     }
@@ -20,7 +20,7 @@ final class RegistrationMenu
     public static function lastName($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your last name.',
+            message: 'Enter last name.',
             session_id: $session,
         );
     }
@@ -28,7 +28,7 @@ final class RegistrationMenu
     public static function choosePin($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Choose your 4 digit susubox pin.',
+            message: 'Choose 4 digit susubox pin.',
             session_id: $session,
         );
     }
@@ -36,7 +36,7 @@ final class RegistrationMenu
     public static function successResponse($session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
-            message: 'Registration successful.',
+            message: 'Registration in progress. You will receive notification to confirm status.',
             session_id: $session,
         );
     }

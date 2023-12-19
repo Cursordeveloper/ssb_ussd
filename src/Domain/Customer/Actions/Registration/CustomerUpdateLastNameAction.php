@@ -14,11 +14,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CustomerUpdateLastNameAction
 {
-    public static function execute(
-        Customer $customer,
-        Session $session,
-        $session_data,
-    ): JsonResponse {
+    public static function execute(Customer $customer, Session $session, $session_data): JsonResponse
+    {
         // Terminate the session if validation failed
         if (preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $session_data->user_input) && $session_data->user_input > 1) {
             // Update the customer record with the last_name

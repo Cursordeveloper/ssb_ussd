@@ -35,7 +35,6 @@ final class RegistrationState
             data_get(target: $customer, key: 'first_name') === null => CustomerUpdateFirstNameAction::execute($customer, $session, $session_data),
             data_get(target: $customer, key: 'last_name') === null => CustomerUpdateLastNameAction::execute($customer, $session, $session_data),
             data_get(target: $customer, key: 'has_pin') === false => CustomerCreatePinAction::execute($customer, $session, $session_data),
-
             default => GeneralMenu::invalidInput(data_get(target: $session, key: 'session_id')),
         };
     }
