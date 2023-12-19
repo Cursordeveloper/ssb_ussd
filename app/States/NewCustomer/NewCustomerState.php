@@ -6,6 +6,7 @@ namespace App\States\NewCustomer;
 
 use App\Common\ResponseBuilder;
 use App\Menus\Welcome\WelcomeMenu;
+use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use Domain\Shared\Action\SessionUpdateAction;
@@ -17,7 +18,7 @@ final class NewCustomerState
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Create the expected input arrays
-        $options = ['1', '2', '0'];
+        $options = ['1', '2', '3', '0'];
 
         // If the input is '0', terminate the session
         if ($session_data->user_input === '0') {
@@ -25,7 +26,12 @@ final class NewCustomerState
         }
 
         // Define a mapping between customer input and states
-        $stateMappings = ['1' => new RegistrationState, '2' => new TermsAndConditionsState, '0' => null];
+        $stateMappings = [
+            '1' => new RegistrationState,
+            '2' => new AboutSusuboxState,
+            '3' => new TermsAndConditionsState,
+            '0' => null,
+        ];
 
         // Check if the customer input is a valid option
         if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {

@@ -21,6 +21,7 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSu
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
 use App\States\ExistingCustomer\Susu\SusuState;
+use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
@@ -47,6 +48,7 @@ final class StateManager
             'NewCustomerState' => new NewCustomerState,
             'RegistrationState' => new RegistrationState,
             'TermsAndConditionsState' => new TermsAndConditionsState,
+            'AboutSusuboxState' => new AboutSusuboxState,
 
             // Existing customer states
             'ExistingCustomerState' => new ExistingCustomerState,

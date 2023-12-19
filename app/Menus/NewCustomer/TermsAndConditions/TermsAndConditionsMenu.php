@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\NewCustomer\TermsAndConditionsMenu;
+namespace App\Menus\NewCustomer\TermsAndConditions;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
