@@ -44,7 +44,7 @@ final class CreateGoalGetterSusuMenu
     public static function linkedWalletMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n1. 0244294960\n2. 0244637602\n3. 0244294960",
+            message: "Choose wallet\n1. 0244294960 - MTN\n2. 0244637602 - Vodafone\n3. 0244294960 - AirtelTigo",
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

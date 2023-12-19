@@ -24,4 +24,12 @@ final class GeneralMenu
             session_id: $session,
         );
     }
+
+    public static function createAccountNotification($session): JsonResponse
+    {
+        return ResponseBuilder::infoResponseBuilder(
+            message: "Your account is being processed. You will receive a notification to confirm status\n.",
+            session_id: $session->session_id,
+        );
+    }
 }
