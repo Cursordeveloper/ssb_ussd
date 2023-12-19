@@ -39,6 +39,6 @@ final class NewCustomerState
         }
 
         // The customer input is invalid
-        return WelcomeMenu::newCustomerInvalidOption(data_get(target: $session, key: 'session_id'));
+        return WelcomeMenu::newCustomerInvalidOption($session);
     }
 }

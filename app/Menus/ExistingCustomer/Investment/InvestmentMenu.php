@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Insurance;
+namespace App\Menus\ExistingCustomer\Investment;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class InsuranceMenu
+final class InvestmentMenu
 {
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
-            message: 'Dear valued customer, we got amazing insurance products coming soon.',
+            message: 'Dear valued customer, we got amazing investment products coming soon.',
             session_id: $session->session_id,
         );
 
         //        return ResponseBuilder::ussdResourcesResponseBuilder(
-        //            message: "Insurance\n1. Insurance Menu 1\n2. Insurance Menu 2\n3. Insurance Menu 3",
+        //            message: "Investments\n1. Investment Menu 1\n2. Investment Menu 2\n3. Investment Menu 3\n0. Exit",
         //            session_id: $session->session_id,
         //        );
     }
@@ -25,7 +25,7 @@ final class InsuranceMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\nInsurance\n1. Insurance Menu 1\n2. Insurance Menu 2\n3. Insurance Menu 3",
+            message: "Invalid input\nInvestments\n1. Investment Menu 1\n2. Investment Menu 2\n3. Investment Menu 3\n0. Exit",
             session_id: $session->session_id,
         );
     }

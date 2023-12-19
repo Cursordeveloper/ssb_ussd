@@ -20,13 +20,12 @@ final class MyAccountState
         // Create the expected input arrays
         $options = ['1', '2', '3', '0'];
 
-        // If the input is '0', terminate the session
-        if ($session_data->user_input === '0') {
-            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
-        }
-
         // Define a mapping between customer input and states
-        $stateMappings = ['1' => new LinkedWalletsState, '2' => new LinkNewWalletState, '3' => new ChangePinState, '0' => null];
+        $stateMappings = [
+            '1' => new LinkedWalletsState,
+            '2' => new LinkNewWalletState,
+            '3' => new ChangePinState,
+        ];
 
         // Check if the customer input is a valid option
         if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {

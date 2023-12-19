@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer;
 
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
-use App\Menus\ExistingCustomer\Investment\InvestmentsMenu;
+use App\Menus\ExistingCustomer\Investment\InvestmentMenu;
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
-use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
+use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use App\States\ExistingCustomer\Account\MyAccountState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
-use App\States\ExistingCustomer\Investments\InvestmentsState;
-use App\States\ExistingCustomer\Loans\LoansState;
-use App\States\ExistingCustomer\Susu\SusuSavingsState;
+use App\States\ExistingCustomer\Investments\InvestmentState;
+use App\States\ExistingCustomer\Loans\LoanState;
+use App\States\ExistingCustomer\Susu\SusuState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,9 +25,9 @@ final class ExistingCustomerState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new SusuSavingsState, 'menu' => new SusuSavingsMenu],
-            '2' => ['class' => new LoansState, 'menu' => new LoanMenu],
-            '3' => ['class' => new InvestmentsState, 'menu' => new InvestmentsMenu],
+            '1' => ['class' => new SusuState, 'menu' => new SusuMenu],
+            '2' => ['class' => new LoanState, 'menu' => new LoanMenu],
+            '3' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
             '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
             '5' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];
@@ -45,6 +45,6 @@ final class ExistingCustomerState
         }
 
         // The customer input is invalid
-        return WelcomeMenu::existingCustomerInvalidOption(data_get(target: $session, key: 'session_id'));
+        return WelcomeMenu::existingCustomerInvalidOption($session);
     }
 }

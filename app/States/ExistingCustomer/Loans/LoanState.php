@@ -8,7 +8,7 @@ use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class LoansState
+final class LoanState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {

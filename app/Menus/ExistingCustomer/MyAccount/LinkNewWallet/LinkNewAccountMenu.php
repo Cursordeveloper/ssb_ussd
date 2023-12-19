@@ -13,23 +13,23 @@ final class LinkNewAccountMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Select network\n1. MTN\n2. Airteltigo\n3. Vodafone",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
     public static function enterNumberMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your mobile money number',
-            session_id: data_get(target: $session, key: 'session_id'),
+            message: 'Enter mobile money number',
+            session_id: $session->session_id,
         );
     }
 
     public static function enterPinMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter your susubox pin',
-            session_id: data_get(target: $session, key: 'session_id'),
+            message: 'Enter susubox pin',
+            session_id: $session->session_id,
         );
     }
 
@@ -37,7 +37,7 @@ final class LinkNewAccountMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid input\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 }

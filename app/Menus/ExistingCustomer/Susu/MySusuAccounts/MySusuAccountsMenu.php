@@ -13,7 +13,7 @@ final class MySusuAccountsMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'My susu account details coming soon.',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 }

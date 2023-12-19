@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Investments;
 
-use App\Menus\ExistingCustomer\Investment\InvestmentsMenu;
+use App\Menus\ExistingCustomer\Investment\InvestmentMenu;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class InvestmentsState
+final class InvestmentState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -21,6 +21,6 @@ final class InvestmentsState
         //        $customer_input = $session_data->user_input;
 
         // Return the MyAccountMenu
-        return InvestmentsMenu::invalidMainMenu(session: $session);
+        return InvestmentMenu::invalidMainMenu(session: $session);
     }
 }

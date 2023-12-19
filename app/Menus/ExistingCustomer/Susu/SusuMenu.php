@@ -7,13 +7,13 @@ namespace App\Menus\ExistingCustomer\Susu;
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuSavingsMenu
+final class SusuMenu
 {
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Susu\n1. My Susu Accounts\n2. Create Susu\n3. Settlements",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -21,7 +21,7 @@ final class SusuSavingsMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid input\n1. My Susu Accounts\n2. Create Susu\n3. Settlements",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 }

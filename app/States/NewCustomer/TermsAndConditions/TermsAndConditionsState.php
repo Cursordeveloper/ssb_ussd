@@ -17,12 +17,12 @@ final class TermsAndConditionsState
         $process_flow = json_decode($session->user_inputs, associative: true);
 
         return match (true) {
-            ! array_key_exists('tcsOne', $process_flow) => self::updateAndReturnMenu($session, 'tcsOne', TermsAndConditionsMenu::main(session: $session)),
+            ! array_key_exists('tcsOne', $process_flow) => self::updateAndReturnMenu($session, 'tcsOne', TermsAndConditionsMenu::mainMenu(session: $session)),
             ! array_key_exists('tcsTwo', $process_flow) => self::updateAndReturnMenu($session, 'tcsTwo', TermsAndConditionsMenu::tcsOne(session: $session)),
             ! array_key_exists('tcsThree', $process_flow) => self::updateAndReturnMenu($session, 'tcsThree', TermsAndConditionsMenu::tcsTwo(session: $session)),
             ! array_key_exists('lastTcs', $process_flow) => self::updateAndReturnMenu($session, 'lastTcs', TermsAndConditionsMenu::tcsThree(session: $session)),
             ! array_key_exists('end', $process_flow) => self::updateAndReturnMenu($session, 'end', TermsAndConditionsMenu::lastTcs(session: $session)),
-            default => TermsAndConditionsMenu::main(session: $session),
+            default => TermsAndConditionsMenu::mainMenu(session: $session),
         };
     }
 

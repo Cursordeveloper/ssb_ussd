@@ -11,8 +11,8 @@ use App\States\ExistingCustomer\Account\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\Account\MyAccountState;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
-use App\States\ExistingCustomer\Investments\InvestmentsState;
-use App\States\ExistingCustomer\Loans\LoansState;
+use App\States\ExistingCustomer\Investments\InvestmentState;
+use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
@@ -20,7 +20,7 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGett
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
-use App\States\ExistingCustomer\Susu\SusuSavingsState;
+use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
@@ -50,9 +50,9 @@ final class StateManager
 
             // Existing customer states
             'ExistingCustomerState' => new ExistingCustomerState,
-            'SusuSavingsState' => new SusuSavingsState,
-            'LoansState' => new LoansState,
-            'InvestmentsState' => new InvestmentsState,
+            'SusuState' => new SusuState,
+            'LoanState' => new LoanState,
+            'InvestmentState' => new InvestmentState,
             'InsuranceState' => new InsuranceState,
             'MyAccountState' => new MyAccountState,
 
@@ -61,7 +61,7 @@ final class StateManager
             'LinkNewWalletState' => new LinkNewWalletState,
             'ChangePinState' => new ChangePinState,
 
-            // SusuSavingsState options
+            // SusuState options
             'MySusuAccountsState' => new MySusuAccountsState,
             'CreateNewSusuState' => new CreateNewSusuState,
             'SettlementState' => new SettlementState,

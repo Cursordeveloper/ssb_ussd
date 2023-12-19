@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu;
 
-use App\Menus\ExistingCustomer\Susu\SusuSavingsMenu;
+use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
@@ -12,7 +12,7 @@ use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuSavingsState
+final class SusuState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -36,6 +36,6 @@ final class SusuSavingsState
         }
 
         // Return the MyAccountMenu
-        return SusuSavingsMenu::invalidMainMenu(session: $session);
+        return SusuMenu::invalidMainMenu(session: $session);
     }
 }

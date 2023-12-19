@@ -13,7 +13,7 @@ final class GeneralMenu
     {
         return ResponseBuilder::infoResponseBuilder(
             message: "There was a problem with your request. Try again later.\n",
-            session_id: $session,
+            session_id: $session->session_id,
         );
     }
 

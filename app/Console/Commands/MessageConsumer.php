@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Services\RabbitMQService;
-use Domain\Customer\Actions\Pin\CustomerUpdateAction;
-use Domain\Customer\Actions\Registration\CustomerCreatedAction;
+use Domain\Customer\Actions\NewCustomer\Registration\CustomerCreatedAction;
+use Domain\Customer\Actions\NewCustomer\Registration\CustomerUpdateAction;
 use Illuminate\Console\Command;
 
 final class MessageConsumer extends Command

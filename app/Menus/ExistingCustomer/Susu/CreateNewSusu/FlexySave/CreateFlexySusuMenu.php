@@ -13,7 +13,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter account name',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -21,7 +21,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter starting amount range',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -29,7 +29,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter ending amount range',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -37,7 +37,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose frequency\n1. Daily\n2. Weekly\n3. Monthly",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -45,7 +45,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Enforce strict debit?\n1. Yes\n2. No",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -53,7 +53,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose wallet\n1. 0244294960 - MTN\n2. 0244637602 - Vodafone\n3. 0244294960 - AirtelTigo",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -61,7 +61,7 @@ final class CreateFlexySusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'You are creating Flexy savings. Between GHS10 and GHS40 will randomly be debited weekly from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 }

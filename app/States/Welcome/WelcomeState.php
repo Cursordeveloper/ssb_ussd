@@ -22,7 +22,7 @@ final class WelcomeState
             SessionUpdateAction::execute(session: $session, state: 'RegistrationState', session_data: $session);
 
             // Return the choose pin prompt to the customer
-            return RegistrationMenu::choosePin(data_get(target: $session, key: 'session_id'));
+            return RegistrationMenu::choosePin($session);
         }
 
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {
@@ -30,13 +30,13 @@ final class WelcomeState
             SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState', session_data: $session);
 
             // Return the existing customer menu
-            return WelcomeMenu::existingCustomer(data_get(target: $session, key: 'session_id'));
+            return WelcomeMenu::existingCustomer($session);
         }
 
         // Update the session state
         SessionUpdateAction::execute(session: $session, state: 'NewCustomerState', session_data: $session);
 
         // Return the new customer menu
-        return WelcomeMenu::newCustomer(data_get(target: $session, key: 'session_id'));
+        return WelcomeMenu::newCustomer($session);
     }
 }

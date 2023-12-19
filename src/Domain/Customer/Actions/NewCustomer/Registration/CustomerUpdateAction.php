@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\Pin;
+namespace Domain\Customer\Actions\NewCustomer\Registration;
 
 use Domain\Customer\Actions\Common\GetCustomerAction;
 

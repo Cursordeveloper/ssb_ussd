@@ -13,7 +13,7 @@ final class CreateBizSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter business name',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -21,7 +21,7 @@ final class CreateBizSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter susu amount',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -29,7 +29,7 @@ final class CreateBizSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose frequency\n1. Daily\n2. Weekly\n3. Monthly",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -37,7 +37,7 @@ final class CreateBizSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose wallet\n1. 0244294960 - MTN\n2. 0244637602 - Vodafone\n3. 0244294960 - AirtelTigo",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -45,7 +45,7 @@ final class CreateBizSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'You are creating a (Account Name) Biz savings. GHS10 will be debited weekly from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 }

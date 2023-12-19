@@ -13,7 +13,7 @@ final class CreateNewSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Susu Schemes\n1. Personal Susu Savings\n2. Biz Susu Savings\n3. Goal Getter Savings\n4. Flexy Susu Savings",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 
@@ -21,7 +21,7 @@ final class CreateNewSusuMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid input\n1. Personal Susu Savings\n2. Biz Susu Savings\n3. Goal Getter Savings\n4. Flexy Susu Savings",
-            session_id: data_get(target: $session, key: 'session_id'),
+            session_id: $session->session_id,
         );
     }
 }

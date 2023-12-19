@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\Registration;
+namespace Domain\Customer\Actions\NewCustomer\Registration;
 
 use Domain\Customer\Models\Customer;
 
