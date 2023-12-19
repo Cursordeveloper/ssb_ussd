@@ -14,8 +14,8 @@ final class SettlementState
     {
         // Return the MyAccountMenu
         return GeneralMenu::infoNotification(
+            session: $session,
             message: 'Dear valued customer, susu settlement features coming soon.',
-            session: data_get(target: $session, key: 'session_id'),
         );
     }
 }

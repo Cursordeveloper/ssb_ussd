@@ -14,8 +14,8 @@ final class MySusuAccountsState
     {
         // Return the MyAccountMenu
         return GeneralMenu::infoNotification(
+            session: $session,
             message: 'Dear valued customer, my susu account features coming soon.',
-            session: data_get(target: $session, key: 'session_id'),
         );
     }
 }

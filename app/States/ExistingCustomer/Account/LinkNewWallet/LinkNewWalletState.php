@@ -25,10 +25,7 @@ final class LinkNewWalletState
             ! array_key_exists(key: 'selectNetwork', array: $process_flow) => SelectNetworkAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'mobileMoneyNumber', array: $process_flow) => MobileMoneyNumberAction::execute(session: $session, session_data: $session_data, steps_data: $process_flow),
             ! array_key_exists(key: 'pinConfirmation', array: $process_flow) => PinConfirmationAction::execute(session: $session, session_data: $session_data, steps_data: $process_flow),
-            default => GeneralMenu::infoNotification(
-                message: 'There was a problem. Try again later.',
-                session: data_get(target: $session, key: 'session_id')
-            ),
+            default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }
 }

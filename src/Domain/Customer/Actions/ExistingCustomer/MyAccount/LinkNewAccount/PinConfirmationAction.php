@@ -28,10 +28,7 @@ final class PinConfirmationAction
         $response = (new CustomerService)->linkNewAccountApproval(customer: $customer, data: $data);
 
         if (data_get(target: $response, key: 'status') === true) {
-            return GeneralMenu::infoNotification(
-                message: 'Successful: You will receive confirmation shortly.',
-                session: data_get(target: $session, key: 'session_id'),
-            );
+            return GeneralMenu::requestNotification(session: $session);
         }
 
         // Return the invalidInput

@@ -12,7 +12,7 @@ final class CreatePersonalSusuMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter the account name',
+            message: 'Enter account name',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }
@@ -20,7 +20,7 @@ final class CreatePersonalSusuMenu
     public static function susuAmountMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter the susu amount',
+            message: 'Enter susu amount',
             session_id: data_get(target: $session, key: 'session_id'),
         );
     }

@@ -25,10 +25,7 @@ final class CreatePersonalSusuState
             ! array_key_exists(key: 'SusuAmount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'LinkedWallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'Confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
-            default => GeneralMenu::infoNotification(
-                message: 'There was a problem. Try again later.',
-                session: data_get(target: $session, key: 'session_id')
-            ),
+            default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }
 }
