@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\States\NewCustomer\TermsAndConditions;
 
+use App\Common\ResponseBuilder;
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
 use App\States\Welcome\WelcomeState;
-use Domain\Shared\Action\SessionCreateAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,6 +25,11 @@ final class TermsAndConditionsState
 
             // Return the WelcomeState
             return WelcomeState::execute(session: $session);
+        }
+
+        if (array_key_exists('end', $process_flow) && $session_data->user_input === '#') {
+            // Return the terminateResponseBuilder
+            return ResponseBuilder::terminateResponseBuilder($session->session_id);
         }
 
         // Validate inputs and update the session input

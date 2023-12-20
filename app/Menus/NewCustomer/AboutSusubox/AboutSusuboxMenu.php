@@ -41,10 +41,10 @@ final class AboutSusuboxMenu
         );
     }
 
-    public static function aboutSusuboxLast($session): JsonResponse
+    public static function aboutSusuboxLast($session, $session_data): JsonResponse
     {
-        return ResponseBuilder::infoResponseBuilder(
-            message: "4. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece.\n",
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "4. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece.\n#. Cancel or 0. Main menu",
             session_id: $session->session_id,
         );
     }

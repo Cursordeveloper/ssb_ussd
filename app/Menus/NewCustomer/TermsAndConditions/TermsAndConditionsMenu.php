@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Menus\NewCustomer\TermsAndConditions;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Action\SessionInputUpdateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class TermsAndConditionsMenu
 {
     public static function mainMenu($session): JsonResponse
     {
+        // Execute the SessionInputUpdateAction
+        SessionInputUpdateAction::reset(session: $session);
+
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "https://cursorinnovations.site/susubox/policies/terms-and-conditions\n#. Next or 0. Main menu",
             session_id: $session->session_id,
@@ -43,8 +47,11 @@ final class TermsAndConditionsMenu
 
     public static function lastTcs($session): JsonResponse
     {
+        // Execute the SessionInputUpdateAction
+        SessionInputUpdateAction::reset(session: $session);
+
         return ResponseBuilder::infoResponseBuilder(
-            message: "4. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece.\n",
+            message: "4. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece.\n#. Cancel or 0. Main menu",
             session_id: $session->session_id,
         );
     }

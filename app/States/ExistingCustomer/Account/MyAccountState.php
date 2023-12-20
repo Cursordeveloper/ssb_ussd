@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Account;
 
-use App\Common\ResponseBuilder;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\States\ExistingCustomer\Account\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\Account\LinkedWallets\LinkedWalletsState;
