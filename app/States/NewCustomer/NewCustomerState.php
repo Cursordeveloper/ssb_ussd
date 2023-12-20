@@ -22,7 +22,7 @@ final class NewCustomerState
 
         // If the input is '0', terminate the session
         if ($session_data->user_input === '0') {
-            return ResponseBuilder::terminateResponseBuilder(session_id: data_get(target: $session, key: 'session_id'));
+            return ResponseBuilder::terminateResponseBuilder(session_id: $session->session_id);
         }
 
         // Define a mapping between customer input and states

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\States\NewCustomer\TermsAndConditions;
 
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
+use App\States\Welcome\WelcomeState;
+use Domain\Shared\Action\SessionCreateAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,6 +17,15 @@ final class TermsAndConditionsState
     {
         // Get the process flow array from the customer session (user inputs)
         $process_flow = json_decode($session->user_inputs, associative: true);
+
+        // If the input is '0', terminate the session
+        if ($session_data->user_input === '0') {
+            // Execute the SessionInputUpdateAction
+            SessionInputUpdateAction::reset(session: $session);
+
+            // Return the WelcomeState
+            return WelcomeState::execute(session: $session);
+        }
 
         return match (true) {
             ! array_key_exists('tcsOne', $process_flow) => self::updateAndReturnMenu($session, 'tcsOne', TermsAndConditionsMenu::mainMenu(session: $session)),
