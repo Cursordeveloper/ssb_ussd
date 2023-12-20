@@ -27,6 +27,7 @@ final class TermsAndConditionsState
             return WelcomeState::execute(session: $session);
         }
 
+        // Validate inputs and update the session input
         return match (true) {
             ! array_key_exists('tcsOne', $process_flow) => self::updateAndReturnMenu($session, 'tcsOne', TermsAndConditionsMenu::mainMenu(session: $session)),
             ! array_key_exists('tcsTwo', $process_flow) => self::updateAndReturnMenu($session, 'tcsTwo', TermsAndConditionsMenu::tcsOne(session: $session)),
