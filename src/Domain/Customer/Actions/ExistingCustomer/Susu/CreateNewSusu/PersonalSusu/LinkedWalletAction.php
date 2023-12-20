@@ -17,6 +17,6 @@ final class LinkedWalletAction
         SessionInputUpdateAction::execute(session: $session, user_input: ['LinkedWallet' => $session_data->user_input]);
 
         // Return the confirmTermsConditionsMenu
-        return CreatePersonalSusuMenu::accountSummaryMenu(session: $session);
+        return CreatePersonalSusuMenu::narrationMenu(session: $session, session_data: $session_data);
     }
 }

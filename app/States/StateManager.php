@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\States;
 
 use App\Menus\Shared\GeneralMenu;
-use App\States\ExistingCustomer\Account\ChangePin\ChangePinState;
-use App\States\ExistingCustomer\Account\LinkedWallets\LinkedWalletsState;
-use App\States\ExistingCustomer\Account\LinkNewWallet\LinkNewWalletState;
-use App\States\ExistingCustomer\Account\MyAccountState;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Loans\LoanState;
+use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
+use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
+use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
+use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;

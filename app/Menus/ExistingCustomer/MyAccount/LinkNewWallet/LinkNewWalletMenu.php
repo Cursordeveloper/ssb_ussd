@@ -7,7 +7,7 @@ namespace App\Menus\ExistingCustomer\MyAccount\LinkNewWallet;
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class LinkNewAccountMenu
+final class LinkNewWalletMenu
 {
     public static function selectNetworkMenu($session): JsonResponse
     {
@@ -37,6 +37,14 @@ final class LinkNewAccountMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid input\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function linkedAccountMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "You have no linked wallet(s). Link a wallet now? \n1. Yes\n2. No",
             session_id: $session->session_id,
         );
     }

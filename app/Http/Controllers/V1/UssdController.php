@@ -19,7 +19,7 @@ final class UssdController extends Controller
         // Define numbers to be allowed (Testing purposes)
         $permitted = ['0244294960', '233244294960', '0242662430', '233242662430', '0246936458', '233246936458', '0262304009', '233262304009', '0246807930', '233246807930'];
         if (! in_array($session_data->msisdn, $permitted)) {
-            return ResponseBuilder::terminateResponseBuilder(session_id: $session_data->session_id);
+            return ResponseBuilder::terminateSession(session_id: $session_data->session_id);
         }
 
         // Return the response

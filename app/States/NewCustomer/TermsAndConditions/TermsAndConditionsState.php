@@ -29,7 +29,7 @@ final class TermsAndConditionsState
 
         if (array_key_exists('end', $process_flow) && $session_data->user_input === '#') {
             // Return the terminateResponseBuilder
-            return ResponseBuilder::terminateResponseBuilder($session->session_id);
+            return ResponseBuilder::terminateSession($session->session_id);
         }
 
         // Validate inputs and update the session input

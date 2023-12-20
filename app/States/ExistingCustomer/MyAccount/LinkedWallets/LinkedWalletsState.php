@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Account\LinkedWallets;
+namespace App\States\ExistingCustomer\MyAccount\LinkedWallets;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsAction;

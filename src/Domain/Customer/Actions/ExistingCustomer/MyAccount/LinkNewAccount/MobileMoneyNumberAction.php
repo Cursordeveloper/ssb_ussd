@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount;
 
-use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewAccountMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\CustomerService;
 use Domain\Customer\Actions\Common\GetCustomerAction;
@@ -31,7 +31,7 @@ final class MobileMoneyNumberAction
 
         if (data_get(target: $response, key: 'status') === true) {
             // Return the enterPinMenu
-            return LinkNewAccountMenu::enterPinMenu(session: $session);
+            return LinkNewWalletMenu::enterPinMenu(session: $session);
         }
 
         // Return the invalidInput

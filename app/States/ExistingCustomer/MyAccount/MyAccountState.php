@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Account;
+namespace App\States\ExistingCustomer\MyAccount;
 
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
-use App\States\ExistingCustomer\Account\ChangePin\ChangePinState;
-use App\States\ExistingCustomer\Account\LinkedWallets\LinkedWalletsState;
-use App\States\ExistingCustomer\Account\LinkNewWallet\LinkNewWalletState;
+use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
+use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
+use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

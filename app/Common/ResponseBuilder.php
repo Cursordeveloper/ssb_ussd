@@ -40,7 +40,7 @@ final class ResponseBuilder
         ]);
     }
 
-    public static function terminateResponseBuilder(string $session_id): JsonResponse
+    public static function terminateSession(string $session_id): JsonResponse
     {
         return response()->json([
             'Type' => 'release',

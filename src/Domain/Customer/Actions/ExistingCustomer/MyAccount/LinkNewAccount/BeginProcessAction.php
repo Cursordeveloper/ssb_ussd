@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount;
 
-use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewAccountMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,6 +17,6 @@ final class BeginProcessAction
         SessionInputUpdateAction::execute(session: $session, user_input: ['beginProcess' => true]);
 
         // Return the selectNetworkMenu
-        return LinkNewAccountMenu::selectNetworkMenu(session: $session);
+        return LinkNewWalletMenu::selectNetworkMenu(session: $session);
     }
 }

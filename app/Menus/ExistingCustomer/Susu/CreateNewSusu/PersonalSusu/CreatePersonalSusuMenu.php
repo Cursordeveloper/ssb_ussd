@@ -33,7 +33,7 @@ final class CreatePersonalSusuMenu
         );
     }
 
-    public static function accountSummaryMenu($session): JsonResponse
+    public static function narrationMenu($session, $session_data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'You are creating a (Account Name) Personal susu savings. GHS10 will be debited daily from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
