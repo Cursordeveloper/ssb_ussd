@@ -20,7 +20,7 @@ final class LinkedWalletsAction
         $linked_wallets = (new CustomerService)->linkedAccount(customer: $customer);
 
         if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
-            return "Linked Wallets\n".Helpers::getLinkedAccountNumbers(data_get(target: $linked_wallets, key: 'data'));
+            return "Linked Wallets\n".Helpers::formatLinkedWallets(data_get(target: $linked_wallets, key: 'data'));
         }
 
         // Return customer has no linked wallet

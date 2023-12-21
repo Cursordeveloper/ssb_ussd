@@ -16,6 +16,7 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuStat
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use Domain\Customer\Actions\Common\GetCustomerAction;
+use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\SusuScheme\SusuProductAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
@@ -49,7 +50,7 @@ final class CreateNewSusuState
         // Check if the beginProcess is set
         if (! array_key_exists(key: 'beginProcess', array: $process_flow)) {
             // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::execute(session: $session, user_input: ['beginProcess' => true]);
+            SessionInputUpdateAction::execute(session: $session, user_input: ['beginProcess' => true, 'category' => 'susu']);
 
             // Return the CreateNewSusuMenu
             return CreateNewSusuMenu::mainMenu(session: $session);
@@ -72,7 +73,7 @@ final class CreateNewSusuState
             SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::execute(session: $session, user_input: ['susuScheme' => $session_data->user_input]);
+            SusuProductAction::execute(session: $session, session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);
