@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Menus\ExistingCustomer\Susu\CreateNewSusu\BizSusu;
 
+use App\Common\Helpers;
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -33,10 +34,10 @@ final class CreateBizSusuMenu
         );
     }
 
-    public static function linkedWalletMenu($session): JsonResponse
+    public static function linkedWalletMenu($session, $wallets): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n1. 0244294960 - MTN\n2. 0244637602 - Vodafone\n3. 0244294960 - AirtelTigo",
+            message: "Choose wallet\n".Helpers::formatLinkedWallets(data_get(target: $wallets, key: 'data')),
             session_id: $session->session_id,
         );
     }
