@@ -17,6 +17,6 @@ final class SusuAmountAction
         SessionInputUpdateAction::execute(session: $session, user_input: ['amount' => $session_data->user_input]);
 
         // Return the chooseLinkedWalletMenu
-        return CreateBizSusuMenu::debitFrequencyMenu(session: $session);
+        return CreateBizSusuMenu::frequencyMenu(session: $session);
     }
 }

@@ -26,10 +26,18 @@ final class CreateBizSusuMenu
         );
     }
 
-    public static function debitFrequencyMenu($session): JsonResponse
+    public static function frequencyMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose frequency\n1. Daily\n2. Weekly\n3. Monthly",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidFrequencyMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid option\n1. Daily\n2. Weekly\n3. Monthly",
             session_id: $session->session_id,
         );
     }
@@ -44,8 +52,11 @@ final class CreateBizSusuMenu
 
     public static function narrationMenu($session): JsonResponse
     {
+        // Get the user input data
+        $data = json_decode($session->user_inputs, associative: true);
+
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a (Account Name) Biz savings. GHS10 will be debited weekly from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating a ('.$data['business_name'].') Biz savings. GHS'.$data['amount'].' will be debited '.strtolower($data['frequency']).' from your '.$data['wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
