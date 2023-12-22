@@ -15,8 +15,8 @@ final class LinkedWalletAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Get the linked wallets
-        $user_inputs = json_decode($session->user_data, associative: true);
-        $linked_wallets = $user_inputs['linked_wallets'];
+        $user_data = json_decode($session->user_data, associative: true);
+        $linked_wallets = $user_data['linked_wallets'];
 
         // Get the wallet
         if (! array_key_exists($session_data->user_input, $linked_wallets)) {

@@ -60,8 +60,11 @@ final class CreateFlexySusuMenu
 
     public static function narrationMenu($session): JsonResponse
     {
+        // Get the user input data
+        $data = json_decode($session->user_inputs, associative: true);
+
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating Flexy savings. Between GHS10 and GHS40 will randomly be debited weekly from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating Flexy savings. Between GHS10 and GHS40 will randomly be debited weekly from your '.$data['wallet'].' mobile money wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

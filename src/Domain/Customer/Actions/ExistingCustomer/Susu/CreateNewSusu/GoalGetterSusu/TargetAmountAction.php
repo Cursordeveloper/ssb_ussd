@@ -17,6 +17,6 @@ final class TargetAmountAction
         SessionInputUpdateAction::execute(session: $session, user_input: ['amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
-        return CreateGoalGetterSusuMenu::targetDurationMenu(session: $session);
+        return CreateGoalGetterSusuMenu::durationMenu(session: $session);
     }
 }

@@ -6,7 +6,7 @@ namespace App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\ConfirmationAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\DebitFrequencyAction;
+use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\FrequencyAction;
 use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\LinkedWalletAction;
 use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\TargetAmountAction;
 use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\TargetDurationAction;
@@ -26,7 +26,7 @@ final class CreateGoalGetterSusuState
             ! array_key_exists(key: 'goal', array: $process_flow) => TheGoalAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'amount', array: $process_flow) => TargetAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'duration', array: $process_flow) => TargetDurationAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'frequency', array: $process_flow) => DebitFrequencyAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
