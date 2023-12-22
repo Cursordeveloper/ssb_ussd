@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string(column: 'sequence')->nullable();
             $table->string(column: 'state')->nullable();
             $table->json(column: 'user_inputs')->nullable();
+            $table->json(column: 'user_data')->nullable();
 
             // Table timestamps
             $table->timestamps();

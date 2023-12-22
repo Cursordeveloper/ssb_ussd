@@ -14,7 +14,7 @@ final class ConfirmationAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['Confirmation' => true]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['confirmation' => true]);
 
         // Return the createAccountNotification and terminate the session
         return GeneralMenu::createAccountNotification(session: $session);

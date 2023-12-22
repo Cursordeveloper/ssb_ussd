@@ -25,6 +25,7 @@ final class WelcomeState
             return RegistrationMenu::choosePin($session);
         }
 
+        // Customer is not activated
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {
             // Update the session state
             SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState', session_data: $session);

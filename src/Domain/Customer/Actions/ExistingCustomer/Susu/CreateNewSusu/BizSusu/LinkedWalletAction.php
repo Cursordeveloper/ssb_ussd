@@ -14,7 +14,7 @@ final class LinkedWalletAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['LinkedWallet' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['wallet' => $session_data->user_input]);
 
         // Return the confirmTermsConditionsMenu
         return CreateBizSusuMenu::narrationMenu(session: $session);

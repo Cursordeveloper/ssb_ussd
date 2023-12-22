@@ -34,10 +34,14 @@ final class CreatePersonalSusuMenu
         );
     }
 
-    public static function narrationMenu($session, $session_data): JsonResponse
+    public static function narrationMenu($session): JsonResponse
     {
+        // Get the user input data
+        $data = json_decode($session->user_inputs, associative: true);
+
+        // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a (Account Name) Personal susu savings. GHS10 will be debited daily from your 0244294960 mobile money wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating a ('.$data['account_name'].') personal susu. GHS'.$data['amount'].' will be debited daily from your '.$data['wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

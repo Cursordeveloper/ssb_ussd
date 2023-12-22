@@ -24,13 +24,13 @@ final class CreateFlexySusuState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'AccountName', array: $process_flow) => AccountNameAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'StartAmount', array: $process_flow) => StartAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'EndAmount', array: $process_flow) => EndAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'Frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'StrictDebit', array: $process_flow) => StrictDebitAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'LinkedWallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'Confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'account_name', array: $process_flow) => AccountNameAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'start_amount', array: $process_flow) => StartAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'end_amount', array: $process_flow) => EndAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'strict_debit', array: $process_flow) => StrictDebitAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

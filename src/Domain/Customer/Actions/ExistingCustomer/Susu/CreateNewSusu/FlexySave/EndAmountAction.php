@@ -14,7 +14,7 @@ final class EndAmountAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['EndAmount' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['end_amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::debitFrequencyMenu(session: $session);

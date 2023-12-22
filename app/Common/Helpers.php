@@ -20,4 +20,27 @@ final class Helpers
 
         return $outputs;
     }
+
+    public static function formatLinkedWalletsInArray($linked_wallets): array
+    {
+        $outputs = [];
+        foreach ($linked_wallets as $value) {
+            $wallets = ['wallet' => data_get(target: $value, key: 'attributes.account_number'), 'network' => data_get(target: $value, key: 'attributes.scheme')];
+            $outputs[] = $wallets;
+        }
+
+        return $outputs;
+    }
+
+    public static function arrayIndex(array $array): array
+    {
+        $adjustedArray = [];
+
+        foreach ($array as $index => $value) {
+            $adjustedIndex = $index + 1;
+            $adjustedArray[$adjustedIndex] = $value;
+        }
+
+        return $adjustedArray;
+    }
 }

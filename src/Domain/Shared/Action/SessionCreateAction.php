@@ -17,6 +17,7 @@ final class SessionCreateAction
             'phone_number' => Helpers::formatPhoneNumber($ussd_service->msisdn),
             'sequence' => $ussd_service->sequence,
             'user_inputs' => json_encode([]),
+            'user_data' => json_encode([]),
             'state' => $state,
         ]);
     }

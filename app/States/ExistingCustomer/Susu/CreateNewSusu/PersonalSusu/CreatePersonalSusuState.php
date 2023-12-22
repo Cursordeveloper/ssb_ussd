@@ -21,10 +21,10 @@ final class CreatePersonalSusuState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'AccountName', array: $process_flow) => AccountNameAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'SusuAmount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'LinkedWallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'Confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'account_name', array: $process_flow) => AccountNameAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'amount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

@@ -16,7 +16,7 @@ final class DebitFrequencyAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['DebitFrequency' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['frequency' => $session_data->user_input]);
 
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);

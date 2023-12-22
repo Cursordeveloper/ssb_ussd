@@ -48,9 +48,9 @@ final class CreateNewSusuState
         $process_flow = json_decode($session->user_inputs, associative: true);
 
         // Check if the beginProcess is set
-        if (! array_key_exists(key: 'beginProcess', array: $process_flow)) {
+        if (! array_key_exists(key: 'begin', array: $process_flow)) {
             // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::execute(session: $session, user_input: ['beginProcess' => true, 'category' => 'susu']);
+            SessionInputUpdateAction::execute(session: $session, user_input: ['begin' => true, 'category' => 'susu']);
 
             // Return the CreateNewSusuMenu
             return CreateNewSusuMenu::mainMenu(session: $session);

@@ -13,7 +13,7 @@ class Session extends Model
 
     protected $guarded = ['id'];
 
-    protected $casts = ['user_inputs' => 'array'];
+    protected $casts = ['user_inputs' => 'array', 'user_data' => 'array'];
 
-    protected $fillable = ['id', 'session_id', 'msisdn', 'phone_number', 'sequence', 'user_inputs', 'state'];
+    protected $fillable = ['id', 'session_id', 'msisdn', 'phone_number', 'sequence', 'user_inputs', 'user_data', 'state'];
 }

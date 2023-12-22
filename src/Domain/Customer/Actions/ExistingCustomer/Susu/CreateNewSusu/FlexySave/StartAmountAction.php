@@ -14,7 +14,7 @@ final class StartAmountAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['StartAmount' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['start_amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::debitTo(session: $session);

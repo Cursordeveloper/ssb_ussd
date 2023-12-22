@@ -14,7 +14,7 @@ final class TargetAmountAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['TargetAmount' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
         return CreateGoalGetterSusuMenu::targetDurationMenu(session: $session);
