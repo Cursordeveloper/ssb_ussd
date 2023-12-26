@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\MyAccount\LinkNewWallet;
 
-use App\Common\ResponseBuilder;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\BeginProcessAction;
 use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\MobileMoneyNumberAction;
@@ -23,7 +22,7 @@ final class LinkNewWalletState
         //
         if (array_key_exists(key: 'noWallet', array: $process_flow) && $session_data->user_input === '2') {
             // Return the terminateResponseBuilder response
-            return ResponseBuilder::terminateSession($session->session_id);
+            return GeneralMenu::terminateSession($session->session_id);
         }
 
         // Evaluate the process flow and execute the corresponding action

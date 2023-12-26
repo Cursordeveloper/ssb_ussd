@@ -17,6 +17,6 @@ final class EndAmountAction
         SessionInputUpdateAction::execute(session: $session, user_input: ['end_amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
-        return CreateFlexySusuMenu::debitFrequencyMenu(session: $session);
+        return CreateFlexySusuMenu::frequencyMenu(session: $session);
     }
 }

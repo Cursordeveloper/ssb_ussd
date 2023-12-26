@@ -25,6 +25,13 @@ final class GeneralMenu
         );
     }
 
+    public static function terminateSession($session): JsonResponse
+    {
+        return ResponseBuilder::terminateSession(
+            session_id: $session->session_id,
+        );
+    }
+
     public static function systemErrorNotification($session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(

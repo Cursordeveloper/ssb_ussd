@@ -8,9 +8,8 @@ use Domain\Customer\Models\Customer;
 
 final class CustomerDTO
 {
-    public static function toArray(
-        Customer $customer,
-    ): array {
+    public static function toArray(Customer $customer): array
+    {
         return [
             // Resource type and id
             'type' => 'Customer',

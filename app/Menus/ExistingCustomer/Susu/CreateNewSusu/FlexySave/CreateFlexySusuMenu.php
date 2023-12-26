@@ -34,10 +34,18 @@ final class CreateFlexySusuMenu
         );
     }
 
-    public static function debitFrequencyMenu($session): JsonResponse
+    public static function frequencyMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose frequency\n1. Daily\n2. Weekly\n3. Monthly",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidFrequencyMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid input\n1. Daily\n2. Weekly\n3. Monthly",
             session_id: $session->session_id,
         );
     }
@@ -64,7 +72,7 @@ final class CreateFlexySusuMenu
         $data = json_decode($session->user_inputs, associative: true);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating Flexy savings. Between GHS10 and GHS40 will randomly be debited weekly from your '.$data['wallet'].' mobile money wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating Flexy savings. Between GHS'.number_format((float) $data['start_amount']).' and GHS'.number_format((float) $data['end_amount']).' will randomly be debited '.$data['frequency'].' from your '.$data['wallet'].' mobile money wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\NewCustomer;
 
-use App\Common\ResponseBuilder;
+use App\Menus\Shared\GeneralMenu;
 use App\Menus\Welcome\WelcomeMenu;
 use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\Registration\RegistrationState;
@@ -22,7 +22,7 @@ final class NewCustomerState
 
         // If the input is '0', terminate the session
         if ($session_data->user_input === '0') {
-            return ResponseBuilder::terminateSession(session_id: $session->session_id);
+            return GeneralMenu::terminateSession(session: $session);
         }
 
         // Define a mapping between customer input and states

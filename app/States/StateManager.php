@@ -14,7 +14,7 @@ use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
@@ -65,7 +65,7 @@ final class StateManager
 
             // SusuState options
             'MySusuAccountsState' => new MySusuAccountsState,
-            'CreateNewSusuState' => new CreateNewSusuState,
+            'CreateSusuState' => new CreateSusuState,
             'SettlementState' => new SettlementState,
 
             // CreateNewSusuState options

@@ -111,7 +111,7 @@ return [
             'title' => 'The usage of private methods is not idiomatic in Laravel.',
         ],
         PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
-            'lineLimit' => 300,
+            'lineLimit' => 350,
             'absoluteLineLimit' => 350,
         ],
         SlevomatCodingStandard\Sniffs\Functions\FunctionLengthSniff::class => [

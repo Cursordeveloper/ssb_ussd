@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\States\NewCustomer\TermsAndConditions;
 
-use App\Common\ResponseBuilder;
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
+use App\Menus\Shared\GeneralMenu;
 use App\States\Welcome\WelcomeState;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
@@ -29,7 +29,7 @@ final class TermsAndConditionsState
 
         if (array_key_exists('end', $process_flow) && $session_data->user_input === '#') {
             // Return the terminateResponseBuilder
-            return ResponseBuilder::terminateSession($session->session_id);
+            return GeneralMenu::terminateSession(session: $session);
         }
 
         // Validate inputs and update the session input

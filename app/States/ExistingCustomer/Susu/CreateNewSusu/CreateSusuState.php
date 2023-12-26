@@ -22,7 +22,7 @@ use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateNewSusuState
+final class CreateSusuState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {

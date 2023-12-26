@@ -32,6 +32,27 @@ final class Helpers
         return $outputs;
     }
 
+    public static function formatSusuAccountsForOutput($linked_wallets): string
+    {
+        $outputs = '';
+        foreach ($linked_wallets as $key => $value) {
+            $outputs .= $key + 1 .'. '.data_get(target: $value, key: 'attributes.account_name').' - '.data_get(target: $value, key: 'attributes.code')."\n";
+        }
+
+        return $outputs;
+    }
+
+    public static function formatSusuAccountsInArray($susu_collection): array
+    {
+        $outputs = [];
+        foreach ($susu_collection as $value) {
+            $susu = ['account_name' => data_get(target: $value, key: 'attributes.account_name'), 'scheme' => data_get(target: $value, key: 'attributes.code')];
+            $outputs[] = $susu;
+        }
+
+        return $outputs;
+    }
+
     public static function arrayIndex(array $array): array
     {
         $adjustedArray = [];

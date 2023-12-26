@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuState;
+use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
 use Domain\Shared\Action\SessionUpdateAction;
@@ -19,7 +19,7 @@ final class SusuState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => new MySusuAccountsState,
-            '2' => new CreateNewSusuState,
+            '2' => new CreateSusuState,
             '3' => new SettlementState,
         ];
 
