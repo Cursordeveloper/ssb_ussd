@@ -49,7 +49,7 @@ final class CheckBalanceMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::infoResponseBuilder(
-            message: "Account Balance\n Current Balance: ".data_get(target: $susu_data, key: 'current_balance').', Available Balance: '.data_get(target: $susu_data, key: 'available_balance'),
+            message: 'Current Balance: '.data_get(target: $susu_data, key: 'current_balance').', Available Balance: '.data_get(target: $susu_data, key: 'available_balance'),
             session_id: $session->session_id,
         );
     }
