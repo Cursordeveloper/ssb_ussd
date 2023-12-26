@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
+use App\States\ExistingCustomer\Susu\CheckBalance\CheckBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
@@ -20,7 +21,8 @@ final class SusuState
         $stateMappings = [
             '1' => new MySusuAccountsState,
             '2' => new CreateSusuState,
-            '3' => new SettlementState,
+            '3' => new CheckBalanceState,
+            '4' => new SettlementState,
         ];
 
         // Check if the customer input is a valid option

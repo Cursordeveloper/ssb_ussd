@@ -13,6 +13,7 @@ use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
+use App\States\ExistingCustomer\Susu\CheckBalance\CheckBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
@@ -66,6 +67,7 @@ final class StateManager
             // SusuState options
             'MySusuAccountsState' => new MySusuAccountsState,
             'CreateSusuState' => new CreateSusuState,
+            'CheckBalanceState' => new CheckBalanceState,
             'SettlementState' => new SettlementState,
 
             // CreateNewSusuState options
