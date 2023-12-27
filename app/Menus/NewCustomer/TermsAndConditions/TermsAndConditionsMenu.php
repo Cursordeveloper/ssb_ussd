@@ -21,6 +21,14 @@ final class TermsAndConditionsMenu
         );
     }
 
+    public static function invalidInputMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid options. Try again.\n#. Next or 0. Main menu",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function tcsOne($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -47,10 +55,7 @@ final class TermsAndConditionsMenu
 
     public static function lastTcs($session): JsonResponse
     {
-        // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::reset(session: $session);
-
-        return ResponseBuilder::infoResponseBuilder(
+        return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "4. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece.\n#. Cancel or 0. Main menu",
             session_id: $session->session_id,
         );

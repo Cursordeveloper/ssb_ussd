@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\States\NewCustomer\TermsAndConditions;
 
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
-use App\Menus\Shared\GeneralMenu;
 use App\States\Welcome\WelcomeState;
+use Domain\Customer\Actions\NewCustomer\TermsAndConditions\TermsAndConditionsAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,9 +16,17 @@ final class TermsAndConditionsState
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Get the process flow array from the customer session (user inputs)
-        $process_flow = json_decode($session->user_inputs, associative: true);
+        $user_inputs = json_decode($session->user_inputs, associative: true);
 
-        // If the input is '0', terminate the session
+        // Expected user input array
+        $options = ['#', '0'];
+
+        // Validate the user input
+        if (! empty($user_inputs) && ! in_array($session_data->user_input, $options)) {
+            return TermsAndConditionsMenu::invalidInputMenu($session);
+        }
+
+        // If the user_input is '0', return back to home menu
         if ($session_data->user_input === '0') {
             // Execute the SessionInputUpdateAction
             SessionInputUpdateAction::reset(session: $session);
@@ -27,28 +35,7 @@ final class TermsAndConditionsState
             return WelcomeState::execute(session: $session);
         }
 
-        if (array_key_exists('end', $process_flow) && $session_data->user_input === '#') {
-            // Return the terminateResponseBuilder
-            return GeneralMenu::terminateSession(session: $session);
-        }
-
-        // Validate inputs and update the session input
-        return match (true) {
-            ! array_key_exists('tcsOne', $process_flow) => self::updateAndReturnMenu($session, 'tcsOne', TermsAndConditionsMenu::mainMenu(session: $session)),
-            ! array_key_exists('tcsTwo', $process_flow) => self::updateAndReturnMenu($session, 'tcsTwo', TermsAndConditionsMenu::tcsOne(session: $session)),
-            ! array_key_exists('tcsThree', $process_flow) => self::updateAndReturnMenu($session, 'tcsThree', TermsAndConditionsMenu::tcsTwo(session: $session)),
-            ! array_key_exists('lastTcs', $process_flow) => self::updateAndReturnMenu($session, 'lastTcs', TermsAndConditionsMenu::tcsThree(session: $session)),
-            ! array_key_exists('end', $process_flow) => self::updateAndReturnMenu($session, 'end', TermsAndConditionsMenu::lastTcs(session: $session)),
-            default => TermsAndConditionsMenu::mainMenu(session: $session),
-        };
-    }
-
-    private static function updateAndReturnMenu(Session $session, string $key, JsonResponse $menu): JsonResponse
-    {
-        // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::execute(session: $session, user_input: [$key => true]);
-
-        // Return the menu (Term and Condition)
-        return $menu;
+        // Execute the TermsAndConditionsAction
+        return TermsAndConditionsAction::execute(session: $session, session_data: $session_data, user_inputs: $user_inputs);
     }
 }
