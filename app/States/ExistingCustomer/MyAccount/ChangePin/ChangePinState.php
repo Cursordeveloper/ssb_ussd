@@ -21,10 +21,10 @@ final class ChangePinState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'beginProcess', array: $process_flow) => BeginProcessAction::execute($session),
-            ! array_key_exists(key: 'currentPin', array: $process_flow) => CurrentPinAction::execute($session, $session_data),
-            ! array_key_exists(key: 'newPin', array: $process_flow) => NewPinAction::execute($session, $session_data),
-            ! array_key_exists(key: 'confirmNewPin', array: $process_flow) => ConfirmNewPinAction::execute($session, $session_data),
+            ! array_key_exists(key: 'begin', array: $process_flow) => BeginProcessAction::execute($session),
+            ! array_key_exists(key: 'current_pin', array: $process_flow) => CurrentPinAction::execute($session, $session_data),
+            ! array_key_exists(key: 'new_pin', array: $process_flow) => NewPinAction::execute($session, $session_data),
+            ! array_key_exists(key: 'confirm_pin', array: $process_flow) => ConfirmNewPinAction::execute($session, $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

@@ -14,7 +14,7 @@ final class BeginProcessAction
     public static function execute(Session $session): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['beginProcess' => true]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['begin' => true]);
 
         // Return the enterCurrentPin
         return ChangePinMenu::enterCurrentPin(session: $session);

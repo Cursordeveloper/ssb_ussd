@@ -14,7 +14,7 @@ final class NewPinAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['newPin' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['new_pin' => $session_data->user_input]);
 
         // Return the enterNewPin
         return ChangePinMenu::confirmNewPin(session: $session);

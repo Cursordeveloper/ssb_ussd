@@ -17,14 +17,10 @@ final class MyAccountState
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Create the expected input arrays
-        $options = ['1', '2', '3', '0'];
+        $options = ['1', '2', '3'];
 
         // Define a mapping between customer input and states
-        $stateMappings = [
-            '1' => new LinkedWalletsState,
-            '2' => new LinkNewWalletState,
-            '3' => new ChangePinState,
-        ];
+        $stateMappings = ['1' => new LinkedWalletsState, '2' => new LinkNewWalletState, '3' => new ChangePinState];
 
         // Check if the customer input is a valid option
         if (in_array($session_data->user_input, $options) && array_key_exists($session_data->user_input, $stateMappings)) {
