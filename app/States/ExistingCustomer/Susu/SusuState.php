@@ -19,7 +19,13 @@ final class SusuState
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Define a mapping between customer input and states
-        $stateMappings = ['1' => new MySusuAccountsState, '2' => new CreateSusuState, '3' => new CheckBalanceState, '4' => new ManualPaymentState, '5' => new SettlementState];
+        $stateMappings = [
+            '1' => new MySusuAccountsState,
+            '2' => new CreateSusuState,
+            '3' => new CheckBalanceState,
+            '4' => new ManualPaymentState,
+            '5' => new SettlementState,
+        ];
 
         // Check if the customer input is a valid option
         if (array_key_exists($session_data->user_input, $stateMappings)) {

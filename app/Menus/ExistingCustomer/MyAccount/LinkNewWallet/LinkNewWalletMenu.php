@@ -36,7 +36,7 @@ final class LinkNewWalletMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
+            message: "Invalid choice, try again.\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
             session_id: $session->session_id,
         );
     }

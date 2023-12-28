@@ -25,7 +25,7 @@ final class InsuranceMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\nInsurance\n1. Insurance Menu 1\n2. Insurance Menu 2\n3. Insurance Menu 3",
+            message: "Invalid choice, try again.\nInsurance\n1. Insurance Menu 1\n2. Insurance Menu 2\n3. Insurance Menu 3",
             session_id: $session->session_id,
         );
     }

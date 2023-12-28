@@ -45,7 +45,7 @@ final class CreateFlexySusuMenu
     public static function invalidFrequencyMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\n1. Daily\n2. Weekly\n3. Monthly",
+            message: "Invalid choice, try again.\n1. Daily\n2. Weekly\n3. Monthly",
             session_id: $session->session_id,
         );
     }

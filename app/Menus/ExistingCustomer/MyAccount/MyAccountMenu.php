@@ -20,7 +20,7 @@ final class MyAccountMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\nMy Account\n1. Linked Wallets\n2. Link New Wallet\n3. Change Pin",
+            message: "Invalid choice, try again.\nMy Account\n1. Linked Wallets\n2. Link New Wallet\n3. Change Pin",
             session_id: $session->session_id,
         );
     }

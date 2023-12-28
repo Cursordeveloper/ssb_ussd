@@ -20,7 +20,7 @@ final class CreateNewSusuMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\n1. Personal Susu Savings\n2. Biz Susu Savings\n3. Goal Getter Savings\n4. Flexy Susu Savings",
+            message: "Invalid choice, try again.\n1. Personal Susu Savings\n2. Biz Susu Savings\n3. Goal Getter Savings\n4. Flexy Susu Savings",
             session_id: $session->session_id,
         );
     }
