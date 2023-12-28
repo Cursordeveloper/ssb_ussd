@@ -13,10 +13,15 @@ final class CurrentPinAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['current_pin' => $session_data->user_input]);
+        // Validate the user input
+        if (ValidatePinAction::execute($session_data->user_input)) {
+            SessionInputUpdateAction::execute(session: $session, user_input: ['current_pin' => $session_data->user_input]);
 
-        // Return the enterNewPin
-        return ChangePinMenu::enterNewPin(session: $session);
+            // Return the enterNewPin
+            return ChangePinMenu::enterNewPin(session: $session);
+        }
+
+        // Return the invalidCurrentPin
+        return ChangePinMenu::invalidCurrentPin(session: $session);
     }
 }

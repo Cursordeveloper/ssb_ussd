@@ -16,7 +16,7 @@ final class CustomerCreatedListener implements ShouldQueue
     public function handle(object $event): void
     {
         // Define the message data
-        $data = ['data' => CustomerDTO::toArray(customer: $event->customer)];
+        $data = CustomerDTO::toArray(customer: $event->customer);
 
         // Publish message through http
         (new CustomerService)->storeCustomer($data);

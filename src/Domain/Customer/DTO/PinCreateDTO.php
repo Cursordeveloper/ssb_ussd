@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Customer\DTO;
 
-final class PinChangeDTO
+use Domain\Customer\Models\Customer;
+
+final class PinCreateDTO
 {
-    public static function toArray(string $current_pin, string $new_pin): array
+    public static function toArray(Customer $customer, string $pin): array
     {
         return [
             'data' => [
@@ -15,8 +17,8 @@ final class PinChangeDTO
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'pin' => $current_pin,
-                    'new_pin' => $new_pin,
+                    'phone_number' => data_get(target: $customer, key: 'phone_number'),
+                    'pin' => $pin,
                 ],
             ],
         ];

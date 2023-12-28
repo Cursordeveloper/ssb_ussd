@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ChangePinMenu
 {
-    public static function main($session): JsonResponse
+    public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "https://cursorinnovations.site/susubox/policies/terms-and-conditions\n#. Next",
@@ -26,6 +26,14 @@ final class ChangePinMenu
         );
     }
 
+    public static function invalidCurrentPin($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid entry, try again\nEnter current pin.",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function enterNewPin($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -34,10 +42,26 @@ final class ChangePinMenu
         );
     }
 
+    public static function invalidNewPin($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid entry, try again\nEnter new pin.",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function confirmNewPin($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Confirm your new pin.',
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidConfirmNewPin($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid entry, try again\nConfirm your new pin.",
             session_id: $session->session_id,
         );
     }

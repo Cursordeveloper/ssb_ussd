@@ -7,6 +7,7 @@ namespace Domain\Customer\Actions\NewCustomer\Registration;
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\CustomerService;
+use Domain\Customer\DTO\PinCreateDTO;
 use Domain\Customer\Models\Customer;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,7 +18,7 @@ final class CustomerCreatePinAction
     {
         // Terminate the session if validation failed
         if (is_numeric($session_data->user_input) && strlen((string) $session_data->user_input) === 4) {
-            $pin_created = (new CustomerService)->createPin(customer: $customer, data: $session_data);
+            $pin_created = (new CustomerService)->createPin(PinCreateDTO::toArray($customer, $session_data->user_input));
 
             // Return a success response
             if (data_get($pin_created, key: 'status') === true) {

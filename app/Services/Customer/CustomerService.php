@@ -27,19 +27,11 @@ class CustomerService
         )->json();
     }
 
-    public function createPin(Customer $customer, $data): array
+    public function createPin(array $data): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
             url: config(key: 'services.susubox.ssb_customer.base_url').'pin',
-            data: [
-                'data' => [
-                    'type' => 'Pin',
-                    'attributes' => [
-                        'phone_number' => data_get(target: $customer, key: 'phone_number'),
-                        'pin' => $data->user_input,
-                    ],
-                ],
-            ],
+            data: $data,
         )->json();
     }
 
