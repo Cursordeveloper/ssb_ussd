@@ -24,7 +24,7 @@ final class TermsAndConditionsMenu
     public static function invalidInputMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid options. Try again.\n#. Next or 0. Main menu",
+            message: "Invalid choice, try again.\n#. Next or 0. Main menu",
             session_id: $session->session_id,
         );
     }
