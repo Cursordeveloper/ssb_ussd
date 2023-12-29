@@ -29,7 +29,7 @@ final class AboutSusuboxState
         // If the user_input is '0', return back to home menu
         if ($session_data->user_input === '0') {
             // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::reset(session: $session);
+            SessionInputUpdateAction::resetUserInputs(session: $session);
 
             // Return the WelcomeState
             return WelcomeState::execute(session: $session);

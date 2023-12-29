@@ -20,8 +20,13 @@ final class SessionInputUpdateAction
         $session->update(['user_data' => json_encode(array_merge($data, $user_data))]);
     }
 
-    public static function reset(Session $session): void
+    public static function resetUserInputs(Session $session): void
     {
         $session->update(attributes: ['user_inputs' => json_encode([])]);
+    }
+
+    public static function resetState(Session $session, string $state): void
+    {
+        $session->update(attributes: ['state' => $state]);
     }
 }

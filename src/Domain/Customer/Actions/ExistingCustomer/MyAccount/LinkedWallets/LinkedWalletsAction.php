@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkedWallets;
 
-use App\Common\Helpers;
+use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
 use App\Services\Customer\CustomerService;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Models\Session;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkedWalletsAction
 {
-    public static function execute(Session $session): string
+    public static function execute(Session $session, $session_data): JsonResponse
     {
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
@@ -19,11 +20,12 @@ final class LinkedWalletsAction
         // Get the linked accounts
         $linked_wallets = (new CustomerService)->linkedAccount(customer: $customer);
 
+        // Prepare and return the linked wallets
         if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
-            return "Linked Wallets\n".Helpers::formatLinkedWallets(data_get(target: $linked_wallets, key: 'data'));
+            return LinkedWalletsMenu::linkedWalletCollectionMenu($session, $linked_wallets);
         }
 
         // Return customer has no linked wallet
-        return 'You have not linked any wallet to your susubox account.';
+        return LinkedWalletsMenu::noLinkedWalletMenu($session);
     }
 }

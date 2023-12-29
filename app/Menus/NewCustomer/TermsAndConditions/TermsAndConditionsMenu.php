@@ -13,7 +13,7 @@ final class TermsAndConditionsMenu
     public static function mainMenu($session): JsonResponse
     {
         // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::reset(session: $session);
+        SessionInputUpdateAction::resetUserInputs(session: $session);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "https://cursorinnovations.site/susubox/policies/terms-and-conditions\n#. Next or 0. Main menu",
