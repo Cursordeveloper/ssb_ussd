@@ -9,12 +9,12 @@ final class PinApprovalDTO
     public static function toArray(string $pin): array
     {
         return [
-            // Resource type and id
-            'type' => 'Pin',
+            'data' => [
+                // Resource type and id
+                'type' => 'Pin',
 
-            // Resource exposed attributes
-            'attributes' => [
-                'pin' => $pin,
+                // Resource exposed attributes
+                'attributes' => ['pin' => $pin],
             ],
         ];
     }
