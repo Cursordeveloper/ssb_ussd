@@ -13,7 +13,7 @@ final class LinkedWalletsMenu
     public static function linkedWalletCollectionMenu($session, $wallets): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Linked Wallets\n".Helpers::formatLinkedWallets(data_get(target: $wallets, key: 'data'))."\n0. Back",
+            message: "Linked Wallets\n".Helpers::formatLinkedWallets(data_get(target: $wallets, key: 'data')).'0. Back',
             session_id: $session->session_id,
         );
     }

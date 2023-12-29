@@ -23,7 +23,7 @@ final class ConfirmationAction
         $user_data = json_decode($session->user_data, associative: true);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_approved = (new SusuService)->personalSusuApproval(customer: $customer, data: ['data' => PinApprovalDTO::toArray($session_data->user_input)], susu_resource: $user_data['susu_resource']);
+        $susu_approved = (new SusuService)->personalSusuApproval(customer: $customer, data: PinApprovalDTO::toArray($session_data->user_input), susu_resource: $user_data['susu_resource']);
 
         // Return a success response
         if (data_get($susu_approved, key: 'status') === true) {
