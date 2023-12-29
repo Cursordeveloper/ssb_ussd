@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\States\ExistingCustomer\Susu\CheckBalance\CheckBalanceState;
+use App\States\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
-use App\States\ExistingCustomer\Susu\ManualPayment\ManualPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
+use App\States\ExistingCustomer\Susu\SusuPayment\SusuPaymentState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,8 +22,8 @@ final class SusuState
         $stateMappings = [
             '1' => new MySusuAccountsState,
             '2' => new CreateSusuState,
-            '3' => new CheckBalanceState,
-            '4' => new ManualPaymentState,
+            '3' => new CheckSusuBalanceState,
+            '4' => new SusuPaymentState,
             '5' => new SettlementState,
         ];
 

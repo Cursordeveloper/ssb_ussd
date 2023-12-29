@@ -9,7 +9,7 @@ use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CheckBalanceAction
+final class CheckSusuBalanceAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {

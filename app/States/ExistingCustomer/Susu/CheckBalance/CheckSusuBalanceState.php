@@ -6,12 +6,12 @@ namespace App\States\ExistingCustomer\Susu\CheckBalance;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\SusuState;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance\CheckBalanceAction;
+use Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceAction;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CheckBalanceState
+final class CheckSusuBalanceState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -26,6 +26,6 @@ final class CheckBalanceState
         }
 
         // Execute CheckBalanceAction action
-        return CheckBalanceAction::execute(session: $session, session_data: $session_data);
+        return CheckSusuBalanceAction::execute(session: $session, session_data: $session_data);
     }
 }

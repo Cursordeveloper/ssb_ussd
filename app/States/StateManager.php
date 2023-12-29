@@ -4,24 +4,29 @@ declare(strict_types=1);
 
 namespace App\States;
 
+use App\Menus\ExistingCustomer\Loan\AboutLoans\AboutLoansMenu;
+use App\Menus\ExistingCustomer\Loan\LoanBalance\LoanBalanceMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
+use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
+use App\States\ExistingCustomer\Loans\LoanPayment\LoanPaymentState;
 use App\States\ExistingCustomer\Loans\LoanState;
+use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
-use App\States\ExistingCustomer\Susu\CheckBalance\CheckBalanceState;
+use App\States\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
-use App\States\ExistingCustomer\Susu\ManualPayment\ManualPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
+use App\States\ExistingCustomer\Susu\SusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\NewCustomerState;
@@ -60,17 +65,24 @@ final class StateManager
             'InsuranceState' => new InsuranceState,
             'MyAccountState' => new MyAccountState,
 
+            // SusuState options
+            'MySusuAccountsState' => new MySusuAccountsState,
+            'CreateSusuState' => new CreateSusuState,
+            'CheckSusuBalanceState' => new CheckSusuBalanceState,
+            'SusuPaymentState' => new SusuPaymentState,
+            'SettlementState' => new SettlementState,
+
+            // Loan State(s)
+            'GetLoanState' => new GetLoanState,
+            'LoanPaymentState' => new LoanPaymentState,
+            'LoanBalanceMenu' => new LoanBalanceMenu,
+            'AboutLoansMenu' => new AboutLoansMenu,
+            'LoanTermsState' => new LoanTermsState,
+
             // MyAccountState options
             'LinkedWalletsState' => new LinkedWalletsState,
             'LinkNewWalletState' => new LinkNewWalletState,
             'ChangePinState' => new ChangePinState,
-
-            // SusuState options
-            'MySusuAccountsState' => new MySusuAccountsState,
-            'CreateSusuState' => new CreateSusuState,
-            'CheckBalanceState' => new CheckBalanceState,
-            'ManualPaymentState' => new ManualPaymentState,
-            'SettlementState' => new SettlementState,
 
             // CreateNewSusuState options
             'CreatePersonalSusuState' => new CreatePersonalSusuState,
