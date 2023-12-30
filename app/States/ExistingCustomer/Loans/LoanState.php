@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Loans;
 
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
+use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanBalance\LoanBalanceState;
@@ -25,6 +26,7 @@ final class LoanState
             '3' => new LoanBalanceState,
             '4' => new AboutLoansState,
             '5' => new LoanTermsState,
+            '0' => new ExistingCustomerState,
         ];
 
         // Check if the customer input is a valid option
@@ -39,7 +41,7 @@ final class LoanState
             return $customer_state::execute(session: $session, session_data: $session_data);
         }
 
-        // Return the MyAccountMenu
+        // Return the LoanMenu(invalidMainMenu)
         return LoanMenu::invalidMainMenu(session: $session);
     }
 }

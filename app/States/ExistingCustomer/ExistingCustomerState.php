@@ -32,6 +32,11 @@ final class ExistingCustomerState
             '5' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];
 
+        // Return the existingCustomerMenu
+        if ($session_data->user_input === '0') {
+            return WelcomeMenu::existingCustomer(session: $session);
+        }
+
         // Check if the customer input is a valid option
         if (array_key_exists($session_data->user_input, $stateMappings)) {
             // Get the customer option state
@@ -45,6 +50,6 @@ final class ExistingCustomerState
         }
 
         // The customer input is invalid
-        return WelcomeMenu::existingCustomerInvalidOption($session);
+        return WelcomeMenu::existingCustomerInvalidOption(session: $session);
     }
 }

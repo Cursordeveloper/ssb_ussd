@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
+use App\States\ExistingCustomer\ExistingCustomerState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
 use App\States\ExistingCustomer\Susu\SusuPayment\SusuPaymentState;
+use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,7 +27,10 @@ final class SusuState
             '2' => new CreateSusuState,
             '3' => new CheckSusuBalanceState,
             '4' => new SusuPaymentState,
-            '5' => new SettlementState,
+            '5' => new AboutSusuState,
+            '6' => new SusuTermsState,
+            '7' => new SettlementState,
+            '0' => new ExistingCustomerState,
         ];
 
         // Check if the customer input is a valid option
@@ -39,7 +45,7 @@ final class SusuState
             return $customer_state::execute(session: $session, session_data: $session_data);
         }
 
-        // Return the MyAccountMenu
+        // Return the SusuMenu(invalidMainMenu)
         return SusuMenu::invalidMainMenu(session: $session);
     }
 }
