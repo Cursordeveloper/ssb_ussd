@@ -38,7 +38,7 @@ final class CreatePersonalSusuMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a ('.$susu_data['account_name'].') personal susu. GHS'.$susu_data['amount'].' will be debited daily from your '.$susu_data['linked_wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating a ('.$susu_data['account_name'].') personal susu. '.$susu_data['amount'].' will be debited daily from your '.$susu_data['linked_wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

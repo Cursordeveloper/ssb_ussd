@@ -28,7 +28,9 @@ final class LinkedWalletAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_created = (new SusuService)->createPersonalSusu(customer: $customer, data: ['data' => PersonalSusuDTO::toArray(json_decode($session->user_inputs, associative: true))]);
+        $susu_created = (new SusuService)->createPersonalSusu(customer: $customer, data: PersonalSusuDTO::toArray(json_decode($session->user_inputs, associative: true)));
+
+        logger($susu_created);
 
         // Return a success response
         if (data_get($susu_created, key: 'status') === true) {
