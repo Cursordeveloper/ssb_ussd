@@ -85,7 +85,7 @@ final class CreateGoalGetterSusuMenu
     public static function narrationMenu($session, $susu_data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a ('.$susu_data['goal'].') Goal Getter Susu. '.$susu_data['target_amount'].' targeted for '.$susu_data['duration'].'. '.$susu_data['debit_amount'].' will be debited '.$susu_data['frequency'].' from your '.$susu_data['linked_wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'Goal: '.$susu_data['account_name'].', target: '.$susu_data['target_amount'].' for: '.$susu_data['duration'].'. '.$susu_data['frequency'].' debit: '.$susu_data['debit_amount'].' from '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

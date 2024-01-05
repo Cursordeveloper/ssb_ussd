@@ -53,7 +53,7 @@ final class CreateBizSusuMenu
     public static function narrationMenu($session, $susu_data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a ('.$susu_data['business_name'].') Biz savings. '.$susu_data['amount'].' will be debited '.strtolower($susu_data['frequency']).' from your '.$susu_data['linked_wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['business_name'].'. Susu amount: '.$susu_data['amount'].'. Debit Frequency: '.strtolower($susu_data['frequency']).' Wallet '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
