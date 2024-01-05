@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\SusuService;
+use App\Services\Susu\Requests\PersonalSusu\ApprovePersonalSusu;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\DTO\PinApprovalDTO;
 use Domain\Shared\Action\SessionInputUpdateAction;
@@ -23,7 +23,7 @@ final class ConfirmationAction
         $user_data = json_decode($session->user_data, associative: true);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_approved = (new SusuService)->personalSusuApproval(customer: $customer, data: PinApprovalDTO::toArray($session_data->user_input), susu_resource: $user_data['susu_resource']);
+        $susu_approved = (new ApprovePersonalSusu)->execute(customer: $customer, data: PinApprovalDTO::toArray($session_data->user_input), susu_resource: $user_data['susu_resource']);
 
         // Return a success response
         if (data_get($susu_approved, key: 'status') === true) {

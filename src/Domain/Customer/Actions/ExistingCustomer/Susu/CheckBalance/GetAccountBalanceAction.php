@@ -6,7 +6,7 @@ namespace Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance;
 
 use App\Menus\ExistingCustomer\Susu\CheckBalance\CheckBalanceMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\SusuService;
+use App\Services\Susu\Requests\Susu\SusuBalance;
 use Domain\Customer\DTO\PinApprovalDTO;
 use Domain\Customer\Models\Customer;
 use Domain\Shared\Action\SessionInputUpdateAction;
@@ -24,7 +24,7 @@ final class GetAccountBalanceAction
         $process_flow = json_decode($session->user_inputs, associative: true);
 
         // Execute the createPersonalSusu HTTP request
-        $get_balance = (new SusuService)->getSusuBalance(customer: $customer, susu_resource: $process_flow['susu_account'], data: PinApprovalDTO::toArray($session_data->user_input));
+        $get_balance = (new SusuBalance)->execute(customer: $customer, susu_resource: $process_flow['susu_account'], data: PinApprovalDTO::toArray($session_data->user_input));
 
         // Terminate session if $susu_collection request status is false
         if (! data_get(target: $get_balance, key: 'status') === true || data_get(target: $get_balance, key: 'code') !== 200) {

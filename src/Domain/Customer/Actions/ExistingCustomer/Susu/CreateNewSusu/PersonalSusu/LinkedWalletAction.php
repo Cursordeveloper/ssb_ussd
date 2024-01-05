@@ -6,7 +6,7 @@ namespace Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\PersonalSu
 
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\SusuService;
+use App\Services\Susu\Requests\PersonalSusu\CreatePersonalSusu;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\ExistingCustomer\Common\CustomerLinkedWalletsAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
@@ -28,7 +28,7 @@ final class LinkedWalletAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_created = (new SusuService)->createPersonalSusu(customer: $customer, data: PersonalSusuData::toArray(json_decode($session->user_inputs, associative: true)));
+        $susu_created = (new CreatePersonalSusu)->execute(customer: $customer, data: PersonalSusuData::toArray(json_decode($session->user_inputs, associative: true)));
 
         // Return a success response
         if (data_get($susu_created, key: 'status') === true) {

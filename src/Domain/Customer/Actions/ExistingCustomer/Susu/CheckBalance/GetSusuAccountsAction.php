@@ -7,7 +7,7 @@ namespace Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance;
 use App\Common\Helpers;
 use App\Menus\ExistingCustomer\Susu\CheckBalance\CheckBalanceMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\SusuService;
+use App\Services\Susu\Requests\Susu\SusuCollection;
 use Domain\Customer\Models\Customer;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
@@ -21,7 +21,7 @@ final class GetSusuAccountsAction
         SessionInputUpdateAction::execute(session: $session, user_input: ['begin' => true]);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_collection = (new SusuService)->getSusuCollection(customer: $customer);
+        $susu_collection = (new SusuCollection)->execute(customer: $customer);
 
         // Terminate session if $susu_collection request status is false
         if (! data_get(target: $susu_collection, key: 'status') === true || data_get(target: $susu_collection, key: 'code') !== 200) {

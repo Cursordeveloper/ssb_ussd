@@ -7,7 +7,7 @@ namespace Domain\Customer\Actions\ExistingCustomer\Susu\MySusuAccounts;
 use App\Common\Helpers;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\SusuService;
+use App\Services\Susu\Requests\Susu\SusuCollection;
 use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
@@ -21,7 +21,7 @@ final class MySusuAccountsAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_collection = (new SusuService)->getSusuCollection(customer: $customer);
+        $susu_collection = (new SusuCollection)->execute(customer: $customer);
 
         // Terminate session if $susu_collection request status is false
         if (! data_get($susu_collection, key: 'status') === true) {

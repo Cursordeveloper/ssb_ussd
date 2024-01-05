@@ -12,7 +12,7 @@ final class CreateNewSusuMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Susu Schemes\n1. Personal Susu Savings\n2. Biz Susu Savings\n3. Goal Getter Savings\n4. Flexy Susu Savings",
+            message: "Susu Schemes\n1. Personal Susu\n2. Biz Susu\n3. Goal Getter Susu\n4. Flexy Susu",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class CreateNewSusuMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n1. Personal Susu Savings\n2. Biz Susu Savings\n3. Goal Getter Savings\n4. Flexy Susu Savings",
+            message: "Invalid choice, try again.\n1. Personal Susu\n2. Biz Susu\n3. Goal Getter Susu\n4. Flexy Susu",
             session_id: $session->session_id,
         );
     }
