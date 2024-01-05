@@ -11,7 +11,7 @@ use Domain\Customer\Actions\Common\GetCustomerAction;
 use Domain\Customer\Actions\ExistingCustomer\Common\CustomerLinkedWalletsAction;
 use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
-use Domain\Susu\DTO\PersonalSusuDTO;
+use Domain\Susu\Data\PersonalSusuData;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkedWalletAction
@@ -28,9 +28,7 @@ final class LinkedWalletAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
-        $susu_created = (new SusuService)->createPersonalSusu(customer: $customer, data: PersonalSusuDTO::toArray(json_decode($session->user_inputs, associative: true)));
-
-        logger($susu_created);
+        $susu_created = (new SusuService)->createPersonalSusu(customer: $customer, data: PersonalSusuData::toArray(json_decode($session->user_inputs, associative: true)));
 
         // Return a success response
         if (data_get($susu_created, key: 'status') === true) {

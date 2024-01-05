@@ -12,9 +12,9 @@ final class CustomerCreatedAction
     {
         // Create the Customer
         $create_customer = Customer::query()->updateOrCreate([
-            'resource_id' => data_get(
+            'phone_number' => data_get(
                 target: $data,
-                key: 'data.attributes.resource_id'
+                key: 'data.attributes.phone_number'
             ),
         ], [
             'id' => data_get(

@@ -12,12 +12,12 @@ use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class StrictDebitAction
+final class RecurringDebitAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['strict_debit' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['recurring_debit' => $session_data->user_input]);
 
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);

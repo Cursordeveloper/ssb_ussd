@@ -17,7 +17,7 @@ final class SusuTermsState
         $user_inputs = json_decode($session->user_inputs, associative: true);
 
         // Validate the user input
-        if (! empty($user_inputs) && ! $session_data->user_input == '#') {
+        if (! empty($user_inputs) && $session_data->user_input !== '#') {
             return SusuTermsMenu::invalidInputMenu($session);
         }
 

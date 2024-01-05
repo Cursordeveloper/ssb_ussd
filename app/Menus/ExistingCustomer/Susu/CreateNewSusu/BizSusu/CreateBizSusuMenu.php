@@ -50,13 +50,10 @@ final class CreateBizSusuMenu
         );
     }
 
-    public static function narrationMenu($session): JsonResponse
+    public static function narrationMenu($session, $susu_data): JsonResponse
     {
-        // Get the user input data
-        $data = json_decode($session->user_inputs, associative: true);
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a ('.$data['business_name'].') Biz savings. GHS'.$data['amount'].' will be debited '.strtolower($data['frequency']).' from your '.$data['wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating a ('.$susu_data['business_name'].') Biz savings. '.$susu_data['amount'].' will be debited '.strtolower($susu_data['frequency']).' from your '.$susu_data['linked_wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

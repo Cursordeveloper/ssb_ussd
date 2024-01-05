@@ -66,13 +66,10 @@ final class CreateFlexySusuMenu
         );
     }
 
-    public static function narrationMenu($session): JsonResponse
+    public static function narrationMenu($session, $susu_data): JsonResponse
     {
-        // Get the user input data
-        $data = json_decode($session->user_inputs, associative: true);
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating Flexy savings. Between GHS'.number_format((float) $data['start_amount']).' and GHS'.number_format((float) $data['end_amount']).' will randomly be debited '.$data['frequency'].' from your '.$data['wallet'].' mobile money wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating You are creating a ('.$susu_data['account_name'].') Flexy Susu. Between '.$susu_data['min_range'].' and '.$susu_data['max_range'].' will randomly be debited '.$susu_data['frequency'].' from your '.$susu_data['linked_wallet'].' mobile money wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

@@ -22,7 +22,7 @@ class SusuService
     public function createPersonalSusu(Customer $customer, array $data): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: config(key: 'services.susubox.ssb_susu.base_url').'customers/'.$customer->resource_id.'/personal',
+            url: config(key: 'services.susubox.ssb_susu.base_url').'customers/'.$customer->resource_id.'/personal-susu',
             data: $data,
         )->json();
     }
@@ -30,7 +30,7 @@ class SusuService
     public function personalSusuApproval(Customer $customer, array $data, string $susu_resource): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: config(key: 'services.susubox.ssb_susu.base_url').'customers/'.$customer->resource_id.'/personal/'.$susu_resource.'/approval',
+            url: config(key: 'services.susubox.ssb_susu.base_url').'customers/'.$customer->resource_id.'/personal-susu/'.$susu_resource.'/approval',
             data: $data,
         )->json();
     }

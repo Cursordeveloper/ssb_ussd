@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Customer\Actions\ExistingCustomer\Susu\AboutSusu;
 
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
-use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

@@ -13,7 +13,7 @@ final class SusuTermsAction
     public static function execute(Session $session, $session_data, $user_inputs): JsonResponse
     {
         // Validate the user input
-        if (! $session_data->user_input == '#') {
+        if ($session_data->user_input !== '#') {
             return SusuTermsMenu::invalidInputMenu($session);
         }
 

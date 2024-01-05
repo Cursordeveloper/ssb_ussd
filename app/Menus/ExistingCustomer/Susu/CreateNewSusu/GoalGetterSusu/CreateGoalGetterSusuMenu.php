@@ -34,6 +34,22 @@ final class CreateGoalGetterSusuMenu
         );
     }
 
+    public static function startDateMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Start from\n1. Today\n2. Next week\n3. Two weeks\n4. Next month",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidStartDateMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice\n1. Today\n2. Next week\n3. Two weeks\n4. Next month",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function invalidDurationMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
@@ -66,13 +82,10 @@ final class CreateGoalGetterSusuMenu
         );
     }
 
-    public static function narrationMenu($session): JsonResponse
+    public static function narrationMenu($session, $susu_data): JsonResponse
     {
-        // Get the user input data
-        $data = json_decode($session->user_inputs, associative: true);
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'You are creating a ('.$data['goal'].') Goal Getter. GHS'.number_format((float) $data['amount']).' targeted for '.strtolower($data['duration']).'. GH24.00 will be debited weekly from '.$data['wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
+            message: 'You are creating a ('.$susu_data['goal'].') Goal Getter Susu. '.$susu_data['target_amount'].' targeted for '.$susu_data['duration'].'. '.$susu_data['debit_amount'].' will be debited '.$susu_data['frequency'].' from your '.$susu_data['linked_wallet'].' wallet. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
