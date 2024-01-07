@@ -23,7 +23,7 @@ final class CreateBizSusuState
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
             ! array_key_exists(key: 'business_name', array: $process_flow) => BusinessNameAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'amount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'susu_amount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),

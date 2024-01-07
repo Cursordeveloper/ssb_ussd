@@ -69,7 +69,7 @@ final class CreateFlexySusuMenu
     public static function narrationMenu($session, $susu_data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Flexy account: '.$susu_data['account_name'].'. Debit range: '.$susu_data['min_range'].' - '.$susu_data['max_range'].'. Frequency: '.$susu_data['frequency'].'. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Flexy account: '.$susu_data['account_name'].'. Debit range: '.$susu_data['min_amount'].' - '.$susu_data['max_amount'].'. Frequency: '.$susu_data['frequency'].'. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

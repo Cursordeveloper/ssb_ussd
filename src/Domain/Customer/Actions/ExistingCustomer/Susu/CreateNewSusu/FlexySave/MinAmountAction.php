@@ -9,12 +9,12 @@ use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class MinRangeAction
+final class MinAmountAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['min_range' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['min_amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::debitTo(session: $session);

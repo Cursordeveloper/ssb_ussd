@@ -38,7 +38,7 @@ final class CreatePersonalSusuMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['account_name'].'. Susu amount: '.$susu_data['amount'].'. Debit Frequency: Daily. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['account_name'].'. Susu amount: '.$susu_data['susu_amount'].'. Debit Frequency: Daily. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

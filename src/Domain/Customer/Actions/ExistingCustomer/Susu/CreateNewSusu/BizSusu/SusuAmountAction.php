@@ -14,7 +14,7 @@ final class SusuAmountAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['amount' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
 
         // Return the chooseLinkedWalletMenu
         return CreateBizSusuMenu::frequencyMenu(session: $session);

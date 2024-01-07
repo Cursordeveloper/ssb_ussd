@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\CheckBalance;
+namespace App\States\ExistingCustomer\Susu\SusuPayment;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\SusuState;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceAction;
+use Domain\Customer\Actions\ExistingCustomer\Susu\SusuPayment\ManualSusuPaymentAction;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CheckSusuBalanceState
+final class ManualSusuPaymentState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -26,7 +26,7 @@ final class CheckSusuBalanceState
             return $susu_state['menu']::mainMenu(session: $session);
         }
 
-        // Execute the CheckBalanceAction
-        return CheckSusuBalanceAction::execute(session: $session, session_data: $session_data);
+        // Execute the SusuPaymentAction
+        return ManualSusuPaymentAction::execute(session: $session, session_data: $session_data);
     }
 }

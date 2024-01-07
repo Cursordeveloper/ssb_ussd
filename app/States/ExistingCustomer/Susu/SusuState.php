@@ -11,7 +11,7 @@ use App\States\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
-use App\States\ExistingCustomer\Susu\SusuPayment\SusuPaymentState;
+use App\States\ExistingCustomer\Susu\SusuPayment\ManualSusuPaymentState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
@@ -26,7 +26,7 @@ final class SusuState
             '1' => new MySusuAccountsState,
             '2' => new CreateSusuState,
             '3' => new CheckSusuBalanceState,
-            '4' => new SusuPaymentState,
+            '4' => new ManualSusuPaymentState,
             '5' => new AboutSusuState,
             '6' => new SusuTermsState,
             '7' => new SettlementState,

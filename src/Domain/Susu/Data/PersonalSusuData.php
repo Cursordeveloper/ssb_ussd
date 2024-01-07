@@ -16,7 +16,7 @@ final class PersonalSusuData
                 // Resource exposed attributes
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
-                    'amount' => $user_inputs['amount'],
+                    'susu_amount' => $user_inputs['susu_amount'],
                     'wallet_number' => $user_inputs['wallet'],
                     'network' => $user_inputs['network'],
                 ],

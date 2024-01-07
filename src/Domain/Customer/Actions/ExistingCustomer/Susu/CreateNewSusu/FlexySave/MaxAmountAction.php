@@ -9,12 +9,12 @@ use Domain\Shared\Action\SessionInputUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class MaxRangeAction
+final class MaxAmountAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['max_range' => $session_data->user_input]);
+        SessionInputUpdateAction::execute(session: $session, user_input: ['max_amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::frequencyMenu(session: $session);
