@@ -38,7 +38,7 @@ final class CreateSusuState
             SessionUpdateAction::execute(session: $session, state: 'LinkNewWalletState', session_data: $session);
 
             // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::execute(session: $session, user_input: ['noWallet' => true]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['noWallet' => true]);
 
             // Return the linkedAccountMenu
             return LinkNewWalletMenu::linkedAccountMenu(session: $session);
@@ -50,7 +50,7 @@ final class CreateSusuState
         // Check if the beginProcess is set
         if (! array_key_exists(key: 'begin', array: $process_flow)) {
             // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::execute(session: $session, user_input: ['begin' => true, 'category' => 'susu']);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true, 'category' => 'susu']);
 
             // Return the CreateNewSusuMenu
             return CreateNewSusuMenu::mainMenu(session: $session);

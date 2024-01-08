@@ -15,7 +15,7 @@ final class CurrentPinAction
     {
         // Validate the user input
         if (ValidatePinAction::execute($session_data->user_input)) {
-            SessionInputUpdateAction::execute(session: $session, user_input: ['current_pin' => $session_data->user_input]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['current_pin' => $session_data->user_input]);
 
             // Return the enterNewPin
             return ChangePinMenu::enterNewPin(session: $session);

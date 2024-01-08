@@ -16,6 +16,6 @@ final class SusuProductAction
         $product = Product::where('category', '=', 'susu')->where('order', '=', $session_data->user_input)->first();
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['scheme' => $product['resource_id']]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['scheme' => $product['resource_id']]);
     }
 }

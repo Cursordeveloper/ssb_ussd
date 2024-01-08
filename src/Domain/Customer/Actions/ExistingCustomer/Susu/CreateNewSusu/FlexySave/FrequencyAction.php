@@ -23,7 +23,7 @@ final class FrequencyAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::enforceStrictDebitMenu(session: $session);

@@ -17,7 +17,7 @@ final class SelectNetworkAction
         $networks = ['1' => 'mtn', '2' => 'airteltigo', '3' => 'vodafone'];
 
         // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::execute(session: $session, user_input: ['selectNetwork' => $networks[$session_data->user_input]]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['selectNetwork' => $networks[$session_data->user_input]]);
 
         // Return the enterNumberMenu
         return LinkNewWalletMenu::enterNumberMenu(session: $session);

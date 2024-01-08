@@ -34,7 +34,7 @@ final class MySusuAccountsAction
             $susu = Helpers::formatSusuAccountsInArray($susu_collection['data']);
 
             // Update the SessionInputUpdateAction user_data field
-            SessionInputUpdateAction::data(session: $session, user_data: ['susu_accounts' => Helpers::arrayIndex($susu)]);
+            SessionInputUpdateAction::updateUserData(session: $session, user_data: ['susu_accounts' => Helpers::arrayIndex($susu)]);
 
             // Return the susuAccountsMenu
             return MySusuAccountsMenu::susuAccountsMenu(session: $session, susu_data: $susu_collection);

@@ -34,7 +34,7 @@ final class ConfirmNewPinAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['confirm_pin' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirm_pin' => $session_data->user_input]);
 
         // Send change pin request to ssb_customer
         $pin_changed = (new CustomerService)->changePin(customer: $customer, data: PinChangeDTO::toArray(current_pin: data_get(target: $data, key: 'current_pin'), new_pin: data_get(target: $data, key: 'new_pin')));

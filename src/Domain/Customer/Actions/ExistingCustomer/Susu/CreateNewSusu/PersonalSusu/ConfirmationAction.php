@@ -28,7 +28,7 @@ final class ConfirmationAction
         // Return a success response
         if (data_get($susu_approved, key: 'status') === true) {
             // Update the user inputs (steps)
-            SessionInputUpdateAction::execute(session: $session, user_input: ['confirmation' => true]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirmation' => true]);
 
             // Return the createAccountNotification and terminate the session
             return GeneralMenu::createAccountNotification(session: $session);

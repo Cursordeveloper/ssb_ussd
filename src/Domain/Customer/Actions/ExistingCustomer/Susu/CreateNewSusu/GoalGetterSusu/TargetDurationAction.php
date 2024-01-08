@@ -22,7 +22,7 @@ final class TargetDurationAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['duration' => $duration[$session_data->user_input]]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['duration' => $duration[$session_data->user_input]]);
 
         // Return the enterSusuAmountMenu
         return CreateGoalGetterSusuMenu::startDateMenu(session: $session);

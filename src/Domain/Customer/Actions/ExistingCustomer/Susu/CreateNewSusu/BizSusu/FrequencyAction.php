@@ -26,7 +26,7 @@ final class FrequencyAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]]);
 
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
@@ -36,7 +36,7 @@ final class FrequencyAction
 
         // Reformat the wallets
         $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);
-        SessionInputUpdateAction::data(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
+        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
 
         // Return the chooseLinkedWalletMenu
         return CreateBizSusuMenu::linkedWalletMenu(session: $session, wallets: $linked_wallets);

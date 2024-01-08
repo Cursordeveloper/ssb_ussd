@@ -33,7 +33,7 @@ final class LinkedWalletAction
         // Return a success response
         if (data_get($susu_created, key: 'status') === true) {
             // Update the user_data with the new susu_created resource
-            SessionInputUpdateAction::data(session: $session, user_data: ['susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
+            SessionInputUpdateAction::updateUserData(session: $session, user_data: ['susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
 
             // Return the confirmTermsConditionsMenu
             return CreatePersonalSusuMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'));

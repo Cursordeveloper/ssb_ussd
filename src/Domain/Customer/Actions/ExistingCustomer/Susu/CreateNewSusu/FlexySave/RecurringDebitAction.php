@@ -17,7 +17,7 @@ final class RecurringDebitAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['recurring_debit' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['recurring_debit' => $session_data->user_input]);
 
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
@@ -27,7 +27,7 @@ final class RecurringDebitAction
 
         // Reformat the wallets
         $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);
-        SessionInputUpdateAction::data(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
+        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::linkedWalletMenu(session: $session, wallets: $linked_wallets);

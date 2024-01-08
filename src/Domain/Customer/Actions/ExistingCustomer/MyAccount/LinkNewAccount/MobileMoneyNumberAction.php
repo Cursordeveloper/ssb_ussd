@@ -17,7 +17,7 @@ final class MobileMoneyNumberAction
     public static function execute(Session $session, $session_data, array $steps_data): JsonResponse
     {
         // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::execute(session: $session, user_input: ['mobileMoneyNumber' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['mobileMoneyNumber' => $session_data->user_input]);
 
         // Get the customer
         $customer = GetCustomerAction::execute(resource: $session->phone_number);

@@ -14,7 +14,7 @@ final class MaxAmountAction
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['max_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['max_amount' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::frequencyMenu(session: $session);

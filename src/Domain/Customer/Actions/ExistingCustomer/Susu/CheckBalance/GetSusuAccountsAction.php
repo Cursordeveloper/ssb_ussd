@@ -18,7 +18,7 @@ final class GetSusuAccountsAction
     public static function execute(Session $session, Customer $customer, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['begin' => true]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true]);
 
         // Execute the createPersonalSusu HTTP request
         $susu_collection = (new SusuCollection)->execute(customer: $customer);
@@ -34,7 +34,7 @@ final class GetSusuAccountsAction
             $susu = Helpers::formatSusuAccountsInArray($susu_collection['data']);
 
             // Update the SessionInputUpdateAction user_data field
-            SessionInputUpdateAction::data(session: $session, user_data: ['susu_accounts' => Helpers::arrayIndex($susu)]);
+            SessionInputUpdateAction::updateUserData(session: $session, user_data: ['susu_accounts' => Helpers::arrayIndex($susu)]);
 
             // Return the susuAccountsMenu
             return CheckBalanceMenu::susuAccountsMenu(session: $session, susu_data: $susu_collection);

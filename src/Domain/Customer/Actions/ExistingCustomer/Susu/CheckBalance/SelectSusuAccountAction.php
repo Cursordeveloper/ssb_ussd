@@ -20,7 +20,7 @@ final class SelectSusuAccountAction
         // Prepare the and return the susu accounts
         if (array_key_exists(key: $session_data->user_input, array: $user_data['susu_accounts'])) {
             // Update the user inputs (steps)
-            SessionInputUpdateAction::execute(session: $session, user_input: ['susu_account' => $user_data['susu_accounts'][$session_data->user_input]['resource_id']]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_account' => $user_data['susu_accounts'][$session_data->user_input]['resource_id']]);
 
             // Return the susuBalanceMenu
             return CheckBalanceMenu::confirmation(session: $session);

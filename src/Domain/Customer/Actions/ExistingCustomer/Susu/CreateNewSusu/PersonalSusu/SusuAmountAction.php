@@ -24,10 +24,10 @@ final class SusuAmountAction
 
         // Reformat the wallets
         $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);
-        SessionInputUpdateAction::data(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
+        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
 
         // Return the chooseLinkedWalletMenu
         return CreatePersonalSusuMenu::linkedWalletMenu(session: $session, wallets: $linked_wallets);

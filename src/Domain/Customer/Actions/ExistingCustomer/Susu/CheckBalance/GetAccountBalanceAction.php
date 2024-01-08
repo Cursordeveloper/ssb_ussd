@@ -18,7 +18,7 @@ final class GetAccountBalanceAction
     public static function execute(Session $session, Customer $customer, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::execute(session: $session, user_input: ['confirmation' => true]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirmation' => true]);
 
         // Get the process flow array from the customer session (user inputs)
         $process_flow = json_decode($session->user_inputs, associative: true);

@@ -16,7 +16,7 @@ final class PinConfirmationAction
     public static function execute(Session $session, $session_data, array $steps_data): JsonResponse
     {
         // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::execute(session: $session, user_input: ['pinConfirmation' => true]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['pinConfirmation' => true]);
 
         // Get the customer
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
