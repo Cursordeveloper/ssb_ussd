@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\SusuAccountState;
 
-use App\Menus\Shared\GeneralMenu;
+use App\Menus\ExistingCustomer\Susu\SusuAccount\SusuAccountMenu;
+use App\States\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
+use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
+use App\States\ExistingCustomer\Susu\SusuPayment\ManualSusuPaymentState;
+use Domain\Shared\Action\SessionInputUpdateAction;
+use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -12,9 +18,40 @@ final class SusuAccountState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        return GeneralMenu::infoNotification(
+        // Return to the SusuState if user input is (0)
+        if ($session_data->user_input === '0') {
+            // Update the customer session action
+            SessionUpdateAction::execute(session: $session, state: 'MySusuAccountsState', session_data: $session_data);
+
+            // Execute the resetUserInputs
+            SessionInputUpdateAction::resetUserInputs(session: $session);
+
+            // Return to the SusuState
+            return MySusuAccountsState::execute(session: $session, session_data: $session_data);
+        }
+
+        // Define a mapping between customer input and states
+        $stateMappings = [
+            '1' => new CheckSusuBalanceState,
+            '2' => new ManualSusuPaymentState,
+            '3' => new SettlementState,
+        ];
+
+        // Check if the customer input is a valid option
+        if (array_key_exists($session_data->user_input, $stateMappings)) {
+            // Get the customer option state
+            $customer_state = $stateMappings[$session_data->user_input];
+
+            // Update the customer session action
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state), session_data: $session_data);
+
+            // Execute the state
+            return $customer_state::execute(session: $session, session_data: $session_data);
+        }
+
+        return SusuAccountMenu::invalidMainMenu(
             session: $session,
-            message: 'Dear valued customer, susu settlement features coming soon.',
+            session_data: $session_data,
         );
     }
 }

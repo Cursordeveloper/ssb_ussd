@@ -32,13 +32,13 @@ final class MySusuAccountsState
         }
 
         // Get the process flow array from the customer session (user inputs)
-        $process_flow = json_decode($session->user_inputs, associative: true);
+        $user_inputs = json_decode($session->user_inputs, associative: true);
 
         // Get the session user_data
         $user_data = json_decode($session->user_data, associative: true);
 
         // Execute the SusuAccountState if user input is valid
-        if (array_key_exists(key: 'begin', array: $process_flow) && array_key_exists(key: $session_data->user_input, array: $user_data['susu_accounts'])) {
+        if (array_key_exists(key: 'begin', array: $user_inputs) && array_key_exists(key: $session_data->user_input, array: $user_data['susu_accounts'])) {
             // Reset user data and input
             SessionInputUpdateAction::resetUserData(session: $session);
             SessionInputUpdateAction::resetUserInputs(session: $session);
