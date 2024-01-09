@@ -23,6 +23,11 @@ final class ExistingCustomerState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
+        // Return the existingCustomerMenu
+        if ($session_data->user_input === '0') {
+            return WelcomeMenu::existingCustomer(session: $session);
+        }
+
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new SusuState, 'menu' => new SusuMenu],
@@ -31,11 +36,6 @@ final class ExistingCustomerState
             '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
             '5' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];
-
-        // Return the existingCustomerMenu
-        if ($session_data->user_input === '0') {
-            return WelcomeMenu::existingCustomer(session: $session);
-        }
 
         // Check if the customer input is a valid option
         if (array_key_exists($session_data->user_input, $stateMappings)) {

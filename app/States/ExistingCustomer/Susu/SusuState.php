@@ -25,11 +25,8 @@ final class SusuState
         $stateMappings = [
             '1' => new MySusuAccountsState,
             '2' => new CreateSusuState,
-            '3' => new CheckSusuBalanceState,
-            '4' => new ManualSusuPaymentState,
-            '5' => new AboutSusuState,
-            '6' => new SusuTermsState,
-            '7' => new SettlementState,
+            '3' => new AboutSusuState,
+            '5' => new SusuTermsState,
             '0' => new ExistingCustomerState,
         ];
 
