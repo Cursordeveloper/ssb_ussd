@@ -22,7 +22,6 @@ final class CheckSusuBalanceAction
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
             ! array_key_exists(key: 'begin', array: $process_flow) => GetSusuAccountsAction::execute(session: $session, customer: $customer, session_data: $session_data),
-            ! array_key_exists(key: 'susu_account', array: $process_flow) => SelectSusuAccountAction::execute(session: $session, customer: $customer, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => GetAccountBalanceAction::execute(session: $session, customer: $customer, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

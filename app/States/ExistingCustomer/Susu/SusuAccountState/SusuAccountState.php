@@ -49,6 +49,7 @@ final class SusuAccountState
             return $customer_state::execute(session: $session, session_data: $session_data);
         }
 
+        // Return the invalidMainMenu
         return SusuAccountMenu::invalidMainMenu(
             session: $session,
             session_data: $session_data,
