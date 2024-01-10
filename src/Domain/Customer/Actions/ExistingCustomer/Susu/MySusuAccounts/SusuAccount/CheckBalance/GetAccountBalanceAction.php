@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance;
+namespace Domain\Customer\Actions\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckBalance;
 
 use App\Menus\ExistingCustomer\Susu\CheckBalance\CheckBalanceMenu;
 use App\Menus\Shared\GeneralMenu;

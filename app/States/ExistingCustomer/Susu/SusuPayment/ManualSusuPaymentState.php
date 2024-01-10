@@ -6,7 +6,7 @@ namespace App\States\ExistingCustomer\Susu\SusuPayment;
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\SusuState;
-use Domain\Customer\Actions\ExistingCustomer\Susu\SusuPayment\ManualSusuPaymentAction;
+use Domain\Customer\Actions\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\MakePayment\ManualSusuPaymentAction;
 use Domain\Shared\Action\SessionUpdateAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

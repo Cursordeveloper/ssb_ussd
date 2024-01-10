@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\CheckBalance;
 
-use Domain\Customer\Actions\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceAction;
+use Domain\Customer\Actions\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckBalance\CheckSusuBalanceAction;
 use Domain\Shared\Models\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
