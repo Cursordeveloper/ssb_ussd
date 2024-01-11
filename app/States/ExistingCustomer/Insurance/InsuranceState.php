@@ -12,8 +12,8 @@ use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceBalance\InsuranceBalanceState;
 use App\States\ExistingCustomer\Insurance\InsuranceClaims\InsuranceClaimsState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class InsuranceState

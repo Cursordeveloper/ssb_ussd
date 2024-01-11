@@ -10,8 +10,8 @@ use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuState

@@ -11,8 +11,8 @@ use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanBalance\LoanBalanceState;
 use App\States\ExistingCustomer\Loans\LoanPayment\LoanPaymentState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LoanState

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\MyAccount\LinkNewWallet;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\BeginProcessAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\MobileMoneyNumberAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\PinConfirmationAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkNewAccount\SelectNetworkAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\BeginProcessAction;
+use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\MobileMoneyNumberAction;
+use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\PinConfirmationAction;
+use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\SelectNetworkAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkNewWalletState

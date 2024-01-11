@@ -9,8 +9,8 @@ use App\Menus\Welcome\WelcomeMenu;
 use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class NewCustomerState

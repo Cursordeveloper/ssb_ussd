@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\AboutSusu;
 
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
-use Domain\Customer\Actions\ExistingCustomer\Susu\AboutSusu\AboutSusuAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\Susu\AboutSusu\AboutSusuAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AboutSusuState

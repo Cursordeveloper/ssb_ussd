@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Susu\Requests\GoalGetterSusu;
 
 use App\Services\Susu\SusuService;
-use Domain\Customer\Models\Customer;
+use Domain\Shared\Models\Customer\Customer;
 use Illuminate\Support\Facades\Http;
 
 final class CreateGoalGetterSusu

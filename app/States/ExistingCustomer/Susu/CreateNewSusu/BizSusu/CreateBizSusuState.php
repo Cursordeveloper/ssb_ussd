@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\BizSusu\BusinessNameAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\BizSusu\ConfirmationAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\BizSusu\FrequencyAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\BizSusu\LinkedWalletAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\BizSusu\SusuAmountAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\BusinessNameAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\ConfirmationAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\FrequencyAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\LinkedWalletAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\SusuAmountAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateBizSusuState

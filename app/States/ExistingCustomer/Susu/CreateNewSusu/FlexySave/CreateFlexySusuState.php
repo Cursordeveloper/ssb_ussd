@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\AccountNameAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\ConfirmationAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\FrequencyAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\LinkedWalletAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\MaxAmountAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\MinAmountAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\FlexySave\RecurringDebitAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\AccountNameAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\ConfirmationAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\FrequencyAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\LinkedWalletAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\MaxAmountAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\MinAmountAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\RecurringDebitAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateFlexySusuState

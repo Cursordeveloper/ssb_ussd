@@ -15,8 +15,8 @@ use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Susu\SusuState;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ExistingCustomerState

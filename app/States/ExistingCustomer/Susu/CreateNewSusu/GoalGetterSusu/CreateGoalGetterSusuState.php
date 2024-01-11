@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\ConfirmationAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\FrequencyAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\LinkedWalletAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\StartDateAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\TargetAmountAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\TargetDurationAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\TheGoalAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\ConfirmationAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\FrequencyAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\LinkedWalletAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\StartDateAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\TargetAmountAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\TargetDurationAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\TheGoalAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateGoalGetterSusuState

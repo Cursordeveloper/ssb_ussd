@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\MyAccount\LinkedWallets;
 
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsAction;
-use Domain\Shared\Action\SessionInputUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\MyAccount\LinkedWallets\LinkedWalletsAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkedWalletsState

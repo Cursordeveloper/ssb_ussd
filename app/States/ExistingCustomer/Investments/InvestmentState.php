@@ -12,8 +12,8 @@ use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentSta
 use App\States\ExistingCustomer\Investments\InvestmentBalance\InvestmentBalanceState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
 use App\States\ExistingCustomer\Investments\InvestmentWithdrawal\InvestmentWithdrawalState;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class InvestmentState

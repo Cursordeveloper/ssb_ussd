@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Customer;
 
-use Domain\Customer\Models\Customer;
+use Domain\Shared\Models\Customer\Customer;
 use Illuminate\Support\Facades\Http;
 
 class CustomerService

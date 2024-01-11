@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\States\NewCustomer\Registration;
 
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
-use Domain\Customer\Actions\Common\GetCustomerAction;
-use Domain\Customer\Actions\NewCustomer\Registration\CustomerCreateAction;
-use Domain\Customer\Actions\NewCustomer\Registration\RegistrationAction;
-use Domain\Shared\Models\Session;
+use Domain\NewCustomer\Actions\Registration\CustomerCreateAction;
+use Domain\NewCustomer\Actions\Registration\RegistrationAction;
+use Domain\Shared\Action\Customer\GetCustomerAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class RegistrationState

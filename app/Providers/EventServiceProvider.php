@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Domain\Customer\Events\CustomerCreatedEvent;
-use Domain\Customer\Listeners\CustomerCreatedListener;
+use Domain\NewCustomer\Events\Registration\CustomerCreatedEvent;
+use Domain\NewCustomer\Listeners\Registration\CustomerCreatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

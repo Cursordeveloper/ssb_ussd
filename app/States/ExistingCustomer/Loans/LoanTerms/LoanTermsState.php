@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Loans\LoanTerms;
 
 use App\Menus\ExistingCustomer\Loan\LoanTerms\LoanTermsMenu;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LoanTermsState

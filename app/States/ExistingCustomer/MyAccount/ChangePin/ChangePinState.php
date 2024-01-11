@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\MyAccount\ChangePin;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\ChangePin\BeginProcessAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\ChangePin\ConfirmNewPinAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\ChangePin\CurrentPinAction;
-use Domain\Customer\Actions\ExistingCustomer\MyAccount\ChangePin\NewPinAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\BeginProcessAction;
+use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\ConfirmNewPinAction;
+use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\CurrentPinAction;
+use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\NewPinAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ChangePinState

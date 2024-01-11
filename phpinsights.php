@@ -74,7 +74,7 @@ return [
     */
 
     'exclude' => [
-        'src/Domain/Customer/DTO/Registration/CustomerDTO.php',
+        'src/Domain/Customer/DTO/Registration/CustomerData.php',
         'phpinsights.php',
     ],
 

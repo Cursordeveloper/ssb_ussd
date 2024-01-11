@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Menus\NewCustomer\TermsAndConditions;
 
 use App\Common\ResponseBuilder;
-use Domain\Shared\Action\SessionInputUpdateAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class TermsAndConditionsMenu

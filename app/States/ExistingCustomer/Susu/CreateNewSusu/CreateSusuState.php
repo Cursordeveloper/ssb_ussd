@@ -15,11 +15,11 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
-use Domain\Customer\Actions\Common\GetCustomerAction;
-use Domain\Customer\Actions\ExistingCustomer\Susu\CreateNewSusu\SusuScheme\SusuProductAction;
-use Domain\Shared\Action\SessionInputUpdateAction;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
+use Domain\Shared\Action\Customer\GetCustomerAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateSusuState
@@ -73,7 +73,7 @@ final class CreateSusuState
             SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the SessionInputUpdateAction
-            SusuProductAction::execute(session: $session, session_data: $session_data);
+            GetSusuSchemesAction::execute(session: $session, session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\SusuTerms;
 
 use App\Menus\ExistingCustomer\Susu\SusuTerms\SusuTermsMenu;
-use Domain\Customer\Actions\ExistingCustomer\Susu\SusuTerms\SusuTermsAction;
-use Domain\Shared\Models\Session;
+use Domain\ExistingCustomer\Actions\Susu\SusuTerms\SusuTermsAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuTermsState

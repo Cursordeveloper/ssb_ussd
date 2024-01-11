@@ -4,9 +4,9 @@ namespace App\States\Welcome;
 
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Welcome\WelcomeMenu;
-use Domain\Customer\Actions\Common\GetCustomerAction;
-use Domain\Shared\Action\SessionUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\Shared\Action\Customer\GetCustomerAction;
+use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class WelcomeState

@@ -31,16 +31,16 @@ use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
-use App\States\ExistingCustomer\Susu\CheckBalance\CheckSusuBalanceState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
-use App\States\ExistingCustomer\Susu\Settlement\SettlementState;
-use App\States\ExistingCustomer\Susu\SusuAccountState\SusuAccountState;
-use App\States\ExistingCustomer\Susu\SusuPayment\ManualSusuPaymentState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckSusuBalance\CheckSusuBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusuPayment\ManualSusuPaymentState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
@@ -48,8 +48,8 @@ use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Welcome\WelcomeState;
-use Domain\Shared\Action\SessionCreateAction;
-use Domain\Shared\Action\SessionGetAction;
+use Domain\Shared\Action\Session\SessionCreateAction;
+use Domain\Shared\Action\Session\SessionGetAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StateManager
@@ -91,7 +91,7 @@ final class StateManager
             'SusuAccountState' => new SusuAccountState,
             'CheckSusuBalanceState' => new CheckSusuBalanceState,
             'SusuPaymentState' => new ManualSusuPaymentState,
-            'SettlementState' => new SettlementState,
+            'SettlementState' => new SusuWithdrawalState,
 
             // Loan State(s)
             'GetLoanState' => new GetLoanState,

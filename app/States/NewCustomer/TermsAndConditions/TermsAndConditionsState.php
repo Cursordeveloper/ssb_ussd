@@ -6,9 +6,9 @@ namespace App\States\NewCustomer\TermsAndConditions;
 
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
 use App\States\Welcome\WelcomeState;
-use Domain\Customer\Actions\NewCustomer\TermsAndConditions\TermsAndConditionsAction;
-use Domain\Shared\Action\SessionInputUpdateAction;
-use Domain\Shared\Models\Session;
+use Domain\NewCustomer\Actions\TermsAndConditions\TermsAndConditionsAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class TermsAndConditionsState
