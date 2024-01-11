@@ -5,7 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Common\ResponseBuilder;
 use App\Http\Controllers\Controller;
 use App\Services\Hubtel\HubtelUssdService;
-use App\States\StateManager;
+use App\States\StateManager\StateManager;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

@@ -13,7 +13,7 @@ final class RegistrationMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter first name.',
-            session_id: $session,
+            session_id: $session->session_id,
         );
     }
 
@@ -21,7 +21,7 @@ final class RegistrationMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter last name.',
-            session_id: $session,
+            session_id: $session->session_id,
         );
     }
 
@@ -29,7 +29,7 @@ final class RegistrationMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Choose 4 digit susubox pin.',
-            session_id: $session,
+            session_id: $session->session_id,
         );
     }
 
@@ -37,7 +37,7 @@ final class RegistrationMenu
     {
         return ResponseBuilder::infoResponseBuilder(
             message: 'Registration in progress. You will receive notification to confirm status.',
-            session_id: $session,
+            session_id: $session->session_id,
         );
     }
 }

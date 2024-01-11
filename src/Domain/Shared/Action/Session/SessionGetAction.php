@@ -8,9 +8,8 @@ use Domain\Shared\Models\Session\Session;
 
 final class SessionGetAction
 {
-    public static function execute(
-        string $session_id,
-    ): Session {
+    public static function execute(string $session_id): Session
+    {
         return Session::where(
             column: 'session_id',
             operator: '=',

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\States;
+namespace App\States\StateManager;
 
 use App\Menus\ExistingCustomer\Loan\AboutLoans\AboutLoansMenu;
 use App\Menus\ExistingCustomer\Loan\LoanBalance\LoanBalanceMenu;
-use App\Menus\Shared\GeneralMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
 use App\States\ExistingCustomer\Insurance\Accounts\InsuranceAccountsState;
@@ -47,26 +46,12 @@ use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
-use App\States\Welcome\WelcomeState;
-use Domain\Shared\Action\Session\SessionCreateAction;
-use Domain\Shared\Action\Session\SessionGetAction;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class StateManager
+final class StateClasses
 {
-    public static function execute($state_data): JsonResponse
+    public static function execute(): array
     {
-        // Check if the type is "initiation"
-        if ($state_data->new_session) {
-            // Create session
-            $session = SessionCreateAction::execute($state_data, state: 'WelcomeState');
-
-            // Return the WelcomeState
-            return WelcomeState::execute(session: $session);
-        }
-
-        // Define the states array
-        $states = [
+        return [
             // New customer states
             'NewCustomerState' => new NewCustomerState,
             'RegistrationState' => new RegistrationState,
@@ -127,18 +112,5 @@ final class StateManager
             'CreateGoalGetterSusuState' => new CreateGoalGetterSusuState,
             'CreateFlexySusuState' => new CreateFlexySusuState,
         ];
-
-        // Get the session
-        $session = SessionGetAction::execute(session_id: $state_data->session_id);
-        $customer_session = data_get(target: $session, key: 'state');
-
-        // Execute the state if it exists in the $states array
-        if (array_key_exists($customer_session, $states)) {
-            // Return the state menu
-            return $states[$customer_session]::execute($session, $state_data);
-        }
-
-        // Return a system failure message.
-        return GeneralMenu::invalidInput(session: $session);
     }
 }
