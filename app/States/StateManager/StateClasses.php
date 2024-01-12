@@ -37,7 +37,7 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGett
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckSusuBalance\CheckSusuBalanceState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusuPayment\ManualSusuPaymentState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
 use App\States\ExistingCustomer\Susu\SusuState;
@@ -75,7 +75,7 @@ final class StateClasses
             // SusuAccountState options
             'SusuAccountState' => new SusuAccountState,
             'CheckSusuBalanceState' => new CheckSusuBalanceState,
-            'SusuPaymentState' => new ManualSusuPaymentState,
+            'SusuPaymentState' => new SusuPaymentState,
             'SettlementState' => new SusuWithdrawalState,
 
             // Loan State(s)

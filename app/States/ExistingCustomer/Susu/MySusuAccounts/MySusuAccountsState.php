@@ -47,6 +47,7 @@ final class MySusuAccountsState
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_resource' => $user_data['susu_accounts'][$session_data->user_input]['resource_id']]);
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_name' => $user_data['susu_accounts'][$session_data->user_input]['account_name']]);
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_scheme' => $user_data['susu_accounts'][$session_data->user_input]['scheme']]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_frequency' => $user_data['susu_accounts'][$session_data->user_input]['frequency']]);
 
             // Update the customer session action
             SessionUpdateAction::execute(session: $session, state: 'SusuAccountState', session_data: $session_data);

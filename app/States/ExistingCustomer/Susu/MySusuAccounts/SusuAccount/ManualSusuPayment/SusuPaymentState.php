@@ -6,12 +6,12 @@ namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusu
 
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\SusuState;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\MakeSusuPayment\ManualSusuPaymentAction;
+use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\MakeSusuPayment\SusuPaymentAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class ManualSusuPaymentState
+final class SusuPaymentState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -27,6 +27,6 @@ final class ManualSusuPaymentState
         }
 
         // Execute the SusuPaymentAction
-        return ManualSusuPaymentAction::execute(session: $session, session_data: $session_data);
+        return SusuPaymentAction::execute(session: $session, session_data: $session_data);
     }
 }

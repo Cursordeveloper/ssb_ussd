@@ -7,7 +7,7 @@ namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckSusuBalance\CheckSusuBalanceState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusuPayment\ManualSusuPaymentState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
@@ -33,7 +33,7 @@ final class SusuAccountState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => new CheckSusuBalanceState,
-            '2' => new ManualSusuPaymentState,
+            '2' => new SusuPaymentState,
             '3' => new SusuWithdrawalState,
         ];
 

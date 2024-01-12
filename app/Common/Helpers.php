@@ -46,7 +46,12 @@ final class Helpers
     {
         $outputs = [];
         foreach ($susu_collection as $value) {
-            $susu = ['account_name' => data_get(target: $value, key: 'attributes.account_name'), 'resource_id' => data_get(target: $value, key: 'attributes.resource_id'), 'scheme' => data_get(target: $value, key: 'attributes.code')];
+            $susu = [
+                'account_name' => data_get(target: $value, key: 'attributes.account_name'),
+                'resource_id' => data_get(target: $value, key: 'attributes.resource_id'),
+                'scheme' => data_get(target: $value, key: 'attributes.code'),
+                'frequency' => data_get(target: $value, key: 'attributes.frequency'),
+            ];
             $outputs[] = $susu;
         }
 
