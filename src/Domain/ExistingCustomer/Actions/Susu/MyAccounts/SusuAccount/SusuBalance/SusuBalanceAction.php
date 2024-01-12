@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\CheckSusuBalance;
+namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuBalance;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CheckSusuBalanceAction
+final class SusuBalanceAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {

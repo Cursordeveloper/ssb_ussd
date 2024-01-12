@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\CheckSusuBalance;
+namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuBalance;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckSusuBalance\CheckBalanceMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\SusuBalance;
 use Domain\ExistingCustomer\Data\Common\PinApprovalData;
@@ -33,10 +33,10 @@ final class GetAccountBalanceAction
 
         // Prepare the and return the susu accounts
         if (! empty(data_get($get_balance, key: 'data'))) {
-            return CheckBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $get_balance, key: 'data.attributes'));
+            return SusuBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $get_balance, key: 'data.attributes'));
         }
 
         // Return the noSususAccount
-        return CheckBalanceMenu::noSususAccount(session: $session);
+        return SusuBalanceMenu::noSususAccount(session: $session);
     }
 }

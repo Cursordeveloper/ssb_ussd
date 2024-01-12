@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\CheckSusuBalance;
+namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuBalance;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\CheckSusuBalance\CheckBalanceMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
@@ -18,6 +18,6 @@ final class PinPromptAction
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true]);
 
         // Return the CheckBalanceMenu
-        return CheckBalanceMenu::confirmation(session: $session);
+        return SusuBalanceMenu::confirmation(session: $session);
     }
 }

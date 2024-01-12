@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\ManualSusuPayment;
+namespace App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;

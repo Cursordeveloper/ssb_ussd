@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\MakeSusuPayment;
+namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuPayment;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Customer\GetCustomerAction;
