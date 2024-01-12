@@ -15,7 +15,7 @@ final class SusuPaymentMenu
         $frequencies = ['daily' => 'day(s)', 'weekly' => 'week(s)', 'monthly' => 'month(s)'];
 
         // Prepare and return the narration
-        return ResponseBuilder::infoResponseBuilder(
+        return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'How many '.$frequencies[strtolower($frequency)].'?',
             session_id: $session->session_id,
         );
@@ -31,15 +31,6 @@ final class SusuPaymentMenu
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Total frequency: '.$user_inputs['total_payments'].' '.$frequencies[strtolower($user_inputs['account_frequency'])].'. Total payment: GHS'.(int) $user_inputs['total_payments'] * 200 .'. Enter pin to confirm or 2 to Cancel.',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function confirmation($session): JsonResponse
-    {
-        // Prepare and return the narration
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter pin to confirm',
             session_id: $session->session_id,
         );
     }
