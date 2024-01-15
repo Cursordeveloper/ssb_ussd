@@ -25,7 +25,7 @@ final class Helpers
     {
         $outputs = [];
         foreach ($linked_wallets as $value) {
-            $wallets = ['wallet' => data_get(target: $value, key: 'attributes.account_number'), 'network' => data_get(target: $value, key: 'attributes.scheme')];
+            $wallets = ['wallet_resource' => data_get(target: $value, key: 'attributes.resource_id'), 'wallet' => data_get(target: $value, key: 'attributes.account_number'), 'network' => data_get(target: $value, key: 'attributes.scheme')];
             $outputs[] = $wallets;
         }
 

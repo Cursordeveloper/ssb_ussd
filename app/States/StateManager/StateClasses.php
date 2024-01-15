@@ -26,6 +26,7 @@ use App\States\ExistingCustomer\Loans\LoanPayment\LoanPaymentState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
+use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
@@ -77,6 +78,9 @@ final class StateClasses
             'SusuBalanceState' => new SusuBalanceState,
             'SusuPaymentState' => new SusuPaymentState,
             'SusuWithdrawalState' => new SusuWithdrawalState,
+
+            // LinkedWalletState
+            'LinkedWalletState' => new LinkedWalletState,
 
             // Loan State(s)
             'GetLoanState' => new GetLoanState,

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\MyAccount\LinkedWallets;
 
+use App\Common\Helpers;
 use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
 use App\Services\Customer\Requests\LinkAccountsRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -22,7 +24,14 @@ final class LinkedWalletsAction
 
         // Prepare and return the linked wallets
         if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
-            return LinkedWalletsMenu::linkedWalletCollectionMenu($session, $linked_wallets);
+            // Reformat the susu accounts
+            $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);
+
+            // Update the SessionInputUpdateAction user_data field
+            SessionInputUpdateAction::updateUserData(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
+
+            // Return the susuAccountsMenu
+            return LinkedWalletsMenu::linkedWalletCollectionMenu(session: $session, wallets: $linked_wallets);
         }
 
         // Return customer has no linked wallet

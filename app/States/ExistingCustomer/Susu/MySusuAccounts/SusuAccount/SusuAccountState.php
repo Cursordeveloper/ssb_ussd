@@ -34,6 +34,7 @@ final class SusuAccountState
         $stateMappings = [
             '1' => new SusuBalanceState,
             '2' => new SusuPaymentState,
+            // Close Account and account and Pause Susu
             '3' => new SusuWithdrawalState,
         ];
 
