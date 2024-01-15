@@ -26,10 +26,7 @@ final class CustomerCreatePinAction
             }
 
             // Return registrations failed response
-            return GeneralMenu::infoNotification(
-                session: $session,
-                message: 'Pin creation failed. Try again later',
-            );
+            return GeneralMenu::infoNotification(session: $session, message: 'Pin creation failed. Try again later');
         }
 
         // Terminate the session

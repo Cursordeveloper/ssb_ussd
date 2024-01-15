@@ -53,7 +53,7 @@ final class ChangePinMenu
     public static function confirmNewPin($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Confirm your new pin.',
+            message: 'Confirm new pin.',
             session_id: $session->session_id,
         );
     }
@@ -61,7 +61,7 @@ final class ChangePinMenu
     public static function invalidConfirmNewPin($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid entry, try again\nConfirm your new pin.",
+            message: "Invalid entry, try again\nConfirm new pin.",
             session_id: $session->session_id,
         );
     }

@@ -9,12 +9,12 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class BeginProcessAction
+final class ChangePinAction
 {
     public static function execute(Session $session): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['change_pin' => true]);
 
         // Return the enterCurrentPin
         return ChangePinMenu::enterCurrentPin(session: $session);

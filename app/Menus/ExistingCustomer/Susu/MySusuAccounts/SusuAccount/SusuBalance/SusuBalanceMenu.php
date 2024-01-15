@@ -21,7 +21,7 @@ final class SusuBalanceMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter pin to confirm',
+            message: 'Enter Susubox pin',
             session_id: $session->session_id,
         );
     }

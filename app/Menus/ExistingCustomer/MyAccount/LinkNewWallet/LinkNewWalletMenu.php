@@ -28,7 +28,7 @@ final class LinkNewWalletMenu
     public static function enterPinMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter susubox pin',
+            message: 'Enter Susubox pin',
             session_id: $session->session_id,
         );
     }

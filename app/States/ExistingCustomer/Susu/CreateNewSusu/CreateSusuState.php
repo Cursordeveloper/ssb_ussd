@@ -10,7 +10,7 @@ use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
-use App\Services\Customer\CustomerService;
+use App\Services\Customer\Requests\LinkAccountsRequest;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
@@ -30,7 +30,7 @@ final class CreateSusuState
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
         // Get the linked accounts
-        $linked_wallets = (new CustomerService)->linkedAccount(customer: $customer);
+        $linked_wallets = (new LinkAccountsRequest)->execute(customer: $customer);
 
         // Check if the customer has linked account(s)
         if (empty(data_get(target: $linked_wallets, key: 'data'))) {
@@ -45,10 +45,10 @@ final class CreateSusuState
         }
 
         // Get the process flow array from the customer session (user inputs)
-        $process_flow = json_decode($session->user_inputs, associative: true);
+        $user_inputs = json_decode($session->user_inputs, associative: true);
 
         // Check if the beginProcess is set
-        if (! array_key_exists(key: 'begin', array: $process_flow)) {
+        if (! array_key_exists(key: 'begin', array: $user_inputs)) {
             // Execute the SessionInputUpdateAction
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true, 'category' => 'susu']);
 

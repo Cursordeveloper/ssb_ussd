@@ -9,12 +9,12 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class BeginProcessAction
+final class LinkNewAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['beginProcess' => true]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['link_wallet' => true]);
 
         // Return the selectNetworkMenu
         return LinkNewWalletMenu::selectNetworkMenu(session: $session);

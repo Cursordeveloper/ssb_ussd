@@ -6,7 +6,7 @@ namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
 
 use App\Common\Helpers;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
-use App\Services\Customer\CustomerService;
+use App\Services\Customer\Requests\LinkAccountsRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -23,7 +23,7 @@ final class RecurringDebitAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
         // Get the linked accounts
-        $linked_wallets = (new CustomerService)->linkedAccount(customer: $customer);
+        $linked_wallets = (new LinkAccountsRequest)->execute(customer: $customer);
 
         // Reformat the wallets
         $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);

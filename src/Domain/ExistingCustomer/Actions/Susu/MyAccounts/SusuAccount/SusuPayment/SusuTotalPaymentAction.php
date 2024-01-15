@@ -9,12 +9,12 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class TotalPaymentsAction
+final class SusuTotalPaymentAction
 {
-    public static function execute(Session $session, $session_data, $user_inputs): JsonResponse
+    public static function execute(Session $session, $session_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['total_payments' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['total_payment' => $session_data->user_input]);
 
         // Return the noSususAccount
         return SusuPaymentMenu::narrationMenu(session: $session);

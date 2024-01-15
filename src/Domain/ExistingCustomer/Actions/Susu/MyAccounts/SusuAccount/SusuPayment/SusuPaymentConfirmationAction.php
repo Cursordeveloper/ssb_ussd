@@ -5,16 +5,18 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuPayment;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class ConfirmationAction
+final class SusuPaymentConfirmationAction
 {
-    public static function execute(Session $session, Customer $customer, $session_data): JsonResponse
+    public static function execute(Session $session, $session_data): JsonResponse
     {
         // Get the session user_data
         //        $user_data = json_decode($session->user_data, associative: true);
+
+        // Get the customer
+        //        $customer = GetCustomerAction::execute($session->phone_number);
 
         // Return the createAccountNotification and terminate the session
         return GeneralMenu::requestNotification(session: $session);

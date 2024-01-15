@@ -8,14 +8,14 @@ use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\Su
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class WithdrawalAmountAction
+final class SusuWithdrawalAction
 {
-    public static function execute($session, $session_data): JsonResponse
+    public static function execute($session): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_withdrawal' => true]);
 
         // Return the noSususAccount
-        return SusuWithdrawalMenu::narrationMenu(session: $session);
+        return SusuWithdrawalMenu::withdrawalAmountMenu(session: $session);
     }
 }
