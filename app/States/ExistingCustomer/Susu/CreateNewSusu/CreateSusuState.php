@@ -44,18 +44,6 @@ final class CreateSusuState
             return LinkNewWalletMenu::linkedAccountMenu(session: $session);
         }
 
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
-        // Check if the beginProcess is set
-        if (! array_key_exists(key: 'begin', array: $user_inputs)) {
-            // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true, 'category' => 'susu']);
-
-            // Return the CreateNewSusuMenu
-            return CreateSusuMenu::mainMenu(session: $session);
-        }
-
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new CreatePersonalSusuState, 'menu' => new CreatePersonalSusuMenu],
