@@ -11,8 +11,12 @@ final class LinkedWalletMenu
 {
     public static function mainMenu($session): JsonResponse
     {
-        return ResponseBuilder::infoResponseBuilder(
-            message: 'Dear valued customer, contents coming soon.',
+        // Get the process flow array from the customer session (user inputs)
+        $user_inputs = json_decode($session->user_inputs, associative: true);
+
+        // Return the account main menu
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: $user_inputs['wallet_number']."\nLinked wallet features coming soon.\n0. Back",
             session_id: $session->session_id,
         );
     }

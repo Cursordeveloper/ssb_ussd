@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts;
 
 use App\Common\Helpers;
+use App\Common\SusuAccounts;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\SusuCollection;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MySusuAccountsAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session): JsonResponse
     {
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
@@ -31,7 +32,7 @@ final class MySusuAccountsAction
         // Prepare the and return the susu accounts
         if (! empty(data_get($susu_collection, key: 'data'))) {
             // Reformat the susu accounts
-            $susu = Helpers::formatSusuAccountsInArray($susu_collection['data']);
+            $susu = SusuAccounts::formatSusuAccountsInArray($susu_collection['data']);
 
             // Update the SessionInputUpdateAction user_data field
             SessionInputUpdateAction::updateUserData(session: $session, user_data: ['susu_accounts' => Helpers::arrayIndex($susu)]);

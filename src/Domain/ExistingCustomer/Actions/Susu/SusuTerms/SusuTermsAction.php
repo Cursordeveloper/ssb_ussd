@@ -12,11 +12,6 @@ final class SusuTermsAction
 {
     public static function execute(Session $session, $session_data, $user_inputs): JsonResponse
     {
-        // Validate the user input
-        if ($session_data->user_input !== '#') {
-            return SusuTermsMenu::invalidInputMenu($session);
-        }
-
         // Validate inputs and update the session input
         return match (true) {
             ! array_key_exists('susu_terms_one', $user_inputs) => UpdateAndReturnMenuAction::execute($session, 'susu_terms_one', SusuTermsMenu::mainMenu(session: $session)),

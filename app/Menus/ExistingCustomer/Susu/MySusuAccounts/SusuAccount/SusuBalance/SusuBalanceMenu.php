@@ -9,15 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuBalanceMenu
 {
-    public static function noSususAccount($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "You do not have any active susu account.\n",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function confirmation($session): JsonResponse
+    public static function mainMenu($session): JsonResponse
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(

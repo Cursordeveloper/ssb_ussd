@@ -6,7 +6,7 @@ namespace App\States\ExistingCustomer\Susu\CreateNewSusu;
 
 use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateNewSusuMenu;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateSusuMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
@@ -53,7 +53,7 @@ final class CreateSusuState
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true, 'category' => 'susu']);
 
             // Return the CreateNewSusuMenu
-            return CreateNewSusuMenu::mainMenu(session: $session);
+            return CreateSusuMenu::mainMenu(session: $session);
         }
 
         // Define a mapping between customer input and states
@@ -80,6 +80,6 @@ final class CreateSusuState
         }
 
         // The customer input is invalid
-        return CreateNewSusuMenu::invalidMainMenu(session: $session);
+        return CreateSusuMenu::invalidMainMenu(session: $session);
     }
 }

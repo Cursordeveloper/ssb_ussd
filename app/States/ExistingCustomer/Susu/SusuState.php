@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu;
 
+use App\Menus\ExistingCustomer\ExistingCustomerMenu;
+use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
+use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateSusuMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
+use App\Menus\ExistingCustomer\Susu\SusuTerms\SusuTermsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
@@ -20,11 +25,11 @@ final class SusuState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => new MySusuAccountsState,
-            '2' => new CreateSusuState,
-            '3' => new AboutSusuState,
-            '5' => new SusuTermsState,
-            '0' => new ExistingCustomerState,
+            '1' => ['class' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
+            '2' => ['class' => new CreateSusuState, 'menu' => new CreateSusuMenu],
+            '3' => ['class' => new AboutSusuState, 'menu' => new AboutSusuMenu],
+            '4' => ['class' => new SusuTermsState, 'menu' => new SusuTermsMenu],
+            '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],
         ];
 
         // Check if the customer input is a valid option
@@ -33,10 +38,10 @@ final class SusuState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state), session_data: $session_data);
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
-            return $customer_state::execute(session: $session, session_data: $session_data);
+            return $customer_state['menu']::mainMenu(session: $session);
         }
 
         // Return the SusuMenu(invalidMainMenu)

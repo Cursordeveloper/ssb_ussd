@@ -21,7 +21,7 @@ final class LinkedWalletsMenu
     public static function noLinkedWalletMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "You have not linked any wallet to your susubox account.\n0. Back",
+            message: "You have not linked any wallet to your Susubox account.\n0. Back",
             session_id: $session->session_id,
         );
     }

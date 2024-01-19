@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalAction;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalAmountAction;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalConfirmationAction;
 use Domain\Shared\Models\Session\Session;
@@ -20,7 +19,6 @@ final class SusuWithdrawalState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'susu_withdrawal', array: $user_inputs) => SusuWithdrawalAction::execute(session: $session),
             ! array_key_exists(key: 'withdrawal_amount', array: $user_inputs) => SusuWithdrawalAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $user_inputs) => SusuWithdrawalConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),

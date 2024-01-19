@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts;
 
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\SusuState;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\MySusuAccountsAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -31,14 +31,11 @@ final class MySusuAccountsState
             return $susu_state['menu']::mainMenu(session: $session);
         }
 
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
         // Get the session user_data
         $user_data = json_decode($session->user_data, associative: true);
 
         // Execute the SusuAccountState if user input is valid
-        if (array_key_exists(key: 'begin', array: $user_inputs) && array_key_exists(key: $session_data->user_input, array: $user_data['susu_accounts'])) {
+        if (array_key_exists(key: $session_data->user_input, array: $user_data['susu_accounts'])) {
             // Reset user data and input
             SessionInputUpdateAction::resetUserData(session: $session);
             SessionInputUpdateAction::resetUserInputs(session: $session);
@@ -53,13 +50,10 @@ final class MySusuAccountsState
             SessionUpdateAction::execute(session: $session, state: 'SusuAccountState', session_data: $session_data);
 
             // Execute the SusuAccountState
-            return SusuAccountMenu::mainMenu(session: $session, session_data: $session_data);
+            return SusuAccountMenu::mainMenu(session: $session);
         }
 
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['begin' => true]);
-
         // Execute MySusuAccountsAction action
-        return MySusuAccountsAction::execute(session: $session, session_data: $session_data);
+        return MySusuAccountsMenu::invalidSusuAccountsMenu(session: $session, susu_data: $user_data['susu_accounts']);
     }
 }

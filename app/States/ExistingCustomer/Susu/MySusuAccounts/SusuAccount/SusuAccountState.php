@@ -5,8 +5,15 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuCloseAccountMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuCloseAccountState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
@@ -32,10 +39,11 @@ final class SusuAccountState
 
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => new SusuBalanceState,
-            '2' => new SusuPaymentState,
-            // Close Account and account and Pause Susu
-            '3' => new SusuWithdrawalState,
+            '1' => ['class' => new SusuBalanceState, 'menu' => new SusuBalanceMenu],
+            '2' => ['class' => new SusuPaymentState, 'menu' => new SusuPaymentMenu],
+            '3' => ['class' => new SusuWithdrawalState, 'menu' => new SusuWithdrawalMenu],
+            '4' => ['class' => new SusuPauseAccountState, 'menu' => new SusuPauseAccountMenu],
+            '5' => ['class' => new SusuCloseAccountState, 'menu' => new SusuCloseAccountMenu],
         ];
 
         // Check if the customer input is a valid option
@@ -44,13 +52,13 @@ final class SusuAccountState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state), session_data: $session_data);
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
-            return $customer_state::execute(session: $session, session_data: $session_data);
+            return $customer_state['menu']::mainMenu(session: $session);
         }
 
         // Return the invalidMainMenu
-        return SusuAccountMenu::invalidMainMenu(session: $session, session_data: $session_data);
+        return SusuAccountMenu::invalidMainMenu(session: $session);
     }
 }

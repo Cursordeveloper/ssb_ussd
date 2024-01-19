@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Susu;
+namespace App\Menus\ExistingCustomer\Susu\CreateNewSusu;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuMenu
+final class CreateSusuMenu
 {
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Susu\n1. My Susu Accounts\n2. Create Susu\n3. About Susu\n4. Susu Terms\n0. Back",
+            message: "Susu Schemes\n1. Personal Susu\n2. Biz Susu\n3. Goal Getter Susu\n4. Flexy Susu",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class SusuMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n1. My Susu Accounts\n2. Create Susu\n3. About Susu\n4. Susu Terms\n0. Back",
+            message: "Invalid choice, try again.\n1. Personal Susu\n2. Biz Susu\n3. Goal Getter Susu\n4. Flexy Susu",
             session_id: $session->session_id,
         );
     }

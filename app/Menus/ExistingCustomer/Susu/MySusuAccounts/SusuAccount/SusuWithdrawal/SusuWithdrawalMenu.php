@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuWithdrawalMenu
 {
-    public static function withdrawalAmountMenu($session): JsonResponse
+    public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter amount:',

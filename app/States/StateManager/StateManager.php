@@ -11,19 +11,16 @@ final class StateManager
 {
     public static function execute($state_data): JsonResponse
     {
-        // Execute the HandleNewSession (If its new session)
+        // Execute the HandleNewSession (If session is new)
         if ($state_data->new_session) {
             return HandleNewSession::execute(state_data: $state_data);
         }
-
-        // Get the StateClasses
-        $states = StateClasses::execute();
 
         // Get the existing session data
         $session = SessionGetAction::execute(session_id: $state_data->session_id);
         $customer_session = data_get(target: $session, key: 'state');
 
         // Execute the ExecuteState
-        return ExecuteState::execute($customer_session, $states, $session, $state_data);
+        return ExecuteState::execute($customer_session, $session, $state_data);
     }
 }
