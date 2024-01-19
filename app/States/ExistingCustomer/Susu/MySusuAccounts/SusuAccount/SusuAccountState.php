@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount;
 
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuCloseAccountMenu;
@@ -16,7 +17,6 @@ use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
-use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,18 +25,6 @@ final class SusuAccountState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Return to the SusuState if user input is (0)
-        if ($session_data->user_input === '0') {
-            // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'MySusuAccountsState', session_data: $session_data);
-
-            // Execute the resetUserInputs
-            SessionInputUpdateAction::resetUserInputs(session: $session);
-
-            // Return to the SusuState
-            return MySusuAccountsState::execute(session: $session, session_data: $session_data);
-        }
-
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new SusuBalanceState, 'menu' => new SusuBalanceMenu],
@@ -44,6 +32,7 @@ final class SusuAccountState
             '3' => ['class' => new SusuWithdrawalState, 'menu' => new SusuWithdrawalMenu],
             '4' => ['class' => new SusuPauseAccountState, 'menu' => new SusuPauseAccountMenu],
             '5' => ['class' => new SusuCloseAccountState, 'menu' => new SusuCloseAccountMenu],
+            '0' => ['class' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 
         // Check if the customer input is a valid option

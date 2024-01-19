@@ -39,6 +39,8 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSu
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuCloseAccountState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
 use App\States\ExistingCustomer\Susu\SusuState;
@@ -78,6 +80,8 @@ final class StateClasses
             'SusuBalanceState' => new SusuBalanceState,
             'SusuPaymentState' => new SusuPaymentState,
             'SusuWithdrawalState' => new SusuWithdrawalState,
+            'SusuPauseAccountState' => new SusuPauseAccountState,
+            'SusuCloseAccountState' => new SusuCloseAccountState,
 
             // LinkedWalletState
             'LinkedWalletState' => new LinkedWalletState,
