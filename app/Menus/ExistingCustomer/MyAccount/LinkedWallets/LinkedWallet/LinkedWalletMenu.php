@@ -15,7 +15,7 @@ final class LinkedWalletMenu
         $user_inputs = json_decode($session->user_inputs, associative: true);
 
         // Return the account main menu
-        return ResponseBuilder::ussdResourcesResponseBuilder(
+        return ResponseBuilder::infoResponseBuilder(
             message: $user_inputs['wallet_number']."\nLinked wallet features coming soon.\n0. Back",
             session_id: $session->session_id,
         );

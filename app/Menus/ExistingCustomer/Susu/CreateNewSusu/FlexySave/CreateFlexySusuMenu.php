@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave;
 
-use App\Common\Helpers;
+use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -61,7 +61,7 @@ final class CreateFlexySusuMenu
     public static function linkedWalletMenu($session, $wallets): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".Helpers::formatLinkedWallets(data_get(target: $wallets, key: 'data')),
+            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletCollection(data_get(target: $wallets, key: 'data')),
             session_id: $session->session_id,
         );
     }

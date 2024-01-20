@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\MyAccount;
 
+use App\Menus\ExistingCustomer\ExistingCustomerMenu;
+use App\Menus\ExistingCustomer\MyAccount\ChangePin\ChangePinMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
@@ -19,10 +23,10 @@ final class MyAccountState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => new LinkedWalletsState,
-            '2' => new LinkNewWalletState,
-            '3' => new ChangePinState,
-            '0' => new ExistingCustomerState,
+            '1' => ['class' => new LinkedWalletsState, 'menu' => new LinkedWalletsMenu],
+            '2' => ['class' => new LinkNewWalletState, 'menu' => new LinkNewWalletMenu],
+            '3' => ['class' => new ChangePinState, 'menu' => new ChangePinMenu],
+            '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],
         ];
 
         // Check if the customer input is a valid option
@@ -31,10 +35,10 @@ final class MyAccountState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state), session_data: $session_data);
+            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
-            return $customer_state::execute(session: $session, session_data: $session_data);
+            return $customer_state['menu']::mainMenu(session: $session);
         }
 
         // Return the MyAccountMenu(invalidMainMenu)

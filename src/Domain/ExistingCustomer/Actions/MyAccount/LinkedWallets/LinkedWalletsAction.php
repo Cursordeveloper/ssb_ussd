@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\MyAccount\LinkedWallets;
 
 use App\Common\Helpers;
+use App\Common\LinkedWallets;
 use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
 use App\Services\Customer\Requests\LinkAccountsRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkedWalletsAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session): JsonResponse
     {
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
@@ -25,7 +26,7 @@ final class LinkedWalletsAction
         // Prepare and return the linked wallets
         if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
             // Reformat the susu accounts
-            $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);
+            $wallets = LinkedWallets::formatLinkedWalletsInArray($linked_wallets['data']);
 
             // Update the SessionInputUpdateAction user_data field
             SessionInputUpdateAction::updateUserData(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
