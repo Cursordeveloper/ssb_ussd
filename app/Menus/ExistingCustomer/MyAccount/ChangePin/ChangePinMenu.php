@@ -13,14 +13,6 @@ final class ChangePinMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://cursorinnovations.site/susubox/policies/terms-and-conditions\n#. Next",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function enterCurrentPin($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter current pin.',
             session_id: $session->session_id,
         );

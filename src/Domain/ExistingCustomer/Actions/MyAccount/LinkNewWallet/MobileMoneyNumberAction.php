@@ -24,7 +24,11 @@ final class MobileMoneyNumberAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
         // Prepare request data
-        $network_resources = ['mtn' => '3f6dd164-6191-42e0-9ad2-9ba709460835', 'airteltigo' => '68dd39c9-73c7-4fc6-af55-bfbb0c893f2a', 'vodafone' => '3f6dd164-6191-42e0-9ad2-9ba709460835'];
+        $network_resources = [
+            'mtn' => '3f6dd164-6191-42e0-9ad2-9ba709460835',
+            'airteltigo' => '68dd39c9-73c7-4fc6-af55-bfbb0c893f2a',
+            'vodafone' => '3f6dd164-6191-42e0-9ad2-9ba709460835',
+        ];
 
         // Send request
         $response = (new LinkNewAccountRequest)->execute(customer: $customer, data: LinkNewAccountData::toArray($session_data->user_input, $network_resources[$steps_data['select_network']]));
@@ -35,6 +39,6 @@ final class MobileMoneyNumberAction
         }
 
         // Return the invalidInput
-        return GeneralMenu::invalidInput(session: $session->session_id);
+        return GeneralMenu::invalidInput(session: $session);
     }
 }

@@ -15,8 +15,16 @@ final class LinkNewAccountData
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'phone_number' => $phone_number,
-                    'network_resource' => $network_resource,
+                    'account_number' => $phone_number,
+                ],
+
+                // Related resources
+                'relationships' => [
+                    'scheme' => [
+                        'attributes' => [
+                            'resource_id' => $network_resource,
+                        ],
+                    ],
                 ],
             ],
         ];

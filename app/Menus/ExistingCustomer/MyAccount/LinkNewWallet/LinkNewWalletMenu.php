@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkNewWalletMenu
 {
-    public static function selectNetworkMenu($session): JsonResponse
+    public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Select network\n1. MTN\n2. Airteltigo\n3. Vodafone",

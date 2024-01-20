@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\MyAccount\ChangePin;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\ChangePinAction;
 use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\ConfirmNewPinAction;
 use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\CurrentPinAction;
 use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\NewPinAction;
@@ -21,7 +20,6 @@ final class ChangePinState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'change_pin', array: $user_inputs) => ChangePinAction::execute($session),
             ! array_key_exists(key: 'current_pin', array: $user_inputs) => CurrentPinAction::execute($session, $session_data),
             ! array_key_exists(key: 'new_pin', array: $user_inputs) => NewPinAction::execute($session, $session_data),
             ! array_key_exists(key: 'confirm_pin', array: $user_inputs) => ConfirmNewPinAction::execute($session, $session_data),
