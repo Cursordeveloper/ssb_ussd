@@ -7,6 +7,7 @@ namespace App\States\ExistingCustomer\MyAccount\LinkedWallets;
 use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletMenu;
 use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
+use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -18,10 +19,11 @@ final class LinkedWalletsState
     {
         // Return back to MyAccountMenu if user_input is (0)
         if ($session_data->user_input === '0') {
-            $state = ['class' => new LinkedWalletsState, 'menu' => new MyAccountMenu];
+            $state = ['class' => new MyAccountState, 'menu' => new MyAccountMenu];
 
             // Execute the SessionInputUpdateAction(reset)
             SessionInputUpdateAction::resetUserInputs(session: $session);
+            SessionInputUpdateAction::resetUserData(session: $session);
 
             // Execute the SessionInputUpdateAction(resetState)
             SessionInputUpdateAction::resetState(session: $session, state: class_basename($state['class']));
