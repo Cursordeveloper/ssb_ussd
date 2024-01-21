@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer;
 
+use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
 use App\Menus\ExistingCustomer\Investment\InvestmentMenu;
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\Menus\Welcome\WelcomeMenu;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Loans\LoanState;
@@ -45,6 +45,6 @@ final class ExistingCustomerState
         }
 
         // The customer input is invalid
-        return WelcomeMenu::existingCustomerInvalidOption(session: $session);
+        return ExistingCustomerMenu::invalidMainMenu(session: $session);
     }
 }

@@ -2,10 +2,15 @@
 
 namespace App\States\Welcome;
 
+use App\Menus\ExistingCustomer\ExistingCustomerMenu;
+use App\Menus\NewCustomer\NewCustomerMenu;
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
-use App\Menus\Welcome\WelcomeMenu;
+use App\States\ExistingCustomer\ExistingCustomerState;
+use App\States\NewCustomer\NewCustomerState;
+use App\States\NewCustomer\Registration\RegistrationState;
 use Domain\Shared\Action\Customer\HasPinAction;
 use Domain\Shared\Action\Customer\IsActiveAction;
+use Domain\Shared\Action\Customer\IsNotActiveAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,28 +19,23 @@ final class WelcomeState
 {
     public static function execute(Session $session): JsonResponse
     {
-        // Customer has not created a pin
-        if (HasPinAction::execute(session: $session)) {
-            // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'RegistrationState', session_data: $session);
+        // Define customer account status actions
+        $isNotActive = IsNotActiveAction::execute(session: $session);
+        $hasPin = HasPinAction::execute(session: $session);
+        $isActive = IsActiveAction::execute(session: $session);
 
-            // Return the choose pin prompt to the customer
-            return RegistrationMenu::choosePin(session: $session);
-        }
-
-        // Customer is not activated
-        if (IsActiveAction::execute(session: $session)) {
-            // Update the session state
-            SessionUpdateAction::execute(session: $session, state: 'ExistingCustomerState', session_data: $session);
-
-            // Return the existing customer menu
-            return WelcomeMenu::existingCustomer($session);
-        }
+        // Execute the state which matches the true statements below
+        $customerState = match (true) {
+            $isNotActive => ['class' => new ExistingCustomerState, 'menu' => (new ExistingCustomerMenu)::inactiveAccount(session: $session)],
+            $hasPin => ['class' => new RegistrationState, 'menu' => (new RegistrationMenu)::choosePin(session: $session)],
+            $isActive => ['class' => new ExistingCustomerState, 'menu' => (new ExistingCustomerMenu)::mainMenu(session: $session)],
+            default => ['class' => new NewCustomerState, 'menu' => (new NewCustomerMenu)::mainMenu(session: $session)],
+        };
 
         // Update the session state
-        SessionUpdateAction::execute(session: $session, state: 'NewCustomerState', session_data: $session);
+        SessionUpdateAction::execute(session: $session, state: class_basename($customerState['class']), session_data: $session);
 
-        // Return the new customer menu
-        return WelcomeMenu::newCustomer(session: $session);
+        // Return the mainMenu for the state
+        return $customerState['menu'];
     }
 }

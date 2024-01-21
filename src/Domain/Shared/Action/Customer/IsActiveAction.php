@@ -11,7 +11,7 @@ final class IsActiveAction
         // Get the customer
         $customer = GetCustomerAction::execute(data_get(target: $session, key: 'phone_number'));
 
-        // Customer is not activated
+        // Return true if customer is found and is (active)
         if ($customer && data_get(target: $customer, key: 'status') === 'active') {
             return true;
         }

@@ -25,10 +25,10 @@ final class CustomerUpdateLastNameAction
             CustomerCreatedEvent::dispatch($customer->refresh());
 
             // Return the last name prompt to the customer
-            return RegistrationMenu::choosePin(data_get(target: $session, key: 'session_id'));
+            return RegistrationMenu::choosePin(session: $session);
         }
 
         // Terminate the session
-        return GeneralMenu::invalidInput(data_get(target: $session, key: 'session_id'));
+        return GeneralMenu::invalidInput(session: $session);
     }
 }

@@ -22,7 +22,7 @@ final class CustomerCreatePinAction
 
             // Return a success response
             if (data_get($pin_created, key: 'status') === true) {
-                return RegistrationMenu::successResponse(data_get(target: $session, key: 'session_id'));
+                return RegistrationMenu::successResponse(session: $session);
             }
 
             // Return registrations failed response

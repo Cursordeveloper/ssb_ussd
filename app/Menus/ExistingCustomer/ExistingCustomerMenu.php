@@ -24,4 +24,12 @@ final class ExistingCustomerMenu
             session_id: $session->session_id,
         );
     }
+
+    public static function inactiveAccount($session): JsonResponse
+    {
+        return ResponseBuilder::infoResponseBuilder(
+            message: 'Your account is inactive. Contact Susubox customer support on 08000088 toll free for a feedback or reasons.',
+            session_id: $session->session_id,
+        );
+    }
 }
