@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu;
 
 use App\Common\Helpers;
+use App\Common\LinkedWallets;
 use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Services\Customer\Requests\LinkAccountsRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
@@ -23,7 +24,7 @@ final class SusuAmountAction
         $linked_wallets = (new LinkAccountsRequest)->execute(customer: $customer);
 
         // Reformat the wallets
-        $wallets = Helpers::formatLinkedWalletsInArray($linked_wallets['data']);
+        $wallets = LinkedWallets::formatLinkedWalletsInArray($linked_wallets['data']);
         SessionInputUpdateAction::updateUserData(session: $session, user_data: ['linked_wallets' => Helpers::arrayIndex($wallets)]);
 
         // Update the user inputs (steps)
