@@ -15,7 +15,7 @@ final class BackToAboutSusuAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Validate inputs and update the session input
+        // Define the return state and menu
         $susu_state = ['class' => new AboutSusuState, 'menu' => new AboutSusuMenu];
 
         // Update the customer session action
