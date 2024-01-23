@@ -31,6 +31,10 @@ use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
+use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SettlementsWithdrawalsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
@@ -82,6 +86,12 @@ final class StateClasses
             'SusuWithdrawalState' => new SusuWithdrawalState,
             'SusuPauseAccountState' => new SusuPauseAccountState,
             'SusuCloseAccountState' => new SusuCloseAccountState,
+
+            // AboutSusuStates
+            'SusuSchemesState' => new SusuSchemesState,
+            'SusuCollectionsState' => new SusuCollectionsState,
+            'SettlementsWithdrawalsState' => new SettlementsWithdrawalsState,
+            'FeesChargesState' => new FeesChargesState,
 
             // LinkedWalletState
             'LinkedWalletState' => new LinkedWalletState,

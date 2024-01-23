@@ -74,7 +74,7 @@ return [
     */
 
     'exclude' => [
-        'src/Domain/Customer/DTO/Registration/CustomerData.php',
+        'app/States/StateManager/StateClasses.php',
         'phpinsights.php',
     ],
 
