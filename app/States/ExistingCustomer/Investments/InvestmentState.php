@@ -40,7 +40,7 @@ final class InvestmentState
             SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
-            return $customer_state['menu']::mainMenu(session: $session, session_data: $session_data);
+            return $customer_state['menu']::mainMenu(session: $session);
         }
 
         // Return the InvestmentMenu(invalidMainMenu)
