@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Insurance\InsuranceClaims;
+namespace App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurance\InsuranceClaims;
 
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
 use Domain\Shared\Models\Session\Session;
