@@ -12,7 +12,7 @@ final class LoanMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Loans\n1. Get Loan\n2. Loan Repayment\n3. Check Balance\n4. About Loans\n5. Loan Terms\n0. Back",
+            message: "Loans\n1. My Loans\n2. Get a Loan\n3. About Loans\n4. Loan Terms\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class LoanMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n1. Get Loan\n2. Loan Repayment\n3. Check Balance\n4. About Loans\n5. Loan Terms\n0. Back",
+            message: "Invalid choice, try again.\n1. My Loans\n2. Get a Loan\n3. About Loans\n4. Loan Terms\n0. Back",
             session_id: $session->session_id,
         );
     }
