@@ -4,27 +4,28 @@ declare(strict_types=1);
 
 namespace App\States\StateManager;
 
-use App\Menus\ExistingCustomer\Loan\AboutLoans\AboutLoansMenu;
 use App\Menus\ExistingCustomer\Loan\LoanBalance\LoanBalanceMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
-use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurancesState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceBalance\InsuranceBalanceState;
 use App\States\ExistingCustomer\Insurance\InsuranceClaims\InsuranceClaimsState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
+use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurancesState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\AboutInvestmentState;
 use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentState;
-use App\States\ExistingCustomer\Investments\InvestmentBalance\InvestmentBalanceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
+use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestment\InvestmentBalance\InvestmentBalanceState;
 use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestment\InvestmentSettlement\InvestmentSettlementState;
 use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestmentsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
-use App\States\ExistingCustomer\Loans\LoanPayment\LoanPaymentState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
+use App\States\ExistingCustomer\Loans\MyLoans\MyLoan\LoanPayment\LoanPaymentState;
+use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
@@ -62,8 +63,8 @@ final class StateClasses
             // New customer states
             'NewCustomerState' => new NewCustomerState,
             'RegistrationState' => new RegistrationState,
-            'TermsAndConditionsState' => new TermsAndConditionsState,
             'AboutSusuboxState' => new AboutSusuboxState,
+            'TermsAndConditionsState' => new TermsAndConditionsState,
 
             // Existing customer states
             'ExistingCustomerState' => new ExistingCustomerState,
@@ -97,19 +98,24 @@ final class StateClasses
             'LinkedWalletState' => new LinkedWalletState,
 
             // Loan State(s)
+            'MyLoansState' => new MyLoansState,
             'GetLoanState' => new GetLoanState,
+            'AboutLoansState' => new AboutLoansState,
+            'LoanTermsState' => new LoanTermsState,
+
+            // MyLoansState(s)
             'LoanPaymentState' => new LoanPaymentState,
             'LoanBalanceMenu' => new LoanBalanceMenu,
-            'AboutLoansMenu' => new AboutLoansMenu,
-            'LoanTermsState' => new LoanTermsState,
 
             // Investment State(s)
             'InvestmentAccountsState' => new MyInvestmentsState,
             'CreateInvestmentState' => new CreateInvestmentState,
-            'InvestmentBalanceState' => new InvestmentBalanceState,
             'AboutInvestmentState' => new AboutInvestmentState,
             'InvestmentTermsState' => new InvestmentTermsState,
-            'InvestmentWithdrawalState' => new InvestmentSettlementState,
+
+            // My Insurance State(s)
+            'InvestmentBalanceState' => new InvestmentBalanceState,
+            'InvestmentSettlementState' => new InvestmentSettlementState,
 
             // Insurance State(s)
             'MyInsurancesState' => new MyInsurancesState,
