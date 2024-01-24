@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\States\StateManager;
 
-use App\Menus\ExistingCustomer\Loan\LoanBalance\LoanBalanceMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
@@ -24,6 +23,7 @@ use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
+use App\States\ExistingCustomer\Loans\MyLoans\MyLoan\LoanBalance\LoanBalanceState;
 use App\States\ExistingCustomer\Loans\MyLoans\MyLoan\LoanPayment\LoanPaymentState;
 use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
@@ -105,7 +105,7 @@ final class StateClasses
 
             // MyLoansState(s)
             'LoanPaymentState' => new LoanPaymentState,
-            'LoanBalanceMenu' => new LoanBalanceMenu,
+            'LoanBalanceState' => new LoanBalanceState,
 
             // Investment State(s)
             'InvestmentAccountsState' => new MyInvestmentsState,
