@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Loans\LoanPayment;
+namespace App\States\ExistingCustomer\Insurance\MyInsurances;
 
-use App\Menus\ExistingCustomer\Loan\ManualPayment\ManualLoanPaymentMenu;
+use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class LoanPaymentState
+final class MyInsurancesState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        return ManualLoanPaymentMenu::mainMenu(session: $session);
+        return InsuranceMenu::mainMenu(session: $session);
     }
 }

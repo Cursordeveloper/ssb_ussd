@@ -6,7 +6,7 @@ namespace App\States\ExistingCustomer;
 
 use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
-use App\Menus\ExistingCustomer\Investment\InvestmentMenu;
+use App\Menus\ExistingCustomer\Investment\MyInvestments\MyInvestmentsMenu;
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
@@ -27,7 +27,7 @@ final class ExistingCustomerState
         $stateMappings = [
             '1' => ['class' => new SusuState, 'menu' => new SusuMenu],
             '2' => ['class' => new LoanState, 'menu' => new LoanMenu],
-            '3' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
+            '3' => ['class' => new InvestmentState, 'menu' => new MyInvestmentsMenu],
             '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
             '5' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];

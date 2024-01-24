@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Loans\LoanBalance;
+namespace App\States\ExistingCustomer\Loans\MyLoans\MyLoan\LoanBalance;
 
 use App\Menus\ExistingCustomer\Loan\LoanBalance\LoanBalanceMenu;
 use Domain\Shared\Models\Session\Session;

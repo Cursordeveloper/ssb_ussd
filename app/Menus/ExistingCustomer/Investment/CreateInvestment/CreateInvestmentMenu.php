@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Loan\GetLoan;
+namespace App\Menus\ExistingCustomer\Investment\CreateInvestment;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class GetLoanMenu
+final class CreateInvestmentMenu
 {
     public static function mainMenu($session): JsonResponse
     {
-        return ResponseBuilder::infoResponseBuilder(
-            message: "At the moment, you don't qualify for a loan. Keep using Susubox and check back regularly. Susubox will notify you when you qualify",
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Investments\nContents coming soon.\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class GetLoanMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n0. Exit",
+            message: "Invalid choice, try again.\nContents coming soon.\n0. Back",
             session_id: $session->session_id,
         );
     }

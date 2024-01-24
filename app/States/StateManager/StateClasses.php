@@ -8,19 +8,19 @@ use App\Menus\ExistingCustomer\Loan\AboutLoans\AboutLoansMenu;
 use App\Menus\ExistingCustomer\Loan\LoanBalance\LoanBalanceMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
-use App\States\ExistingCustomer\Insurance\Accounts\InsuranceAccountsState;
+use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurancesState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceBalance\InsuranceBalanceState;
 use App\States\ExistingCustomer\Insurance\InsuranceClaims\InsuranceClaimsState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\AboutInvestmentState;
-use App\States\ExistingCustomer\Investments\Accounts\InvestmentAccountsState;
 use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentBalance\InvestmentBalanceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
-use App\States\ExistingCustomer\Investments\InvestmentWithdrawal\InvestmentWithdrawalState;
+use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestment\InvestmentSettlement\InvestmentSettlementState;
+use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestmentsState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanPayment\LoanPaymentState;
 use App\States\ExistingCustomer\Loans\LoanState;
@@ -104,15 +104,15 @@ final class StateClasses
             'LoanTermsState' => new LoanTermsState,
 
             // Investment State(s)
-            'InvestmentAccountsState' => new InvestmentAccountsState,
+            'InvestmentAccountsState' => new MyInvestmentsState,
             'CreateInvestmentState' => new CreateInvestmentState,
             'InvestmentBalanceState' => new InvestmentBalanceState,
             'AboutInvestmentState' => new AboutInvestmentState,
             'InvestmentTermsState' => new InvestmentTermsState,
-            'InvestmentWithdrawalState' => new InvestmentWithdrawalState,
+            'InvestmentWithdrawalState' => new InvestmentSettlementState,
 
             // Insurance State(s)
-            'InsuranceAccountsState' => new InsuranceAccountsState,
+            'MyInsurancesState' => new MyInsurancesState,
             'CreateInsuranceState' => new CreateInsuranceState,
             'InsuranceBalanceState' => new InsuranceBalanceState,
             'AboutInsuranceState' => new AboutInsuranceState,
