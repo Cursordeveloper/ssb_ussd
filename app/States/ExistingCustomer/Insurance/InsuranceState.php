@@ -9,12 +9,12 @@ use App\Menus\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceMenu;
 use App\Menus\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceMenu;
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
 use App\Menus\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsMenu;
-use App\Menus\ExistingCustomer\Insurance\MyInsurances\MyInsurancesMenu;
+use App\Menus\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
-use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurancesState;
+use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,7 +25,7 @@ final class InsuranceState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new MyInsurancesState, 'menu' => new MyInsurancesMenu],
+            '1' => ['class' => new MyInsuranceAccountsState, 'menu' => new MyInsuranceAccountsMenu],
             '2' => ['class' => new CreateInsuranceState, 'menu' => new CreateInsuranceMenu],
             '3' => ['class' => new AboutInsuranceState, 'menu' => new AboutInsuranceMenu],
             '4' => ['class' => new InsuranceTermsState, 'menu' => new InsuranceTermsMenu],

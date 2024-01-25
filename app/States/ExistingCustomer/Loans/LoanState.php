@@ -9,12 +9,12 @@ use App\Menus\ExistingCustomer\Loan\AboutLoans\AboutLoansMenu;
 use App\Menus\ExistingCustomer\Loan\GetLoan\GetLoanMenu;
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\Loan\LoanTerms\LoanTermsMenu;
-use App\Menus\ExistingCustomer\Loan\MyLoans\MyLoansMenu;
+use App\Menus\ExistingCustomer\Loan\MyLoanAccounts\MyLoanAccountsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
-use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
+use App\States\ExistingCustomer\Loans\MyLoanAccounts\MyLoanAccountsState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,7 +25,7 @@ final class LoanState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new MyLoansState, 'menu' => new MyLoansMenu],
+            '1' => ['class' => new MyLoanAccountsState, 'menu' => new MyLoanAccountsMenu],
             '2' => ['class' => new GetLoanState, 'menu' => new GetLoanMenu],
             '3' => ['class' => new AboutLoansState, 'menu' => new AboutLoansMenu],
             '4' => ['class' => new LoanTermsState, 'menu' => new LoanTermsMenu],

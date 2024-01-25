@@ -6,8 +6,7 @@ namespace App\States\ExistingCustomer\Susu\MySusuAccounts;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
-use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\States\ExistingCustomer\Susu\SusuState;
+use Domain\ExistingCustomer\Actions\Common\ReturnToServiceAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -19,16 +18,7 @@ final class MySusuAccountsState
     {
         // Return to the SusuState if user input is (0)
         if ($session_data->user_input === '0') {
-            $susu_state = ['class' => new SusuState, 'menu' => new SusuMenu];
-
-            // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($susu_state['class']), session_data: $session_data);
-
-            SessionInputUpdateAction::resetUserData(session: $session);
-            SessionInputUpdateAction::resetUserInputs(session: $session);
-
-            // Return to the SusuState
-            return $susu_state['menu']::mainMenu(session: $session);
+            return ReturnToServiceAction::execute(session: $session, session_data: $session_data, service: 'susu');
         }
 
         // Get the session user_data

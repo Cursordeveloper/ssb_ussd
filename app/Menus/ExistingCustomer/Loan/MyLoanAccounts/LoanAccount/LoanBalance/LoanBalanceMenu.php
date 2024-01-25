@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Investment;
+namespace App\Menus\ExistingCustomer\Loan\MyLoanAccounts\LoanAccount\LoanBalance;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class InvestmentMenu
+final class LoanBalanceMenu
 {
     public static function mainMenu($session): JsonResponse
     {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Investments\n1. My Investments\n2. Start New Investment\n3. About Insurance\n4. Investment Terms\n0. Back",
+        return ResponseBuilder::infoResponseBuilder(
+            message: 'Dear valued customer, contents coming soon.',
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class InvestmentMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n1. My Investments\n2. Start New Investment\n3. About Insurance\n4. Investment Terms\n0. Back",
+            message: "Invalid choice, try again.\nLoans\n1. Loan Menu 1\n2. Loan Menu 2\n3. Loan Menu 3\n0. Exit",
             session_id: $session->session_id,
         );
     }

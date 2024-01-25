@@ -9,23 +9,23 @@ use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
-use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurance\InsuranceBalance\InsuranceBalanceState;
-use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurance\InsuranceClaims\InsuranceClaimsState;
-use App\States\ExistingCustomer\Insurance\MyInsurances\MyInsurancesState;
+use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\InsuranceAccount\InsuranceBalance\InsuranceBalanceState;
+use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\InsuranceAccount\InsuranceClaims\InsuranceClaimsState;
+use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\AboutInvestmentState;
 use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
-use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestment\InvestmentBalance\InvestmentBalanceState;
-use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestment\InvestmentSettlement\InvestmentSettlementState;
-use App\States\ExistingCustomer\Investments\MyInvestments\MyInvestmentsState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentBalance\InvestmentBalanceState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentSettlement\InvestmentSettlementState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentAccountsState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
-use App\States\ExistingCustomer\Loans\MyLoans\MyLoan\LoanBalance\LoanBalanceState;
-use App\States\ExistingCustomer\Loans\MyLoans\MyLoan\LoanPayment\LoanPaymentState;
-use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
+use App\States\ExistingCustomer\Loans\MyLoanAccounts\LoanAccount\LoanBalance\LoanBalanceState;
+use App\States\ExistingCustomer\Loans\MyLoanAccounts\LoanAccount\LoanPayment\LoanPaymentState;
+use App\States\ExistingCustomer\Loans\MyLoanAccounts\MyLoanAccountsState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
@@ -98,7 +98,7 @@ final class StateClasses
             'LinkedWalletState' => new LinkedWalletState,
 
             // Loan State(s)
-            'MyLoansState' => new MyLoansState,
+            'MyLoanAccountsState' => new MyLoanAccountsState,
             'GetLoanState' => new GetLoanState,
             'AboutLoansState' => new AboutLoansState,
             'LoanTermsState' => new LoanTermsState,
@@ -108,21 +108,23 @@ final class StateClasses
             'LoanBalanceState' => new LoanBalanceState,
 
             // Investment State(s)
-            'InvestmentAccountsState' => new MyInvestmentsState,
+            'MyInvestmentAccountsState' => new MyInvestmentAccountsState,
             'CreateInvestmentState' => new CreateInvestmentState,
             'AboutInvestmentState' => new AboutInvestmentState,
             'InvestmentTermsState' => new InvestmentTermsState,
 
-            // My Insurance State(s)
+            // InvestmentAccount State(s)
             'InvestmentBalanceState' => new InvestmentBalanceState,
             'InvestmentSettlementState' => new InvestmentSettlementState,
 
             // Insurance State(s)
-            'MyInsurancesState' => new MyInsurancesState,
+            'MyInsuranceAccountsState' => new MyInsuranceAccountsState,
             'CreateInsuranceState' => new CreateInsuranceState,
-            'InsuranceBalanceState' => new InsuranceBalanceState,
             'AboutInsuranceState' => new AboutInsuranceState,
             'InsuranceTermsState' => new InsuranceTermsState,
+
+            // InsuranceAccount State(s)
+            'InsuranceBalanceState' => new InsuranceBalanceState,
             'InsuranceClaimsState' => new InsuranceClaimsState,
 
             // MyAccountState options
