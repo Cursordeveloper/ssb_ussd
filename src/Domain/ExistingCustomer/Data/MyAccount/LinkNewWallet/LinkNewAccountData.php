@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Data\MyAccount\LinkedWallets;
+namespace Domain\ExistingCustomer\Data\MyAccount\LinkNewWallet;
 
 final class LinkNewAccountData
 {

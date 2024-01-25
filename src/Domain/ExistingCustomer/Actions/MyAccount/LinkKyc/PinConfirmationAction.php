@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet;
+namespace Domain\ExistingCustomer\Actions\MyAccount\LinkKyc;
 
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Customer\Requests\LinkNewAccountApprovalRequest;
-use Domain\ExistingCustomer\Data\MyAccount\LinkNewWallet\LinkNewAccountApprovalData;
+use App\Services\Customer\Requests\Kyc\LinkKycApprovalRequest;
+use Domain\ExistingCustomer\Data\MyAccount\LinkKyc\LinkKycApprovalData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -23,7 +23,7 @@ final class PinConfirmationAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
         // Send request
-        $response = (new LinkNewAccountApprovalRequest)->execute(customer: $customer, data: LinkNewAccountApprovalData::toArray(account_number: $user_inputs['mobile_money_number'], pin: $session_data->user_input));
+        $response = (new LinkKycApprovalRequest)->execute(customer: $customer, kyc_resource: $user_inputs['kyc_resource_id'], data: LinkKycApprovalData::toArray(pin: $session_data->user_input));
 
         // Return requestNotification if request is successful
         if (data_get(target: $response, key: 'status') === true) {

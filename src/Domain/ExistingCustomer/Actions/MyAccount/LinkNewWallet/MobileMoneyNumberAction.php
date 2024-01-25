@@ -7,7 +7,7 @@ namespace Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet;
 use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\Requests\LinkNewAccountRequest;
-use Domain\ExistingCustomer\Data\MyAccount\LinkedWallets\LinkNewAccountData;
+use Domain\ExistingCustomer\Data\MyAccount\LinkNewWallet\LinkNewAccountData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;

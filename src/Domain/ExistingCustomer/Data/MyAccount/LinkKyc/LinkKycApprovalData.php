@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Data\MyAccount\LinkedWallets;
+namespace Domain\ExistingCustomer\Data\MyAccount\LinkKyc;
 
-final class LinkNewAccountApprovalData
+final class LinkKycApprovalData
 {
-    public static function toArray(string $account_number, string $pin): array
+    public static function toArray(string $pin): array
     {
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'LinkedAccount',
+                'type' => 'Pin',
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'account_number' => $account_number,
                     'pin' => $pin,
                 ],
             ],

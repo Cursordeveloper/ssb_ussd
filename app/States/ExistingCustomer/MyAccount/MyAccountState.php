@@ -7,11 +7,13 @@ namespace App\States\ExistingCustomer\MyAccount;
 use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\ExistingCustomer\MyAccount\ChangePin\ChangePinMenu;
 use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
+use App\Menus\ExistingCustomer\MyAccount\LinkKyc\LinkKycMenu;
 use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
+use App\States\ExistingCustomer\MyAccount\LinkKyc\LinkKycState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -25,7 +27,8 @@ final class MyAccountState
         $stateMappings = [
             '1' => ['class' => new LinkedWalletsState, 'menu' => new LinkedWalletsMenu],
             '2' => ['class' => new LinkNewWalletState, 'menu' => new LinkNewWalletMenu],
-            '3' => ['class' => new ChangePinState, 'menu' => new ChangePinMenu],
+            '3' => ['class' => new LinkKycState, 'menu' => new LinkKycMenu],
+            '4' => ['class' => new ChangePinState, 'menu' => new ChangePinMenu],
             '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],
         ];
 

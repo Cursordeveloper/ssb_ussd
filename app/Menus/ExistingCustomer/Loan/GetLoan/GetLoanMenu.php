@@ -12,6 +12,14 @@ final class GetLoanMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
+            message: "Loan Schemes\n1. Personal Susu Loan\n2. Biz Susu Loan\n3. ",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function notQualifiedMenu($session): JsonResponse
+    {
+        return ResponseBuilder::infoResponseBuilder(
             message: "At the moment, you don't qualify for a loan. Keep using Susubox and check back regularly. Susubox will notify you when you qualify",
             session_id: $session->session_id,
         );

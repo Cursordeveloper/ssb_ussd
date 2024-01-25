@@ -29,6 +29,7 @@ use App\States\ExistingCustomer\Loans\MyLoanAccounts\MyLoanAccountsState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
+use App\States\ExistingCustomer\MyAccount\LinkKyc\LinkKycState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
@@ -130,6 +131,7 @@ final class StateClasses
             // MyAccountState options
             'LinkedWalletsState' => new LinkedWalletsState,
             'LinkNewWalletState' => new LinkNewWalletState,
+            'LinkKycState' => new LinkKycState,
             'ChangePinState' => new ChangePinState,
 
             // CreateNewSusuState options
