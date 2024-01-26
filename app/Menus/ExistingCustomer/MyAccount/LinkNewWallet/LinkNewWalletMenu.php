@@ -41,10 +41,10 @@ final class LinkNewWalletMenu
         );
     }
 
-    public static function linkedAccountMenu($session): JsonResponse
+    public static function noLinkedAccountMenu($session): JsonResponse
     {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "You have no linked wallet(s). Link a wallet now? \n1. Yes\n2. No",
+        return ResponseBuilder::infoResponseBuilder(
+            message: "You have no linked wallet(s). Select option to on 'My Account' to link a wallet.",
             session_id: $session->session_id,
         );
     }

@@ -18,11 +18,6 @@ final class LinkNewWalletState
         // Get the process flow array from the customer session (user inputs)
         $user_inputs = json_decode($session->user_inputs, associative: true);
 
-        // Terminate the session if
-        if (array_key_exists(key: 'noWallet', array: $user_inputs) && $session_data->user_input === '2') {
-            return GeneralMenu::terminateSession($session->session_id);
-        }
-
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
             ! array_key_exists(key: 'select_network', array: $user_inputs) => SelectNetworkAction::execute(session: $session, session_data: $session_data),

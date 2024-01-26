@@ -17,7 +17,6 @@ use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGett
 use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
-use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,16 +31,9 @@ final class CreateSusuState
         // Get the linked accounts
         $linked_wallets = (new LinkAccountsRequest)->execute(customer: $customer);
 
-        // Check if the customer has linked account(s)
+        // Terminate the sessions if customer has no linked account(s)
         if (empty(data_get(target: $linked_wallets, key: 'data'))) {
-            // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'LinkNewWalletState', session_data: $session);
-
-            // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['noWallet' => true]);
-
-            // Return the linkedAccountMenu
-            return LinkNewWalletMenu::linkedAccountMenu(session: $session);
+            return LinkNewWalletMenu::noLinkedAccountMenu(session: $session);
         }
 
         // Define a mapping between customer input and states

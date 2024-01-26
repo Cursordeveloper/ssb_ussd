@@ -20,7 +20,10 @@ use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccou
 use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentSettlement\InvestmentSettlementState;
 use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentAccountsState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
+use App\States\ExistingCustomer\Loans\GetLoan\BizSusuLoan\BizSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
+use App\States\ExistingCustomer\Loans\GetLoan\PersonalSusuLoan\PersonalSusuLoanState;
+use App\States\ExistingCustomer\Loans\GetLoan\SwiftCredit\SwiftCreditState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
 use App\States\ExistingCustomer\Loans\MyLoanAccounts\LoanAccount\LoanBalance\LoanBalanceState;
@@ -107,6 +110,11 @@ final class StateClasses
             // MyLoansState(s)
             'LoanPaymentState' => new LoanPaymentState,
             'LoanBalanceState' => new LoanBalanceState,
+
+            // GetLoanState (Child States)
+            'PersonalSusuLoanState' => new PersonalSusuLoanState,
+            'BizSusuLoanState' => new BizSusuLoanState,
+            'SwiftCreditState' => new SwiftCreditState,
 
             // Investment State(s)
             'MyInvestmentAccountsState' => new MyInvestmentAccountsState,
