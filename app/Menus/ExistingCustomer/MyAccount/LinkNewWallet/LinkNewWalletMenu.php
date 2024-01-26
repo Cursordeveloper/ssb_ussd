@@ -44,7 +44,7 @@ final class LinkNewWalletMenu
     public static function noLinkedAccountMenu($session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
-            message: "You have no linked wallet(s). Select option to on 'My Account' to link a wallet.",
+            message: "You have no linked wallet(s). Select option 2 on 'My Account' to link a wallet.",
             session_id: $session->session_id,
         );
     }

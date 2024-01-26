@@ -39,8 +39,8 @@ final class LinkKycMenu
 
     public static function noKycMenu($session): JsonResponse
     {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "You have not linked your Ghana Card. Link it now? \n1. Yes\n2. No",
+        return ResponseBuilder::infoResponseBuilder(
+            message: "You have not linked your Ghana Card to your Susubox account. Select option 3 on 'My Account' to link a wallet.",
             session_id: $session->session_id,
         );
     }
