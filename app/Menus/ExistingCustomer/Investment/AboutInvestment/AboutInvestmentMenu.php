@@ -12,7 +12,7 @@ final class AboutInvestmentMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Investments\nContents coming soon.\n0. Back",
+            message: "Investments\nFeatures coming soon.\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class AboutInvestmentMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\nContents coming soon.\n0. Back",
+            message: "Invalid choice, try again.\nFeatures coming soon.\n0. Back",
             session_id: $session->session_id,
         );
     }

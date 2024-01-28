@@ -35,6 +35,13 @@ use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkKyc\LinkKycState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionState;
+use App\States\ExistingCustomer\Pension\CreatePension\CreatePensionState;
+use App\States\ExistingCustomer\Pension\MyPensionAccounts\MyPensionAccountsState;
+use App\States\ExistingCustomer\Pension\MyPensionAccounts\PensionAccount\PensionBalance\PensionBalanceState;
+use App\States\ExistingCustomer\Pension\MyPensionAccounts\PensionAccount\PensionClaims\PensionClaimsState;
+use App\States\ExistingCustomer\Pension\PensionState;
+use App\States\ExistingCustomer\Pension\PensionTerms\PensionTermsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SettlementsWithdrawalsState;
@@ -76,6 +83,7 @@ final class StateClasses
             'LoanState' => new LoanState,
             'InvestmentState' => new InvestmentState,
             'InsuranceState' => new InsuranceState,
+            'PensionState' => new PensionState,
             'MyAccountState' => new MyAccountState,
 
             // SusuState options
@@ -135,6 +143,16 @@ final class StateClasses
             // InsuranceAccount State(s)
             'InsuranceBalanceState' => new InsuranceBalanceState,
             'InsuranceClaimsState' => new InsuranceClaimsState,
+
+            // Pension State(s)
+            'MyPensionAccountsState' => new MyPensionAccountsState,
+            'CreatePensionState' => new CreatePensionState,
+            'AboutPensionState' => new AboutPensionState,
+            'PensionTermsState' => new PensionTermsState,
+
+            // PensionAccount State(s)
+            'PensionBalanceState' => new PensionBalanceState,
+            'PensionClaimsState' => new PensionClaimsState,
 
             // MyAccountState options
             'LinkedWalletsState' => new LinkedWalletsState,
