@@ -11,16 +11,8 @@ final class CreatePensionMenu
 {
     public static function mainMenu($session): JsonResponse
     {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Pensions\nFeatures coming soon.\n0. Back",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidMainMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\nFeatures coming soon.\n0. Back",
+        return ResponseBuilder::infoResponseBuilder(
+            message: 'Dear valued customer, watch out this space.. We got amazing pension products coming soon.',
             session_id: $session->session_id,
         );
     }

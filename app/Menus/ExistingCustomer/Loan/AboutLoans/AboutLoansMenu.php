@@ -11,8 +11,8 @@ final class AboutLoansMenu
 {
     public static function mainMenu($session): JsonResponse
     {
-        return ResponseBuilder::infoResponseBuilder(
-            message: 'Dear valued customer, features coming soon.',
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "About Loans\n1. Loan Schemes\n2. Loan Qualification\n3. Loan Payment & Repayment\n4. Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class AboutLoansMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\nDear valued customer, features coming soon.",
+            message: "Invalid choice, try again\n1. Loan Schemes\n2. Loan Qualification\n3. Loan Payment & Repayment\n4. Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }

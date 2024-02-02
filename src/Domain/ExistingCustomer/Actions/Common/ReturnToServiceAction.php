@@ -7,10 +7,12 @@ namespace Domain\ExistingCustomer\Actions\Common;
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
 use App\Menus\ExistingCustomer\Investment\InvestmentMenu;
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
+use App\Menus\ExistingCustomer\Pension\PensionMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Loans\LoanState;
+use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
@@ -27,6 +29,7 @@ final class ReturnToServiceAction
             'loan' => ['class' => new LoanState, 'menu' => new LoanMenu],
             'investment' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
             'insurance' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
+            'pension' => ['class' => new PensionState, 'menu' => new PensionMenu],
         ];
 
         // Get the return service

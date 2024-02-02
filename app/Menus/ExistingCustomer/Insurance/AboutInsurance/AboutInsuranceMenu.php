@@ -12,7 +12,7 @@ final class AboutInsuranceMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Insurance\nFeatures coming soon.\n0. Back",
+            message: "About Insurance\n1. Insurance Schemes\n2. Coverage & Benefits\n3. Premiums & Contributions\n4. Claims & Payouts\n5. Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class AboutInsuranceMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\nFeatures coming soon.\n0. Back",
+            message: "Invalid choice, try again\n1. Insurance Schemes\n2. Coverage & Benefits\n3. Premiums & Contributions\n4. Claims & Payouts\n5. Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }
