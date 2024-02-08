@@ -12,7 +12,7 @@ final class AboutInvestmentMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "About Investment\n1. Investment Schemes\n2. Contributions & Returns\n3. Withdrawals & Payouts\n4. Fees & Charges\n0. Back",
+            message: "About Investment\n1. Investment Schemes\n2. Contributions\n3. Returns\n4. Withdrawals\n5 Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class AboutInvestmentMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n1. Investment Schemes\n2. Contributions & Returns\n3. Withdrawals & Payouts\n4. Fees & Charges\n0. Back",
+            message: "Invalid choice, try again\n1. Investment Schemes\n2. Contributions\n3. Returns\n4. Withdrawals\n5 Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }

@@ -12,7 +12,7 @@ final class AboutPensionMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "About Pensions\n1. Pensions Schemes\n2. Benefits and Guarantees\n3. Contributions & Payouts\n4. Fees & Charges\n0. Back",
+            message: "About Pensions\n1. Pension Schemes\n2. Benefits\n3. Guarantees\n4. Contributions\n5. Payouts\n6. Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class AboutPensionMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n1. Pensions Schemes\n2. Benefits and Guarantees\n3. Contributions & Payouts\n4. Fees & Charges\n0. Back",
+            message: "Invalid choice, try again\n1. Pension Schemes\n2. Benefits\n3. Guarantees\n4. Contributions\n5. Payouts\n6. Fees & Charges\n0. Back",
             session_id: $session->session_id,
         );
     }
