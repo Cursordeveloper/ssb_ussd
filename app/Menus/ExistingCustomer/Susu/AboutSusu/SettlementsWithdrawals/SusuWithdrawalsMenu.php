@@ -8,7 +8,7 @@ use App\Common\ResponseBuilder;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SettlementsWithdrawalsMenu
+final class SusuWithdrawalsMenu
 {
     public static function mainMenu($session): JsonResponse
     {

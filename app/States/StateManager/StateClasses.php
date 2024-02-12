@@ -44,7 +44,7 @@ use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Pension\PensionTerms\PensionTermsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SettlementsWithdrawalsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
@@ -103,7 +103,7 @@ final class StateClasses
             // AboutSusuStates
             'SusuSchemesState' => new SusuSchemesState,
             'SusuCollectionsState' => new SusuCollectionsState,
-            'SettlementsWithdrawalsState' => new SettlementsWithdrawalsState,
+            'SusuWithdrawalsState' => new SusuWithdrawalsState,
             'FeesChargesState' => new FeesChargesState,
 
             // LinkedWalletState

@@ -10,7 +10,7 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SettlementsWithdrawalsState
+final class SusuWithdrawalsState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {

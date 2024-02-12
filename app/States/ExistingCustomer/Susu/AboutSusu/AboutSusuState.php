@@ -6,12 +6,12 @@ namespace App\States\ExistingCustomer\Susu\AboutSusu;
 
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesMenu;
-use App\Menus\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SettlementsWithdrawalsMenu;
+use App\Menus\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SusuWithdrawalsMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SettlementsWithdrawalsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
 use App\States\ExistingCustomer\Susu\SusuState;
@@ -27,7 +27,7 @@ final class AboutSusuState
         $stateMappings = [
             '1' => ['class' => new SusuSchemesState, 'menu' => new SusuSchemesMenu],
             '2' => ['class' => new SusuCollectionsState, 'menu' => new SusuCollectionsMenu],
-            '3' => ['class' => new SettlementsWithdrawalsState, 'menu' => new SettlementsWithdrawalsMenu],
+            '3' => ['class' => new SusuWithdrawalsState, 'menu' => new SusuWithdrawalsMenu],
             '4' => ['class' => new FeesChargesState, 'menu' => new FeesChargesMenu],
             '0' => ['class' => new SusuState, 'menu' => new SusuMenu],
         ];
