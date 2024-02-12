@@ -11,12 +11,14 @@ use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\Menus\ExistingCustomer\Pension\PensionMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
+use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Susu\SusuState;
+use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,7 +34,8 @@ final class ExistingCustomerState
             '3' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
             '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
             '5' => ['class' => new PensionState, 'menu' => new PensionMenu],
-            '6' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
+            '6' => ['class' => new AboutSusuboxState, 'menu' => new AboutSusuboxMenu],
+            '7' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];
 
         // Check if the customer input is a valid option

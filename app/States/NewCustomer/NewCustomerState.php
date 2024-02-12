@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\States\NewCustomer;
 
-use App\Menus\NewCustomer\AboutSusubox\AboutSusuboxMenu;
 use App\Menus\NewCustomer\NewCustomerMenu;
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
-use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
+use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
+use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

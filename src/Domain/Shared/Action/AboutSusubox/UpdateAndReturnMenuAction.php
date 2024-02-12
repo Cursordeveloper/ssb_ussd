@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\NewCustomer\Actions\AboutSusubox;
+namespace Domain\Shared\Action\AboutSusubox;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;

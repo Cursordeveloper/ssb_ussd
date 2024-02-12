@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\States\NewCustomer\TermsAndConditions;
 
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
-use App\States\Welcome\WelcomeState;
+use App\States\Shared\WelcomeState;
 use Domain\NewCustomer\Actions\TermsAndConditions\TermsAndConditionsAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;

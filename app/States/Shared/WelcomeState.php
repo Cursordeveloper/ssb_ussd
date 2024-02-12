@@ -1,6 +1,6 @@
 <?php
 
-namespace App\States\Welcome;
+namespace App\States\Shared;
 
 use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\NewCustomer\NewCustomerMenu;

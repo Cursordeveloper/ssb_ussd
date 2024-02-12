@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\NewCustomer\Actions\AboutSusubox;
+namespace Domain\Shared\Action\AboutSusubox;
 
-use App\Menus\NewCustomer\AboutSusubox\AboutSusuboxMenu;
+use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

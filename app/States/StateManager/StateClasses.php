@@ -61,10 +61,10 @@ use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\Susu
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
-use App\States\NewCustomer\AboutSusubox\AboutSusuboxState;
 use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
+use App\States\Shared\AboutSusubox\AboutSusuboxState;
 
 final class StateClasses
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\States\StateManager;
 
-use App\States\Welcome\WelcomeState;
+use App\States\Shared\WelcomeState;
 use Domain\Shared\Action\Session\SessionCreateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

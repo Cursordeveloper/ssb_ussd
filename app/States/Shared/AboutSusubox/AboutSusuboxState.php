@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\States\NewCustomer\AboutSusubox;
+namespace App\States\Shared\AboutSusubox;
 
-use App\Menus\NewCustomer\AboutSusubox\AboutSusuboxMenu;
-use App\States\Welcome\WelcomeState;
-use Domain\NewCustomer\Actions\AboutSusubox\AboutSusuboxAction;
+use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
+use App\States\Shared\WelcomeState;
+use Domain\Shared\Action\AboutSusubox\AboutSusuboxAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
