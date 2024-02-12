@@ -47,11 +47,6 @@ use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SettlementsWithdrawalsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceState;
@@ -59,6 +54,11 @@ use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
+use App\States\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\StartSusuState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use App\States\NewCustomer\NewCustomerState;
@@ -88,7 +88,7 @@ final class StateClasses
 
             // SusuState options
             'MySusuAccountsState' => new MySusuAccountsState,
-            'CreateSusuState' => new CreateSusuState,
+            'StartSusuState' => new StartSusuState,
             'AboutSusuState' => new AboutSusuState,
             'SusuTermsState' => new SusuTermsState,
 

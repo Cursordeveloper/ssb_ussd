@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu;
+namespace App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu;
 
 use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
 
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\FlexySusu\CreateFlexySusu;
 use Domain\ExistingCustomer\Actions\Common\CustomerLinkedWalletsAction;

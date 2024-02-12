@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu;
 
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\BizSusu\CreateBizSusu;
 use Domain\ExistingCustomer\Actions\Common\CustomerLinkedWalletsAction;

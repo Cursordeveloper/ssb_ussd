@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu;
+namespace App\States\ExistingCustomer\Susu\StartSusu\PersonalSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\BusinessNameAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\ConfirmationAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\FrequencyAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\LinkedWalletAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\SusuAmountAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu\AccountNameAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu\ConfirmationAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu\LinkedWalletAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu\SusuAmountAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateBizSusuState
+final class CreatePersonalSusuState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -22,9 +21,8 @@ final class CreateBizSusuState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'business_name', array: $process_flow) => BusinessNameAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'account_name', array: $process_flow) => AccountNameAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'susu_amount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),

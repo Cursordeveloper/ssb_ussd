@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave;
+namespace App\States\ExistingCustomer\Susu\StartSusu\FlexySave;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\AccountNameAction;

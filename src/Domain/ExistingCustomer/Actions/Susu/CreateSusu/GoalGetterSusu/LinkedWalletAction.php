@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu;
 
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\GoalGetterSusu\CreateGoalGetterSusu;
 use Domain\ExistingCustomer\Actions\Common\CustomerLinkedWalletsAction;

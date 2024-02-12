@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu;
 
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\PersonalSusu\CreatePersonalSusu;
 use Domain\ExistingCustomer\Actions\Common\CustomerLinkedWalletsAction;

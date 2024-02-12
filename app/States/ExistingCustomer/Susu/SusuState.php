@@ -6,14 +6,14 @@ namespace App\States\ExistingCustomer\Susu;
 
 use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateSusuMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\Menus\ExistingCustomer\Susu\SusuTerms\SusuTermsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\CreateSusuState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
+use App\States\ExistingCustomer\Susu\StartSusu\StartSusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -26,7 +26,7 @@ final class SusuState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
-            '2' => ['class' => new CreateSusuState, 'menu' => new CreateSusuMenu],
+            '2' => ['class' => new StartSusuState, 'menu' => new StartSusuMenu],
             '3' => ['class' => new AboutSusuState, 'menu' => new AboutSusuMenu],
             '4' => ['class' => new SusuTermsState, 'menu' => new SusuTermsMenu],
             '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],

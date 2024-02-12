@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu;
+namespace App\States\ExistingCustomer\Susu\StartSusu\GoalGetterSusu;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu\ConfirmationAction;

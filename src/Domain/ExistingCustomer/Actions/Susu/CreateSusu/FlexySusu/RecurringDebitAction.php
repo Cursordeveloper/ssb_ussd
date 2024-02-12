@@ -6,7 +6,7 @@ namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
 
 use App\Common\Helpers;
 use App\Common\LinkedWallets;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
 use App\Services\Customer\Requests\LinkAccountsRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;

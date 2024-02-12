@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\CreateNewSusu;
+namespace App\States\ExistingCustomer\Susu\StartSusu;
 
 use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\CreateSusuMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
-use App\Menus\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
+use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
 use App\Services\Customer\Requests\LinkAccountsRequest;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\BizSusu\CreateBizSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\FlexySave\CreateFlexySusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\GoalGetterSusu\CreateGoalGetterSusuState;
-use App\States\ExistingCustomer\Susu\CreateNewSusu\PersonalSusu\CreatePersonalSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuState;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateSusuState
+final class StartSusuState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -60,6 +60,6 @@ final class CreateSusuState
         }
 
         // The customer input is invalid
-        return CreateSusuMenu::invalidMainMenu(session: $session);
+        return StartSusuMenu::invalidMainMenu(session: $session);
     }
 }
