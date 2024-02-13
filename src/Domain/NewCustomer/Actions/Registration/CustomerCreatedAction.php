@@ -37,10 +37,6 @@ final class CustomerCreatedAction
                 target: $data,
                 key: 'data.attributes.phone_number'
             ),
-            'email' => data_get(
-                target: $data,
-                key: 'data.attributes.email'
-            ),
             'status' => data_get(
                 target: $data,
                 key: 'data.attributes.status'

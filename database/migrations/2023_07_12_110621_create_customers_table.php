@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string(column: 'first_name')->nullable();
             $table->string(column: 'last_name')->nullable();
 
-            $table->string(column: 'email')->unique()->nullable()->index();
             $table->string(column: 'phone_number')->unique()->index();
 
             $table->string(column: 'password')->nullable();

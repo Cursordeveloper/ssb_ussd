@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\AboutSusu;
 
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
-use App\Menus\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesMenu;
-use App\Menus\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SusuWithdrawalsMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsMenu;
+use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesMenu;
+use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -28,7 +28,7 @@ final class AboutSusuState
             '1' => ['class' => new SusuSchemesState, 'menu' => new SusuSchemesMenu],
             '2' => ['class' => new SusuCollectionsState, 'menu' => new SusuCollectionsMenu],
             '3' => ['class' => new SusuWithdrawalsState, 'menu' => new SusuWithdrawalsMenu],
-            '4' => ['class' => new FeesChargesState, 'menu' => new FeesChargesMenu],
+            '4' => ['class' => new SusuFeesChargesState, 'menu' => new SusuFeesChargesMenu],
             '0' => ['class' => new SusuState, 'menu' => new SusuMenu],
         ];
 

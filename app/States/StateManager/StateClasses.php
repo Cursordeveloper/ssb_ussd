@@ -20,15 +20,22 @@ use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccou
 use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentSettlement\InvestmentSettlementState;
 use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentAccountsState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanApplication\LoanApplicationState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanCollateral\LoanCollateralState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanDisbursements\LoanDisbursementsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanInterests\LoanInterestsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanQualification\LoanQualificationState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanRepayments\LoanRepaymentsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanSchemes\LoanSchemesState;
 use App\States\ExistingCustomer\Loans\GetLoan\BizSusuLoan\BizSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\PersonalSusuLoan\PersonalSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\SwiftCredit\SwiftCreditState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
-use App\States\ExistingCustomer\Loans\MyLoanAccounts\LoanAccount\LoanBalance\LoanBalanceState;
-use App\States\ExistingCustomer\Loans\MyLoanAccounts\LoanAccount\LoanPayment\LoanPaymentState;
-use App\States\ExistingCustomer\Loans\MyLoanAccounts\MyLoanAccountsState;
+use App\States\ExistingCustomer\Loans\MyLoans\LoanAccount\LoanBalance\LoanBalanceState;
+use App\States\ExistingCustomer\Loans\MyLoans\LoanAccount\LoanPayment\LoanPaymentState;
+use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
@@ -43,9 +50,9 @@ use App\States\ExistingCustomer\Pension\MyPensionAccounts\PensionAccount\Pension
 use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Pension\PensionTerms\PensionTermsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
-use App\States\ExistingCustomer\Susu\AboutSusu\FeesCharges\FeesChargesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SettlementsWithdrawals\SusuWithdrawalsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
@@ -104,13 +111,13 @@ final class StateClasses
             'SusuSchemesState' => new SusuSchemesState,
             'SusuCollectionsState' => new SusuCollectionsState,
             'SusuWithdrawalsState' => new SusuWithdrawalsState,
-            'FeesChargesState' => new FeesChargesState,
+            'SusuFeesChargesState' => new SusuFeesChargesState,
 
             // LinkedWalletState
             'LinkedWalletState' => new LinkedWalletState,
 
             // Loan State(s)
-            'MyLoanAccountsState' => new MyLoanAccountsState,
+            'MyLoansState' => new MyLoansState,
             'GetLoanState' => new GetLoanState,
             'AboutLoansState' => new AboutLoansState,
             'LoanTermsState' => new LoanTermsState,
@@ -118,6 +125,15 @@ final class StateClasses
             // MyLoansState(s)
             'LoanPaymentState' => new LoanPaymentState,
             'LoanBalanceState' => new LoanBalanceState,
+
+            // AboutLoansState(s)
+            'LoanSchemesState' => new LoanSchemesState,
+            'LoanQualificationState' => new LoanQualificationState,
+            'LoanApplicationState' => new LoanApplicationState,
+            'LoanCollateralState' => new LoanCollateralState,
+            'LoanDisbursementsState' => new LoanDisbursementsState,
+            'LoanRepaymentsState' => new LoanRepaymentsState,
+            'LoanInterestsState' => new LoanInterestsState,
 
             // GetLoanState (Child States)
             'PersonalSusuLoanState' => new PersonalSusuLoanState,
