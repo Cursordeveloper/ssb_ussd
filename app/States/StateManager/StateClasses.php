@@ -6,11 +6,17 @@ namespace App\States\StateManager;
 
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceClaims\InsuranceClaimsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCommissions\InsuranceCommissionsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceContributions\InsuranceContributionsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCoverage\InsuranceCoverageState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePayouts\InsurancePayoutsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePremiums\InsurancePremiumsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceSchemes\InsuranceSchemesState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
 use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\InsuranceAccount\InsuranceBalance\InsuranceBalanceState;
-use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\InsuranceAccount\InsuranceClaims\InsuranceClaimsState;
 use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\AboutInvestmentState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentCommissions\InvestmentCommissionsState;
@@ -55,10 +61,10 @@ use App\States\ExistingCustomer\Pension\MyPensionAccounts\PensionAccount\Pension
 use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Pension\PensionTerms\PensionTermsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceState;
@@ -170,7 +176,16 @@ final class StateClasses
 
             // InsuranceAccount State(s)
             'InsuranceBalanceState' => new InsuranceBalanceState,
+            //'InsuranceClaimsState' => new InsuranceClaimsState,
+
+            // AboutInsurance State(s)
+            'InsuranceSchemesState' => new InsuranceSchemesState,
+            'InsuranceCoverageState' => new InsuranceCoverageState,
+            'InsurancePremiumsState' => new InsurancePremiumsState,
+            'InsuranceContributionsState' => new InsuranceContributionsState,
             'InsuranceClaimsState' => new InsuranceClaimsState,
+            'InsurancePayoutsState' => new InsurancePayoutsState,
+            'InsuranceCommissionsState' => new InsuranceCommissionsState,
 
             // Pension State(s)
             'MyPensionAccountsState' => new MyPensionAccountsState,
