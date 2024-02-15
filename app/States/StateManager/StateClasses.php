@@ -13,6 +13,11 @@ use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\InsuranceAccount\I
 use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\InsuranceAccount\InsuranceClaims\InsuranceClaimsState;
 use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\AboutInvestmentState;
+use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentCommissions\InvestmentCommissionsState;
+use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentContributions\InvestmentContributionsState;
+use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentReturns\InvestmentReturnsState;
+use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentSchemes\InvestmentSchemesState;
+use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentWithdrawals\InvestmentWithdrawalsState;
 use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
@@ -149,6 +154,13 @@ final class StateClasses
             // InvestmentAccount State(s)
             'InvestmentBalanceState' => new InvestmentBalanceState,
             'InvestmentSettlementState' => new InvestmentSettlementState,
+
+            // AboutInvestmentState(s)
+            'InvestmentSchemesState' => new InvestmentSchemesState,
+            'InvestmentContributionsState' => new InvestmentContributionsState,
+            'InvestmentReturnsState' => new InvestmentReturnsState,
+            'InvestmentWithdrawalsState' => new InvestmentWithdrawalsState,
+            'InvestmentCommissionsState' => new InvestmentCommissionsState,
 
             // Insurance State(s)
             'MyInsuranceAccountsState' => new MyInsuranceAccountsState,
