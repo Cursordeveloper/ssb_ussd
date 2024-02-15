@@ -12,7 +12,7 @@ final class PensionMenu
     public static function mainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Pensions\n1. My Pension Accounts\n2. Start New Pension\n3. About Pensions\n4. Pension Terms\n0. Back",
+            message: "Pensions\n1. My Pensions\n2. Start Pension\n3. About Pensions\n4. Pension Terms\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -20,7 +20,7 @@ final class PensionMenu
     public static function invalidMainMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n1. My Pension Accounts\n2. Start New Pension\n3. About Pensions\n4. Pension Terms\n0. Back",
+            message: "Invalid choice, try again.\n1. My Pensions\n2. Start Pension\n3. About Pensions\n4. Pension Terms\n0. Back",
             session_id: $session->session_id,
         );
     }
