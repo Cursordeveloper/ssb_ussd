@@ -53,6 +53,12 @@ use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
 use App\States\ExistingCustomer\MyAccount\LinkKyc\LinkKycState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionBenefits\AboutPensionBenefitsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionCommissions\AboutPensionCommissionsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionContributions\AboutPensionContributionsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionGuarantees\AboutPensionGuaranteesState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionPayouts\AboutPensionPayoutsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionSchemes\AboutPensionSchemesState;
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionState;
 use App\States\ExistingCustomer\Pension\CreatePension\CreatePensionState;
 use App\States\ExistingCustomer\Pension\MyPensionAccounts\MyPensionAccountsState;
@@ -161,12 +167,12 @@ final class StateClasses
             'InvestmentBalanceState' => new InvestmentBalanceState,
             'InvestmentSettlementState' => new InvestmentSettlementState,
 
-            // AboutInvestmentState(s)
-            'InvestmentSchemesState' => new InvestmentSchemesState,
-            'InvestmentContributionsState' => new InvestmentContributionsState,
-            'InvestmentReturnsState' => new InvestmentReturnsState,
-            'InvestmentWithdrawalsState' => new InvestmentWithdrawalsState,
-            'InvestmentCommissionsState' => new InvestmentCommissionsState,
+            // AboutInvestment State(s)
+            class_basename(new InvestmentSchemesState) => new InvestmentSchemesState,
+            class_basename(new InvestmentContributionsState) => new InvestmentContributionsState,
+            class_basename(new InvestmentReturnsState) => new InvestmentReturnsState,
+            class_basename(new InvestmentWithdrawalsState) => new InvestmentWithdrawalsState,
+            class_basename(new InvestmentCommissionsState) => new InvestmentCommissionsState,
 
             // Insurance State(s)
             'MyInsuranceAccountsState' => new MyInsuranceAccountsState,
@@ -179,13 +185,13 @@ final class StateClasses
             //'InsuranceClaimsState' => new InsuranceClaimsState,
 
             // AboutInsurance State(s)
-            'InsuranceSchemesState' => new InsuranceSchemesState,
-            'InsuranceCoverageState' => new InsuranceCoverageState,
-            'InsurancePremiumsState' => new InsurancePremiumsState,
-            'InsuranceContributionsState' => new InsuranceContributionsState,
-            'InsuranceClaimsState' => new InsuranceClaimsState,
-            'InsurancePayoutsState' => new InsurancePayoutsState,
-            'InsuranceCommissionsState' => new InsuranceCommissionsState,
+            class_basename(new InsuranceSchemesState) => new InsuranceSchemesState,
+            class_basename(new InsuranceCoverageState) => new InsuranceCoverageState,
+            class_basename(new InsurancePremiumsState) => new InsurancePremiumsState,
+            class_basename(new InsuranceContributionsState) => new InsuranceContributionsState,
+            class_basename(new InsuranceClaimsState) => new InsuranceClaimsState,
+            class_basename(new InsurancePayoutsState) => new InsurancePayoutsState,
+            class_basename(new InsuranceCommissionsState) => new InsuranceCommissionsState,
 
             // Pension State(s)
             'MyPensionAccountsState' => new MyPensionAccountsState,
@@ -196,6 +202,14 @@ final class StateClasses
             // PensionAccount State(s)
             'PensionBalanceState' => new PensionBalanceState,
             'PensionClaimsState' => new PensionClaimsState,
+
+            // AboutPension State(s)
+            class_basename(new AboutPensionSchemesState) => new AboutPensionSchemesState,
+            class_basename(new AboutPensionBenefitsState) => new AboutPensionBenefitsState,
+            class_basename(new AboutPensionGuaranteesState) => new AboutPensionGuaranteesState,
+            class_basename(new AboutPensionContributionsState) => new AboutPensionContributionsState,
+            class_basename(new AboutPensionPayoutsState) => new AboutPensionPayoutsState,
+            class_basename(new AboutPensionCommissionsState) => new AboutPensionCommissionsState,
 
             // MyAccountState options
             'LinkedWalletsState' => new LinkedWalletsState,

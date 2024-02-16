@@ -4,8 +4,20 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Pension\AboutPension;
 
+use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionBenefits\AboutPensionBenefitsMenu;
+use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionCommissions\AboutPensionCommissionsMenu;
+use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionContributions\AboutPensionContributionsMenu;
+use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionGuarantees\AboutPensionGuaranteesMenu;
 use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionMenu;
+use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionPayouts\AboutPensionPayoutsMenu;
+use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionSchemes\AboutPensionSchemesMenu;
 use App\Menus\ExistingCustomer\Pension\PensionMenu;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionBenefits\AboutPensionBenefitsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionCommissions\AboutPensionCommissionsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionContributions\AboutPensionContributionsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionGuarantees\AboutPensionGuaranteesState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionPayouts\AboutPensionPayoutsState;
+use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionSchemes\AboutPensionSchemesState;
 use App\States\ExistingCustomer\Pension\PensionState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -17,6 +29,12 @@ final class AboutPensionState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
+            '1' => ['class' => new AboutPensionSchemesState, 'menu' => new AboutPensionSchemesMenu],
+            '2' => ['class' => new AboutPensionBenefitsState, 'menu' => new AboutPensionBenefitsMenu],
+            '3' => ['class' => new AboutPensionGuaranteesState, 'menu' => new AboutPensionGuaranteesMenu],
+            '4' => ['class' => new AboutPensionContributionsState, 'menu' => new AboutPensionContributionsMenu],
+            '5' => ['class' => new AboutPensionPayoutsState, 'menu' => new AboutPensionPayoutsMenu],
+            '6' => ['class' => new AboutPensionCommissionsState, 'menu' => new AboutPensionCommissionsMenu],
             '0' => ['class' => new PensionState, 'menu' => new PensionMenu],
         ];
 
