@@ -13,13 +13,13 @@ use App\Menus\ExistingCustomer\Insurance\AboutInsurance\InsurancePayouts\Insuran
 use App\Menus\ExistingCustomer\Insurance\AboutInsurance\InsurancePremiums\InsurancePremiumsMenu;
 use App\Menus\ExistingCustomer\Insurance\AboutInsurance\InsuranceSchemes\InsuranceSchemesMenu;
 use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceClaims\InsuranceClaimsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCommissions\InsuranceCommissionsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceContributions\InsuranceContributionsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCoverage\InsuranceCoverageState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePayouts\InsurancePayoutsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePremiums\InsurancePremiumsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceSchemes\InsuranceSchemesState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceClaims\AboutInsuranceClaimsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCommissions\AboutInsuranceCommissionsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceContributions\AboutInsuranceContributionsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCoverage\AboutInsuranceCoverageState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePayouts\AboutInsurancePayoutsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePremiums\AboutInsurancePremiumsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceSchemes\AboutInsuranceSchemesState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -31,13 +31,13 @@ final class AboutInsuranceState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new InsuranceSchemesState, 'menu' => new InsuranceSchemesMenu],
-            '2' => ['class' => new InsuranceCoverageState, 'menu' => new InsuranceCoverageMenu],
-            '3' => ['class' => new InsurancePremiumsState, 'menu' => new InsurancePremiumsMenu],
-            '4' => ['class' => new InsuranceContributionsState, 'menu' => new InsuranceContributionsMenu],
-            '5' => ['class' => new InsuranceClaimsState, 'menu' => new InsuranceClaimsMenu],
-            '6' => ['class' => new InsurancePayoutsState, 'menu' => new InsurancePayoutsMenu],
-            '7' => ['class' => new InsuranceCommissionsState, 'menu' => new InsuranceCommissionsMenu],
+            '1' => ['class' => new AboutInsuranceSchemesState, 'menu' => new InsuranceSchemesMenu],
+            '2' => ['class' => new AboutInsuranceCoverageState, 'menu' => new InsuranceCoverageMenu],
+            '3' => ['class' => new AboutInsurancePremiumsState, 'menu' => new InsurancePremiumsMenu],
+            '4' => ['class' => new AboutInsuranceContributionsState, 'menu' => new InsuranceContributionsMenu],
+            '5' => ['class' => new AboutInsuranceClaimsState, 'menu' => new InsuranceClaimsMenu],
+            '6' => ['class' => new AboutInsurancePayoutsState, 'menu' => new InsurancePayoutsMenu],
+            '7' => ['class' => new AboutInsuranceCommissionsState, 'menu' => new InsuranceCommissionsMenu],
             '0' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
         ];
 

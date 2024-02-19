@@ -10,10 +10,10 @@ use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesMen
 use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuCollections\AboutSusuCollectionsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuFeesCharges\AboutSusuFeesChargesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuSchemes\AboutSusuSchemesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuWithdrawals\AboutSusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -25,10 +25,10 @@ final class AboutSusuState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new SusuSchemesState, 'menu' => new SusuSchemesMenu],
-            '2' => ['class' => new SusuCollectionsState, 'menu' => new SusuCollectionsMenu],
-            '3' => ['class' => new SusuWithdrawalsState, 'menu' => new SusuWithdrawalsMenu],
-            '4' => ['class' => new SusuFeesChargesState, 'menu' => new SusuFeesChargesMenu],
+            '1' => ['class' => new AboutSusuSchemesState, 'menu' => new SusuSchemesMenu],
+            '2' => ['class' => new AboutSusuCollectionsState, 'menu' => new SusuCollectionsMenu],
+            '3' => ['class' => new AboutSusuWithdrawalsState, 'menu' => new SusuWithdrawalsMenu],
+            '4' => ['class' => new AboutSusuFeesChargesState, 'menu' => new SusuFeesChargesMenu],
             '0' => ['class' => new SusuState, 'menu' => new SusuMenu],
         ];
 

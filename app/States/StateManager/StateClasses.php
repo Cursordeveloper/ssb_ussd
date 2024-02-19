@@ -6,13 +6,13 @@ namespace App\States\StateManager;
 
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceClaims\InsuranceClaimsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCommissions\InsuranceCommissionsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceContributions\InsuranceContributionsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCoverage\InsuranceCoverageState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePayouts\InsurancePayoutsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePremiums\InsurancePremiumsState;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceSchemes\InsuranceSchemesState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceClaims\AboutInsuranceClaimsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCommissions\AboutInsuranceCommissionsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceContributions\AboutInsuranceContributionsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceCoverage\AboutInsuranceCoverageState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePayouts\AboutInsurancePayoutsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsurancePremiums\AboutInsurancePremiumsState;
+use App\States\ExistingCustomer\Insurance\AboutInsurance\InsuranceSchemes\AboutInsuranceSchemesState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
@@ -24,33 +24,33 @@ use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentContributi
 use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentReturns\InvestmentReturnsState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentSchemes\InvestmentSchemesState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\InvestmentWithdrawals\InvestmentWithdrawalsState;
-use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentState;
+use App\States\ExistingCustomer\Investments\CreateInvestment\StartInvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
-use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentBalance\InvestmentBalanceState;
-use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentSettlement\InvestmentSettlementState;
-use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentAccountsState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentBalance\MyInvestmentBalanceState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\InvestmentAccount\InvestmentSettlement\MyInvestmentSettlementState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentsState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanApplication\LoanApplicationState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanCollateral\LoanCollateralState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanDisbursements\LoanDisbursementsState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanInterests\LoanInterestsState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanQualification\LoanQualificationState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanRepayments\LoanRepaymentsState;
-use App\States\ExistingCustomer\Loans\AboutLoans\LoanSchemes\LoanSchemesState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanApplication\AboutLoanApplicationState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanCollateral\AboutLoanCollateralState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanDisbursements\AboutLoanDisbursementsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanInterests\AboutLoanInterestsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanQualification\AboutLoanQualificationState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanRepayments\AboutLoanRepaymentsState;
+use App\States\ExistingCustomer\Loans\AboutLoans\LoanSchemes\AboutLoanSchemesState;
 use App\States\ExistingCustomer\Loans\GetLoan\BizSusuLoan\BizSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\PersonalSusuLoan\PersonalSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\SwiftCredit\SwiftCreditState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
-use App\States\ExistingCustomer\Loans\MyLoans\LoanAccount\LoanBalance\LoanBalanceState;
-use App\States\ExistingCustomer\Loans\MyLoans\LoanAccount\LoanPayment\LoanPaymentState;
+use App\States\ExistingCustomer\Loans\MyLoans\LoanAccount\LoanBalance\MyLoanBalanceState;
+use App\States\ExistingCustomer\Loans\MyLoans\LoanAccount\LoanPayment\MyLoanPaymentState;
 use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
 use App\States\ExistingCustomer\MyAccount\ChangePin\ChangePinState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWallet\LinkedWalletState;
 use App\States\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsState;
-use App\States\ExistingCustomer\MyAccount\LinkKyc\LinkKycState;
+use App\States\ExistingCustomer\MyAccount\LinkKyc\LinkIDCardState;
 use App\States\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionBenefits\AboutPensionBenefitsState;
@@ -60,28 +60,28 @@ use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionGuarantees\Abou
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionPayouts\AboutPensionPayoutsState;
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionSchemes\AboutPensionSchemesState;
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionState;
-use App\States\ExistingCustomer\Pension\CreatePension\CreatePensionState;
-use App\States\ExistingCustomer\Pension\MyPensionAccounts\MyPensionAccountsState;
+use App\States\ExistingCustomer\Pension\CreatePension\StartPensionState;
+use App\States\ExistingCustomer\Pension\MyPensionAccounts\MyPensionsState;
 use App\States\ExistingCustomer\Pension\MyPensionAccounts\PensionAccount\PensionBalance\PensionBalanceState;
 use App\States\ExistingCustomer\Pension\MyPensionAccounts\PensionAccount\PensionClaims\PensionClaimsState;
 use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Pension\PensionTerms\PensionTermsState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuCollections\SusuCollectionsState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuFeesCharges\SusuFeesChargesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuSchemes\SusuSchemesState;
-use App\States\ExistingCustomer\Susu\AboutSusu\SusuWithdrawals\SusuWithdrawalsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuCollections\AboutSusuCollectionsState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuFeesCharges\AboutSusuFeesChargesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuSchemes\AboutSusuSchemesState;
+use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuWithdrawals\AboutSusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuCloseAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalState;
-use App\States\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountBalance\SusuAccountBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountClose\SusuAccountCloseState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountPause\SusuAccountPauseState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountPayment\SusuAccountPaymentState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountWithdrawal\SusuAccountWithdrawalState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu\CreateBizSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreateFlexySave\CreateFlexySusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreateGoalGetterSusu\CreateGoalGetterSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreatePersonalSusu\CreatePersonalSusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\StartSusuState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
@@ -95,115 +95,169 @@ final class StateClasses
     public static function execute(): array
     {
         return [
-            // New customer states
-            'NewCustomerState' => new NewCustomerState,
-            'RegistrationState' => new RegistrationState,
-            'AboutSusuboxState' => new AboutSusuboxState,
-            'TermsAndConditionsState' => new TermsAndConditionsState,
+            // NewCustomerState (Options: RegistrationState, AboutSusuboxState, TermsAndConditionsState)
+            class_basename(new NewCustomerState) => new NewCustomerState,
 
-            // Existing customer states
-            'ExistingCustomerState' => new ExistingCustomerState,
-            'SusuState' => new SusuState,
-            'LoanState' => new LoanState,
-            'InvestmentState' => new InvestmentState,
-            'InsuranceState' => new InsuranceState,
-            'PensionState' => new PensionState,
-            'MyAccountState' => new MyAccountState,
 
-            // SusuState options
-            'MySusuAccountsState' => new MySusuAccountsState,
-            'StartSusuState' => new StartSusuState,
-            'AboutSusuState' => new AboutSusuState,
-            'SusuTermsState' => new SusuTermsState,
+            // NewCustomerState
+            class_basename(new RegistrationState) => new RegistrationState,
+            class_basename(new AboutSusuboxState) => new AboutSusuboxState,
+            class_basename(new TermsAndConditionsState) => new TermsAndConditionsState,
 
-            // SusuAccountState options
-            'SusuAccountState' => new SusuAccountState,
-            'SusuBalanceState' => new SusuBalanceState,
-            'SusuPaymentState' => new SusuPaymentState,
-            'SusuWithdrawalState' => new SusuWithdrawalState,
-            'SusuPauseAccountState' => new SusuPauseAccountState,
-            'SusuCloseAccountState' => new SusuCloseAccountState,
 
-            // AboutSusuStates
-            'SusuSchemesState' => new SusuSchemesState,
-            'SusuCollectionsState' => new SusuCollectionsState,
-            'SusuWithdrawalsState' => new SusuWithdrawalsState,
-            'SusuFeesChargesState' => new SusuFeesChargesState,
+            // ExistingCustomerState (Options: SusuState, LoanState, InvestmentState, InsuranceState, PensionState)
+            class_basename(new ExistingCustomerState) => new ExistingCustomerState,
 
-            // LinkedWalletState
-            'LinkedWalletState' => new LinkedWalletState,
 
-            // Loan State(s)
-            'MyLoansState' => new MyLoansState,
-            'GetLoanState' => new GetLoanState,
-            'AboutLoansState' => new AboutLoansState,
-            'LoanTermsState' => new LoanTermsState,
+            // SusuState (Options: MySusuAccountsState, StartSusuState, AboutSusuState, SusuTermsState)
+            class_basename(new SusuState) => new SusuState,
 
-            // MyLoansState(s)
-            'LoanPaymentState' => new LoanPaymentState,
-            'LoanBalanceState' => new LoanBalanceState,
+            // SusuState
+            class_basename(new MySusuAccountsState) => new MySusuAccountsState,
+            class_basename(new StartSusuState) => new StartSusuState,
+            class_basename(new AboutSusuState) => new AboutSusuState,
+            class_basename(new SusuTermsState) => new SusuTermsState,
 
-            // AboutLoansState(s)
-            'LoanSchemesState' => new LoanSchemesState,
-            'LoanQualificationState' => new LoanQualificationState,
-            'LoanApplicationState' => new LoanApplicationState,
-            'LoanCollateralState' => new LoanCollateralState,
-            'LoanDisbursementsState' => new LoanDisbursementsState,
-            'LoanRepaymentsState' => new LoanRepaymentsState,
-            'LoanInterestsState' => new LoanInterestsState,
+            // MySusuAccountsState (Options: SusuAccountState)
+            class_basename(new SusuAccountState) => new SusuAccountState,
 
-            // GetLoanState (Child States)
-            'PersonalSusuLoanState' => new PersonalSusuLoanState,
-            'BizSusuLoanState' => new BizSusuLoanState,
-            'SwiftCreditState' => new SwiftCreditState,
+            // SusuAccountState (Options)
+            class_basename(new SusuAccountBalanceState) => new SusuAccountBalanceState,
+            class_basename(new SusuAccountPaymentState) => new SusuAccountPaymentState,
+            class_basename(new SusuAccountWithdrawalState) => new SusuAccountWithdrawalState,
+            class_basename(new SusuAccountPauseState) => new SusuAccountPauseState,
+            class_basename(new SusuAccountCloseState) => new SusuAccountCloseState,
 
-            // Investment State(s)
-            'MyInvestmentAccountsState' => new MyInvestmentAccountsState,
-            'CreateInvestmentState' => new CreateInvestmentState,
-            'AboutInvestmentState' => new AboutInvestmentState,
-            'InvestmentTermsState' => new InvestmentTermsState,
+            // StartSusuState (Options)
+            class_basename(new CreatePersonalSusuState) => new CreatePersonalSusuState,
+            class_basename(new CreateBizSusuState) => new CreateBizSusuState,
+            class_basename(new CreateGoalGetterSusuState) => new CreateGoalGetterSusuState,
+            class_basename(new CreateFlexySusuState) => new CreateFlexySusuState,
 
-            // InvestmentAccount State(s)
-            'InvestmentBalanceState' => new InvestmentBalanceState,
-            'InvestmentSettlementState' => new InvestmentSettlementState,
+            // AboutSusuStates (Options)
+            class_basename(new AboutSusuSchemesState) => new AboutSusuSchemesState,
+            class_basename(new AboutSusuCollectionsState) => new AboutSusuCollectionsState,
+            class_basename(new AboutSusuWithdrawalsState) => new AboutSusuWithdrawalsState,
+            class_basename(new AboutSusuFeesChargesState) => new AboutSusuFeesChargesState,
 
-            // AboutInvestment State(s)
+            // SusuTermsState
+
+
+
+
+            // LoanState (Options: MyLoansState, GetLoanState, AboutLoansState, LoanTermsState)
+            class_basename(new LoanState) => new LoanState,
+
+            // LoanState
+            class_basename(new MyLoansState) => new MyLoansState,
+            class_basename(new GetLoanState) => new GetLoanState,
+            class_basename(new AboutLoansState) => new AboutLoansState,
+            class_basename(new LoanTermsState) => new LoanTermsState,
+
+            // MyLoansState (Options: MyLoanState)
+            // class_basename(new MyLoanState) => new MyLoanState,
+
+            // MyLoanState (Options)
+            class_basename(new MyLoanPaymentState) => new MyLoanPaymentState,
+            class_basename(new MyLoanBalanceState) => new MyLoanBalanceState,
+
+            // GetLoanState (Options)
+            class_basename(new PersonalSusuLoanState) => new PersonalSusuLoanState,
+            class_basename(new BizSusuLoanState) => new BizSusuLoanState,
+            class_basename(new SwiftCreditState) => new SwiftCreditState,
+
+            // AboutLoansState (Options)
+            class_basename(new AboutLoanSchemesState) => new AboutLoanSchemesState,
+            class_basename(new AboutLoanQualificationState) => new AboutLoanQualificationState,
+            class_basename(new AboutLoanApplicationState) => new AboutLoanApplicationState,
+            class_basename(new AboutLoanCollateralState) => new AboutLoanCollateralState,
+            class_basename(new AboutLoanDisbursementsState) => new AboutLoanDisbursementsState,
+            class_basename(new AboutLoanRepaymentsState) => new AboutLoanRepaymentsState,
+            class_basename(new AboutLoanInterestsState) => new AboutLoanInterestsState,
+
+            // LoanTermsState
+
+
+
+
+            // InvestmentState (Options: MyInvestmentAccountsState, CreateInvestmentState, AboutInvestmentState, InvestmentTermsState)
+            class_basename(new InvestmentState) => new InvestmentState,
+
+            // InvestmentState
+            class_basename(new MyInvestmentsState) => new MyInvestmentsState,
+            class_basename(new StartInvestmentState) => new StartInvestmentState,
+            class_basename(new AboutInvestmentState) => new AboutInvestmentState,
+            class_basename(new InvestmentTermsState) => new InvestmentTermsState,
+
+            // MyInvestmentsState (Options: MyInvestmentState)
+            // class_basename(new MyInvestmentState) => new MyInvestmentState,
+
+            // MyInvestmentState (Options)
+            class_basename(new MyInvestmentBalanceState) => new MyInvestmentBalanceState,
+            class_basename(new MyInvestmentSettlementState) => new MyInvestmentSettlementState,
+
+            // StartInvestmentState (Options)
+            // class_basename(new StartSusuInvestState) => new StartSusuInvestState,
+            // class_basename(new StartSusuFundState) => new StartSusuFundState,
+
+            // AboutInvestmentState (Options)
             class_basename(new InvestmentSchemesState) => new InvestmentSchemesState,
             class_basename(new InvestmentContributionsState) => new InvestmentContributionsState,
             class_basename(new InvestmentReturnsState) => new InvestmentReturnsState,
             class_basename(new InvestmentWithdrawalsState) => new InvestmentWithdrawalsState,
             class_basename(new InvestmentCommissionsState) => new InvestmentCommissionsState,
 
-            // Insurance State(s)
-            'MyInsuranceAccountsState' => new MyInsuranceAccountsState,
-            'CreateInsuranceState' => new CreateInsuranceState,
-            'AboutInsuranceState' => new AboutInsuranceState,
-            'InsuranceTermsState' => new InsuranceTermsState,
+            // InvestmentTermsState
 
-            // InsuranceAccount State(s)
-            'InsuranceBalanceState' => new InsuranceBalanceState,
-            //'InsuranceClaimsState' => new InsuranceClaimsState,
 
-            // AboutInsurance State(s)
-            class_basename(new InsuranceSchemesState) => new InsuranceSchemesState,
-            class_basename(new InsuranceCoverageState) => new InsuranceCoverageState,
-            class_basename(new InsurancePremiumsState) => new InsurancePremiumsState,
-            class_basename(new InsuranceContributionsState) => new InsuranceContributionsState,
-            class_basename(new InsuranceClaimsState) => new InsuranceClaimsState,
-            class_basename(new InsurancePayoutsState) => new InsurancePayoutsState,
-            class_basename(new InsuranceCommissionsState) => new InsuranceCommissionsState,
 
-            // Pension State(s)
-            'MyPensionAccountsState' => new MyPensionAccountsState,
-            'CreatePensionState' => new CreatePensionState,
-            'AboutPensionState' => new AboutPensionState,
-            'PensionTermsState' => new PensionTermsState,
 
-            // PensionAccount State(s)
-            'PensionBalanceState' => new PensionBalanceState,
-            'PensionClaimsState' => new PensionClaimsState,
+            // InsuranceState (Options: MyInsuranceAccountsState, CreateInsuranceState, AboutInsuranceState, InsuranceTermsState)
+            class_basename(new InsuranceState) => new InsuranceState,
 
-            // AboutPension State(s)
+            // InsuranceState
+            class_basename(new MyInsuranceAccountsState) => new MyInsuranceAccountsState,
+            class_basename(new CreateInsuranceState) => new CreateInsuranceState,
+            class_basename(new AboutInsuranceState) => new AboutInsuranceState,
+            class_basename(new InsuranceTermsState) => new InsuranceTermsState,
+
+            // MyInsuranceAccountsState (Options: MyInsuranceState)
+            // class_basename(new MyInsuranceState) => new MyInsuranceState,
+
+            // MyInsuranceState (Options)
+            class_basename(new InsuranceBalanceState) => new InsuranceBalanceState,
+
+            // AboutInsuranceState (Options)
+            class_basename(new AboutInsuranceSchemesState) => new AboutInsuranceSchemesState,
+            class_basename(new AboutInsuranceCoverageState) => new AboutInsuranceCoverageState,
+            class_basename(new AboutInsurancePremiumsState) => new AboutInsurancePremiumsState,
+            class_basename(new AboutInsuranceContributionsState) => new AboutInsuranceContributionsState,
+            class_basename(new AboutInsuranceClaimsState) => new AboutInsuranceClaimsState,
+            class_basename(new AboutInsurancePayoutsState) => new AboutInsurancePayoutsState,
+            class_basename(new AboutInsuranceCommissionsState) => new AboutInsuranceCommissionsState,
+
+            // InsuranceTermsState
+
+
+
+
+            // PensionState (Options: MyPensionAccountsState, CreatePensionState, AboutPensionState, PensionTermsState)
+            class_basename(new PensionState) => new PensionState,
+
+            // PensionState
+            class_basename(new MyPensionsState) => new MyPensionsState,
+            class_basename(new StartPensionState) => new StartPensionState,
+            class_basename(new AboutPensionState) => new AboutPensionState,
+            class_basename(new PensionTermsState) => new PensionTermsState,
+
+            // MyPensionsState (Options: MyPensionState)
+            // class_basename(new MyPensionState) => new MyPensionState,
+
+            // MyPensionState (Options: PensionBalanceState, PensionClaimsState)
+            class_basename(new PensionBalanceState) => new PensionBalanceState,
+            class_basename(new PensionClaimsState) => new PensionClaimsState,
+
+            // AboutPensionState (Options)
             class_basename(new AboutPensionSchemesState) => new AboutPensionSchemesState,
             class_basename(new AboutPensionBenefitsState) => new AboutPensionBenefitsState,
             class_basename(new AboutPensionGuaranteesState) => new AboutPensionGuaranteesState,
@@ -211,17 +265,22 @@ final class StateClasses
             class_basename(new AboutPensionPayoutsState) => new AboutPensionPayoutsState,
             class_basename(new AboutPensionCommissionsState) => new AboutPensionCommissionsState,
 
-            // MyAccountState options
-            'LinkedWalletsState' => new LinkedWalletsState,
-            'LinkNewWalletState' => new LinkNewWalletState,
-            'LinkKycState' => new LinkKycState,
-            'ChangePinState' => new ChangePinState,
+            // PensionTermsState
 
-            // CreateNewSusuState options
-            'CreatePersonalSusuState' => new CreatePersonalSusuState,
-            'CreateBizSusuState' => new CreateBizSusuState,
-            'CreateGoalGetterSusuState' => new CreateGoalGetterSusuState,
-            'CreateFlexySusuState' => new CreateFlexySusuState,
+
+
+
+            // MyAccountState (Options: LinkedWalletsState, LinkNewWalletState)
+            class_basename(new MyAccountState) => new MyAccountState,
+
+            // MyAccountState (Options)
+            class_basename(new LinkedWalletsState) => new LinkedWalletsState,
+            class_basename(new LinkNewWalletState) => new LinkNewWalletState,
+            class_basename(new LinkIDCardState) => new LinkIDCardState,
+            class_basename(new ChangePinState) => new ChangePinState,
+
+            // LinkedWalletState
+            class_basename(new LinkedWalletState) => new LinkedWalletState,
         ];
     }
 }

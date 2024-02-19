@@ -11,9 +11,9 @@ use App\Menus\ExistingCustomer\Investment\InvestmentTerms\InvestmentTermsMenu;
 use App\Menus\ExistingCustomer\Investment\MyInvestmentAccounts\MyInvestmentAccountsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Investments\AboutInvestment\AboutInvestmentState;
-use App\States\ExistingCustomer\Investments\CreateInvestment\CreateInvestmentState;
+use App\States\ExistingCustomer\Investments\CreateInvestment\StartInvestmentState;
 use App\States\ExistingCustomer\Investments\InvestmentTerms\InvestmentTermsState;
-use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentAccountsState;
+use App\States\ExistingCustomer\Investments\MyInvestmentAccounts\MyInvestmentsState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,8 +24,8 @@ final class InvestmentState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new MyInvestmentAccountsState, 'menu' => new MyInvestmentAccountsMenu],
-            '2' => ['class' => new CreateInvestmentState, 'menu' => new CreateInvestmentMenu],
+            '1' => ['class' => new MyInvestmentsState, 'menu' => new MyInvestmentAccountsMenu],
+            '2' => ['class' => new StartInvestmentState, 'menu' => new CreateInvestmentMenu],
             '3' => ['class' => new AboutInvestmentState, 'menu' => new AboutInvestmentMenu],
             '4' => ['class' => new InvestmentTermsState, 'menu' => new InvestmentTermsMenu],
             '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],

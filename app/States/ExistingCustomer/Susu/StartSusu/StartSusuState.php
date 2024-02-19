@@ -11,10 +11,10 @@ use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSus
 use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
 use App\Services\Customer\Requests\LinkAccountsRequest;
-use App\States\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu\CreateBizSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreateFlexySave\CreateFlexySusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreateGoalGetterSusu\CreateGoalGetterSusuState;
+use App\States\ExistingCustomer\Susu\StartSusu\CreatePersonalSusu\CreatePersonalSusuState;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionUpdateAction;

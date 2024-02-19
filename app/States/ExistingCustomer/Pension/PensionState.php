@@ -12,8 +12,8 @@ use App\Menus\ExistingCustomer\Pension\PensionMenu;
 use App\Menus\ExistingCustomer\Pension\PensionTerms\PensionTermsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionState;
-use App\States\ExistingCustomer\Pension\CreatePension\CreatePensionState;
-use App\States\ExistingCustomer\Pension\MyPensionAccounts\MyPensionAccountsState;
+use App\States\ExistingCustomer\Pension\CreatePension\StartPensionState;
+use App\States\ExistingCustomer\Pension\MyPensionAccounts\MyPensionsState;
 use App\States\ExistingCustomer\Pension\PensionTerms\PensionTermsState;
 use Domain\Shared\Action\Session\SessionUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -25,8 +25,8 @@ final class PensionState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new MyPensionAccountsState, 'menu' => new MyPensionAccountsMenu],
-            '2' => ['class' => new CreatePensionState, 'menu' => new CreatePensionMenu],
+            '1' => ['class' => new MyPensionsState, 'menu' => new MyPensionAccountsMenu],
+            '2' => ['class' => new StartPensionState, 'menu' => new CreatePensionMenu],
             '3' => ['class' => new AboutPensionState, 'menu' => new AboutPensionMenu],
             '4' => ['class' => new PensionTermsState, 'menu' => new PensionTermsMenu],
             '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],
