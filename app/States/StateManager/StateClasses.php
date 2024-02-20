@@ -140,8 +140,6 @@ final class StateClasses
             class_basename(new AboutSusuWithdrawalsState) => new AboutSusuWithdrawalsState,
             class_basename(new AboutSusuFeesChargesState) => new AboutSusuFeesChargesState,
 
-            // SusuTermsState
-
 
 
 
@@ -155,7 +153,7 @@ final class StateClasses
             class_basename(new LoanTermsState) => new LoanTermsState,
 
             // MyLoansState (Options: MyLoanState)
-            // class_basename(new MyLoanState) => new MyLoanState,
+            //class_basename(new MyLoanState) => new MyLoanState,
 
             // MyLoanState (Options)
             class_basename(new MyLoanPaymentState) => new MyLoanPaymentState,
@@ -174,8 +172,6 @@ final class StateClasses
             class_basename(new AboutLoanDisbursementsState) => new AboutLoanDisbursementsState,
             class_basename(new AboutLoanRepaymentsState) => new AboutLoanRepaymentsState,
             class_basename(new AboutLoanInterestsState) => new AboutLoanInterestsState,
-
-            // LoanTermsState
 
 
 
@@ -207,8 +203,6 @@ final class StateClasses
             class_basename(new InvestmentWithdrawalsState) => new InvestmentWithdrawalsState,
             class_basename(new InvestmentCommissionsState) => new InvestmentCommissionsState,
 
-            // InvestmentTermsState
-
 
 
 
@@ -236,8 +230,6 @@ final class StateClasses
             class_basename(new AboutInsurancePayoutsState) => new AboutInsurancePayoutsState,
             class_basename(new AboutInsuranceCommissionsState) => new AboutInsuranceCommissionsState,
 
-            // InsuranceTermsState
-
 
 
 
@@ -264,8 +256,6 @@ final class StateClasses
             class_basename(new AboutPensionContributionsState) => new AboutPensionContributionsState,
             class_basename(new AboutPensionPayoutsState) => new AboutPensionPayoutsState,
             class_basename(new AboutPensionCommissionsState) => new AboutPensionCommissionsState,
-
-            // PensionTermsState
 
 
 
