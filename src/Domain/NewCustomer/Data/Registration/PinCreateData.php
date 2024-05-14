@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\NewCustomer\Data\Registration;
 
-use Domain\Shared\Models\Customer\Customer;
-
 final class PinCreateData
 {
-    public static function toArray(Customer $customer, string $pin): array
+    public static function toArray(string $pin): array
     {
         return [
             'data' => [
@@ -17,8 +15,8 @@ final class PinCreateData
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'phone_number' => data_get(target: $customer, key: 'phone_number'),
                     'pin' => $pin,
+                    'pin_confirmation' => $pin,
                 ],
             ],
         ];

@@ -11,7 +11,7 @@ final class LinkKycData
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'Kycs',
+                'type' => 'Kyc',
 
                 // Resource exposed attributes
                 'attributes' => [

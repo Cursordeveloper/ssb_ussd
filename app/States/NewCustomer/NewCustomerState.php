@@ -11,7 +11,7 @@ use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Shared\AboutSusubox\AboutSusuboxState;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -31,7 +31,7 @@ final class NewCustomerState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu($session, $session_data);

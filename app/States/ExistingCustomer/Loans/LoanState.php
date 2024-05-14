@@ -15,7 +15,7 @@ use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
 use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -38,7 +38,7 @@ final class LoanState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

@@ -30,6 +30,11 @@ final class SessionInputUpdateAction
         $session->update(attributes: ['user_data' => json_encode([])]);
     }
 
+    public static function resetAll(Session $session): void
+    {
+        $session->update(attributes: ['user_inputs' => json_encode([]), 'user_data' => json_encode([])]);
+    }
+
     public static function resetState(Session $session, string $state): void
     {
         $session->update(attributes: ['state' => $state]);

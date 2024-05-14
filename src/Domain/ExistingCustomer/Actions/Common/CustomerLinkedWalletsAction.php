@@ -18,7 +18,13 @@ final class CustomerLinkedWalletsAction
         // Get the wallet
         if (array_key_exists($session_data->user_input, $linked_wallets)) {
             // Update the user inputs (steps)
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet' => $linked_wallets[$session_data->user_input]['wallet'], 'network' => $linked_wallets[$session_data->user_input]['network']]);
+            SessionInputUpdateAction::updateUserInputs(
+                session: $session,
+                user_input: ['linked_wallet' => $linked_wallets[$session_data->user_input]['resource_id']],
+            );
+
+            // Reset the resetUserData
+            SessionInputUpdateAction::resetUserData(session: $session);
 
             // Return true
             return true;

@@ -7,6 +7,7 @@ namespace App\States\NewCustomer\Registration;
 use App\Menus\Shared\GeneralMenu;
 use Domain\NewCustomer\Actions\Registration\CustomerCreateAction;
 use Domain\NewCustomer\Actions\Registration\CustomerCreatePinAction;
+use Domain\NewCustomer\Actions\Registration\CustomerUpdateAcceptedTermsAction;
 use Domain\NewCustomer\Actions\Registration\CustomerUpdateLastNameAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Models\Session\Session;
@@ -26,8 +27,9 @@ final class RegistrationState
 
         // Validate inputs and update the database
         return match (true) {
-            data_get(target: $customer, key: 'last_name') === null => CustomerUpdateLastNameAction::execute($customer, $session, $session_data),
-            data_get(target: $customer, key: 'has_pin') === false => CustomerCreatePinAction::execute($customer, $session, $session_data),
+            $customer->last_name === null => CustomerUpdateLastNameAction::execute($customer, $session, $session_data),
+            $customer->accepted_terms === false => CustomerUpdateAcceptedTermsAction::execute($customer, $session, $session_data),
+            $customer->has_pin === false => CustomerCreatePinAction::execute($customer, $session, $session_data),
             default => GeneralMenu::invalidInput($session),
         };
     }

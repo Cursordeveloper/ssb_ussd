@@ -25,7 +25,7 @@ final class CreateBizSusuState
             ! array_key_exists(key: 'business_name', array: $process_flow) => BusinessNameAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'susu_amount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'linked_wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

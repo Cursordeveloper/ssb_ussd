@@ -25,6 +25,7 @@ final class Customer extends Authenticatable implements JWTSubject
         'last_name',
         'phone_number',
         'has_pin',
+        'accepted_terms',
         'status',
     ];
 

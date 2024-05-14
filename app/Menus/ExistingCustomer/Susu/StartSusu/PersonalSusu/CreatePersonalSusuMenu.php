@@ -26,10 +26,12 @@ final class CreatePersonalSusuMenu
         );
     }
 
-    public static function linkedWalletMenu($session, $wallets): JsonResponse
+    public static function linkedWalletMenu($session): JsonResponse
     {
+        $linked_wallets = json_decode($session->user_data, associative: true);
+
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletCollection(data_get(target: $wallets, key: 'data')),
+            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
             session_id: $session->session_id,
         );
     }

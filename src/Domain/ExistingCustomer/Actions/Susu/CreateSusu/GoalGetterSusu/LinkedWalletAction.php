@@ -6,9 +6,9 @@ namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu;
 
 use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\Requests\GoalGetterSusu\CreateGoalGetterSusu;
+use App\Services\Susu\Data\GoalGetter\GoalGetterSusuCreateData;
+use App\Services\Susu\Requests\GoalGetterSusu\GoalGetterSusuCreateRequest;
 use Domain\ExistingCustomer\Actions\Common\CustomerLinkedWalletsAction;
-use Domain\ExistingCustomer\Data\Susu\GoalGetterSusuData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -18,7 +18,7 @@ final class LinkedWalletAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Execute the LinkedWalletAction
+        // Execute the CustomerLinkedWalletsAction
         if (! CustomerLinkedWalletsAction::execute(session: $session, session_data: $session_data)) {
             return GeneralMenu::invalidInput(session: $session);
         }
@@ -26,13 +26,13 @@ final class LinkedWalletAction
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the CreateBizSusu HTTP request
-        $susu_created = (new CreateGoalGetterSusu)->execute(customer: $customer, data: GoalGetterSusuData::toArray(json_decode($session->user_inputs, associative: true)));
+        // Execute the GoalGetterSusuCreateRequest HTTP request
+        $susu_created = (new GoalGetterSusuCreateRequest)->execute(customer: $customer, data: GoalGetterSusuCreateData::toArray(json_decode($session->user_inputs, associative: true)));
 
         // Return a success response
-        if (data_get($susu_created, key: 'status') === true) {
+        if (data_get($susu_created, key: 'code') === 200) {
             // Update the user_data with the new susu_created resource
-            SessionInputUpdateAction::updateUserData(session: $session, user_data: ['susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
 
             // Return the confirmTermsConditionsMenu
             return CreateGoalGetterSusuMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'));

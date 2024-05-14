@@ -42,10 +42,12 @@ final class CreateBizSusuMenu
         );
     }
 
-    public static function linkedWalletMenu($session, $wallets): JsonResponse
+    public static function linkedWalletMenu($session): JsonResponse
     {
+        $linked_wallets = json_decode($session->user_data, associative: true);
+
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletCollection(data_get(target: $wallets, key: 'data')),
+            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
             session_id: $session->session_id,
         );
     }
@@ -53,7 +55,7 @@ final class CreateBizSusuMenu
     public static function narrationMenu($session, $susu_data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['business_name'].'. Susu amount: '.$susu_data['susu_amount'].'. Debit Frequency: '.strtolower($susu_data['frequency']).'. Wallet '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['business_name'].'. Susu amount: GHS'.$susu_data['susu_amount'].'. Debit Frequency: '.strtolower($susu_data['frequency']).'. Wallet '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

@@ -7,7 +7,7 @@ namespace Domain\ExistingCustomer\Actions\Pension\AboutPension;
 use App\Menus\ExistingCustomer\Pension\AboutPension\AboutPensionMenu;
 use App\States\ExistingCustomer\Pension\AboutPension\AboutPensionState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -19,7 +19,7 @@ final class BackToAboutPensionAction
         $state = ['class' => new AboutPensionState, 'menu' => new AboutPensionMenu];
 
         // Update the customer session action
-        SessionUpdateAction::execute(session: $session, state: class_basename($state['class']), session_data: $session_data);
+        UpdateSessionStateAction::execute(session: $session, state: class_basename($state['class']), session_data: $session_data);
 
         // Execute the SessionInputUpdateAction
         SessionInputUpdateAction::resetUserInputs(session: $session);

@@ -17,6 +17,7 @@ final class PinChangeData
                 'attributes' => [
                     'pin' => $current_pin,
                     'new_pin' => $new_pin,
+                    'new_pin_confirmation' => $new_pin,
                 ],
             ],
         ];

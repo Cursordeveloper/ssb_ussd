@@ -6,7 +6,7 @@ namespace Domain\ExistingCustomer\Data\MyAccount\LinkNewWallet;
 
 final class LinkNewAccountData
 {
-    public static function toArray(string $phone_number, string $network_resource): array
+    public static function toArray(string $phone_number, string $resource_id): array
     {
         return [
             'data' => [
@@ -18,11 +18,12 @@ final class LinkNewAccountData
                     'account_number' => $phone_number,
                 ],
 
-                // Related resources
+                // Included resources
                 'relationships' => [
                     'scheme' => [
+                        'type' => 'Scheme',
                         'attributes' => [
-                            'resource_id' => $network_resource,
+                            'resource_id' => $resource_id,
                         ],
                     ],
                 ],

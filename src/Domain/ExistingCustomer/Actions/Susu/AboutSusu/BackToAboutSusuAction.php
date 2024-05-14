@@ -7,7 +7,7 @@ namespace Domain\ExistingCustomer\Actions\Susu\AboutSusu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -19,7 +19,7 @@ final class BackToAboutSusuAction
         $susu_state = ['class' => new AboutSusuState, 'menu' => new AboutSusuMenu];
 
         // Update the customer session action
-        SessionUpdateAction::execute(session: $session, state: class_basename($susu_state['class']), session_data: $session_data);
+        UpdateSessionStateAction::execute(session: $session, state: class_basename($susu_state['class']), session_data: $session_data);
 
         // Execute the SessionInputUpdateAction
         SessionInputUpdateAction::resetUserInputs(session: $session);

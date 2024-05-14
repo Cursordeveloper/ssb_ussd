@@ -6,21 +6,21 @@ namespace App\Common;
 
 final class SusuAccounts
 {
-    public static function formatSusuAccountsForOutput($linked_wallets): string
+    public static function formatSusuAccountsForOutput($susu_accounts): string
     {
         $outputs = '';
-        foreach ($linked_wallets as $key => $value) {
-            $outputs .= $key + 1 .'. '.data_get(target: $value, key: 'attributes.account_name').' - '.data_get(target: $value, key: 'attributes.code')."\n";
+        foreach ($susu_accounts as $key => $value) {
+            $outputs .= $key + 1 .'. '.data_get(target: $value, key: 'attributes.account_name')."\n";
         }
 
         return $outputs;
     }
 
-    public static function formatSusuAccounts($susu_accounts): string
+    public static function formatSusuAccountsForMenu($susu_accounts): string
     {
         $outputs = '';
         foreach ($susu_accounts as $key => $value) {
-            $outputs .= $key.'. '.data_get(target: $value, key: 'account_name').' - '.data_get(target: $value, key: 'scheme')."\n";
+            $outputs .= $key.'. '.data_get(target: $value, key: 'susu_name')."\n";
         }
 
         return $outputs;
@@ -29,12 +29,12 @@ final class SusuAccounts
     public static function formatSusuAccountsInArray($susu_collection): array
     {
         $outputs = [];
+
         foreach ($susu_collection as $value) {
             $susu = [
-                'account_name' => data_get(target: $value, key: 'attributes.account_name'),
-                'resource_id' => data_get(target: $value, key: 'attributes.resource_id'),
-                'scheme' => data_get(target: $value, key: 'attributes.code'),
-                'frequency' => data_get(target: $value, key: 'attributes.frequency'),
+                'susu_resource' => data_get(target: $value, key: 'attributes.resource_id'),
+                'susu_name' => data_get(target: $value, key: 'attributes.account_name'),
+                'susu_scheme_code' => data_get(target: $value, key: 'attributes.scheme_code'),
             ];
             $outputs[] = $susu;
         }

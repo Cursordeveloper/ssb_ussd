@@ -11,7 +11,7 @@ final class LinkKycApprovalData
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'Pin',
+                'type' => 'Kyc',
 
                 // Resource exposed attributes
                 'attributes' => [

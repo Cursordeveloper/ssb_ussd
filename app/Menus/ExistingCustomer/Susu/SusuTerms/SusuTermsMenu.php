@@ -16,7 +16,7 @@ final class SusuTermsMenu
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['content' => 0]);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://cursorinnovations.site/susubox/policies/terms-and-conditions\n#. Next or 0. Main menu",
+            message: "https://susubox.app/policies/terms-and-conditions\n#. Next or 0. Main menu",
             session_id: $session->session_id,
         );
     }

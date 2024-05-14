@@ -15,8 +15,7 @@ final class SusuWithdrawalConfirmationAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_amount' => $session_data->user_input]);
 
-        // Get the customer
-        //        $customer = GetCustomerAction::execute($session->phone_number);
+        // Detailed code to post code to susu_service goes here
 
         // Return the noSususAccount
         return GeneralMenu::requestNotification(session: $session);

@@ -6,7 +6,7 @@ namespace Domain\NewCustomer\Actions\Registration;
 
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Customer\CustomerService;
+use App\Services\Customer\Requests\Pin\PinCreateRequest;
 use Domain\NewCustomer\Data\Registration\PinCreateData;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
@@ -18,7 +18,7 @@ final class CustomerCreatePinAction
     {
         // Terminate the session if validation failed
         if (is_numeric($session_data->user_input) && strlen((string) $session_data->user_input) === 4) {
-            $pin_created = (new CustomerService)->createPin(PinCreateData::toArray($customer, $session_data->user_input));
+            $pin_created = (new PinCreateRequest)->execute(customer: $customer, request: PinCreateData::toArray($session_data->user_input));
 
             // Return a success response
             if (data_get($pin_created, key: 'status') === true) {

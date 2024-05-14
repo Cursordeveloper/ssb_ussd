@@ -7,12 +7,16 @@ namespace App\Menus\ExistingCustomer\Susu\MySusuAccounts;
 use App\Common\ResponseBuilder;
 use App\Common\SusuAccounts;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\MySusuAccountsAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MySusuAccountsMenu
 {
     public static function mainMenu($session): JsonResponse
     {
+        // Reset user_inputs and user_data
+        SessionInputUpdateAction::resetAll(session: $session);
+
         // Execute MySusuAccountsAction action
         return MySusuAccountsAction::execute(session: $session);
     }
@@ -29,7 +33,7 @@ final class MySusuAccountsMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Susu Accounts\n".SusuAccounts::formatSusuAccountsForOutput(data_get(target: $susu_data, key: 'data')).'0. Back',
+            message: "My Susu Accounts\n".SusuAccounts::formatSusuAccountsForOutput(data_get(target: $susu_data, key: 'data')).'0. Back',
             session_id: $session->session_id,
         );
     }
@@ -38,7 +42,7 @@ final class MySusuAccountsMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n".SusuAccounts::formatSusuAccounts(susu_accounts: $susu_data).'0. Back',
+            message: "Invalid choice, try again\n".SusuAccounts::formatSusuAccountsForMenu(susu_accounts: $susu_data).'0. Back',
             session_id: $session->session_id,
         );
     }

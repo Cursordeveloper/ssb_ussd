@@ -6,7 +6,7 @@ namespace Domain\ExistingCustomer\Actions\MyAccount\ChangePin;
 
 use App\Menus\ExistingCustomer\MyAccount\ChangePin\ChangePinMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Customer\Requests\ChangePinRequest;
+use App\Services\Customer\Requests\Pin\PinChangeRequest;
 use Domain\ExistingCustomer\Data\MyAccount\ChangePin\PinChangeData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
@@ -37,10 +37,10 @@ final class ConfirmNewPinAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Send change pin request to ssb_customer
-        $pin_changed = (new ChangePinRequest)->execute(customer: $customer, data: PinChangeData::toArray(current_pin: data_get(target: $user_inputs, key: 'current_pin'), new_pin: data_get(target: $user_inputs, key: 'new_pin')));
+        $pin_changed = (new PinChangeRequest)->execute(customer: $customer, request: PinChangeData::toArray(current_pin: data_get(target: $user_inputs, key: 'current_pin'), new_pin: data_get(target: $user_inputs, key: 'new_pin')));
 
         // Terminate session if $susu_collection request status is false
-        if (! data_get(target: $pin_changed, key: 'status') === true || data_get(target: $pin_changed, key: 'code') !== 200) {
+        if (data_get(target: $pin_changed, key: 'code') !== 202) {
             return GeneralMenu::invalidInput(session: $session);
         }
 

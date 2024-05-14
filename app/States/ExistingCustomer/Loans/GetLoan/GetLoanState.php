@@ -13,7 +13,7 @@ use App\States\ExistingCustomer\Loans\GetLoan\BizSusuLoan\BizSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\PersonalSusuLoan\PersonalSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\SwiftCredit\SwiftCreditState;
 use Domain\ExistingCustomer\Actions\Common\HasKycAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -39,7 +39,7 @@ final class GetLoanState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

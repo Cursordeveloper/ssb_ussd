@@ -10,10 +10,7 @@ class GetCustomerAction
 {
     public static function execute(string $resource)
     {
-        return Customer::where(
-            column: 'phone_number',
-            operator: '=',
-            value: $resource,
-        )->first();
+        // Get and return the customer
+        return Customer::where(column: 'phone_number', operator: '=', value: $resource)->first();
     }
 }

@@ -11,7 +11,7 @@ use App\States\NewCustomer\Registration\RegistrationState;
 use Domain\Shared\Action\Customer\HasPinAction;
 use Domain\Shared\Action\Customer\IsActiveAction;
 use Domain\Shared\Action\Customer\IsNotActiveAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -33,7 +33,7 @@ final class WelcomeState
         };
 
         // Update the session state
-        SessionUpdateAction::execute(session: $session, state: class_basename($customerState['class']), session_data: $session);
+        UpdateSessionStateAction::execute(session: $session, state: class_basename($customerState['class']), session_data: $session);
 
         // Return the mainMenu for the state
         return $customerState['menu'];

@@ -15,7 +15,7 @@ use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
 use App\States\ExistingCustomer\Insurance\CreateInsurance\CreateInsuranceState;
 use App\States\ExistingCustomer\Insurance\InsuranceTerms\InsuranceTermsState;
 use App\States\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsState;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -38,7 +38,7 @@ final class InsuranceState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

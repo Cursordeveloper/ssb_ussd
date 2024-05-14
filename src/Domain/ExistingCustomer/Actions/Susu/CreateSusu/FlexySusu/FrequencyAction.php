@@ -13,8 +13,9 @@ final class FrequencyAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Frequency array
-        $frequencies = ['1' => 'Daily', '2' => 'Weekly', '3' => 'Monthly'];
+        // Get the linked wallets
+        $user_data = json_decode($session->user_data, associative: true);
+        $frequencies = $user_data['frequencies'];
 
         // Check if user_input is in the $frequencies array
         if (! array_key_exists(key: $session_data->user_input, array: $frequencies)) {
@@ -23,7 +24,7 @@ final class FrequencyAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]['code']]);
 
         // Return the enterSusuAmountMenu
         return CreateFlexySusuMenu::enforceStrictDebitMenu(session: $session);

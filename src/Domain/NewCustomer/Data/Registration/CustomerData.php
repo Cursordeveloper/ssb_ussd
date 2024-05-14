@@ -14,33 +14,15 @@ final class CustomerData
             'data' => [
                 // Resource type and id
                 'type' => 'Customer',
-                'id' => data_get(
-                    target: $customer,
-                    key: 'id'
-                ),
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'resource_id' => data_get(
-                        target: $customer,
-                        key: 'resource_id'
-                    ),
-                    'first_name' => data_get(
-                        target: $customer,
-                        key: 'first_name'
-                    ),
-                    'last_name' => data_get(
-                        target: $customer,
-                        key: 'last_name'
-                    ),
-                    'phone_number' => data_get(
-                        target: $customer,
-                        key: 'phone_number'
-                    ),
-                    'status' => data_get(
-                        target: $customer,
-                        key: 'status'
-                    ),
+                    'resource_id' => $customer->resource_id,
+                    'first_name' => $customer->first_name,
+                    'last_name' => $customer->last_name,
+                    'phone_number' => $customer->phone_number,
+                    'accepted_terms' => true,
+                    'status' => $customer->status,
                 ],
             ],
         ];

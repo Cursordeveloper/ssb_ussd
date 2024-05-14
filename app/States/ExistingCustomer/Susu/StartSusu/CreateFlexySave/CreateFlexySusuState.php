@@ -29,7 +29,7 @@ final class CreateFlexySusuState
             ! array_key_exists(key: 'max_amount', array: $process_flow) => MaxAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'recurring_debit', array: $process_flow) => RecurringDebitAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'linked_wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

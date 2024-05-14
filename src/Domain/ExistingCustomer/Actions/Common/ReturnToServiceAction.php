@@ -15,7 +15,7 @@ use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -36,7 +36,7 @@ final class ReturnToServiceAction
         $return_state = $susubox_service[$service];
 
         // Update the customer session action
-        SessionUpdateAction::execute(session: $session, state: class_basename($return_state['class']), session_data: $session_data);
+        UpdateSessionStateAction::execute(session: $session, state: class_basename($return_state['class']), session_data: $session_data);
 
         SessionInputUpdateAction::resetUserData(session: $session);
         SessionInputUpdateAction::resetUserInputs(session: $session);

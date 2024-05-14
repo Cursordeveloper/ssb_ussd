@@ -6,7 +6,6 @@ namespace Domain\NewCustomer\Actions\Registration;
 
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\Shared\GeneralMenu;
-use Domain\NewCustomer\Events\Registration\CustomerCreatedEvent;
 use Domain\Shared\Enums\Product\CustomerStatus;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
@@ -21,11 +20,8 @@ final class CustomerUpdateLastNameAction
             // Update the customer record with the last_name
             $customer->update(['last_name' => $session_data->user_input, 'status' => CustomerStatus::Active->value]);
 
-            // Dispatch CustomerCreatedEvent
-            CustomerCreatedEvent::dispatch($customer->refresh());
-
-            // Return the last name prompt to the customer
-            return RegistrationMenu::choosePin(session: $session);
+            // Return the accept terms prompt to the customer
+            return RegistrationMenu::acceptedTerms(session: $session);
         }
 
         // Terminate the session

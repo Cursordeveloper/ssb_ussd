@@ -6,7 +6,7 @@ namespace Domain\ExistingCustomer\Data\MyAccount\LinkNewWallet;
 
 final class LinkNewAccountApprovalData
 {
-    public static function toArray(string $account_number, string $pin): array
+    public static function toArray(string $resource_id, string $pin): array
     {
         return [
             'data' => [
@@ -15,7 +15,7 @@ final class LinkNewAccountApprovalData
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'account_number' => $account_number,
+                    'resource_id' => $resource_id,
                     'pin' => $pin,
                 ],
             ],

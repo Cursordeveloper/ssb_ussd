@@ -29,7 +29,7 @@ final class CreateGoalGetterSusuState
             ! array_key_exists(key: 'duration', array: $process_flow) => TargetDurationAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'start_date', array: $process_flow) => StartDateAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'linked_wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

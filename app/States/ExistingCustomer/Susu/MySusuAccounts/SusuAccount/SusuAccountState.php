@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuBalance\SusuBalanceMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuCloseAccountMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuPauseAccountMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuPaymentMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuAccountCloseMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuMiniStatement\SusuAccountMiniStatementMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuAccountPauseMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuAccountPaymentMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuAccountWithdrawalMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountBalance\SusuAccountBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountClose\SusuAccountCloseState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMiniStatement\SusuAccountMiniStatementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountPause\SusuAccountPauseState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountPayment\SusuAccountPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountWithdrawal\SusuAccountWithdrawalState;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -27,11 +29,12 @@ final class SusuAccountState
     {
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new SusuAccountBalanceState, 'menu' => new SusuBalanceMenu],
-            '2' => ['class' => new SusuAccountPaymentState, 'menu' => new SusuPaymentMenu],
-            '3' => ['class' => new SusuAccountWithdrawalState, 'menu' => new SusuWithdrawalMenu],
-            '4' => ['class' => new SusuAccountPauseState, 'menu' => new SusuPauseAccountMenu],
-            '5' => ['class' => new SusuAccountCloseState, 'menu' => new SusuCloseAccountMenu],
+            '1' => ['class' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
+            '2' => ['class' => new SusuAccountPaymentState, 'menu' => new SusuAccountPaymentMenu],
+            '3' => ['class' => new SusuAccountWithdrawalState, 'menu' => new SusuAccountWithdrawalMenu],
+            '4' => ['class' => new SusuAccountMiniStatementState, 'menu' => new SusuAccountMiniStatementMenu],
+            '5' => ['class' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
+            '6' => ['class' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
             '0' => ['class' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 
@@ -41,7 +44,7 @@ final class SusuAccountState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

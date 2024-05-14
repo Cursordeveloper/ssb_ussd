@@ -9,7 +9,7 @@ use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -47,7 +47,7 @@ final class LinkedWalletsState
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_network' => $user_data['linked_wallets'][$session_data->user_input]['network']]);
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: 'LinkedWalletState', session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: 'LinkedWalletState', session_data: $session_data);
 
             // Execute the SusuAccountState
             return LinkedWalletMenu::mainMenu(session: $session);

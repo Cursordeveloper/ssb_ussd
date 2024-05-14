@@ -16,6 +16,16 @@ final class LinkedWallets
         return $outputs;
     }
 
+    public static function formatLinkedWalletForMenu($linked_wallets): string
+    {
+        $outputs = '';
+        foreach ($linked_wallets as $key => $value) {
+            $outputs .= $key.'. '.data_get(target: $value, key: 'account_number')."\n";
+        }
+
+        return $outputs;
+    }
+
     public static function formatLinkedWallets($linked_wallets): string
     {
         $outputs = '';
@@ -30,7 +40,10 @@ final class LinkedWallets
     {
         $outputs = [];
         foreach ($linked_wallets as $value) {
-            $wallets = ['wallet_resource' => data_get(target: $value, key: 'attributes.resource_id'), 'wallet' => data_get(target: $value, key: 'attributes.account_number'), 'network' => data_get(target: $value, key: 'attributes.scheme')];
+            $wallets = [
+                'resource_id' => data_get(target: $value, key: 'attributes.resource_id'),
+                'account_number' => data_get(target: $value, key: 'attributes.account_number'),
+            ];
             $outputs[] = $wallets;
         }
 

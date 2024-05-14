@@ -13,16 +13,17 @@ final class StartDateAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Prepare the duration array
-        $duration = ['1' => 'Today', '2' => 'Next Week', '3' => 'Two Weeks', '4' => 'Next Month'];
+        // Get the linked wallets
+        $user_data = json_decode($session->user_data, associative: true);
+        $start_dates = $user_data['start_dates'];
 
         // Return invalid response if duration is not in $duration array
-        if (! array_key_exists(key: $session_data->user_input, array: $duration)) {
+        if (! array_key_exists(key: $session_data->user_input, array: $start_dates)) {
             return CreateGoalGetterSusuMenu::invalidStartDateMenu(session: $session);
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['start_date' => $duration[$session_data->user_input]]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['start_date' => $start_dates[$session_data->user_input]['code']]);
 
         // Return the enterSusuAmountMenu
         return CreateGoalGetterSusuMenu::frequencyMenu(session: $session);

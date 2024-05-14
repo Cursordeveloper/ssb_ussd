@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\StartSusu;
 
+use App\Common\Helpers;
+use App\Common\LinkedWallets;
 use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
-use App\Services\Customer\Requests\LinkAccountsRequest;
+use App\Services\Susu\Requests\Customer\SusuServiceLinkAccountsRequest;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateFlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateGoalGetterSusu\CreateGoalGetterSusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreatePersonalSusu\CreatePersonalSusuState;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
-use Domain\Shared\Action\Session\SessionUpdateAction;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -28,13 +31,18 @@ final class StartSusuState
         // Execute the GetCustomerAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
-        // Get the linked accounts
-        $linked_wallets = (new LinkAccountsRequest)->execute(customer: $customer);
+        // Execute and store the SusuServiceLinkAccountsRequest
+        $linked_wallets = (new SusuServiceLinkAccountsRequest)->execute(customer: $customer);
 
-        // Terminate the sessions if customer has no linked account(s)
+        // Return the (noLinkedAccountMenu) if customer has no linked account(s)
         if (empty(data_get(target: $linked_wallets, key: 'data'))) {
             return LinkNewWalletMenu::noLinkedAccountMenu(session: $session);
         }
+
+        // Reformat the wallets and (updateUserData) with the wallets data
+        SessionInputUpdateAction::updateUserData(session: $session, user_data: [
+            'linked_wallets' => Helpers::arrayIndex(LinkedWallets::formatLinkedWalletsInArray($linked_wallets['data'])),
+        ]);
 
         // Define a mapping between customer input and states
         $stateMappings = [
@@ -50,7 +58,7 @@ final class StartSusuState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            SessionUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the SessionInputUpdateAction
             GetSusuSchemesAction::execute(session: $session, session_data: $session_data);

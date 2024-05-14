@@ -6,9 +6,9 @@ namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
 
 use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\Requests\FlexySusu\CreateFlexySusu;
+use App\Services\Susu\Data\FlexySusu\FlexySusuCreateData;
+use App\Services\Susu\Requests\FlexySusu\FlexySusuCreateRequest;
 use Domain\ExistingCustomer\Actions\Common\CustomerLinkedWalletsAction;
-use Domain\ExistingCustomer\Data\Susu\FlexySusuData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -27,12 +27,12 @@ final class LinkedWalletAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the CreateBizSusu HTTP request
-        $susu_created = (new CreateFlexySusu)->execute(customer: $customer, data: FlexySusuData::toArray(json_decode($session->user_inputs, associative: true)));
+        $susu_created = (new FlexySusuCreateRequest)->execute(customer: $customer, data: FlexySusuCreateData::toArray(json_decode($session->user_inputs, associative: true)));
 
         // Return a success response
-        if (data_get($susu_created, key: 'status') === true) {
+        if (data_get($susu_created, key: 'code') === 200) {
             // Update the user_data with the new susu_created resource
-            SessionInputUpdateAction::updateUserData(session: $session, user_data: ['susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
 
             // Return the confirmTermsConditionsMenu
             return CreateFlexySusuMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'));

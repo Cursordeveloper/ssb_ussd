@@ -4,15 +4,31 @@ declare(strict_types=1);
 
 namespace App\Menus\ExistingCustomer\MyAccount\LinkNewWallet;
 
+use App\Common\CustomerServiceResources;
 use App\Common\ResponseBuilder;
+use Domain\ExistingCustomer\Actions\Common\GetLinkedAccountSchemesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkNewWalletMenu
 {
     public static function mainMenu($session): JsonResponse
     {
+        // Execute the LinkedAccountSchemes
+        GetLinkedAccountSchemesAction::execute(session: $session);
+
+        $linked_account_schemes = json_decode($session->user_data, associative: true);
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Select network\n1. MTN\n2. Airteltigo\n3. Vodafone",
+            message: "Select network\n".CustomerServiceResources::formatLinkedAccountSchemesForMenu(linked_account_schemes: $linked_account_schemes['linked_account_schemes']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidMainMenu($session): JsonResponse
+    {
+        $linked_account_schemes = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice, try again.\n".CustomerServiceResources::formatLinkedAccountSchemesForMenu(linked_account_schemes: $linked_account_schemes['linked_account_schemes']),
             session_id: $session->session_id,
         );
     }
@@ -29,14 +45,6 @@ final class LinkNewWalletMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter Susubox pin',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidMainMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\nSelect network\n1. MTN\n2. Airteltigo\n3. Vodafone",
             session_id: $session->session_id,
         );
     }

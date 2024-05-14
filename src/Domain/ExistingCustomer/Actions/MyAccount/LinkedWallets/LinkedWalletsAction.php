@@ -7,7 +7,7 @@ namespace Domain\ExistingCustomer\Actions\MyAccount\LinkedWallets;
 use App\Common\Helpers;
 use App\Common\LinkedWallets;
 use App\Menus\ExistingCustomer\MyAccount\LinkedWallets\LinkedWalletsMenu;
-use App\Services\Customer\Requests\LinkAccountsRequest;
+use App\Services\Susu\Requests\Customer\SusuServiceLinkAccountsRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
@@ -21,7 +21,7 @@ final class LinkedWalletsAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
         // Get the linked accounts
-        $linked_wallets = (new LinkAccountsRequest)->execute(customer: $customer);
+        $linked_wallets = (new SusuServiceLinkAccountsRequest)->execute(customer: $customer);
 
         // Prepare and return the linked wallets
         if (! empty(data_get(target: $linked_wallets, key: 'data'))) {
