@@ -16,7 +16,7 @@ final class PingController extends Controller
         return ResponseBuilder::resourcesResponseBuilder(
             status: true,
             code: Response::HTTP_OK,
-            message: 'USSD service is online.'
+            message: 'Service is online.'
         );
     }
 }
