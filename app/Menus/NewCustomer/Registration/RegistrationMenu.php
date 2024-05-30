@@ -29,7 +29,7 @@ final class RegistrationMenu
     public static function acceptedTerms(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://susubox.app/policies/terms-and-conditions\n'Accept Terms / Conditions?'\n1. Yes\n2. no",
+            message: "https://thesusubox.com/policies/terms-and-conditions\nAccept Terms & Conditions?\n1. Yes\n2. no",
             session_id: $session->session_id,
         );
     }
