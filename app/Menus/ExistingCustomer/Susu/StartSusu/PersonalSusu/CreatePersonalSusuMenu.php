@@ -36,6 +36,22 @@ final class CreatePersonalSusuMenu
         );
     }
 
+    public static function acceptedTermsMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidAcceptedTerms($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function narrationMenu($session, array $susu_data): JsonResponse
     {
         // Prepare and return the narration
