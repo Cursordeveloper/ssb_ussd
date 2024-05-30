@@ -17,6 +17,7 @@ final class PersonalSusuCreateData
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
                     'susu_amount' => $user_inputs['susu_amount'],
+                    'accepted_terms' => true,
                 ],
 
                 // Resource related resources
