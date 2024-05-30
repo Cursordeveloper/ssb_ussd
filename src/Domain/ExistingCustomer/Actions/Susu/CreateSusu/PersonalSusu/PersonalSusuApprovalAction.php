@@ -12,7 +12,7 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class ConfirmationAction
+final class PersonalSusuApprovalAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
