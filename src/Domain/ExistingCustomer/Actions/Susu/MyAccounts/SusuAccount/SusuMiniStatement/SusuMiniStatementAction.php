@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuMiniStatement;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuMiniStatement\SusuAccountMiniStatementMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\Transaction\SusuServiceSusuTransactionsRequest;
 use Domain\ExistingCustomer\Data\Common\PinApprovalData;

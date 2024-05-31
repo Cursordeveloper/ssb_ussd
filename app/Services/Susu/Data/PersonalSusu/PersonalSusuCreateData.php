@@ -17,6 +17,8 @@ final class PersonalSusuCreateData
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
                     'susu_amount' => $user_inputs['susu_amount'],
+
+                    'rollover_debit' => $user_inputs['rollover'],
                     'accepted_terms' => true,
                 ],
 
