@@ -17,7 +17,8 @@ final class BizSusuCreateData
                 'attributes' => [
                     'account_name' => $user_inputs['business_name'],
                     'susu_amount' => $user_inputs['susu_amount'],
-                    'frequency' => strtolower($user_inputs['frequency']),
+                    'frequency' => $user_inputs['frequency'],
+                    'accepted_terms' => true,
                 ],
 
                 // Resource related resources

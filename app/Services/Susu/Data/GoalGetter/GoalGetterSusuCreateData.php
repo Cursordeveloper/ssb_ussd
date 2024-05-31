@@ -15,12 +15,14 @@ final class GoalGetterSusuCreateData
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'account_name' => $user_inputs['goal'],
-                    'target_amount' => $user_inputs['amount'],
+                    'account_name' => $user_inputs['account_name'],
+                    'target_amount' => $user_inputs['target_amount'],
 
                     'start_date' => $user_inputs['start_date'],
                     'duration' => $user_inputs['duration'],
                     'frequency' => $user_inputs['frequency'],
+
+                    'accepted_terms' => true,
                 ],
 
                 // Resource related resources

@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\BusinessNameAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\ConfirmationAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\FrequencyAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\LinkedWalletAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\SusuAmountAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\CreateBizSusuAcceptedTermsAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\CreateBizSusuApprovalAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\CreateBizSusuBusinessNameAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\CreateBizSusuFrequencyAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\CreateBizSusuLinkedWalletAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\BizSusu\CreateBizSusuSusuAmountAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -22,11 +23,13 @@ final class CreateBizSusuState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'business_name', array: $process_flow) => BusinessNameAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'susu_amount', array: $process_flow) => SusuAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'frequency', array: $process_flow) => FrequencyAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'linked_wallet', array: $process_flow) => LinkedWalletAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'confirmation', array: $process_flow) => ConfirmationAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'business_name', array: $process_flow) => CreateBizSusuBusinessNameAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'susu_amount', array: $process_flow) => CreateBizSusuSusuAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'frequency', array: $process_flow) => CreateBizSusuFrequencyAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'linked_wallet', array: $process_flow) => CreateBizSusuLinkedWalletAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'accepted_terms', array: $process_flow) => CreateBizSusuAcceptedTermsAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'approval', array: $process_flow) => CreateBizSusuApprovalAction::execute(session: $session, session_data: $session_data),
+
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

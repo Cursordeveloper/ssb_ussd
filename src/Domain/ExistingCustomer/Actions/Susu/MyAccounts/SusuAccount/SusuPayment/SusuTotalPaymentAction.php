@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuPayment;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\PersonalBizSusuAccountPaymentMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountPaymentMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\Payment\SusuServiceSusuPaymentRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
@@ -37,6 +37,6 @@ final class SusuTotalPaymentAction
         }
 
         // Return the noSususAccount
-        return PersonalBizSusuAccountPaymentMenu::narrationMenu(session: $session);
+        return BizSusuAccountPaymentMenu::narrationMenu(session: $session);
     }
 }

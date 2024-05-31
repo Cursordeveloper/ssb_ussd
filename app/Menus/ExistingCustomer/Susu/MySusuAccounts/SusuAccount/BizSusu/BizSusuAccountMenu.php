@@ -20,4 +20,13 @@ final class BizSusuAccountMenu
             session_id: $session->session_id,
         );
     }
+
+    public static function invalidMainMenu($session): JsonResponse
+    {
+        // Return the account main menu
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice, try again\n1. Check Balance\n2. Make Payment\n3. Withdrawal\n4. Mini Statement\n5. Pause Susu\n6. Close Susu\n0. Back",
+            session_id: $session->session_id,
+        );
+    }
 }

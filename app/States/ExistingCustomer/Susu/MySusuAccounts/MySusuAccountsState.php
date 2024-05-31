@@ -18,15 +18,15 @@ final class MySusuAccountsState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Return to the SusuState if user input is (0)
+        // Return to the SusuState if user_input is (0)
         if ($session_data->user_input === '0') {
             return ReturnToServiceAction::execute(session: $session, session_data: $session_data, service: 'susu');
         }
 
-        // Get the [user_data] from the [Session] class
+        // Get the session->user_data
         $user_data = json_decode($session->user_data, associative: true);
 
-        // Return the invalidSusuAccountsMenu (if account option selected does not exist)
+        // Return the invalidSusuAccountsMenu (if user_input does not exist)
         if (! array_key_exists(key: $session_data->user_input, array: data_get(target: $user_data, key: 'susu_accounts'))) {
             return MySusuAccountsMenu::invalidSusuAccountsMenu(session: $session, susu_data: $user_data['susu_accounts']);
         }
@@ -49,10 +49,8 @@ final class MySusuAccountsState
             // Update the [user_input] with the [susu_account] option selected
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_account' => data_get($susu_account, key: 'data.attributes')]);
 
-            // Get the [user_input] from the [Session] class
-            // Get the [state and menu] with the [user_input]
-            $user_input = json_decode($session->user_inputs, associative: true);
-            $account_menu = Helpers::getSusuScheme(scheme_code: data_get(target: $user_input, key: 'scheme_code'));
+            // Build the SusuAccountMenu with the from the session->user_inputs
+            $account_menu = Helpers::getSusuScheme(scheme_code: json_decode($session->user_inputs, associative: true)['scheme_code']);
 
             // Execute the (UpdateSessionStateAction) to update the state
             UpdateSessionStateAction::execute(session: $session, state: class_basename($account_menu['state']), session_data: $session_data);
