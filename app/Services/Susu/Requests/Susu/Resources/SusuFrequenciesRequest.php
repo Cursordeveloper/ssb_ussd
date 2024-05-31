@@ -18,8 +18,8 @@ final class SusuFrequenciesRequest
 
     public function execute(): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->get(
-            url: $this->service->base_url.'frequencies',
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->get(url: $this->service->base_url.'frequencies')
+            ->json();
     }
 }

@@ -74,4 +74,36 @@ final class GeneralMenu
             session_id: $session->session_id,
         );
     }
+
+    public static function acceptedSusuTermsMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidAcceptedSusuTerms($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function rollOverDebitMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Rollover debit?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidRollOverDebitMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice, try again\nRollover debit?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
 }

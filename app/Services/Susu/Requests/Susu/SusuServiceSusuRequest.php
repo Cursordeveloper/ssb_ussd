@@ -23,8 +23,8 @@ final class SusuServiceSusuRequest
         // Get the susu_url
         $url = Helpers::getSusuScheme(scheme_code: $scheme_code);
 
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->get(
-            url: $this->service->base_url.'customers/'.$customer->resource_id.'/'.data_get(target: $url, key: 'url').'/'.$susu_resource,
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->get(url: $this->service->base_url.'customers/'.$customer->resource_id.'/'.data_get(target: $url, key: 'url').'/'.$susu_resource)
+            ->json();
     }
 }

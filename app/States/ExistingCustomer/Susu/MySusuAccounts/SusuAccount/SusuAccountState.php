@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuCloseAccount\SusuAccountCloseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuMiniStatement\SusuAccountMiniStatementMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPauseAccount\SusuAccountPauseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuPayment\SusuAccountPaymentMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuWithdrawal\SusuAccountWithdrawalMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountClose\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMiniStatement\SusuAccountMiniStatementState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountPause\SusuAccountPauseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountPayment\SusuAccountPaymentState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountWithdrawal\SusuAccountWithdrawalState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,8 +30,8 @@ final class SusuAccountState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
-            '2' => ['class' => new SusuAccountPaymentState, 'menu' => new SusuAccountPaymentMenu],
-            '3' => ['class' => new SusuAccountWithdrawalState, 'menu' => new SusuAccountWithdrawalMenu],
+            '2' => ['class' => new FlexySusuAccountPaymentState, 'menu' => new FlexySusuAccountPaymentMenu],
+            '3' => ['class' => new FlexySusuAccountWithdrawalState, 'menu' => new FlexySusuAccountWithdrawalMenu],
             '4' => ['class' => new SusuAccountMiniStatementState, 'menu' => new SusuAccountMiniStatementMenu],
             '5' => ['class' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
             '6' => ['class' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],

@@ -34,7 +34,7 @@ final class SusuAccounts
             $susu = [
                 'susu_resource' => data_get(target: $value, key: 'attributes.resource_id'),
                 'susu_name' => data_get(target: $value, key: 'attributes.account_name'),
-                'susu_scheme_code' => data_get(target: $value, key: 'attributes.scheme_code'),
+                'susu_scheme_code' => data_get(target: $value, key: 'included.scheme.attributes.code'),
             ];
             $outputs[] = $susu;
         }
