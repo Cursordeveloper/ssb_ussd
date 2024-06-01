@@ -22,7 +22,7 @@ final class SusuAccountBalanceMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::infoResponseBuilder(
-            message: 'Current Balance: '.data_get(target: $susu_data, key: 'current_balance').', Available Balance: '.data_get(target: $susu_data, key: 'available_balance'),
+            message: 'Current Balance: '.data_get(target: $susu_data, key: 'included.currency.attributes.currency').data_get(target: $susu_data, key: 'attributes.current_balance').', Available Balance: '.data_get(target: $susu_data, key: 'included.currency.attributes.currency').data_get(target: $susu_data, key: 'attributes.available_balance'),
             session_id: $session->session_id,
         );
     }

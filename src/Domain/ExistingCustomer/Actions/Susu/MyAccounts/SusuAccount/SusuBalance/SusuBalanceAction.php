@@ -40,7 +40,7 @@ final class SusuBalanceAction
 
         // Prepare the and return the susu accounts
         if (! empty(data_get($balances, key: 'data'))) {
-            return SusuAccountBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $balances, key: 'data.attributes'));
+            return SusuAccountBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $balances, key: 'data'));
         }
 
         // Return the noSususAccount
