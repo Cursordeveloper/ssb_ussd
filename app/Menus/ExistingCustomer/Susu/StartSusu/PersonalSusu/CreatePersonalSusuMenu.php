@@ -6,6 +6,7 @@ namespace App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu;
 
 use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreatePersonalSusuMenu
@@ -40,11 +41,11 @@ final class CreatePersonalSusuMenu
         );
     }
 
-    public static function narrationMenu($session, array $susu_data): JsonResponse
+    public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['account_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: daily. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['account_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: daily. Wallet: '.$linked_account['account_number'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

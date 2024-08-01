@@ -8,6 +8,7 @@ use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Domain\ExistingCustomer\Actions\Common\GetSusuFrequenciesAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateFlexySusuMenu
@@ -24,20 +25,11 @@ final class CreateFlexySusuMenu
         );
     }
 
-    public static function debitFrom($session): JsonResponse
+    public static function susuAmount($session): JsonResponse
     {
         // Return the debitFrom
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter starting amount',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function debitTo($session): JsonResponse
-    {
-        // Return the debitTo
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter ending amount',
+            message: 'Enter susu amount',
             session_id: $session->session_id,
         );
     }
@@ -78,11 +70,11 @@ final class CreateFlexySusuMenu
         );
     }
 
-    public static function narrationMenu($session, $susu_data): JsonResponse
+    public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
-        // Return the narrationMenu
+        // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['account_name'].'. Debit between: GHS'.$susu_data['min_amount'].' and GHS'.$susu_data['max_amount'].'. Frequency: '.$susu_data['frequency'].'. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['account_name'].'. Susu amount: GHS'.$susu_data['susu_amount'].'. Frequency: '.$susu_data['frequency'].'. Wallet: '.$linked_account['account_number'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
