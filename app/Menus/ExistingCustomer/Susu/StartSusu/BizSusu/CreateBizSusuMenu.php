@@ -8,6 +8,7 @@ use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Domain\ExistingCustomer\Actions\Common\GetSusuFrequenciesAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateBizSusuMenu
@@ -69,11 +70,11 @@ final class CreateBizSusuMenu
         );
     }
 
-    public static function narrationMenu($session, $susu_data): JsonResponse
+    public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
-        // Return the narrationMenu
+        // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['business_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: '.strtolower($susu_data['frequency']).'. Wallet: '.$susu_data['linked_wallet'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['business_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: '.strtolower($susu_data['frequency']).'. Wallet: '.$linked_account['account_number'].'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
