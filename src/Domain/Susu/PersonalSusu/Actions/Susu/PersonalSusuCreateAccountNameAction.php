@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu;
+namespace Domain\Susu\PersonalSusu\Actions\Susu;
 
-use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\PersonalSusu\Menus\Susu\PersonalSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreatePersonalSusuAccountNameAction
+final class PersonalSusuCreateAccountNameAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -19,6 +19,6 @@ final class CreatePersonalSusuAccountNameAction
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_name' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
-        return CreatePersonalSusuMenu::susuAmountMenu(session: $session);
+        return PersonalSusuCreateMenu::susuAmountMenu(session: $session);
     }
 }

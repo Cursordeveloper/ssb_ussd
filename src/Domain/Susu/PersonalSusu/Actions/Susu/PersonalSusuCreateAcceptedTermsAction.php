@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu;
+namespace Domain\Susu\PersonalSusu\Actions\Susu;
 
-use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\PersonalSusu\PersonalSusuCreateData;
 use App\Services\Susu\Requests\PersonalSusu\PersonalSusuCreateRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\PersonalSusu\Menus\Susu\PersonalSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreatePersonalSusuAcceptedTermsAction
+final class PersonalSusuCreateAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -33,7 +33,7 @@ final class CreatePersonalSusuAcceptedTermsAction
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
 
             // Return the confirmTermsConditionsMenu
-            return CreatePersonalSusuMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
+            return PersonalSusuCreateMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
         }
 
         // Return system error menu

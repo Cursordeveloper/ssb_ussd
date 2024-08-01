@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu;
+namespace Domain\Susu\PersonalSusu\Menus\Susu;
 
 use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreatePersonalSusuMenu
+final class PersonalSusuCreateMenu
 {
     public static function mainMenu($session): JsonResponse
     {

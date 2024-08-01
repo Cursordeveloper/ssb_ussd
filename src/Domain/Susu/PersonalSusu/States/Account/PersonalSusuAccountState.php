@@ -2,23 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu;
+namespace Domain\Susu\PersonalSusu\States\Account;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountPaymentMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountSettlementMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceState;
+use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountSettlementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
+use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
+use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
+use Domain\Susu\PersonalSusu\Menus\Payment\PersonalSusuPaymentMenu;
+use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuAccountState
@@ -29,7 +31,7 @@ final class PersonalSusuAccountState
         $stateMappings = [
             '1' => ['state' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
 
-            '2' => ['state' => new PersonalSusuAccountPaymentState, 'menu' => new PersonalSusuAccountPaymentMenu],
+            '2' => ['state' => new PersonalSusuPaymentState, 'menu' => new PersonalSusuPaymentMenu],
             '3' => ['state' => new PersonalSusuAccountSettlementState, 'menu' => new PersonalSusuAccountSettlementMenu],
 
             '4' => ['state' => new SusuAccountMiniStatementState, 'menu' => new SusuAccountMiniStatementMenu],
