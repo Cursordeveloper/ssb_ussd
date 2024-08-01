@@ -7,19 +7,19 @@ namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountBalanceState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
+use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuAccountState

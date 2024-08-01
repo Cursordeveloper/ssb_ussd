@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\PersonalSusu;
+namespace Domain\Susu\PersonalSusu\Actions\Susu;
 
-use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\PersonalSusu\Menus\Susu\PersonalSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreatePersonalSusuLinkedWalletAction
+final class PersonalSusuCreateLinkedWalletAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -19,7 +19,7 @@ final class CreatePersonalSusuLinkedWalletAction
 
         // Return invalid response if duration is not in $duration array
         if (! array_key_exists(key: $session_data->user_input, array: $linked_wallets)) {
-            return CreatePersonalSusuMenu::linkedWalletMenu(session: $session);
+            return PersonalSusuCreateMenu::linkedWalletMenu(session: $session);
         }
 
         // Update the user inputs (steps)

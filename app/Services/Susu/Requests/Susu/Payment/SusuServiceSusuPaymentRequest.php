@@ -18,12 +18,11 @@ final class SusuServiceSusuPaymentRequest
         $this->service = new SusuService;
     }
 
-    public function execute(Customer $customer, array $payment_data): array
+    public function execute(Customer $customer, string $personal_susu, array $data): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.'customers/'.$customer->resource_id.'/susus/'.data_get(target: $payment_data, key: 'susu_account.resource_id').'/payments',
-            data: $this->getData(payment_data: $payment_data),
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/susus/'.$personal_susu.'/payments', data: $data)
+            ->json();
     }
 
     private function getData(array $payment_data): array

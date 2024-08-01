@@ -7,11 +7,11 @@ namespace App\Common;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountState;
+use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
+use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
 
 final class Helpers
 {
