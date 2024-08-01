@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuPayment\SusuPaymentApprovalAction;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuPayment\SusuTotalPaymentAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\PersonalSusu\Actions\Payment\PersonalSusuPaymentApprovalAction;
+use Domain\Susu\PersonalSusu\Actions\Payment\PersonalSusuPaymentFrequencyAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuAccountLiquidationState
@@ -19,8 +19,8 @@ final class GoalGetterSusuAccountLiquidationState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'total_payment', array: $user_inputs) => SusuTotalPaymentAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'confirmation', array: $user_inputs) => SusuPaymentApprovalAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'total_payment', array: $user_inputs) => PersonalSusuPaymentFrequencyAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'confirmation', array: $user_inputs) => PersonalSusuPaymentApprovalAction::execute(session: $session, session_data: $session_data),
 
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

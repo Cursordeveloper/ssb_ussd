@@ -10,18 +10,18 @@ use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\BizSusu\CreateBizSusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
-use App\Menus\ExistingCustomer\Susu\StartSusu\PersonalSusu\CreatePersonalSusuMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
 use App\Services\Susu\Requests\Customer\SusuServiceLinkAccountsRequest;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateFlexySave\CreateFlexySusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateGoalGetterSusu\CreateGoalGetterSusuState;
-use App\States\ExistingCustomer\Susu\StartSusu\CreatePersonalSusu\CreatePersonalSusuState;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\PersonalSusu\Menus\Susu\PersonalSusuCreateMenu;
+use Domain\Susu\PersonalSusu\States\Susu\PersonalSusuCreateState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StartSusuState
@@ -46,7 +46,7 @@ final class StartSusuState
 
         // Define a mapping between customer input and states
         $stateMappings = [
-            '1' => ['class' => new CreatePersonalSusuState, 'menu' => new CreatePersonalSusuMenu],
+            '1' => ['class' => new PersonalSusuCreateState, 'menu' => new PersonalSusuCreateMenu],
             '2' => ['class' => new CreateBizSusuState, 'menu' => new CreateBizSusuMenu],
             '3' => ['class' => new CreateGoalGetterSusuState, 'menu' => new CreateGoalGetterSusuMenu],
             '4' => ['class' => new CreateFlexySusuState, 'menu' => new CreateFlexySusuMenu],

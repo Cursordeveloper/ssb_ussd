@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Common;
+namespace Domain\Shared\Action\Susu;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;

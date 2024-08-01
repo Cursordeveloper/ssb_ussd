@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared;
+namespace Domain\Shared\States\Susu\Balance;
 
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuBalance\SusuBalanceAction;
 use Domain\Shared\Models\Session\Session;
