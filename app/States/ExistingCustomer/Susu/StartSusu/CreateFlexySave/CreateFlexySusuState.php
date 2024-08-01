@@ -10,8 +10,7 @@ use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuAcc
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuApprovalAction;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuFrequencyAction;
 use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuLinkedWalletAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuMaxAmountAction;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuMinAmountAction;
+use Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu\CreateFlexySusuSusuAmountAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -25,8 +24,7 @@ final class CreateFlexySusuState
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
             ! array_key_exists(key: 'account_name', array: $process_flow) => CreateFlexySusuAccountNameAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'min_amount', array: $process_flow) => CreateFlexySusuMinAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'max_amount', array: $process_flow) => CreateFlexySusuMaxAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'susu_amount', array: $process_flow) => CreateFlexySusuSusuAmountAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => CreateFlexySusuFrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'linked_wallet', array: $process_flow) => CreateFlexySusuLinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'accepted_terms', array: $process_flow) => CreateFlexySusuAcceptedTermsAction::execute(session: $session, session_data: $session_data),

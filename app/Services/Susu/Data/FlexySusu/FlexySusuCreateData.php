@@ -16,12 +16,8 @@ final class FlexySusuCreateData
                 // Resource exposed attributes
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
-
-                    'min_amount' => $user_inputs['min_amount'],
-                    'max_amount' => $user_inputs['max_amount'],
-
+                    'susu_amount' => $user_inputs['susu_amount'],
                     'frequency' => $user_inputs['frequency'],
-
                     'accepted_terms' => true,
                 ],
 

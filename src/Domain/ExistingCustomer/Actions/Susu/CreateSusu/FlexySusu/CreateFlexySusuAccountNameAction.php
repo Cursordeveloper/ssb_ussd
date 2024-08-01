@@ -19,6 +19,6 @@ final class CreateFlexySusuAccountNameAction
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_name' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
-        return CreateFlexySusuMenu::debitFrom(session: $session);
+        return CreateFlexySusuMenu::susuAmount(session: $session);
     }
 }
