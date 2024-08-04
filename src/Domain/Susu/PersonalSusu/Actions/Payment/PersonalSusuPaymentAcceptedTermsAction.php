@@ -32,7 +32,7 @@ final class PersonalSusuPaymentAcceptedTermsAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
-        $make_payment = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.resource_id'));
+        $make_payment = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
 
         // Terminate session if $get_balance request status is false
         if (data_get(target: $make_payment, key: 'code') !== 200) {

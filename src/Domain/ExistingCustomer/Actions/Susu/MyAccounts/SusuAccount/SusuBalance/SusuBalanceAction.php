@@ -29,7 +29,7 @@ final class SusuBalanceAction
         // Execute the createPersonalSusu HTTP request
         $balances = (new SusuServiceSusuBalanceRequest)->execute(
             customer: $customer,
-            susu_resource: data_get(target: $susu_account, key: 'susu_account.resource_id'),
+            susu_resource: data_get(target: $susu_account, key: 'susu_account.attributes.resource_id'),
             data: PinApprovalData::toArray($session_data->user_input),
         );
 

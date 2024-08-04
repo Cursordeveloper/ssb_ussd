@@ -38,8 +38,7 @@ final class SusuAccountAction
         // Prepare the and return the susu accounts
         if (! empty(data_get($susu, key: 'data'))) {
             // Update the SessionInputUpdateAction user_data field
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_account' => data_get(target: $susu, key: 'data.attributes')]);
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_scheme' => data_get(target: $susu, key: 'data.included.scheme.attributes')]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_account' => data_get(target: $susu, key: 'data')]);
 
             // Return the susuAccountsMenu
             return SusuAccountMenu::susuAccountMenu(session: $session, account_name: data_get(target: $susu, key: 'data.attributes.account_name'));
