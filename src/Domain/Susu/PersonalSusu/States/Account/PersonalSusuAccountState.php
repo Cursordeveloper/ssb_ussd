@@ -17,8 +17,10 @@ use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
+use Domain\Susu\PersonalSusu\Menus\Collection\PersonalSusuCollectionSummaryMenu;
 use Domain\Susu\PersonalSusu\Menus\Payment\PersonalSusuPaymentMenu;
 use Domain\Susu\PersonalSusu\Menus\Settlement\PersonalSusuSettlementMenu;
+use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementState;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,12 +33,13 @@ final class PersonalSusuAccountState
         $stateMappings = [
             '1' => ['state' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
             '2' => ['state' => new PersonalSusuPaymentState, 'menu' => new PersonalSusuPaymentMenu],
-
             '3' => ['state' => new PersonalSusuSettlementState, 'menu' => new PersonalSusuSettlementMenu],
 
-            '4' => ['state' => new SusuAccountMiniStatementState, 'menu' => new SusuAccountMiniStatementMenu],
-            '5' => ['state' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
-            '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
+            '4' => ['state' => new PersonalSusuCollectionSummaryState, 'menu' => new PersonalSusuCollectionSummaryMenu],
+
+            '5' => ['state' => new SusuAccountMiniStatementState, 'menu' => new SusuAccountMiniStatementMenu],
+            '6' => ['state' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
+            '7' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
 
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
