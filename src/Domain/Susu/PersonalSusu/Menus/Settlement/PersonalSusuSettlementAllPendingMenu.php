@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu;
+namespace Domain\Susu\PersonalSusu\Menus\Settlement;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class PersonalSusuAccountSettlementMenu
+final class PersonalSusuSettlementAllPendingMenu
 {
     public static function mainMenu($session): JsonResponse
     {

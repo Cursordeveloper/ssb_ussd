@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu;
+namespace Domain\Susu\PersonalSusu\States\Settlement;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalConfirmationAction;
@@ -10,7 +10,7 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Settlement\PersonalSusuSettlementPendingTotalCycleAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class FlexySusuAccountWithdrawalState
+final class PersonalSusuSettlementAllPendingState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -19,9 +19,8 @@ final class FlexySusuAccountWithdrawalState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'withdrawal_amount', array: $user_inputs) => PersonalSusuSettlementPendingTotalCycleAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'confirmation', array: $user_inputs) => SusuWithdrawalConfirmationAction::execute(session: $session, session_data: $session_data),
-
+            ! array_key_exists(key: 'total_settlement', array: $user_inputs) => PersonalSusuSettlementPendingTotalCycleAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'approval', array: $user_inputs) => SusuWithdrawalConfirmationAction::execute(session: $session, session_data: $session_data),
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

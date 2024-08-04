@@ -47,7 +47,7 @@ final class MySusuAccountsState
         // Execute the following actions if (SusuServiceSusuRequest) is successful
         if (data_get($susu_account, key: 'code') === 200) {
             // Update the [user_input] with the [susu_account] option selected
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_account' => data_get($susu_account, key: 'data.attributes')]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_account' => data_get($susu_account, key: 'data')]);
 
             // Build the SusuAccountMenu with the from the session->user_inputs
             $account_menu = Helpers::getSusuScheme(scheme_code: json_decode($session->user_inputs, associative: true)['scheme_code']);

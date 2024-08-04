@@ -80,7 +80,6 @@ use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexyS
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountLiquidationState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\PersonalSusu\PersonalSusuAccountSettlementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
@@ -98,6 +97,8 @@ use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
+use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementPendingState;
+use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementState;
 use Domain\Susu\PersonalSusu\States\Susu\PersonalSusuCreateState;
 
 final class StateClasses
@@ -134,7 +135,12 @@ final class StateClasses
             // PersonalSusuAccountState (Options: MySusuAccountsState)
             class_basename(new PersonalSusuAccountState) => new PersonalSusuAccountState,
             class_basename(new PersonalSusuPaymentState) => new PersonalSusuPaymentState,
-            class_basename(new PersonalSusuAccountSettlementState) => new PersonalSusuAccountSettlementState,
+            class_basename(new PersonalSusuSettlementState) => new PersonalSusuSettlementState,
+
+            // PersonalSusuSettlements
+            class_basename(new PersonalSusuSettlementPendingState) => new PersonalSusuSettlementPendingState,
+
+
 
 
 
