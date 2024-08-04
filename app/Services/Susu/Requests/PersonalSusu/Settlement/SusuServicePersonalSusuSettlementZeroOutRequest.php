@@ -8,7 +8,7 @@ use App\Services\Susu\SusuService;
 use Domain\Shared\Models\Customer\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class SusuServicePersonalSusuSettlementPendingApprovalRequest
+final class SusuServicePersonalSusuSettlementZeroOutRequest
 {
     public SusuService $service;
 
@@ -17,10 +17,10 @@ final class SusuServicePersonalSusuSettlementPendingApprovalRequest
         $this->service = new SusuService;
     }
 
-    public function execute(Customer $customer, array $data, string $susu_resource, string $settlement_resource): array
+    public function execute(Customer $customer, array $data, string $susu_resource): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
-            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/personal-susus/'.$susu_resource.'/settlements/'.$settlement_resource.'/approvals', data: $data)
+            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/personal-susus/'.$susu_resource.'/zero-outs/settlements', data: $data)
             ->json();
     }
 }
