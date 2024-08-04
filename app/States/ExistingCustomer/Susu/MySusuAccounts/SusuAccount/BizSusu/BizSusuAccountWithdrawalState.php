@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalAmountAction;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalConfirmationAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\PersonalSusu\Actions\Settlement\PersonalSusuSettlementPendingTotalCycleAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuAccountWithdrawalState
@@ -19,7 +19,7 @@ final class BizSusuAccountWithdrawalState
 
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'withdrawal_amount', array: $user_inputs) => SusuWithdrawalAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'withdrawal_amount', array: $user_inputs) => PersonalSusuSettlementPendingTotalCycleAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'confirmation', array: $user_inputs) => SusuWithdrawalConfirmationAction::execute(session: $session, session_data: $session_data),
 
             default => GeneralMenu::systemErrorNotification(session: $session),
