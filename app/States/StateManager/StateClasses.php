@@ -96,6 +96,7 @@ use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
+use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementAllPendingState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementPendingState;
@@ -143,6 +144,9 @@ final class StateClasses
             class_basename(new PersonalSusuSettlementPendingState) => new PersonalSusuSettlementPendingState,
             class_basename(new PersonalSusuSettlementAllPendingState) => new PersonalSusuSettlementAllPendingState,
             class_basename(new PersonalSusuSettlementZeroOutState) => new PersonalSusuSettlementZeroOutState,
+
+            // PersonalSusu collection states
+            class_basename(new PersonalSusuCollectionSummaryState) => new PersonalSusuCollectionSummaryState,
 
 
 
