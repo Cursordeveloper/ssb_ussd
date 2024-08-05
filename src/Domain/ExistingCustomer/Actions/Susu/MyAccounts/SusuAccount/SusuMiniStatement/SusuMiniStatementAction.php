@@ -26,22 +26,22 @@ final class SusuMiniStatementAction
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
-        $statements = (new SusuServiceSusuTransactionsRequest)->execute(
+        $transactions = (new SusuServiceSusuTransactionsRequest)->execute(
             customer: $customer,
             susu_resource: data_get(target: $susu_account, key: 'susu_account.attributes.resource_id'),
         );
 
-        // Terminate session if $get_balance request status is false
-        if (data_get(target: $statements, key: 'code') !== 200) {
+        // Terminate session if $transactions request status is false
+        if (data_get(target: $transactions, key: 'code') !== 200) {
             return GeneralMenu::invalidInput(session: $session);
         }
 
         // Terminate session if [$statements['data']] return info and terminate the session
-        if (empty(data_get($statements, key: 'data'))) {
+        if (empty(data_get($transactions, key: 'data'))) {
             return SusuMiniStatementMenu::susuNoMiniStatementMenu(session: $session);
         }
 
         // Prepare the and return the susu accounts
-        return SusuMiniStatementMenu::susuMiniStatementMenu(session: $session);
+        return SusuMiniStatementMenu::susuMiniStatementMenu(session: $session, transactions: $transactions);
     }
 }
