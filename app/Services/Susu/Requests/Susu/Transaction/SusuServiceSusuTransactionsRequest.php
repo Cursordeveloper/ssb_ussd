@@ -17,11 +17,10 @@ final class SusuServiceSusuTransactionsRequest
         $this->service = new SusuService;
     }
 
-    public function execute(Customer $customer, string $susu_resource, array $data): array
+    public function execute(Customer $customer, string $susu_resource): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.'customers/'.$customer->resource_id.'/susus/'.$susu_resource.'/transactions',
-            data: $data,
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->get(url: $this->service->base_url.'customers/'.$customer->resource_id.'/susus/'.$susu_resource.'/transactions')
+            ->json();
     }
 }

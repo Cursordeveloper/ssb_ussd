@@ -81,7 +81,6 @@ use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\F
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountLiquidationState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu\CreateBizSusuState;
@@ -103,6 +102,7 @@ use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementPendingStat
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementZeroOutState;
 use Domain\Susu\PersonalSusu\States\Susu\PersonalSusuCreateState;
+use Domain\Susu\Shared\States\SusuMiniStatementState;
 
 final class StateClasses
 {
@@ -169,7 +169,7 @@ final class StateClasses
 
             // SusuAccountState shared (Options)
             class_basename(new SusuAccountBalanceState) => new SusuAccountBalanceState,
-            class_basename(new SusuAccountMiniStatementState) => new SusuAccountMiniStatementState,
+            class_basename(new SusuMiniStatementState) => new SusuMiniStatementState,
             class_basename(new SusuAccountPauseState) => new SusuAccountPauseState,
             class_basename(new SusuAccountCloseState) => new SusuAccountCloseState,
 

@@ -8,19 +8,19 @@ use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
+use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
+use Domain\Susu\Shared\States\SusuMiniStatementState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuAccountState
@@ -32,7 +32,7 @@ final class SusuAccountState
             '1' => ['class' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
             '2' => ['class' => new FlexySusuAccountPaymentState, 'menu' => new FlexySusuAccountPaymentMenu],
             '3' => ['class' => new FlexySusuAccountWithdrawalState, 'menu' => new FlexySusuAccountWithdrawalMenu],
-            '4' => ['class' => new SusuAccountMiniStatementState, 'menu' => new SusuAccountMiniStatementMenu],
+            '4' => ['class' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['class' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
             '6' => ['class' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
             '0' => ['class' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],

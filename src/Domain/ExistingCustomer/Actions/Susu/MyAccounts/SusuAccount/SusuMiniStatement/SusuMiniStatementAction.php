@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuMiniStatement;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountMiniStatementMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\Transaction\SusuServiceSusuTransactionsRequest;
-use Domain\ExistingCustomer\Data\Common\PinApprovalData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuMiniStatementAction
@@ -29,8 +28,7 @@ final class SusuMiniStatementAction
         // Execute the createPersonalSusu HTTP request
         $statements = (new SusuServiceSusuTransactionsRequest)->execute(
             customer: $customer,
-            susu_resource: data_get(target: $susu_account, key: 'susu_account.resource_id'),
-            data: PinApprovalData::toArray($session_data->user_input),
+            susu_resource: data_get(target: $susu_account, key: 'susu_account.attributes.resource_id'),
         );
 
         // Terminate session if $get_balance request status is false
@@ -40,10 +38,10 @@ final class SusuMiniStatementAction
 
         // Terminate session if [$statements['data']] return info and terminate the session
         if (empty(data_get($statements, key: 'data'))) {
-            return SusuAccountMiniStatementMenu::susuNoMiniStatementMenu(session: $session);
+            return SusuMiniStatementMenu::susuNoMiniStatementMenu(session: $session);
         }
 
         // Prepare the and return the susu accounts
-        return SusuAccountMiniStatementMenu::susuMiniStatementMenu(session: $session);
+        return SusuMiniStatementMenu::susuMiniStatementMenu(session: $session);
     }
 }
