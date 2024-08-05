@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared;
+namespace Domain\Susu\Shared\Menus;
 
 use App\Common\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuAccountMiniStatementMenu
+final class SusuMiniStatementMenu
 {
     public static function mainMenu($session): JsonResponse
     {
