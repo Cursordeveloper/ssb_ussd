@@ -169,7 +169,6 @@ final class StateClasses
 
             // SusuAccountState shared (Options)
             class_basename(new SusuAccountBalanceState) => new SusuAccountBalanceState,
-            class_basename(new SusuMiniStatementState) => new SusuMiniStatementState,
             class_basename(new SusuAccountPauseState) => new SusuAccountPauseState,
             class_basename(new SusuAccountCloseState) => new SusuAccountCloseState,
 
@@ -316,6 +315,9 @@ final class StateClasses
 
             // LinkedWalletState
             class_basename(new LinkedWalletState) => new LinkedWalletState,
+
+            // Susu shared states
+            class_basename(new SusuMiniStatementState) => new SusuMiniStatementState,
         ];
     }
 }
