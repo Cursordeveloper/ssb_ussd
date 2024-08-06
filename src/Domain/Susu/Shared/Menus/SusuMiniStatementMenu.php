@@ -23,7 +23,7 @@ final class SusuMiniStatementMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: Transactions::formatTransactionsForMenu(data_get(target: $transactions, key: 'data')).'0. Next',
+            message: Transactions::formatTransactionsForMenu(data_get(target: $transactions, key: 'data')).'#. Next or 0 Back',
             session_id: $session->session_id,
         );
     }

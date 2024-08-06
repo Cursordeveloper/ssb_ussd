@@ -29,6 +29,7 @@ final class WelcomeState
             $isNotActive => ['class' => new ExistingCustomerState, 'menu' => (new ExistingCustomerMenu)::inactiveAccount(session: $session)],
             $hasPin => ['class' => new RegistrationState, 'menu' => (new RegistrationMenu)::choosePin(session: $session)],
             $isActive => ['class' => new ExistingCustomerState, 'menu' => (new ExistingCustomerMenu)::mainMenu(session: $session)],
+
             default => ['class' => new NewCustomerState, 'menu' => (new NewCustomerMenu)::mainMenu(session: $session)],
         };
 
