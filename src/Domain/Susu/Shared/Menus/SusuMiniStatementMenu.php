@@ -28,6 +28,15 @@ final class SusuMiniStatementMenu
         );
     }
 
+    public static function susuMiniStatementEndMenu($session, $transactions): JsonResponse
+    {
+        // Prepare and return the narration
+        return ResponseBuilder::infoResponseBuilder(
+            message: Transactions::formatTransactionsForMenu(data_get(target: $transactions, key: 'data')),
+            session_id: $session->session_id,
+        );
+    }
+
     public static function susuNoMiniStatementMenu($session): JsonResponse
     {
         // Prepare and return the narration
