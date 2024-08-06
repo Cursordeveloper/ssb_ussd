@@ -6,6 +6,7 @@ namespace Domain\Susu\Shared\States;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuMiniStatement\SusuMiniStatementAction;
+use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
@@ -20,15 +21,18 @@ final class SusuMiniStatementState
         // Get the process flow array from the customer session (user inputs)
         $user_inputs = json_decode($session->user_inputs, associative: true);
 
+        // Get the customer
+        $customer = GetCustomerAction::execute($session->phone_number);
+
         // Execute the SessionInputUpdateAction, SusuMiniStatementAction and return the transactions
         if (! array_key_exists(key: 'approval', array: $user_inputs)) {
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true, 'page' => 1]);
-            return SusuMiniStatementAction::execute(session: $session, user_inputs: $user_inputs);
+            return SusuMiniStatementAction::newTransaction(session: $session, customer: $customer, user_inputs: $user_inputs);
         }
 
         // Execute the SusuMiniStatementAction and return the transactions
         if ($session_data->user_input === '#') {
-            return SusuMiniStatementAction::execute(session: $session, user_inputs: $user_inputs);
+            return SusuMiniStatementAction::nextTransaction(session: $session, customer: $customer, user_inputs: $user_inputs, page: data_get(target: $user_inputs, key: 'page'));
         }
 
         // If the user_input is '0', return back to PersonalSusuAccountState
