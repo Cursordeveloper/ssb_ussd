@@ -8,15 +8,15 @@ use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountPaymentMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountWithdrawalMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
+use Domain\Susu\PersonalSusu\Menus\Pause\PersonalSusuCollectionPauseMenu;
+use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
 use Domain\Susu\Shared\States\SusuMiniStatementState;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,7 +33,7 @@ final class BizSusuAccountState
             '3' => ['state' => new BizSusuAccountWithdrawalState, 'menu' => new BizSusuAccountWithdrawalMenu],
 
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
-            '5' => ['state' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
+            '5' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
             '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
 
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Common;
+namespace Domain\Susu\Shared\Actions;
 
 use App\Common\Helpers;
 use App\Common\SusuResources;

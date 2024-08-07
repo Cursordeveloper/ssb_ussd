@@ -6,19 +6,19 @@ namespace Domain\Susu\PersonalSusu\States\Account;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
 use Domain\Susu\PersonalSusu\Menus\Collection\PersonalSusuCollectionSummaryMenu;
+use Domain\Susu\PersonalSusu\Menus\Pause\PersonalSusuCollectionPauseMenu;
 use Domain\Susu\PersonalSusu\Menus\Payment\PersonalSusuPaymentMenu;
 use Domain\Susu\PersonalSusu\Menus\Settlement\PersonalSusuSettlementMenu;
 use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
+use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementState;
 use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
@@ -35,10 +35,9 @@ final class PersonalSusuAccountState
             '2' => ['state' => new PersonalSusuPaymentState, 'menu' => new PersonalSusuPaymentMenu],
             '3' => ['state' => new PersonalSusuSettlementState, 'menu' => new PersonalSusuSettlementMenu],
             '4' => ['state' => new PersonalSusuCollectionSummaryState, 'menu' => new PersonalSusuCollectionSummaryMenu],
-
             '5' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
 
-            '6' => ['state' => new SusuAccountPauseState, 'menu' => new SusuAccountPauseMenu],
+            '6' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
             '7' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
 
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],

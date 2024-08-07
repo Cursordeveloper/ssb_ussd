@@ -7,10 +7,10 @@ namespace App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu;
 use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
-use Domain\ExistingCustomer\Actions\Common\GetSusuDurationsAction;
-use Domain\ExistingCustomer\Actions\Common\GetSusuFrequenciesAction;
-use Domain\ExistingCustomer\Actions\Common\GetSusuStartDatesAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Actions\GetSusuDurationsAction;
+use Domain\Susu\Shared\Actions\GetSusuFrequenciesAction;
+use Domain\Susu\Shared\Actions\GetSusuStartDatesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateGoalGetterSusuMenu
