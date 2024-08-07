@@ -81,7 +81,6 @@ use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\F
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountLiquidationState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountPauseState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateBizSusu\CreateBizSusuState;
 use App\States\ExistingCustomer\Susu\StartSusu\CreateFlexySave\CreateFlexySusuState;
@@ -96,6 +95,7 @@ use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
 use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
+use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementAllPendingState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementPendingState;
@@ -112,16 +112,13 @@ final class StateClasses
             // NewCustomerState (Options: RegistrationState, AboutSusuboxState, TermsAndConditionsState)
             class_basename(new NewCustomerState) => new NewCustomerState,
 
-
             // NewCustomerState
             class_basename(new RegistrationState) => new RegistrationState,
             class_basename(new AboutSusuboxState) => new AboutSusuboxState,
             class_basename(new TermsAndConditionsState) => new TermsAndConditionsState,
 
-
             // ExistingCustomerState (Options: SusuState, LoanState, InvestmentState, InsuranceState, PensionState)
             class_basename(new ExistingCustomerState) => new ExistingCustomerState,
-
 
             // SusuState (Options: MySusuAccountsState, StartSusuState, AboutSusuState, SusuTermsState)
             class_basename(new SusuState) => new SusuState,
@@ -135,6 +132,8 @@ final class StateClasses
             // MySusuAccountsState (Options: SusuAccountState)
             class_basename(new SusuAccountState) => new SusuAccountState,
 
+
+
             // PersonalSusuAccountState (Options: MySusuAccountsState)
             class_basename(new PersonalSusuAccountState) => new PersonalSusuAccountState,
             class_basename(new PersonalSusuPaymentState) => new PersonalSusuPaymentState,
@@ -147,6 +146,10 @@ final class StateClasses
 
             // PersonalSusu collection states
             class_basename(new PersonalSusuCollectionSummaryState) => new PersonalSusuCollectionSummaryState,
+            class_basename(new PersonalSusuCollectionPauseState) => new PersonalSusuCollectionPauseState,
+
+
+
 
 
 
@@ -169,7 +172,6 @@ final class StateClasses
 
             // SusuAccountState shared (Options)
             class_basename(new SusuAccountBalanceState) => new SusuAccountBalanceState,
-            class_basename(new SusuAccountPauseState) => new SusuAccountPauseState,
             class_basename(new SusuAccountCloseState) => new SusuAccountCloseState,
 
             // StartSusuState (Options)
