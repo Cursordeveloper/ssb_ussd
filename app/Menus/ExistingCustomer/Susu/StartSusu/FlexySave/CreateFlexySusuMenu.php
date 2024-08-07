@@ -7,8 +7,8 @@ namespace App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave;
 use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
-use Domain\ExistingCustomer\Actions\Common\GetSusuFrequenciesAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Actions\GetSusuFrequenciesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateFlexySusuMenu
