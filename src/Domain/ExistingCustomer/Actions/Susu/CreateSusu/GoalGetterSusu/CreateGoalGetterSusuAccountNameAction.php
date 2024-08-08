@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\GoalGetterSusu;
 
-use App\Menus\ExistingCustomer\Susu\StartSusu\GoalGetterSusu\CreateGoalGetterSusuMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\GoalGetterSusu\Menus\Susu\GoalGetterSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateGoalGetterSusuAccountNameAction
@@ -19,6 +19,6 @@ final class CreateGoalGetterSusuAccountNameAction
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_name' => $session_data->user_input]);
 
         // Return the enterSusuAmountMenu
-        return CreateGoalGetterSusuMenu::targetAmountMenu(session: $session);
+        return GoalGetterSusuCreateMenu::targetAmountMenu(session: $session);
     }
 }
