@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Actions\Payment;
+namespace Domain\Susu\BizSusu\Actions\Payment;
 
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\Data\PersonalSusu\Payment\SusuServicePersonalSusuPaymentData;
-use App\Services\Susu\Requests\PersonalSusu\Payment\SusuServicePersonalSusuPaymentRequest;
+use App\Services\Susu\Data\BizSusu\Payment\SusuServiceBizSusuPaymentFrequencyData;
+use App\Services\Susu\Requests\BizSusu\Payment\SusuServiceBizSusuPaymentFrequencyRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Menus\Payment\PersonalSusuPaymentMenu;
+use Domain\Susu\Shared\Menus\SusuPaymentMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class PersonalSusuPaymentAcceptedTermsAction
+final class BizSusuPaymentFrequencyAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -31,8 +31,8 @@ final class PersonalSusuPaymentAcceptedTermsAction
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the createPersonalSusu HTTP request
-        $response = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
+        // Execute the SusuServiceBizSusuPaymentFrequencyRequest HTTP request and return the response
+        $response = (new SusuServiceBizSusuPaymentFrequencyRequest)->execute(customer: $customer, data: SusuServiceBizSusuPaymentFrequencyData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
 
         // Terminate session if $get_balance request status is false
         if (data_get(target: $response, key: 'code') !== 200) {
@@ -43,6 +43,6 @@ final class PersonalSusuPaymentAcceptedTermsAction
         SessionInputUpdateAction::updateUserData(session: $session, user_data: ['payment_data' => data_get(target: $response, key: 'data.attributes')]);
 
         // Return the noSususAccount
-        return PersonalSusuPaymentMenu::narrationMenu(session: $session, payment_data: $response);
+        return SusuPaymentMenu::paymentFrequencyNarrationMenu(session: $session, payment_data: $response);
     }
 }
