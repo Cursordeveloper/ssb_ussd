@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
 
-use App\Menus\ExistingCustomer\Susu\StartSusu\FlexySave\CreateFlexySusuMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\FlexySusu\FlexySusuCreateData;
 use App\Services\Susu\Requests\FlexySusu\FlexySusuCreateRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\FlexySusu\Menus\Susu\FlexySusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateFlexySusuAcceptedTermsAction
@@ -33,7 +33,7 @@ final class CreateFlexySusuAcceptedTermsAction
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
 
             // Return the confirmTermsConditionsMenu
-            return CreateFlexySusuMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
+            return FlexySusuCreateMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
         }
 
         // Return system error menu

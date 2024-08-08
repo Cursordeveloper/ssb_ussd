@@ -2,29 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
+namespace Domain\Susu\BizSusu\Actions\Create;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\FlexySusu\Menus\Susu\FlexySusuCreateMenu;
+use Domain\Susu\BizSusu\Menus\Susu\BizSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateFlexySusuFrequencyAction
+final class BizSusuCreateFrequencyAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Get the frequencies
+        // Get the frequencies from the $session->user_data
         $frequencies = json_decode($session->user_data, associative: true)['frequencies'];
 
         // Return the invalidFrequencyMenu if user_input is not in $frequencies
         if (! array_key_exists(key: $session_data->user_input, array: $frequencies)) {
-            return FlexySusuCreateMenu::invalidFrequencyMenu(session: $session);
+            // return the invalid frequencyMenu
+            return BizSusuCreateMenu::invalidFrequencyMenu(session: $session);
         }
 
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]['code']]);
 
-        // Return the enterSusuAmountMenu
-        return FlexySusuCreateMenu::linkedWalletMenu(session: $session);
+        // Return the chooseLinkedWalletMenu
+        return BizSusuCreateMenu::linkedWalletMenu(session: $session);
     }
 }
