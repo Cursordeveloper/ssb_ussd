@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Domain\Susu\BizSusu\States\Withdrawal;
 
 use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalConfirmationAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Actions\Withdrawal\BizSusuWithdrawalApprovalAction;
 use Domain\Susu\BizSusu\Actions\Withdrawal\BizSusuWithdrawalFullAcceptedTermsAction;
 use Domain\Susu\BizSusu\Actions\Withdrawal\BizSusuWithdrawalFullConfirmationAction;
-use Domain\Susu\PersonalSusu\Actions\Settlement\PersonalSusuSettlementPendingTotalCycleAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuWithdrawalFullState

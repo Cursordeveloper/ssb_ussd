@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\BizSusu\Actions\Withdrawal;
+namespace Domain\Susu\BizSusu\Actions\Pause;
 
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\Data\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalFullData;
-use App\Services\Susu\Requests\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalFullRequest;
+use App\Services\Susu\Data\BizSusu\Pause\SusuServiceBizSusuCollectionPauseData;
+use App\Services\Susu\Requests\BizSusu\Pause\SusuServiceBizSusuCollectionPauseRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Menus\SusuWithdrawalMenu;
+use Domain\Susu\BizSusu\Menus\Pause\BizSusuCollectionPauseMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class BizSusuWithdrawalFullAcceptedTermsAction
+final class BizSusuCollectionPauseAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -31,8 +31,12 @@ final class BizSusuWithdrawalFullAcceptedTermsAction
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the SusuServiceBizSusuWithdrawalFullRequest HTTP request and return the response
-        $response = (new SusuServiceBizSusuWithdrawalFullRequest)->execute(customer: $customer, data: SusuServiceBizSusuWithdrawalFullData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
+        // Execute the SusuServicePersonalSusuCollectionPauseRequest HTTP request
+        $response = (new SusuServiceBizSusuCollectionPauseRequest)->execute(
+            customer: $customer,
+            data: SusuServiceBizSusuCollectionPauseData::toArray(user_inputs: $user_inputs),
+            susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id')
+        );
 
         // Terminate session if $get_balance request status is false
         if (data_get(target: $response, key: 'code') !== 200) {
@@ -40,9 +44,9 @@ final class BizSusuWithdrawalFullAcceptedTermsAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_data' => data_get(target: $response, key: 'data.attributes')]);
+        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['collection_pause_data' => data_get(target: $response, key: 'data.attributes')]);
 
-        // Return the SusuWithdrawalMenu and return the withdrawalNarrationMenu
-        return SusuWithdrawalMenu::withdrawalNarrationMenu(session: $session, withdrawal_data: $response);
+        // Return the BizSusuCollectionPauseMenu and return the narrationMenu JsonResponse
+        return BizSusuCollectionPauseMenu::narrationMenu(session: $session, response: $response);
     }
 }

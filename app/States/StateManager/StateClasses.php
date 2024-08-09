@@ -88,6 +88,7 @@ use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
+use Domain\Susu\BizSusu\States\Pause\BizSusuCollectionPauseState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentAmountState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentFrequencyState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
@@ -164,6 +165,8 @@ final class StateClasses
 
             class_basename(new BizSusuWithdrawalPartialState) => new BizSusuWithdrawalPartialState,
             class_basename(new BizSusuWithdrawalFullState) => new BizSusuWithdrawalFullState,
+
+            class_basename(new BizSusuCollectionPauseState) => new BizSusuCollectionPauseState,
 
 
 
