@@ -37,7 +37,9 @@ final class PersonalSusuAccountState
             '4' => ['state' => new PersonalSusuCollectionSummaryState, 'menu' => new PersonalSusuCollectionSummaryMenu],
             '5' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '6' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
+
             '7' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
+
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 
