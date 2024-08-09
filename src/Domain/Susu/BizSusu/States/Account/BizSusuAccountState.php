@@ -29,14 +29,15 @@ final class BizSusuAccountState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['state' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
-            '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
-
             '2' => ['state' => new BizSusuPaymentState, 'menu' => new BizSusuPaymentMenu],
+
             '3' => ['state' => new BizSusuAccountWithdrawalState, 'menu' => new BizSusuAccountWithdrawalMenu],
+            
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
             '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
 
+            '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 
         // Check if the customer input is a valid option

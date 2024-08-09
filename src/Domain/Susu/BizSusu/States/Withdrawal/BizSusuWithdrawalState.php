@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu;
+namespace Domain\Susu\BizSusu\States\Withdrawal;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalConfirmationAction;
