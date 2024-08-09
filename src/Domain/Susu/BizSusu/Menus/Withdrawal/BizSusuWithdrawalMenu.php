@@ -5,25 +5,25 @@ declare(strict_types=1);
 namespace Domain\Susu\BizSusu\Menus\Withdrawal;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class BizSusuAccountWithdrawalMenu
+final class BizSusuWithdrawalMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
+        // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter amount:',
+            message: "Choose payment type\n1. Withdraw own amount\n2. Full withdrawal",
             session_id: $session->session_id,
         );
     }
 
-    public static function narrationMenu($session): JsonResponse
+    public static function invalidMainMenu(Session $session): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
+        // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Withdrawal Amount: GHS'.$user_inputs['withdrawal_amount'].'. Susubox Commission: GHS2.00. Enter pin to confirm or 2 to Cancel.',
+            message: "Invalid choice, try again\n1. Withdraw own amount\n2. Full withdrawal",
             session_id: $session->session_id,
         );
     }

@@ -4,25 +4,36 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\States\Withdrawal;
 
-use App\Menus\Shared\GeneralMenu;
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuWithdrawal\SusuWithdrawalConfirmationAction;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Actions\Settlement\PersonalSusuSettlementPendingTotalCycleAction;
+use Domain\Susu\BizSusu\Menus\Withdrawal\BizSusuWithdrawalFullMenu;
+use Domain\Susu\BizSusu\Menus\Withdrawal\BizSusuWithdrawalMenu;
+use Domain\Susu\BizSusu\Menus\Withdrawal\BizSusuWithdrawalPartialMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class BizSusuAccountWithdrawalState
+final class BizSusuWithdrawalState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
+        // Define a mapping between customer input and states
+        $stateMappings = [
+            '1' => ['state' => new BizSusuWithdrawalPartialState, 'menu' => new BizSusuWithdrawalPartialMenu],
+            '2' => ['state' => new BizSusuWithdrawalFullState, 'menu' => new BizSusuWithdrawalFullMenu],
+        ];
 
-        // Evaluate the process flow and execute the corresponding action
-        return match (true) {
-            ! array_key_exists(key: 'withdrawal_amount', array: $user_inputs) => PersonalSusuSettlementPendingTotalCycleAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'confirmation', array: $user_inputs) => SusuWithdrawalConfirmationAction::execute(session: $session, session_data: $session_data),
+        // Check if the customer input is a valid option
+        if (array_key_exists($session_data->user_input, $stateMappings)) {
+            // Get the customer option state
+            $payment_type_state = $stateMappings[$session_data->user_input];
 
-            default => GeneralMenu::systemErrorNotification(session: $session),
-        };
+            // Update the customer session action
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($payment_type_state['state']), session_data: $session_data);
+
+            // Execute the state
+            return $payment_type_state['menu']::mainMenu(session: $session);
+        }
+
+        // Return the invalidMainMenu
+        return BizSusuWithdrawalMenu::invalidMainMenu(session: $session);
     }
 }

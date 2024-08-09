@@ -72,8 +72,6 @@ use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuSchemes\AboutSusuSchemes
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuWithdrawals\AboutSusuWithdrawalsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountWithdrawalState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
@@ -89,10 +87,14 @@ use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
+use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentAmountState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentFrequencyState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
 use Domain\Susu\BizSusu\States\Susu\BizSusuCreateState;
+use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalFullState;
+use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalPartialState;
+use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\FlexySusu\States\Susu\FlexySusuCreateState;
 use Domain\Susu\GoalGetterSusu\States\Susu\GoalGetterSusuCreateState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
@@ -155,10 +157,13 @@ final class StateClasses
             class_basename(new BizSusuCreateState) => new BizSusuCreateState,
             class_basename(new BizSusuAccountState) => new BizSusuAccountState,
             class_basename(new BizSusuPaymentState) => new BizSusuPaymentState,
-            class_basename(new BizSusuAccountWithdrawalState) => new BizSusuAccountWithdrawalState,
+            class_basename(new BizSusuWithdrawalState) => new BizSusuWithdrawalState,
 
             class_basename(new BizSusuPaymentFrequencyState) => new BizSusuPaymentFrequencyState,
             class_basename(new BizSusuPaymentAmountState) => new BizSusuPaymentAmountState,
+
+            class_basename(new BizSusuWithdrawalPartialState) => new BizSusuWithdrawalPartialState,
+            class_basename(new BizSusuWithdrawalFullState) => new BizSusuWithdrawalFullState,
 
 
 
