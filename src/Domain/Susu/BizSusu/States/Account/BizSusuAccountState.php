@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu;
+namespace Domain\Susu\BizSusu\States\Account;
 
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\BizSusu\BizSusuAccountWithdrawalMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
@@ -15,7 +14,9 @@ use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\BizSusu\Menus\Payment\BizSusuPaymentMenu;
+use Domain\Susu\BizSusu\Menus\Withdrawal\BizSusuWithdrawalMenu;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
+use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\PersonalSusu\Menus\Pause\PersonalSusuCollectionPauseMenu;
 use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
@@ -29,14 +30,15 @@ final class BizSusuAccountState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['state' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
-            '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
-
             '2' => ['state' => new BizSusuPaymentState, 'menu' => new BizSusuPaymentMenu],
-            '3' => ['state' => new BizSusuAccountWithdrawalState, 'menu' => new BizSusuAccountWithdrawalMenu],
+
+            '3' => ['state' => new BizSusuWithdrawalState, 'menu' => new BizSusuWithdrawalMenu],
+
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
             '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
 
+            '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 
         // Check if the customer input is a valid option
