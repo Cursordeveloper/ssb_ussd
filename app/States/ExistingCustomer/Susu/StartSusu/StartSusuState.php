@@ -14,14 +14,14 @@ use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\BizSusu\Menus\Susu\BizSusuCreateMenu;
-use Domain\Susu\BizSusu\States\Susu\BizSusuCreateState;
-use Domain\Susu\FlexySusu\Menus\Susu\FlexySusuCreateMenu;
-use Domain\Susu\FlexySusu\States\Susu\FlexySusuCreateState;
-use Domain\Susu\GoalGetterSusu\Menus\Susu\GoalGetterSusuCreateMenu;
-use Domain\Susu\GoalGetterSusu\States\Susu\GoalGetterSusuCreateState;
-use Domain\Susu\PersonalSusu\Menus\Susu\PersonalSusuCreateMenu;
-use Domain\Susu\PersonalSusu\States\Susu\PersonalSusuCreateState;
+use Domain\Susu\BizSusu\Menus\Create\BizSusuCreateMenu;
+use Domain\Susu\BizSusu\States\Create\BizSusuCreateState;
+use Domain\Susu\FlexySusu\Menus\Create\FlexySusuCreateMenu;
+use Domain\Susu\FlexySusu\States\Create\FlexySusuCreateState;
+use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
+use Domain\Susu\GoalGetterSusu\States\Create\GoalGetterSusuCreateState;
+use Domain\Susu\PersonalSusu\Menus\Create\PersonalSusuCreateMenu;
+use Domain\Susu\PersonalSusu\States\Create\PersonalSusuCreateState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StartSusuState

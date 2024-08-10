@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
+use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
+use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuAccountWithdrawalMenu;
+use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuAccountWithdrawalState;
 use Domain\Susu\PersonalSusu\Menus\Pause\PersonalSusuCollectionPauseMenu;
 use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
-use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
-use Domain\Susu\Shared\States\SusuMiniStatementState;
+use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
+use Domain\Susu\Shared\Menus\Statement\SusuMiniStatementMenu;
+use Domain\Susu\Shared\States\MySusuAccounts\MySusuAccountsState;
+use Domain\Susu\Shared\States\Statement\SusuMiniStatementState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuAccountState
@@ -53,6 +53,6 @@ final class FlexySusuAccountState
         }
 
         // Return the invalidMainMenu
-        return SusuAccountMenu::invalidMainMenu(session: $session);
+        return FlexySusuAccountMenu::invalidMainMenu(session: $session);
     }
 }

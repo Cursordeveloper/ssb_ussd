@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\SusuServiceSusuRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuAccountAction
