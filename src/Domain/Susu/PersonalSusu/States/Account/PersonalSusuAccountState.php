@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\States\Account;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
@@ -21,8 +19,10 @@ use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryStat
 use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementState;
-use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
-use Domain\Susu\Shared\States\SusuMiniStatementState;
+use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
+use Domain\Susu\Shared\Menus\Statement\SusuMiniStatementMenu;
+use Domain\Susu\Shared\States\MySusuAccounts\MySusuAccountsState;
+use Domain\Susu\Shared\States\Statement\SusuMiniStatementState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuAccountState

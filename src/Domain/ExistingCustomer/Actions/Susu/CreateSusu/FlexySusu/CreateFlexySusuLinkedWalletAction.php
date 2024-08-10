@@ -7,7 +7,7 @@ namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\FlexySusu\Menus\Susu\FlexySusuCreateMenu;
+use Domain\Susu\FlexySusu\Menus\Create\FlexySusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CreateFlexySusuLinkedWalletAction

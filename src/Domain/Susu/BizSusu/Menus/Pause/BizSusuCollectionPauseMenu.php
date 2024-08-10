@@ -21,6 +21,7 @@ final class BizSusuCollectionPauseMenu
         // Match statement to determine the menu to return
         return match (true) {
             data_get(target: $user_inputs, key: 'susu_account.attributes.collection_status') === 'paused' => self::collectionPausedMenu(session: $session),
+
             default => self::durationMenu(session: $session)
         };
     }

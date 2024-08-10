@@ -71,14 +71,9 @@ use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuFeesCharges\AboutSusuFee
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuSchemes\AboutSusuSchemesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuWithdrawals\AboutSusuWithdrawalsState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountPaymentState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\FlexySusuAccountWithdrawalState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountLiquidationState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\GoalGetterSusu\GoalGetterSusuAccountState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountState;
 use App\States\ExistingCustomer\Susu\StartSusu\StartSusuState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
@@ -88,26 +83,33 @@ use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
 use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
+use Domain\Susu\BizSusu\States\Create\BizSusuCreateState;
 use Domain\Susu\BizSusu\States\Pause\BizSusuCollectionPauseState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentAmountState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentFrequencyState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
-use Domain\Susu\BizSusu\States\Susu\BizSusuCreateState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalFullState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalPartialState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
-use Domain\Susu\FlexySusu\States\Susu\FlexySusuCreateState;
-use Domain\Susu\GoalGetterSusu\States\Susu\GoalGetterSusuCreateState;
+use Domain\Susu\FlexySusu\States\Create\FlexySusuCreateState;
+use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuAccountWithdrawalState;
+use Domain\Susu\GoalGetterSusu\States\Account\GoalGetterSusuAccountState;
+use Domain\Susu\GoalGetterSusu\States\Create\GoalGetterSusuCreateState;
+use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentAmountState;
+use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentFrequencyState;
+use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentState;
+use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
 use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
+use Domain\Susu\PersonalSusu\States\Create\PersonalSusuCreateState;
 use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementAllPendingState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementPendingState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementZeroOutState;
-use Domain\Susu\PersonalSusu\States\Susu\PersonalSusuCreateState;
-use Domain\Susu\Shared\States\SusuMiniStatementState;
+use Domain\Susu\Shared\States\MySusuAccounts\MySusuAccountsState;
+use Domain\Susu\Shared\States\Statement\SusuMiniStatementState;
 
 final class StateClasses
 {
@@ -134,10 +136,6 @@ final class StateClasses
             class_basename(new AboutSusuState) => new AboutSusuState,
             class_basename(new SusuTermsState) => new SusuTermsState,
 
-            // MySusuAccountsState (Options: SusuAccountState)
-            class_basename(new SusuAccountState) => new SusuAccountState,
-
-
 
             // PersonalSusu account state
             class_basename(new PersonalSusuCreateState) => new PersonalSusuCreateState,
@@ -156,31 +154,37 @@ final class StateClasses
 
             // BizSusu account states
             class_basename(new BizSusuCreateState) => new BizSusuCreateState,
-            class_basename(new BizSusuAccountState) => new BizSusuAccountState,
-            class_basename(new BizSusuPaymentState) => new BizSusuPaymentState,
-            class_basename(new BizSusuWithdrawalState) => new BizSusuWithdrawalState,
 
+            class_basename(new BizSusuAccountState) => new BizSusuAccountState,
+
+            class_basename(new BizSusuPaymentState) => new BizSusuPaymentState,
             class_basename(new BizSusuPaymentFrequencyState) => new BizSusuPaymentFrequencyState,
             class_basename(new BizSusuPaymentAmountState) => new BizSusuPaymentAmountState,
 
+            class_basename(new BizSusuWithdrawalState) => new BizSusuWithdrawalState,
             class_basename(new BizSusuWithdrawalPartialState) => new BizSusuWithdrawalPartialState,
             class_basename(new BizSusuWithdrawalFullState) => new BizSusuWithdrawalFullState,
 
             class_basename(new BizSusuCollectionPauseState) => new BizSusuCollectionPauseState,
 
 
+            // GoalGetterSusu account states
+            class_basename(new GoalGetterSusuCreateState) => new GoalGetterSusuCreateState,
 
-
-
-
-
-
-
-
-
-            // GoalGetterSusuAccountState (Options: MySusuAccountsState)
             class_basename(new GoalGetterSusuAccountState) => new GoalGetterSusuAccountState,
-            class_basename(new GoalGetterSusuAccountLiquidationState) => new GoalGetterSusuAccountLiquidationState,
+
+            class_basename(new GoalGetterSusuPaymentState) => new GoalGetterSusuPaymentState,
+            class_basename(new GoalGetterSusuPaymentFrequencyState) => new GoalGetterSusuPaymentFrequencyState,
+            class_basename(new GoalGetterSusuPaymentAmountState) => new GoalGetterSusuPaymentAmountState,
+
+            class_basename(new GoalGetterSusuWithdrawalState) => new GoalGetterSusuWithdrawalState,
+
+
+
+
+
+
+
 
             // FlexySusuAccountState (Options: MySusuAccountsState)
             class_basename(new FlexySusuAccountState) => new FlexySusuAccountState,
@@ -192,7 +196,6 @@ final class StateClasses
             class_basename(new SusuAccountCloseState) => new SusuAccountCloseState,
 
             // StartSusuState (Options)
-            class_basename(new GoalGetterSusuCreateState) => new GoalGetterSusuCreateState,
             class_basename(new FlexySusuCreateState) => new FlexySusuCreateState,
 
             // AboutSusuStates (Options)

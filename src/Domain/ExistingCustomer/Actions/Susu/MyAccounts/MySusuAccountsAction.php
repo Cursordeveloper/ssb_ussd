@@ -6,12 +6,12 @@ namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts;
 
 use App\Common\Helpers;
 use App\Common\SusuAccounts;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\SusuServiceSususRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MySusuAccountsAction

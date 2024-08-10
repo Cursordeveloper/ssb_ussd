@@ -10,7 +10,7 @@ use App\Services\Susu\Requests\Susu\Transaction\SusuServiceSusuTransactionsReque
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
+use Domain\Susu\Shared\Menus\Statement\SusuMiniStatementMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuMiniStatementAction
