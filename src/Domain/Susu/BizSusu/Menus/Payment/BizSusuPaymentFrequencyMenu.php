@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Susu\BizSusu\Menus\Payment;
 
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Menus\SusuPaymentMenu;
+use Domain\Susu\Shared\Menus\Payment\SusuPaymentMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuPaymentFrequencyMenu

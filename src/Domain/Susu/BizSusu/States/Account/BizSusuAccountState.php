@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\States\Account;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\SusuAccountMenu;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Menus\Susu\Balance\SusuAccountBalanceMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\Susu\Balance\SusuAccountBalanceState;
+use Domain\Susu\BizSusu\Menus\Account\BizSusuAccountMenu;
 use Domain\Susu\BizSusu\Menus\Pause\BizSusuCollectionPauseMenu;
 use Domain\Susu\BizSusu\Menus\Payment\BizSusuPaymentMenu;
 use Domain\Susu\BizSusu\Menus\Withdrawal\BizSusuWithdrawalMenu;
 use Domain\Susu\BizSusu\States\Pause\BizSusuCollectionPauseState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
-use Domain\Susu\Shared\Menus\SusuMiniStatementMenu;
-use Domain\Susu\Shared\States\SusuMiniStatementState;
+use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
+use Domain\Susu\Shared\Menus\Statement\SusuMiniStatementMenu;
+use Domain\Susu\Shared\States\MySusuAccounts\MySusuAccountsState;
+use Domain\Susu\Shared\States\Statement\SusuMiniStatementState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuAccountState
@@ -34,7 +34,7 @@ final class BizSusuAccountState
             '3' => ['state' => new BizSusuWithdrawalState, 'menu' => new BizSusuWithdrawalMenu],
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['state' => new BizSusuCollectionPauseState, 'menu' => new BizSusuCollectionPauseMenu],
-            
+
             '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
 
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
@@ -53,6 +53,6 @@ final class BizSusuAccountState
         }
 
         // Return the invalidMainMenu
-        return SusuAccountMenu::invalidMainMenu(session: $session);
+        return BizSusuAccountMenu::invalidMainMenu(session: $session);
     }
 }

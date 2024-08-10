@@ -10,7 +10,7 @@ use App\Services\Susu\Requests\BizSusu\Payment\SusuServiceBizSusuPaymentAmountRe
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Menus\SusuPaymentMenu;
+use Domain\Susu\Shared\Menus\Payment\SusuPaymentMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuPaymentAmountAcceptedTermsAction

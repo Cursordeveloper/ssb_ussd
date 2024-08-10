@@ -6,17 +6,17 @@ namespace App\States\ExistingCustomer\Susu;
 
 use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\ExistingCustomer\Susu\AboutSusu\AboutSusuMenu;
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
 use App\Menus\ExistingCustomer\Susu\SusuTerms\SusuTermsMenu;
 use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\MySusuAccountsState;
 use App\States\ExistingCustomer\Susu\StartSusu\StartSusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
+use Domain\Susu\Shared\States\MySusuAccounts\MySusuAccountsState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuState
