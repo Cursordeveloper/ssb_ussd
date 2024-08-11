@@ -71,7 +71,6 @@ use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuFeesCharges\AboutSusuFee
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuSchemes\AboutSusuSchemesState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuState;
 use App\States\ExistingCustomer\Susu\AboutSusu\AboutSusuWithdrawals\AboutSusuWithdrawalsState;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use App\States\ExistingCustomer\Susu\StartSusu\StartSusuState;
 use App\States\ExistingCustomer\Susu\SusuState;
 use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
@@ -90,6 +89,7 @@ use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalPartialState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\FlexySusu\States\Account\FlexySusuAccountState;
 use Domain\Susu\FlexySusu\States\Create\FlexySusuCreateState;
+use Domain\Susu\FlexySusu\States\Pause\FlexySusuCollectionPauseState;
 use Domain\Susu\FlexySusu\States\Payment\FlexySusuPaymentState;
 use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalFullState;
 use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalPartialState;
@@ -103,9 +103,11 @@ use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalFullSta
 use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalPartialState;
 use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
-use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
+use Domain\Susu\PersonalSusu\States\Collection\Pause\PersonalSusuCollectionPauseState;
+use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionState;
+use Domain\Susu\PersonalSusu\States\Collection\Summary\PersonalSusuCollectionSummaryState;
 use Domain\Susu\PersonalSusu\States\Create\PersonalSusuCreateState;
-use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
+use Domain\Susu\PersonalSusu\States\Lock\PersonalSusuAccountLockState;
 use Domain\Susu\PersonalSusu\States\Payment\PersonalSusuPaymentState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementAllPendingState;
 use Domain\Susu\PersonalSusu\States\Settlement\PersonalSusuSettlementPendingState;
@@ -152,8 +154,11 @@ final class StateClasses
             class_basename(new PersonalSusuSettlementAllPendingState) => new PersonalSusuSettlementAllPendingState,
             class_basename(new PersonalSusuSettlementZeroOutState) => new PersonalSusuSettlementZeroOutState,
 
+            class_basename(new PersonalSusuCollectionState) => new PersonalSusuCollectionState,
             class_basename(new PersonalSusuCollectionSummaryState) => new PersonalSusuCollectionSummaryState,
             class_basename(new PersonalSusuCollectionPauseState) => new PersonalSusuCollectionPauseState,
+
+            class_basename(new PersonalSusuAccountLockState) => new PersonalSusuAccountLockState,
 
 
             // BizSusu account states
@@ -195,6 +200,8 @@ final class StateClasses
             class_basename(new FlexySusuWithdrawalState) => new FlexySusuWithdrawalState,
             class_basename(new FlexySusuWithdrawalPartialState) => new FlexySusuWithdrawalPartialState,
             class_basename(new FlexySusuWithdrawalFullState) => new FlexySusuWithdrawalFullState,
+
+            class_basename(new FlexySusuCollectionPauseState) => new FlexySusuCollectionPauseState,
 
 
 

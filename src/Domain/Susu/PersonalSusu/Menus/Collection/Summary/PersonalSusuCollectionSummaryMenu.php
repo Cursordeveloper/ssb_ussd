@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Menus\Collection;
+namespace Domain\Susu\PersonalSusu\Menus\Collection\Summary;
 
 use App\Common\ResponseBuilder;
 use Domain\Shared\Models\Session\Session;
