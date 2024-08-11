@@ -9,7 +9,6 @@ use App\Common\LinkedWallets;
 use App\Menus\ExistingCustomer\MyAccount\LinkNewWallet\LinkNewWalletMenu;
 use App\Menus\ExistingCustomer\Susu\StartSusu\StartSusuMenu;
 use App\Services\Susu\Requests\Customer\SusuServiceLinkAccountsRequest;
-use Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes\GetSusuSchemesAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
@@ -22,6 +21,7 @@ use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
 use Domain\Susu\GoalGetterSusu\States\Create\GoalGetterSusuCreateState;
 use Domain\Susu\PersonalSusu\Menus\Create\PersonalSusuCreateMenu;
 use Domain\Susu\PersonalSusu\States\Create\PersonalSusuCreateState;
+use Domain\Susu\Shared\Actions\GetSusuSchemesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StartSusuState
