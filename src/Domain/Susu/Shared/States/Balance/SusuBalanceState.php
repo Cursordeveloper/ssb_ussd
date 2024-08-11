@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\Shared\States\Susu\Balance;
+namespace Domain\Susu\Shared\States\Balance;
 
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuBalance\SusuBalanceAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class SusuAccountBalanceState
+final class SusuBalanceState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {

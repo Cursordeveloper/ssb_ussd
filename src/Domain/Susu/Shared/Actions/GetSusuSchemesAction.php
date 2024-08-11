@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\SusuSchemes;
+namespace Domain\Susu\Shared\Actions;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Product\Product;
