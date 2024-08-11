@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Common;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountMenu;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\FlexySusu\FlexySusuAccountState;
 use Domain\Susu\BizSusu\Menus\Account\BizSusuAccountMenu;
 use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
+use Domain\Susu\FlexySusu\Menus\Account\FlexySusuAccountMenu;
+use Domain\Susu\FlexySusu\States\Account\FlexySusuAccountState;
 use Domain\Susu\GoalGetterSusu\Menus\Account\GoalGetterSusuAccountMenu;
 use Domain\Susu\GoalGetterSusu\States\Account\GoalGetterSusuAccountState;
 use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
