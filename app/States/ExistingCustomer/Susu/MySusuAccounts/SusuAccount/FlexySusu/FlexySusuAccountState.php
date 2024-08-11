@@ -32,7 +32,6 @@ final class FlexySusuAccountState
 
             '2' => ['state' => new FlexySusuAccountPaymentState, 'menu' => new FlexySusuAccountPaymentMenu],
             '3' => ['state' => new FlexySusuAccountWithdrawalState, 'menu' => new FlexySusuAccountWithdrawalMenu],
-
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
             '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
+namespace Domain\Susu\FlexySusu\Actions\Create;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
@@ -10,7 +10,7 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Create\FlexySusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateFlexySusuLinkedWalletAction
+final class FlexySusuCreateLinkedWalletAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
