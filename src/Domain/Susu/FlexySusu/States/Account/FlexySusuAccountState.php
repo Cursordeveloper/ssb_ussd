@@ -10,9 +10,9 @@ use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Account\FlexySusuAccountMenu;
 use Domain\Susu\FlexySusu\Menus\Payment\FlexySusuPaymentMenu;
-use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuAccountWithdrawalMenu;
+use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuWithdrawalMenu;
 use Domain\Susu\FlexySusu\States\Payment\FlexySusuPaymentState;
-use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuAccountWithdrawalState;
+use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalState;
 use Domain\Susu\PersonalSusu\Menus\Pause\PersonalSusuCollectionPauseMenu;
 use Domain\Susu\PersonalSusu\States\Pause\PersonalSusuCollectionPauseState;
 use Domain\Susu\Shared\Menus\Balance\SusuBalanceMenu;
@@ -30,9 +30,9 @@ final class FlexySusuAccountState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['state' => new SusuBalanceState, 'menu' => new SusuBalanceMenu],
-
             '2' => ['state' => new FlexySusuPaymentState, 'menu' => new FlexySusuPaymentMenu],
-            '3' => ['state' => new FlexySusuAccountWithdrawalState, 'menu' => new FlexySusuAccountWithdrawalMenu],
+
+            '3' => ['state' => new FlexySusuWithdrawalState, 'menu' => new FlexySusuWithdrawalMenu],
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['state' => new PersonalSusuCollectionPauseState, 'menu' => new PersonalSusuCollectionPauseMenu],
             '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],

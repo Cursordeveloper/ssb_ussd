@@ -91,7 +91,9 @@ use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\FlexySusu\States\Account\FlexySusuAccountState;
 use Domain\Susu\FlexySusu\States\Create\FlexySusuCreateState;
 use Domain\Susu\FlexySusu\States\Payment\FlexySusuPaymentState;
-use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuAccountWithdrawalState;
+use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalFullState;
+use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalPartialState;
+use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalState;
 use Domain\Susu\GoalGetterSusu\States\Account\GoalGetterSusuAccountState;
 use Domain\Susu\GoalGetterSusu\States\Create\GoalGetterSusuCreateState;
 use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentAmountState;
@@ -190,7 +192,9 @@ final class StateClasses
             class_basename(new FlexySusuAccountState) => new FlexySusuAccountState,
             class_basename(new FlexySusuPaymentState) => new FlexySusuPaymentState,
 
-            class_basename(new FlexySusuAccountWithdrawalState) => new FlexySusuAccountWithdrawalState,
+            class_basename(new FlexySusuWithdrawalState) => new FlexySusuWithdrawalState,
+            class_basename(new FlexySusuWithdrawalPartialState) => new FlexySusuWithdrawalPartialState,
+            class_basename(new FlexySusuWithdrawalFullState) => new FlexySusuWithdrawalFullState,
 
 
 
