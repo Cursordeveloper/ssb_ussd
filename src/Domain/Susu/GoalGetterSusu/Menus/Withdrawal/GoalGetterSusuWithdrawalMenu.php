@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\Menus\Withdrawal;
 
-use App\Common\ResponseBuilder;
+use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\Withdrawal\SusuWithdrawalMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuWithdrawalMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
-        // Return the account main menu
-        return ResponseBuilder::infoResponseBuilder(
-            message: 'Account liquidation features coming soon',
-            session_id: $session->session_id,
-        );
+        // Prepare and return the withdrawalMainMenu
+        return SusuWithdrawalMenu::mainMenu(session: $session);
+    }
+
+    public static function invalidMainMenu(Session $session): JsonResponse
+    {
+        // Prepare and return the withdrawalMainMenu
+        return SusuWithdrawalMenu::invalidMainMenu(session: $session);
     }
 }

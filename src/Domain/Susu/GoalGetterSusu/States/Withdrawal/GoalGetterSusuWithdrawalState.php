@@ -4,25 +4,39 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\States\Withdrawal;
 
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Actions\Payment\PersonalSusuPaymentApprovalAction;
-use Domain\Susu\PersonalSusu\Actions\Payment\PersonalSusuPaymentFrequencyAction;
+use Domain\Susu\GoalGetterSusu\Menus\Account\GoalGetterSusuAccountMenu;
+use Domain\Susu\GoalGetterSusu\Menus\Withdrawal\GoalGetterSusuWithdrawalFullMenu;
+use Domain\Susu\GoalGetterSusu\Menus\Withdrawal\GoalGetterSusuWithdrawalMenu;
+use Domain\Susu\GoalGetterSusu\Menus\Withdrawal\GoalGetterSusuWithdrawalPartialMenu;
+use Domain\Susu\GoalGetterSusu\States\Account\GoalGetterSusuAccountState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuWithdrawalState
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
+        // Define a mapping between customer input and states
+        $stateMappings = [
+            '1' => ['state' => new GoalGetterSusuWithdrawalPartialState, 'menu' => new GoalGetterSusuWithdrawalPartialMenu],
+            '2' => ['state' => new GoalGetterSusuWithdrawalFullState, 'menu' => new GoalGetterSusuWithdrawalFullMenu],
+            '0' => ['state' => new GoalGetterSusuAccountState, 'menu' => new GoalGetterSusuAccountMenu],
+        ];
 
-        // Evaluate the process flow and execute the corresponding action
-        return match (true) {
-            ! array_key_exists(key: 'total_payment', array: $user_inputs) => PersonalSusuPaymentFrequencyAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'confirmation', array: $user_inputs) => PersonalSusuPaymentApprovalAction::execute(session: $session, session_data: $session_data),
+        // Check if the customer input is a valid option
+        if (array_key_exists($session_data->user_input, $stateMappings)) {
+            // Get the customer option state
+            $payment_type_state = $stateMappings[$session_data->user_input];
 
-            default => GeneralMenu::systemErrorNotification(session: $session),
-        };
+            // Update the customer session action
+            UpdateSessionStateAction::execute(session: $session, state: class_basename($payment_type_state['state']), session_data: $session_data);
+
+            // Execute the state
+            return $payment_type_state['menu']::mainMenu(session: $session);
+        }
+
+        // Return the invalidMainMenu
+        return GoalGetterSusuWithdrawalMenu::invalidMainMenu(session: $session);
     }
 }

@@ -26,8 +26,8 @@ final class GoalGetterSusuAccountState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['state' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
-
             '2' => ['state' => new GoalGetterSusuPaymentState, 'menu' => new GoalGetterSusuPaymentMenu],
+
             '3' => ['state' => new GoalGetterSusuWithdrawalState, 'menu' => new GoalGetterSusuWithdrawalMenu],
 
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
