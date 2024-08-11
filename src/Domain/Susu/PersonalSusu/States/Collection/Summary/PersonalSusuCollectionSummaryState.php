@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\States\Collection;
+namespace Domain\Susu\PersonalSusu\States\Collection\Summary;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Actions\Collection\PersonalSusuCollectionSummaryApprovalAction;
+use Domain\Susu\PersonalSusu\Actions\Collection\Summary\PersonalSusuCollectionSummaryApprovalAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuCollectionSummaryState

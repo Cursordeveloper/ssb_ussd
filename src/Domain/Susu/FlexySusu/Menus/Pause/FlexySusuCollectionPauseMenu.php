@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Menus\Pause;
+namespace Domain\Susu\FlexySusu\Menus\Pause;
 
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
@@ -11,9 +11,9 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Actions\GetSusuDurationsAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class PersonalSusuCollectionPauseMenu
+final class FlexySusuCollectionPauseMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         // Get the process flow array from the customer session (user_inputs, user_data)
         $user_inputs = json_decode($session->user_inputs, associative: true);
@@ -21,11 +21,12 @@ final class PersonalSusuCollectionPauseMenu
         // Match statement to determine the menu to return
         return match (true) {
             data_get(target: $user_inputs, key: 'susu_account.attributes.collection_status') === 'paused' => self::collectionPausedMenu(session: $session),
+
             default => self::durationMenu(session: $session)
         };
     }
 
-    public static function collectionPausedMenu($session): JsonResponse
+    public static function collectionPausedMenu(Session $session): JsonResponse
     {
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
@@ -34,7 +35,7 @@ final class PersonalSusuCollectionPauseMenu
         );
     }
 
-    public static function durationMenu($session): JsonResponse
+    public static function durationMenu(Session $session): JsonResponse
     {
         // Execute the duration
         (new GetSusuDurationsAction)::execute(session: $session);
@@ -49,7 +50,7 @@ final class PersonalSusuCollectionPauseMenu
         );
     }
 
-    public static function invalidDurationMenu($session): JsonResponse
+    public static function invalidDurationMenu(Session $session): JsonResponse
     {
         // Get the durations from the session->user_data
         $durations = json_decode($session->user_data, associative: true);

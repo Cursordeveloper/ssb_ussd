@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\States\Account;
 
-use App\Menus\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseMenu;
-use App\States\ExistingCustomer\Susu\MySusuAccounts\SusuAccount\Shared\SusuAccountCloseState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Menus\Account\BizSusuAccountMenu;
@@ -34,9 +32,6 @@ final class BizSusuAccountState
             '3' => ['state' => new BizSusuWithdrawalState, 'menu' => new BizSusuWithdrawalMenu],
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
             '5' => ['state' => new BizSusuCollectionPauseState, 'menu' => new BizSusuCollectionPauseMenu],
-
-            '6' => ['state' => new SusuAccountCloseState, 'menu' => new SusuAccountCloseMenu],
-
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 
