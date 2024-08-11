@@ -10,6 +10,24 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuWithdrawalMenu
 {
+    public static function mainMenu(Session $session): JsonResponse
+    {
+        // Prepare and return the narration
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Choose payment type\n1. Withdraw own amount\n2. Full withdrawal\n0. Back",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidMainMenu(Session $session): JsonResponse
+    {
+        // Prepare and return the narration
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice, try again\n1. Withdraw own amount\n2. Full withdrawal\n0. Back",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function fullWithdrawalConfirmationMenu(Session $session): JsonResponse
     {
         // Get the process flow array from the customer session (user_inputs, user_data)

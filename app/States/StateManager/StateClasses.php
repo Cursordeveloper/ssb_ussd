@@ -98,6 +98,8 @@ use Domain\Susu\GoalGetterSusu\States\Create\GoalGetterSusuCreateState;
 use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentAmountState;
 use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentFrequencyState;
 use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentState;
+use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalFullState;
+use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalPartialState;
 use Domain\Susu\GoalGetterSusu\States\Withdrawal\GoalGetterSusuWithdrawalState;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
 use Domain\Susu\PersonalSusu\States\Collection\PersonalSusuCollectionSummaryState;
@@ -178,6 +180,8 @@ final class StateClasses
             class_basename(new GoalGetterSusuPaymentAmountState) => new GoalGetterSusuPaymentAmountState,
 
             class_basename(new GoalGetterSusuWithdrawalState) => new GoalGetterSusuWithdrawalState,
+            class_basename(new GoalGetterSusuWithdrawalPartialState) => new GoalGetterSusuWithdrawalPartialState,
+            class_basename(new GoalGetterSusuWithdrawalFullState) => new GoalGetterSusuWithdrawalFullState,
 
 
 
