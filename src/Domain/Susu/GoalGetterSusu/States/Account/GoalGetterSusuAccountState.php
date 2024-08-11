@@ -27,11 +27,8 @@ final class GoalGetterSusuAccountState
         $stateMappings = [
             '1' => ['state' => new SusuAccountBalanceState, 'menu' => new SusuAccountBalanceMenu],
             '2' => ['state' => new GoalGetterSusuPaymentState, 'menu' => new GoalGetterSusuPaymentMenu],
-
             '3' => ['state' => new GoalGetterSusuWithdrawalState, 'menu' => new GoalGetterSusuWithdrawalMenu],
-
             '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
-
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 

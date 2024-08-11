@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\ExistingCustomer\Actions\Susu\CreateSusu\FlexySusu;
+namespace Domain\Susu\FlexySusu\Actions\Create;
 
 use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\FlexySusu\FlexySusuApprovalRequest;
@@ -11,7 +11,7 @@ use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateFlexySusuApprovalAction
+final class FlexySusuCreateApprovalAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
