@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Requests\BizSusu\Pause;
+namespace App\Services\Susu\Requests\BizSusu\Collection\Pause;
 
 use App\Services\Susu\SusuService;
 use Domain\Shared\Models\Customer\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class SusuServiceBizSusuCollectionPauseRequest
+final class SusuServiceBizSusuCollectionPauseApprovalRequest
 {
     public SusuService $service;
 
@@ -17,10 +17,10 @@ final class SusuServiceBizSusuCollectionPauseRequest
         $this->service = new SusuService;
     }
 
-    public function execute(Customer $customer, array $data, string $susu_resource): array
+    public function execute(Customer $customer, array $data, string $susu_resource, string $pause_resource): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
-            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/biz-susus/'.$susu_resource.'/collections/pause', data: $data)
+            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/biz-susus/'.$susu_resource.'/collections/'.$pause_resource.'/approvals', data: $data)
             ->json();
     }
 }

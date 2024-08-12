@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\BizSusu\Menus\Pause;
+namespace Domain\Susu\BizSusu\Menus\Collection\Pause;
 
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
