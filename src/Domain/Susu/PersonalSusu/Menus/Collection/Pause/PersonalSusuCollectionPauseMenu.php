@@ -27,9 +27,12 @@ final class PersonalSusuCollectionPauseMenu
 
     public static function collectionPausedMenu($session): JsonResponse
     {
+        // Get the process flow array from the customer session (user_inputs, user_data)
+        $user_inputs = json_decode($session->user_inputs, associative: true);
+
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
-            message: 'The collections on this account has already been paused',
+            message: 'Collections on this account has been paused on: '.data_get(target: $user_inputs, key: 'susu_account.included.account_pause.attributes.paused_at').'. Resume on: '.data_get(target: $user_inputs, key: 'susu_account.included.account_pause.attributes.resumed_at'),
             session_id: $session->session_id,
         );
     }

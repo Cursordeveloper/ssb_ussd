@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Data\PersonalSusu\Pause;
+namespace App\Services\Susu\Data\PersonalSusu\Collection\Pause;
 
 final class SusuServicePersonalSusuCollectionPauseData
 {

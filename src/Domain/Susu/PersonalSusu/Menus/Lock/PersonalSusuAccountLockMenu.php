@@ -20,16 +20,19 @@ final class PersonalSusuAccountLockMenu
 
         // Match statement to determine the menu to return
         return match (true) {
-            data_get(target: $user_inputs, key: 'susu_account.attributes.collection_status') === 'paused' => self::collectionPausedMenu(session: $session),
+            data_get(target: $user_inputs, key: 'susu_account.attributes.settlement_status') === 'locked' => self::settlementLockedMenu(session: $session),
             default => self::durationMenu(session: $session)
         };
     }
 
-    public static function collectionPausedMenu($session): JsonResponse
+    public static function settlementLockedMenu($session): JsonResponse
     {
+        // Get the process flow array from the customer session (user_inputs, user_data)
+        $user_inputs = json_decode($session->user_inputs, associative: true);
+
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
-            message: 'The collections on this account has already been paused',
+            message: 'Settlements on this account has been locked on: '.data_get(target: $user_inputs, key: 'susu_account.included.account_lock.attributes.locked_at').'. Will be unlocked on: '.data_get(target: $user_inputs, key: 'susu_account.included.account_lock.attributes.unlocked_at'),
             session_id: $session->session_id,
         );
     }
@@ -64,7 +67,7 @@ final class PersonalSusuAccountLockMenu
     public static function narrationMenu(Session $session, array $response): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Pause date: '.Carbon::parse(data_get(target: $response, key: 'data.attributes.paused_at'))->isoFormat(format: 'MM/DD/YYYY').'. Resume date:'.Carbon::parse(data_get(target: $response, key: 'data.attributes.resumed_at'))->isoFormat(format: 'MM/DD/YYYY').'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Lock date: '.Carbon::parse(data_get(target: $response, key: 'data.attributes.locked_at'))->isoFormat(format: 'MM/DD/YYYY').'. Resume date:'.Carbon::parse(data_get(target: $response, key: 'data.attributes.unlocked_at'))->isoFormat(format: 'MM/DD/YYYY').'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
