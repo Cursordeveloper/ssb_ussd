@@ -16,7 +16,7 @@ final class BizSusuAccountMenu
 
         // Return the account main menu
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: data_get(target: $account_name, key: 'susu_account.business_name')."\n1. Check Balance\n2. Make Payment\n3. Withdrawal\n4. Mini Statement\n5. Pause Susu\n6. Close Susu\n0. Back",
+            message: data_get(target: $account_name, key: 'susu_account.business_name')."\n1. Check Balance\n2. Make Payment\n3. Withdrawals\n4. Collections\n5. Mini Statement\n6. Lock Account\n0. Back",
             session_id: $session->session_id,
         );
     }
@@ -25,7 +25,7 @@ final class BizSusuAccountMenu
     {
         // Return the account main menu
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n1. Check Balance\n2. Make Payment\n3. Withdrawal\n4. Mini Statement\n5. Pause Susu\n6. Close Susu\n0. Back",
+            message: "Invalid choice, try again\n1. Check Balance\n2. Make Payment\n3. Withdrawals\n4. Collections\n5. Mini Statement\n6. Lock Account\n0. Back",
             session_id: $session->session_id,
         );
     }
