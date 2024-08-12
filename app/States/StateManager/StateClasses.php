@@ -212,8 +212,6 @@ final class StateClasses
 
             // SusuAccountState shared (Options)
             class_basename(new SusuBalanceState) => new SusuBalanceState,
-            class_basename(new SusuAccountCloseState) => new SusuAccountCloseState,
-
 
 
 
