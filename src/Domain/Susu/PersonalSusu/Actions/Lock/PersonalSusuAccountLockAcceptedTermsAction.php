@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Actions\Collection\Pause;
+namespace Domain\Susu\PersonalSusu\Actions\Lock;
 
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\Data\PersonalSusu\Collection\Pause\SusuServicePersonalSusuCollectionPauseData;
-use App\Services\Susu\Requests\PersonalSusu\Collection\Pause\SusuServicePersonalSusuCollectionPauseRequest;
+use App\Services\Susu\Data\PersonalSusu\Lock\SusuServicePersonalSusuAccountLockData;
+use App\Services\Susu\Requests\PersonalSusu\Lock\SusuServicePersonalSusuAccountLockRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Menus\Collection\Pause\PersonalSusuCollectionPauseMenu;
+use Domain\Susu\PersonalSusu\Menus\Lock\PersonalSusuAccountLockMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class PersonalSusuCollectionPauseAcceptedTermsAction
+final class PersonalSusuAccountLockAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -31,12 +31,14 @@ final class PersonalSusuCollectionPauseAcceptedTermsAction
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the SusuServicePersonalSusuCollectionPauseRequest HTTP request
-        $response = (new SusuServicePersonalSusuCollectionPauseRequest)->execute(
+        // Execute the SusuServicePersonalSusuAccountLockRequest HTTP request
+        $response = (new SusuServicePersonalSusuAccountLockRequest)->execute(
             customer: $customer,
-            data: SusuServicePersonalSusuCollectionPauseData::toArray(user_inputs: $user_inputs),
+            data: SusuServicePersonalSusuAccountLockData::toArray(user_inputs: $user_inputs),
             susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id')
         );
+
+        logger($response);
 
         // Terminate session if $get_balance request status is false
         if (data_get(target: $response, key: 'code') !== 200) {
@@ -44,9 +46,9 @@ final class PersonalSusuCollectionPauseAcceptedTermsAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['collection_pause_data' => data_get(target: $response, key: 'data.attributes')]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_lock_data' => data_get(target: $response, key: 'data.attributes')]);
 
         // Return the noSususAccount
-        return PersonalSusuCollectionPauseMenu::narrationMenu(session: $session, response: $response);
+        return PersonalSusuAccountLockMenu::narrationMenu(session: $session, response: $response);
     }
 }
