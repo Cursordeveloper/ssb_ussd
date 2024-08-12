@@ -79,8 +79,11 @@ use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
 use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
+use Domain\Susu\BizSusu\States\Collection\BizSusuCollectionState;
+use Domain\Susu\BizSusu\States\Collection\Pause\BizSusuCollectionPauseState;
+use Domain\Susu\BizSusu\States\Collection\Summary\BizSusuCollectionSummaryState;
 use Domain\Susu\BizSusu\States\Create\BizSusuCreateState;
-use Domain\Susu\BizSusu\States\Pause\BizSusuCollectionPauseState;
+use Domain\Susu\BizSusu\States\Lock\BizSusuAccountLockState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentAmountState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentFrequencyState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
@@ -147,9 +150,10 @@ final class StateClasses
             class_basename(new PersonalSusuCreateState) => new PersonalSusuCreateState,
 
             class_basename(new PersonalSusuAccountState) => new PersonalSusuAccountState,
-            class_basename(new PersonalSusuPaymentState) => new PersonalSusuPaymentState,
-            class_basename(new PersonalSusuSettlementState) => new PersonalSusuSettlementState,
 
+            class_basename(new PersonalSusuPaymentState) => new PersonalSusuPaymentState,
+
+            class_basename(new PersonalSusuSettlementState) => new PersonalSusuSettlementState,
             class_basename(new PersonalSusuSettlementPendingState) => new PersonalSusuSettlementPendingState,
             class_basename(new PersonalSusuSettlementAllPendingState) => new PersonalSusuSettlementAllPendingState,
             class_basename(new PersonalSusuSettlementZeroOutState) => new PersonalSusuSettlementZeroOutState,
@@ -174,7 +178,11 @@ final class StateClasses
             class_basename(new BizSusuWithdrawalPartialState) => new BizSusuWithdrawalPartialState,
             class_basename(new BizSusuWithdrawalFullState) => new BizSusuWithdrawalFullState,
 
+            class_basename(new BizSusuCollectionState) => new BizSusuCollectionState,
+            class_basename(new BizSusuCollectionSummaryState) => new BizSusuCollectionSummaryState,
             class_basename(new BizSusuCollectionPauseState) => new BizSusuCollectionPauseState,
+
+            class_basename(new BizSusuAccountLockState) => new BizSusuAccountLockState,
 
 
             // GoalGetterSusu account states

@@ -7,10 +7,12 @@ namespace Domain\Susu\BizSusu\States\Account;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Menus\Account\BizSusuAccountMenu;
-use Domain\Susu\BizSusu\Menus\Pause\BizSusuCollectionPauseMenu;
+use Domain\Susu\BizSusu\Menus\Collection\BizSusuCollectionMenu;
+use Domain\Susu\BizSusu\Menus\Lock\BizSusuAccountLockMenu;
 use Domain\Susu\BizSusu\Menus\Payment\BizSusuPaymentMenu;
 use Domain\Susu\BizSusu\Menus\Withdrawal\BizSusuWithdrawalMenu;
-use Domain\Susu\BizSusu\States\Pause\BizSusuCollectionPauseState;
+use Domain\Susu\BizSusu\States\Collection\BizSusuCollectionState;
+use Domain\Susu\BizSusu\States\Lock\BizSusuAccountLockState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\Shared\Menus\Balance\SusuBalanceMenu;
@@ -30,8 +32,9 @@ final class BizSusuAccountState
             '1' => ['state' => new SusuBalanceState, 'menu' => new SusuBalanceMenu],
             '2' => ['state' => new BizSusuPaymentState, 'menu' => new BizSusuPaymentMenu],
             '3' => ['state' => new BizSusuWithdrawalState, 'menu' => new BizSusuWithdrawalMenu],
-            '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
-            '5' => ['state' => new BizSusuCollectionPauseState, 'menu' => new BizSusuCollectionPauseMenu],
+            '4' => ['state' => new BizSusuCollectionState, 'menu' => new BizSusuCollectionMenu],
+            '5' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
+            '6' => ['state' => new BizSusuAccountLockState, 'menu' => new BizSusuAccountLockMenu],
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 

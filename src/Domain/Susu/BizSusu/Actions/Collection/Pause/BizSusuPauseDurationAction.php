@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\BizSusu\Actions\Pause;
+namespace Domain\Susu\BizSusu\Actions\Collection\Pause;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\BizSusu\Menus\Pause\BizSusuCollectionPauseMenu;
+use Domain\Susu\BizSusu\Menus\Collection\Pause\BizSusuCollectionPauseMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuPauseDurationAction
