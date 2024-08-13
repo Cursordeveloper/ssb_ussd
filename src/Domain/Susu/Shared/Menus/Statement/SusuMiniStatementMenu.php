@@ -41,7 +41,7 @@ final class SusuMiniStatementMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::infoResponseBuilder(
-            message: 'Sorry! no transactions for this account.',
+            message: 'Sorry! no more transactions for this account.',
             session_id: $session->session_id,
         );
     }

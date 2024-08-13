@@ -38,8 +38,6 @@ final class PersonalSusuAccountLockAcceptedTermsAction
             susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id')
         );
 
-        logger($response);
-
         // Terminate session if $get_balance request status is false
         if (data_get(target: $response, key: 'code') !== 200) {
             return GeneralMenu::invalidInput(session: $session);

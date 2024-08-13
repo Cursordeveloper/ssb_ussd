@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\FlexySusu\States\Pause;
+namespace Domain\Susu\FlexySusu\States\Collection\Pause;
 
 use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\FlexySusu\Actions\Pause\FlexySusuCollectionPauseAcceptedTermsAction;
-use Domain\Susu\FlexySusu\Actions\Pause\FlexySusuCollectionPauseApprovalAction;
-use Domain\Susu\FlexySusu\Actions\Pause\FlexySusuPauseDurationAction;
+use Domain\Susu\FlexySusu\Actions\Collection\Pause\FlexySusuCollectionPauseAcceptedTermsAction;
+use Domain\Susu\FlexySusu\Actions\Collection\Pause\FlexySusuCollectionPauseApprovalAction;
+use Domain\Susu\FlexySusu\Actions\Collection\Pause\FlexySusuPauseDurationAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCollectionPauseState
