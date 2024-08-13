@@ -91,13 +91,18 @@ use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalFullState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalPartialState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\FlexySusu\States\Account\FlexySusuAccountState;
+use Domain\Susu\FlexySusu\States\Collection\FlexySusuCollectionState;
+use Domain\Susu\FlexySusu\States\Collection\Pause\FlexySusuCollectionPauseState;
 use Domain\Susu\FlexySusu\States\Create\FlexySusuCreateState;
-use Domain\Susu\FlexySusu\States\Pause\FlexySusuCollectionPauseState;
+use Domain\Susu\FlexySusu\States\Lock\FlexySusuAccountLockState;
 use Domain\Susu\FlexySusu\States\Payment\FlexySusuPaymentState;
 use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalFullState;
 use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalPartialState;
 use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalState;
 use Domain\Susu\GoalGetterSusu\States\Account\GoalGetterSusuAccountState;
+use Domain\Susu\GoalGetterSusu\States\Collection\Goal\GoalGetterSusuGoalSummaryState;
+use Domain\Susu\GoalGetterSusu\States\Collection\GoalGetterSusuCollectionState;
+use Domain\Susu\GoalGetterSusu\States\Collection\Summary\GoalGetterSusuCollectionSummaryState;
 use Domain\Susu\GoalGetterSusu\States\Create\GoalGetterSusuCreateState;
 use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentAmountState;
 use Domain\Susu\GoalGetterSusu\States\Payment\GoalGetterSusuPaymentFrequencyState;
@@ -194,6 +199,10 @@ final class StateClasses
             class_basename(new GoalGetterSusuPaymentFrequencyState) => new GoalGetterSusuPaymentFrequencyState,
             class_basename(new GoalGetterSusuPaymentAmountState) => new GoalGetterSusuPaymentAmountState,
 
+            class_basename(new GoalGetterSusuCollectionState) => new GoalGetterSusuCollectionState,
+            class_basename(new GoalGetterSusuCollectionSummaryState) => new GoalGetterSusuCollectionSummaryState,
+            class_basename(new GoalGetterSusuGoalSummaryState) => new GoalGetterSusuGoalSummaryState,
+
             class_basename(new GoalGetterSusuWithdrawalState) => new GoalGetterSusuWithdrawalState,
             class_basename(new GoalGetterSusuWithdrawalPartialState) => new GoalGetterSusuWithdrawalPartialState,
             class_basename(new GoalGetterSusuWithdrawalFullState) => new GoalGetterSusuWithdrawalFullState,
@@ -209,7 +218,10 @@ final class StateClasses
             class_basename(new FlexySusuWithdrawalPartialState) => new FlexySusuWithdrawalPartialState,
             class_basename(new FlexySusuWithdrawalFullState) => new FlexySusuWithdrawalFullState,
 
+            class_basename(new FlexySusuCollectionState) => new FlexySusuCollectionState,
             class_basename(new FlexySusuCollectionPauseState) => new FlexySusuCollectionPauseState,
+
+            class_basename(new FlexySusuAccountLockState) => new FlexySusuAccountLockState,
 
 
 

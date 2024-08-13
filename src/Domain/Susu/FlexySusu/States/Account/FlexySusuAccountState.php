@@ -7,10 +7,12 @@ namespace Domain\Susu\FlexySusu\States\Account;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Account\FlexySusuAccountMenu;
-use Domain\Susu\FlexySusu\Menus\Pause\FlexySusuCollectionPauseMenu;
+use Domain\Susu\FlexySusu\Menus\Collection\FlexySusuCollectionMenu;
+use Domain\Susu\FlexySusu\Menus\Lock\FlexySusuAccountLockMenu;
 use Domain\Susu\FlexySusu\Menus\Payment\FlexySusuPaymentMenu;
 use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuWithdrawalMenu;
-use Domain\Susu\FlexySusu\States\Pause\FlexySusuCollectionPauseState;
+use Domain\Susu\FlexySusu\States\Collection\FlexySusuCollectionState;
+use Domain\Susu\FlexySusu\States\Lock\FlexySusuAccountLockState;
 use Domain\Susu\FlexySusu\States\Payment\FlexySusuPaymentState;
 use Domain\Susu\FlexySusu\States\Withdrawal\FlexySusuWithdrawalState;
 use Domain\Susu\Shared\Menus\Balance\SusuBalanceMenu;
@@ -30,8 +32,9 @@ final class FlexySusuAccountState
             '1' => ['state' => new SusuBalanceState, 'menu' => new SusuBalanceMenu],
             '2' => ['state' => new FlexySusuPaymentState, 'menu' => new FlexySusuPaymentMenu],
             '3' => ['state' => new FlexySusuWithdrawalState, 'menu' => new FlexySusuWithdrawalMenu],
-            '4' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
-            '5' => ['state' => new FlexySusuCollectionPauseState, 'menu' => new FlexySusuCollectionPauseMenu],
+            '4' => ['state' => new FlexySusuCollectionState, 'menu' => new FlexySusuCollectionMenu],
+            '5' => ['state' => new SusuMiniStatementState, 'menu' => new SusuMiniStatementMenu],
+            '6' => ['state' => new FlexySusuAccountLockState, 'menu' => new FlexySusuAccountLockMenu],
             '0' => ['state' => new MySusuAccountsState, 'menu' => new MySusuAccountsMenu],
         ];
 

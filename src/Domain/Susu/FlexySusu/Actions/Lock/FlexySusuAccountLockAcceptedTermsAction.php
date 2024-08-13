@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\BizSusu\Actions\Lock;
+namespace Domain\Susu\FlexySusu\Actions\Lock;
 
 use App\Menus\Shared\GeneralMenu;
-use App\Services\Susu\Data\BizSusu\Lock\SusuServiceBizSusuAccountLockData;
-use App\Services\Susu\Requests\BizSusu\Lock\SusuServiceBizSusuAccountLockRequest;
+use App\Services\Susu\Data\FlexySusu\Lock\SusuServiceFlexySusuAccountLockData;
+use App\Services\Susu\Requests\FlexySusu\Lock\SusuServiceFlexySusuAccountLockRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\BizSusu\Menus\Lock\BizSusuAccountLockMenu;
+use Domain\Susu\FlexySusu\Menus\Lock\FlexySusuAccountLockMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class BizSusuAccountLockAcceptedTermsAction
+final class FlexySusuAccountLockAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -31,10 +31,10 @@ final class BizSusuAccountLockAcceptedTermsAction
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the SusuServiceBizSusuAccountLockRequest HTTP request
-        $response = (new SusuServiceBizSusuAccountLockRequest)->execute(
+        // Execute the SusuServiceFlexySusuAccountLockRequest HTTP request
+        $response = (new SusuServiceFlexySusuAccountLockRequest)->execute(
             customer: $customer,
-            data: SusuServiceBizSusuAccountLockData::toArray(user_inputs: $user_inputs),
+            data: SusuServiceFlexySusuAccountLockData::toArray(user_inputs: $user_inputs),
             susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id')
         );
 
@@ -47,6 +47,6 @@ final class BizSusuAccountLockAcceptedTermsAction
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_lock_data' => data_get(target: $response, key: 'data.attributes')]);
 
         // Return the noSususAccount
-        return BizSusuAccountLockMenu::narrationMenu(session: $session, response: $response);
+        return FlexySusuAccountLockMenu::narrationMenu(session: $session, response: $response);
     }
 }
