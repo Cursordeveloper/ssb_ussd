@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Data\FlexySusu\Pause;
+namespace App\Services\Susu\Data\FlexySusu\Lock;
 
-final class SusuServiceFlexySusuCollectionPauseData
+final class SusuServiceFlexySusuAccountLockData
 {
     public static function toArray(array $user_inputs): array
     {
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'AccountPause',
+                'type' => 'AccountLock',
 
                 // Resource exposed attributes
                 'attributes' => [

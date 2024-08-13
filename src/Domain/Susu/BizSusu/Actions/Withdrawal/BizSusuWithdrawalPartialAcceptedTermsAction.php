@@ -40,7 +40,7 @@ final class BizSusuWithdrawalPartialAcceptedTermsAction
         }
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['withdrawal_data' => data_get(target: $response, key: 'data.attributes')]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_data' => data_get(target: $response, key: 'data.attributes')]);
 
         // Return the withdrawalAmountNarrationMenu
         return SusuWithdrawalMenu::withdrawalNarrationMenu(session: $session, withdrawal_data: $response);

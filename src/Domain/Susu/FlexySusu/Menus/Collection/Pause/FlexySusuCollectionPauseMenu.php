@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\FlexySusu\Menus\Pause;
+namespace Domain\Susu\FlexySusu\Menus\Collection\Pause;
 
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCollectionPauseMenu
 {
-    public static function mainMenu(Session $session): JsonResponse
+    public static function mainMenu($session): JsonResponse
     {
         // Get the process flow array from the customer session (user_inputs, user_data)
         $user_inputs = json_decode($session->user_inputs, associative: true);
@@ -26,7 +26,7 @@ final class FlexySusuCollectionPauseMenu
         };
     }
 
-    public static function collectionPausedMenu(Session $session): JsonResponse
+    public static function collectionPausedMenu($session): JsonResponse
     {
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
@@ -35,7 +35,7 @@ final class FlexySusuCollectionPauseMenu
         );
     }
 
-    public static function durationMenu(Session $session): JsonResponse
+    public static function durationMenu($session): JsonResponse
     {
         // Execute the duration
         (new GetSusuDurationsAction)::execute(session: $session);
@@ -50,7 +50,7 @@ final class FlexySusuCollectionPauseMenu
         );
     }
 
-    public static function invalidDurationMenu(Session $session): JsonResponse
+    public static function invalidDurationMenu($session): JsonResponse
     {
         // Get the durations from the session->user_data
         $durations = json_decode($session->user_data, associative: true);
