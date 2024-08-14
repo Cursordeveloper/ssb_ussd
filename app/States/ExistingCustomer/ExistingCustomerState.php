@@ -30,12 +30,12 @@ final class ExistingCustomerState
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new SusuState, 'menu' => new SusuMenu],
-            '2' => ['class' => new LoanState, 'menu' => new LoanMenu],
-            '3' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
-            '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
-            '5' => ['class' => new PensionState, 'menu' => new PensionMenu],
-            '6' => ['class' => new AboutSusuboxState, 'menu' => new AboutSusuboxMenu],
-            '7' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
+            //            '2' => ['class' => new LoanState, 'menu' => new LoanMenu],
+            //            '3' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
+            //            '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
+            //            '5' => ['class' => new PensionState, 'menu' => new PensionMenu],
+            '2' => ['class' => new AboutSusuboxState, 'menu' => new AboutSusuboxMenu],
+            '3' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];
 
         // Check if the customer input is a valid option
