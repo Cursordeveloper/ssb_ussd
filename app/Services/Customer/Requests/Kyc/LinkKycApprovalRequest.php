@@ -19,9 +19,8 @@ final class LinkKycApprovalRequest
 
     public function execute(Customer $customer, string $kyc_resource, array $data): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.$customer->resource_id.'/kycs/'.$kyc_resource.'/approval',
-            data: $data,
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.$customer->resource_id.'/kycs/'.$kyc_resource.'/approvals', data: $data)
+            ->json();
     }
 }

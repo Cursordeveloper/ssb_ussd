@@ -17,10 +17,7 @@ final class ApprovalAction
     public static function execute(Session $session, $session_data, array $user_inputs): JsonResponse
     {
         // Execute the SessionInputUpdateAction
-        SessionInputUpdateAction::updateUserInputs(
-            session: $session,
-            user_input: ['approval' => true],
-        );
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true]);
 
         // Get the customer
         $customer = GetCustomerAction::execute(resource: $session->phone_number);

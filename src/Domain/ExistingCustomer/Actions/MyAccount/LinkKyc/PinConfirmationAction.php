@@ -26,11 +26,11 @@ final class PinConfirmationAction
         $response = (new LinkKycApprovalRequest)->execute(customer: $customer, kyc_resource: $user_inputs['kyc_resource_id'], data: LinkKycApprovalData::toArray(pin: $session_data->user_input));
 
         // Return requestNotification if request is successful
-        if (data_get(target: $response, key: 'status') === true) {
+        if (data_get(target: $response, key: 'code') === 200) {
             return GeneralMenu::requestNotification(session: $session);
         }
 
         // Return the invalidInput
-        return GeneralMenu::invalidInput(session: $session->session_id);
+        return GeneralMenu::invalidInput(session: $session);
     }
 }
