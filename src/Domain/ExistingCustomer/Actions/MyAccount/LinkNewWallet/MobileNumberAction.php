@@ -24,10 +24,7 @@ final class MobileNumberAction
         $customer = GetCustomerAction::execute(resource: $session->phone_number);
 
         // Send request
-        $response = (new LinkNewAccountRequest)->execute(
-            customer: $customer,
-            data: LinkNewAccountData::toArray(phone_number: $session_data->user_input, resource_id: $steps_data['scheme_resource_id']),
-        );
+        $response = (new LinkNewAccountRequest)->execute(customer: $customer, data: LinkNewAccountData::toArray(phone_number: $session_data->user_input, resource_id: $steps_data['scheme_resource_id']));
 
         // Return the enterPinMenu if status is true
         if (data_get(target: $response, key: 'code') === 200) {

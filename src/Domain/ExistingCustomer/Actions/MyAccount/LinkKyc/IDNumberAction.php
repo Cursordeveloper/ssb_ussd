@@ -27,7 +27,7 @@ final class IDNumberAction
         $response = (new LinkKycRequest)->execute(customer: $customer, data: LinkKycData::toArray(id_number: $session_data->user_input));
 
         // Return the enterPinMenu if status is true
-        if (data_get(target: $response, key: 'status') === true) {
+        if (data_get(target: $response, key: 'code') === 200) {
             // Execute the SessionInputUpdateAction
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['kyc_resource_id' => data_get(target: $response, key: 'data.attributes.resource_id')]);
 
