@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menus\Shared;
+namespace Domain\Shared\Menus;
 
 use App\Common\ResponseBuilder;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;

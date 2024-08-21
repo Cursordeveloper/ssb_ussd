@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\States\Collection\Pause;
 
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Collection\Pause\PersonalSusuCollectionPauseAcceptedTermsAction;
 use Domain\Susu\PersonalSusu\Actions\Collection\Pause\PersonalSusuCollectionPauseApprovalAction;

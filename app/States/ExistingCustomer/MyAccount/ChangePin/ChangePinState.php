@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\MyAccount\ChangePin;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\ConfirmNewPinAction;
 use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\CurrentPinAction;
 use Domain\ExistingCustomer\Actions\MyAccount\ChangePin\NewPinAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

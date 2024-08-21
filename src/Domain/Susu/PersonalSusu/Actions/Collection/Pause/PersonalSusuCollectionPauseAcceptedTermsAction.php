@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\Actions\Collection\Pause;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\PersonalSusu\Collection\Pause\SusuServicePersonalSusuCollectionPauseData;
 use App\Services\Susu\Requests\PersonalSusu\Collection\Pause\SusuServicePersonalSusuCollectionPauseRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Collection\Pause\PersonalSusuCollectionPauseMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

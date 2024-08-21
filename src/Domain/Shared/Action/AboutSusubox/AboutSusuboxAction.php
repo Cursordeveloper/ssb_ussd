@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Action\AboutSusubox;
 
-use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

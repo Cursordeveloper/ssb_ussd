@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\States\StateManager;
+namespace Domain\Shared\Services;
 
-use App\Menus\Shared\GeneralMenu;
+use App\States\StateManager\StateClasses;
+use Domain\Shared\Menus\GeneralMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class ExecuteState
+final class ExecuteStateService
 {
     public static function execute($customer_session, $session, $state_data): JsonResponse
     {

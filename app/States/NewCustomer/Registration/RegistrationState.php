@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\States\NewCustomer\Registration;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\NewCustomer\Actions\Registration\CustomerCreateAction;
 use Domain\NewCustomer\Actions\Registration\CustomerCreatePinAction;
 use Domain\NewCustomer\Actions\Registration\CustomerUpdateAcceptedTermsAction;
 use Domain\NewCustomer\Actions\Registration\CustomerUpdateLastNameAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

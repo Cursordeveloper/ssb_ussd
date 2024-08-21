@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\Actions\Payment;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\FlexySusu\Payment\SusuServiceFlexySusuPaymentAmountData;
 use App\Services\Susu\Requests\FlexySusu\Payment\SusuServiceFlexySusuPaymentAmountRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Payment\SusuPaymentMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

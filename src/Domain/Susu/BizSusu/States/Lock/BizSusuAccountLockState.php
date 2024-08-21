@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\States\Lock;
 
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Actions\Lock\BizSusuAccountLockAcceptedTermsAction;
 use Domain\Susu\BizSusu\Actions\Lock\BizSusuAccountLockApprovalAction;
