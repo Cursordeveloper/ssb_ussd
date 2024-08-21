@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\MyAccount\LinkNewWallet;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\ApprovalAction;
 use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\MobileNumberAction;
 use Domain\ExistingCustomer\Actions\MyAccount\LinkNewWallet\NetworkAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\States\Create;
 
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateAcceptedTermsAction;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateAccountNameAction;

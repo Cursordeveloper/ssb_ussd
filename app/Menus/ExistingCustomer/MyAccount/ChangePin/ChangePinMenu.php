@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Menus\ExistingCustomer\MyAccount\ChangePin;
 
 use App\Common\ResponseBuilder;
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ChangePinMenu

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\MyAccount\ChangePin;
 
 use App\Menus\ExistingCustomer\MyAccount\ChangePin\ChangePinMenu;
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\Requests\Pin\PinChangeRequest;
 use Domain\ExistingCustomer\Data\MyAccount\ChangePin\PinChangeData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

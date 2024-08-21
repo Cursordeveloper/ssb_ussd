@@ -77,7 +77,7 @@ use App\States\ExistingCustomer\Susu\SusuTerms\SusuTermsState;
 use App\States\NewCustomer\NewCustomerState;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
-use App\States\Shared\AboutSusubox\AboutSusuboxState;
+use Domain\Shared\States\AboutSusuBox\AboutSusuboxState;
 use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
 use Domain\Susu\BizSusu\States\Collection\BizSusuCollectionState;
 use Domain\Susu\BizSusu\States\Collection\Pause\BizSusuCollectionPauseState;
@@ -153,56 +153,42 @@ final class StateClasses
 
             // PersonalSusu account state
             class_basename(new PersonalSusuCreateState) => new PersonalSusuCreateState,
-
             class_basename(new PersonalSusuAccountState) => new PersonalSusuAccountState,
-
             class_basename(new PersonalSusuPaymentState) => new PersonalSusuPaymentState,
-
             class_basename(new PersonalSusuSettlementState) => new PersonalSusuSettlementState,
             class_basename(new PersonalSusuSettlementPendingState) => new PersonalSusuSettlementPendingState,
             class_basename(new PersonalSusuSettlementAllPendingState) => new PersonalSusuSettlementAllPendingState,
             class_basename(new PersonalSusuSettlementZeroOutState) => new PersonalSusuSettlementZeroOutState,
-
             class_basename(new PersonalSusuCollectionState) => new PersonalSusuCollectionState,
             class_basename(new PersonalSusuCollectionSummaryState) => new PersonalSusuCollectionSummaryState,
             class_basename(new PersonalSusuCollectionPauseState) => new PersonalSusuCollectionPauseState,
-
             class_basename(new PersonalSusuAccountLockState) => new PersonalSusuAccountLockState,
 
 
             // BizSusu account states
             class_basename(new BizSusuCreateState) => new BizSusuCreateState,
-
             class_basename(new BizSusuAccountState) => new BizSusuAccountState,
-
             class_basename(new BizSusuPaymentState) => new BizSusuPaymentState,
             class_basename(new BizSusuPaymentFrequencyState) => new BizSusuPaymentFrequencyState,
             class_basename(new BizSusuPaymentAmountState) => new BizSusuPaymentAmountState,
-
             class_basename(new BizSusuWithdrawalState) => new BizSusuWithdrawalState,
             class_basename(new BizSusuWithdrawalPartialState) => new BizSusuWithdrawalPartialState,
             class_basename(new BizSusuWithdrawalFullState) => new BizSusuWithdrawalFullState,
-
             class_basename(new BizSusuCollectionState) => new BizSusuCollectionState,
             class_basename(new BizSusuCollectionSummaryState) => new BizSusuCollectionSummaryState,
             class_basename(new BizSusuCollectionPauseState) => new BizSusuCollectionPauseState,
-
             class_basename(new BizSusuAccountLockState) => new BizSusuAccountLockState,
 
 
             // GoalGetterSusu account states
             class_basename(new GoalGetterSusuCreateState) => new GoalGetterSusuCreateState,
-
             class_basename(new GoalGetterSusuAccountState) => new GoalGetterSusuAccountState,
-
             class_basename(new GoalGetterSusuPaymentState) => new GoalGetterSusuPaymentState,
             class_basename(new GoalGetterSusuPaymentFrequencyState) => new GoalGetterSusuPaymentFrequencyState,
             class_basename(new GoalGetterSusuPaymentAmountState) => new GoalGetterSusuPaymentAmountState,
-
             class_basename(new GoalGetterSusuCollectionState) => new GoalGetterSusuCollectionState,
             class_basename(new GoalGetterSusuCollectionSummaryState) => new GoalGetterSusuCollectionSummaryState,
             class_basename(new GoalGetterSusuGoalSummaryState) => new GoalGetterSusuGoalSummaryState,
-
             class_basename(new GoalGetterSusuWithdrawalState) => new GoalGetterSusuWithdrawalState,
             class_basename(new GoalGetterSusuWithdrawalPartialState) => new GoalGetterSusuWithdrawalPartialState,
             class_basename(new GoalGetterSusuWithdrawalFullState) => new GoalGetterSusuWithdrawalFullState,
@@ -210,17 +196,13 @@ final class StateClasses
 
             // GoalGetterSusu account states
             class_basename(new FlexySusuCreateState) => new FlexySusuCreateState,
-
             class_basename(new FlexySusuAccountState) => new FlexySusuAccountState,
             class_basename(new FlexySusuPaymentState) => new FlexySusuPaymentState,
-
             class_basename(new FlexySusuWithdrawalState) => new FlexySusuWithdrawalState,
             class_basename(new FlexySusuWithdrawalPartialState) => new FlexySusuWithdrawalPartialState,
             class_basename(new FlexySusuWithdrawalFullState) => new FlexySusuWithdrawalFullState,
-
             class_basename(new FlexySusuCollectionState) => new FlexySusuCollectionState,
             class_basename(new FlexySusuCollectionPauseState) => new FlexySusuCollectionPauseState,
-
             class_basename(new FlexySusuAccountLockState) => new FlexySusuAccountLockState,
 
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\States\Create;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Susu\CreateSusuRolloverAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateAcceptedTermsAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateAccountNameAction;

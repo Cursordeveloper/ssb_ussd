@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\Actions\Create;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\FlexySusu\FlexySusuCreateData;
 use App\Services\Susu\Requests\FlexySusu\FlexySusuCreateRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Create\FlexySusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

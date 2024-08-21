@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Domain\NewCustomer\Actions\Registration;
 
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\Requests\Pin\PinCreateRequest;
 use Domain\NewCustomer\Data\Registration\PinCreateData;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\Actions\Withdrawal;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalPartialData;
 use App\Services\Susu\Requests\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalPartialRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Withdrawal\SusuWithdrawalMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
