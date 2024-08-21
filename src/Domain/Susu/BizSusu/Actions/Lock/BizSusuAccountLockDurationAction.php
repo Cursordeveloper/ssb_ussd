@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\Actions\Lock;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Menus\Lock\BizSusuAccountLockMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

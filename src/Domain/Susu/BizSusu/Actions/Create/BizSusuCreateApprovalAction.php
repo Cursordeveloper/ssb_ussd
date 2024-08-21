@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\Actions\Create;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\BizSusu\BizSusuApprovalRequest;
 use Domain\ExistingCustomer\Data\Common\PinApprovalData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

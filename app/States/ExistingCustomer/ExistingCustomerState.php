@@ -11,16 +11,16 @@ use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\MyAccount\MyAccountMenu;
 use App\Menus\ExistingCustomer\Pension\PensionMenu;
 use App\Menus\ExistingCustomer\Susu\SusuMenu;
-use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
 use App\States\ExistingCustomer\Insurance\InsuranceState;
 use App\States\ExistingCustomer\Investments\InvestmentState;
 use App\States\ExistingCustomer\Loans\LoanState;
 use App\States\ExistingCustomer\MyAccount\MyAccountState;
 use App\States\ExistingCustomer\Pension\PensionState;
 use App\States\ExistingCustomer\Susu\SusuState;
-use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Models\Session\Session;
+use Domain\Shared\States\AboutSusuBox\AboutSusuboxState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ExistingCustomerState

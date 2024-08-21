@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\States\Collection\Goal;
 
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Collection\Summary\PersonalSusuCollectionSummaryApprovalAction;
 use Symfony\Component\HttpFoundation\JsonResponse;

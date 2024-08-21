@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\NewCustomer\Actions\Registration;
 
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
-use App\Menus\Shared\GeneralMenu;
 use Domain\Shared\Enums\Product\CustomerStatus;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

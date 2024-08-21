@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\MyAccount\LinkKyc;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\MyAccount\LinkKyc\IDNumberAction;
 use Domain\ExistingCustomer\Actions\MyAccount\LinkKyc\PinConfirmationAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

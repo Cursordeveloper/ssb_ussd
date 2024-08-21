@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\Shared\States\Statement;
 
-use App\Menus\Shared\GeneralMenu;
 use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuMiniStatement\SusuMiniStatementAction;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;

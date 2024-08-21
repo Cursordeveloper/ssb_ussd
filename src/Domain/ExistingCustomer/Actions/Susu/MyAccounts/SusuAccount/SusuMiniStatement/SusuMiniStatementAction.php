@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuMiniStatement;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Requests\Susu\Transaction\SusuServiceSusuNextTransactionsRequest;
 use App\Services\Susu\Requests\Susu\Transaction\SusuServiceSusuTransactionsRequest;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Customer\Customer;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Statement\SusuMiniStatementMenu;

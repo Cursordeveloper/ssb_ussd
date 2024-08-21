@@ -5,7 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Common\ResponseBuilder;
 use App\Http\Controllers\Controller;
 use App\Services\Hubtel\HubtelUssdService;
-use App\States\StateManager\StateManager;
+use Domain\Shared\Services\StateManagerService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -25,6 +25,6 @@ final class UssdController extends Controller
         }
 
         // Return the response
-        return StateManager::execute($session_data);
+        return StateManagerService::execute($session_data);
     }
 }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\Actions\Lock;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\PersonalSusu\Lock\SusuServicePersonalSusuAccountLockData;
 use App\Services\Susu\Requests\PersonalSusu\Lock\SusuServicePersonalSusuAccountLockRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Lock\PersonalSusuAccountLockMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\States\NewCustomer\TermsAndConditions;
 
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
-use App\States\Shared\WelcomeState;
 use Domain\NewCustomer\Actions\TermsAndConditions\TermsAndConditionsAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Shared\States\WelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class TermsAndConditionsState

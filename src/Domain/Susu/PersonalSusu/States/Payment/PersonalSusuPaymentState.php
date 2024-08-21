@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\States\Payment;
 
-use App\Menus\Shared\GeneralMenu;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Payment\PersonalSusuPaymentAcceptedTermsAction;
 use Domain\Susu\PersonalSusu\Actions\Payment\PersonalSusuPaymentApprovalAction;

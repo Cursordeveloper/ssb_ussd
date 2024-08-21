@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\Actions\Create;
 
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Susu\Data\GoalGetterSusu\GoalGetterSusuCreateData;
 use App\Services\Susu\Requests\GoalGetterSusu\GoalGetterSusuCreateRequest;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

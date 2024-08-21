@@ -7,12 +7,12 @@ namespace App\States\NewCustomer;
 use App\Menus\NewCustomer\NewCustomerMenu;
 use App\Menus\NewCustomer\Registration\RegistrationMenu;
 use App\Menus\NewCustomer\TermsAndConditions\TermsAndConditionsMenu;
-use App\Menus\Shared\AboutSusubox\AboutSusuboxMenu;
 use App\States\NewCustomer\Registration\RegistrationState;
 use App\States\NewCustomer\TermsAndConditions\TermsAndConditionsState;
-use App\States\Shared\AboutSusubox\AboutSusuboxState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Models\Session\Session;
+use Domain\Shared\States\AboutSusuBox\AboutSusuboxState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class NewCustomerState

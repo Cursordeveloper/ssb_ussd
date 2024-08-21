@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\MyAccount\LinkKyc;
 
 use App\Menus\ExistingCustomer\MyAccount\LinkKyc\LinkKycMenu;
-use App\Menus\Shared\GeneralMenu;
 use App\Services\Customer\Requests\Kyc\LinkKycRequest;
 use Domain\ExistingCustomer\Data\MyAccount\LinkKyc\LinkKycData;
 use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

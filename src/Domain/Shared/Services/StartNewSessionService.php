@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\States\StateManager;
+namespace Domain\Shared\Services;
 
-use App\States\Shared\WelcomeState;
 use Domain\Shared\Action\Session\SessionCreateAction;
+use Domain\Shared\States\WelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class HandleNewSession
+final class StartNewSessionService
 {
     public static function execute($state_data): JsonResponse
     {
