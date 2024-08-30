@@ -6,7 +6,7 @@ namespace App\Services\Susu\Requests\Susu\Payment;
 
 use App\Services\Susu\Data\Susu\SusuPaymentData;
 use App\Services\Susu\SusuService;
-use Domain\Shared\Models\Customer\Customer;
+use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
 final class SusuServiceSusuPaymentRequest

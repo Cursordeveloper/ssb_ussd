@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Services;
 
-use App\States\StateManager\StateClasses;
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
+use Domain\Shared\States\StateClasses;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ExecuteStateService

@@ -8,13 +8,13 @@ use App\Menus\ExistingCustomer\Loan\GetLoan\BizSusuLoan\BizSusuLoanMenu;
 use App\Menus\ExistingCustomer\Loan\GetLoan\GetLoanMenu;
 use App\Menus\ExistingCustomer\Loan\GetLoan\PersonalSusuLoan\PersonalSusuLoanMenu;
 use App\Menus\ExistingCustomer\Loan\GetLoan\SwiftCredit\SwiftCreditMenu;
-use App\Menus\ExistingCustomer\MyAccount\LinkKyc\LinkKycMenu;
 use App\States\ExistingCustomer\Loans\GetLoan\BizSusuLoan\BizSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\PersonalSusuLoan\PersonalSusuLoanState;
 use App\States\ExistingCustomer\Loans\GetLoan\SwiftCredit\SwiftCreditState;
-use Domain\ExistingCustomer\Actions\Common\HasKycAction;
+use Domain\Shared\Action\Common\HasLinkedGhanaCardAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\User\Customer\Menus\MyAccount\LinkGhanaCard\LinkGhCardMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GetLoanState
@@ -22,8 +22,8 @@ final class GetLoanState
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Terminate session if customer does not have Ghana Card
-        if (! HasKycAction::execute(session: $session)) {
-            return LinkKycMenu::noKycMenu(session: $session);
+        if (! HasLinkedGhanaCardAction::execute(session: $session)) {
+            return LinkGhCardMenu::noKycMenu(session: $session);
         }
 
         // Define a mapping between customer input and states

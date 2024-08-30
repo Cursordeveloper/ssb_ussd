@@ -16,11 +16,11 @@ use Domain\Susu\BizSusu\States\Lock\BizSusuAccountLockState;
 use Domain\Susu\BizSusu\States\Payment\BizSusuPaymentState;
 use Domain\Susu\BizSusu\States\Withdrawal\BizSusuWithdrawalState;
 use Domain\Susu\Shared\Menus\Balance\SusuBalanceMenu;
-use Domain\Susu\Shared\Menus\MySusuAccounts\MySusuAccountsMenu;
 use Domain\Susu\Shared\Menus\Statement\SusuMiniStatementMenu;
 use Domain\Susu\Shared\States\Balance\SusuBalanceState;
-use Domain\Susu\Shared\States\MySusuAccounts\MySusuAccountsState;
 use Domain\Susu\Shared\States\Statement\SusuMiniStatementState;
+use Domain\User\Customer\Menus\MySusuAccounts\MySusuAccountsMenu;
+use Domain\User\Customer\States\MySusuAccounts\MySusuAccountsState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuAccountState

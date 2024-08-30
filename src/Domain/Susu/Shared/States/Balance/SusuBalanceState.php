@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Susu\Shared\States\Balance;
 
-use Domain\ExistingCustomer\Actions\Susu\MyAccounts\SusuAccount\SusuBalance\SusuBalanceAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Actions\SusuBalance\SusuBalanceAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuBalanceState

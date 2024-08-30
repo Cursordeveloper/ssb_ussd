@@ -6,11 +6,11 @@ namespace Domain\Susu\GoalGetterSusu\Actions\Create;
 
 use App\Services\Susu\Data\GoalGetterSusu\GoalGetterSusuCreateData;
 use App\Services\Susu\Requests\GoalGetterSusu\GoalGetterSusuCreateRequest;
-use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
+use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateAcceptedTermsAction
