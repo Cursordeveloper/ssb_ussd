@@ -6,11 +6,11 @@ namespace Domain\Susu\FlexySusu\Actions\Collection\Pause;
 
 use App\Services\Susu\Data\FlexySusu\Collection\Pause\SusuServiceFlexySusuCollectionPauseData;
 use App\Services\Susu\Requests\FlexySusu\Collection\Pause\SusuServiceFlexySusuCollectionPauseRequest;
-use Domain\Shared\Action\Customer\GetCustomerAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Collection\Pause\FlexySusuCollectionPauseMenu;
+use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCollectionPauseAcceptedTermsAction

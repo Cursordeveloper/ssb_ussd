@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\States\Settlement;
 
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Settlement\PersonalSusuSettlementPendingApprovalAction;
 use Domain\Susu\PersonalSusu\Actions\Settlement\PersonalSusuSettlementZeroOutAcceptedTermsAction;

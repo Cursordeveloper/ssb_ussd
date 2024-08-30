@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\States\Lock;
 
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Actions\Lock\FlexySusuAccountLockAcceptedTermsAction;
 use Domain\Susu\FlexySusu\Actions\Lock\FlexySusuAccountLockApprovalAction;
