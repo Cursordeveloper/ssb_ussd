@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\States\ExistingCustomer\Loans;
 
-use App\Menus\ExistingCustomer\ExistingCustomerMenu;
 use App\Menus\ExistingCustomer\Loan\AboutLoans\AboutLoansMenu;
 use App\Menus\ExistingCustomer\Loan\GetLoan\GetLoanMenu;
 use App\Menus\ExistingCustomer\Loan\LoanMenu;
 use App\Menus\ExistingCustomer\Loan\LoanTerms\LoanTermsMenu;
 use App\Menus\ExistingCustomer\Loan\MyLoans\MyLoansMenu;
-use App\States\ExistingCustomer\ExistingCustomerState;
 use App\States\ExistingCustomer\Loans\AboutLoans\AboutLoansState;
 use App\States\ExistingCustomer\Loans\GetLoan\GetLoanState;
 use App\States\ExistingCustomer\Loans\LoanTerms\LoanTermsState;
 use App\States\ExistingCustomer\Loans\MyLoans\MyLoansState;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\User\Customer\Menus\Welcome\CustomerWelcomeMenu;
+use Domain\User\Customer\States\Welcome\CustomerWelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LoanState
@@ -29,7 +29,7 @@ final class LoanState
             '2' => ['class' => new GetLoanState, 'menu' => new GetLoanMenu],
             '3' => ['class' => new AboutLoansState, 'menu' => new AboutLoansMenu],
             '4' => ['class' => new LoanTermsState, 'menu' => new LoanTermsMenu],
-            '0' => ['class' => new ExistingCustomerState, 'menu' => new ExistingCustomerMenu],
+            '0' => ['class' => new CustomerWelcomeState, 'menu' => new CustomerWelcomeMenu],
         ];
 
         // Check if the customer input is a valid option

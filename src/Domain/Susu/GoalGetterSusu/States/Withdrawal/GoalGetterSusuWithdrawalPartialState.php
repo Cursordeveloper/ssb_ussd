@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\States\Withdrawal;
 
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\GoalGetterSusu\Actions\Withdrawal\GoalGetterSusuWithdrawalApprovalAction;
 use Domain\Susu\GoalGetterSusu\Actions\Withdrawal\GoalGetterSusuWithdrawalPartialAcceptedTermsAction;

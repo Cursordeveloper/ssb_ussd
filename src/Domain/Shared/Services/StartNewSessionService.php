@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Shared\Services;
 
 use Domain\Shared\Action\Session\SessionCreateAction;
-use Domain\Shared\States\WelcomeState;
+use Domain\Shared\States\Welcome\WelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class StartNewSessionService

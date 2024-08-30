@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Susu\BizSusu\Actions\Collection\Pause;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Menus\GeneralMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Menus\Collection\Pause\BizSusuCollectionPauseMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

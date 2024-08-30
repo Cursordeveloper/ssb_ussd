@@ -8,7 +8,7 @@ use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Carbon\Carbon;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Actions\GetSusuDurationsAction;
+use Domain\Susu\Shared\Actions\Common\GetSusuDurationsAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCollectionPauseMenu

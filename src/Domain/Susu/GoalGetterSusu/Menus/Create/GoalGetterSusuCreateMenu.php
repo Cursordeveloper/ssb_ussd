@@ -8,9 +8,9 @@ use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Actions\GetSusuDurationsAction;
-use Domain\Susu\Shared\Actions\GetSusuFrequenciesAction;
-use Domain\Susu\Shared\Actions\GetSusuStartDatesAction;
+use Domain\Susu\Shared\Actions\Common\GetSusuDurationsAction;
+use Domain\Susu\Shared\Actions\Common\GetSusuFrequenciesAction;
+use Domain\Susu\Shared\Actions\Common\GetSusuStartDatesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateMenu

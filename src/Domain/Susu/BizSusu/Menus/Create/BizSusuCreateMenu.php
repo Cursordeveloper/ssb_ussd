@@ -8,7 +8,7 @@ use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Actions\GetSusuFrequenciesAction;
+use Domain\Susu\Shared\Actions\Common\GetSusuFrequenciesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuCreateMenu

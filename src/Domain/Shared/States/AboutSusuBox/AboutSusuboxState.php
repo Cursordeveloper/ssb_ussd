@@ -8,7 +8,7 @@ use Domain\Shared\Action\AboutSusubox\AboutSusuboxAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Shared\States\WelcomeState;
+use Domain\Shared\States\Welcome\WelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AboutSusuboxState

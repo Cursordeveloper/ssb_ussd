@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\V1\Customer\Registration;
 
 use App\Http\Controllers\Controller;
-use Domain\NewCustomer\Jobs\Registration\CustomerCreatedJob;
+use Domain\User\Guest\Jobs\Registration\CustomerCreatedJob;
 use Illuminate\Http\Request;
 
 final class CustomerCreatedController extends Controller

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\ExistingCustomer\Actions\Insurance\AboutInsurance;
 
 use App\Menus\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceMenu;
-use App\States\ExistingCustomer\Insurance\AboutInsurance\AboutInsuranceState;
+use Domain\Insurance\Shared\AboutInsurance\AboutInsuranceState;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Action\Session\UpdateSessionStateAction;
 use Domain\Shared\Models\Session\Session;

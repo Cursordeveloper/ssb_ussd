@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\V1\Customer\Pin;
 
 use App\Http\Controllers\Controller;
-use Domain\NewCustomer\Actions\Registration\CustomerHasPinUpdateAction;
+use Domain\User\Guest\Actions\Registration\CustomerHasPinUpdateAction;
 use Illuminate\Http\Request;
 
 final class CustomerHasPinUpdateController extends Controller

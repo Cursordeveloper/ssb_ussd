@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\States\ExistingCustomer\Loans\MyLoans;
 
 use App\Menus\ExistingCustomer\Loan\MyLoans\MyLoansMenu;
-use Domain\ExistingCustomer\Actions\Common\ReturnToServiceAction;
+use Domain\Shared\Action\Common\ReturnToServiceAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;

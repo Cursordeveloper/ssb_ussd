@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Customer\Requests\Pin;
 
 use App\Services\Customer\CustomerService;
-use Domain\Shared\Models\Customer\Customer;
+use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
 final class PinCreateRequest
