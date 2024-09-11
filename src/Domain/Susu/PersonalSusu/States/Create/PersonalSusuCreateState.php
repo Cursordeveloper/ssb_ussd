@@ -9,6 +9,7 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateAcceptedTermsAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateAccountNameAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateApprovalAction;
+use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateInitialDepositAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateLinkedWalletAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateSusuAmountAction;
 use Domain\Susu\Shared\Actions\Common\CreateSusuRolloverAction;
@@ -25,6 +26,7 @@ final class PersonalSusuCreateState
         return match (true) {
             ! array_key_exists(key: 'account_name', array: $process_flow) => PersonalSusuCreateAccountNameAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'susu_amount', array: $process_flow) => PersonalSusuCreateSusuAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'initial_deposit', array: $process_flow) => PersonalSusuCreateInitialDepositAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'linked_wallet', array: $process_flow) => PersonalSusuCreateLinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'rollover', array: $process_flow) => CreateSusuRolloverAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'accepted_terms', array: $process_flow) => PersonalSusuCreateAcceptedTermsAction::execute(session: $session, session_data: $session_data),

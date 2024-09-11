@@ -9,16 +9,16 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class GoalGetterSusuCreateTargetAmountAction
+final class GoalGetterSusuCreateInitialDepositAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Validate the user input
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['target_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $session_data->user_input]);
 
-        // Return the initialDepositMenu
-        return GoalGetterSusuCreateMenu::initialDepositMenu(session: $session);
+        // Return the durationMenu
+        return GoalGetterSusuCreateMenu::durationMenu(session: $session);
     }
 }

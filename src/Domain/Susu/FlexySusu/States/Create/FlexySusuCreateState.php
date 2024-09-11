@@ -10,6 +10,7 @@ use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateAcceptedTermsAction;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateAccountNameAction;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateApprovalAction;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateFrequencyAction;
+use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateInitialDepositAction;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateLinkedWalletAction;
 use Domain\Susu\FlexySusu\Actions\Create\FlexySusuCreateSusuAmountAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,6 +26,7 @@ final class FlexySusuCreateState
         return match (true) {
             ! array_key_exists(key: 'account_name', array: $process_flow) => FlexySusuCreateAccountNameAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'susu_amount', array: $process_flow) => FlexySusuCreateSusuAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'initial_deposit', array: $process_flow) => FlexySusuCreateInitialDepositAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => FlexySusuCreateFrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'linked_wallet', array: $process_flow) => FlexySusuCreateLinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'accepted_terms', array: $process_flow) => FlexySusuCreateAcceptedTermsAction::execute(session: $session, session_data: $session_data),

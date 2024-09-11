@@ -17,6 +17,7 @@ final class GoalGetterSusuCreateData
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
                     'target_amount' => $user_inputs['target_amount'],
+                    'initial_deposit' => $user_inputs['initial_deposit'],
 
                     'start_date' => $user_inputs['start_date'],
                     'duration' => $user_inputs['duration'],

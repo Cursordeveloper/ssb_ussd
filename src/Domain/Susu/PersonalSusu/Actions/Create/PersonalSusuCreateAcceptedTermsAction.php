@@ -32,7 +32,7 @@ final class PersonalSusuCreateAcceptedTermsAction
         if (data_get($susu_created, key: 'code') === 200) {
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
 
-            // Return the confirmTermsConditionsMenu
+            // Return the narrationMenu
             return PersonalSusuCreateMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
         }
 
