@@ -9,16 +9,16 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Create\FlexySusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class FlexySusuCreateSusuAmountAction
+final class FlexySusuCreateInitialDepositAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
         // Validate the user_input
 
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $session_data->user_input]);
 
-        // Return the initialDeposit
-        return FlexySusuCreateMenu::initialDeposit(session: $session);
+        // Return the frequencyMenu
+        return FlexySusuCreateMenu::frequencyMenu(session: $session);
     }
 }

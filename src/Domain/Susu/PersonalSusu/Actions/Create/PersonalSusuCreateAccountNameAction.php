@@ -18,7 +18,7 @@ final class PersonalSusuCreateAccountNameAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_name' => $session_data->user_input]);
 
-        // Return the enterSusuAmountMenu
+        // Return the susuAmountMenu
         return PersonalSusuCreateMenu::susuAmountMenu(session: $session);
     }
 }

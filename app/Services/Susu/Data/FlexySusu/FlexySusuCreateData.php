@@ -17,6 +17,8 @@ final class FlexySusuCreateData
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
                     'susu_amount' => $user_inputs['susu_amount'],
+                    'initial_deposit' => $user_inputs['initial_deposit'],
+
                     'frequency' => $user_inputs['frequency'],
                     'accepted_terms' => true,
                 ],

@@ -11,6 +11,7 @@ use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateAccountNameAct
 use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateApprovalAction;
 use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateDurationAction;
 use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateFrequencyAction;
+use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateInitialDepositAction;
 use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateLinkedWalletAction;
 use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateStartDateAction;
 use Domain\Susu\GoalGetterSusu\Actions\Create\GoalGetterSusuCreateTargetAmountAction;
@@ -27,6 +28,7 @@ final class GoalGetterSusuCreateState
         return match (true) {
             ! array_key_exists(key: 'account_name', array: $process_flow) => GoalGetterSusuCreateAccountNameAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'target_amount', array: $process_flow) => GoalGetterSusuCreateTargetAmountAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'initial_deposit', array: $process_flow) => GoalGetterSusuCreateInitialDepositAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'duration', array: $process_flow) => GoalGetterSusuCreateDurationAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'start_date', array: $process_flow) => GoalGetterSusuCreateStartDateAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'frequency', array: $process_flow) => GoalGetterSusuCreateFrequencyAction::execute(session: $session, session_data: $session_data),
