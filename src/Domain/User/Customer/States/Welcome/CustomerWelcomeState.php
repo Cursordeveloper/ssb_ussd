@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Domain\User\Customer\States\Welcome;
 
-use App\Menus\ExistingCustomer\Insurance\InsuranceMenu;
-use App\Menus\ExistingCustomer\Investment\InvestmentMenu;
-use App\Menus\ExistingCustomer\Loan\LoanMenu;
-use App\Menus\ExistingCustomer\Pension\PensionMenu;
-use App\States\ExistingCustomer\Investments\InvestmentState;
-use App\States\ExistingCustomer\Loans\LoanState;
-use App\States\ExistingCustomer\Pension\PensionState;
-use Domain\Insurance\Shared\Insurance\InsuranceState;
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Insurance\Shared\Menus\Insurance\InsuranceMenu;
+use Domain\Insurance\Shared\States\Insurance\InsuranceState;
+use Domain\Investment\Shared\Menus\Investment\InvestmentMenu;
+use Domain\Investment\Shared\States\Investment\InvestmentState;
+use Domain\Loan\Shared\Menus\Loan\LoanMenu;
+use Domain\Loan\Shared\States\Loan\LoanState;
+use Domain\Pension\Shared\Menus\Pension\PensionMenu;
+use Domain\Pension\Shared\States\Pension\PensionState;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\AboutSusuBox\AboutSusuboxState;
@@ -44,7 +44,7 @@ final class CustomerWelcomeState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

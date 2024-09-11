@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\User\Guest\States\Welcome;
 
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Menus\TermsAndConditions\TermsAndConditionsMenu;
 use Domain\Shared\Models\Session\Session;
@@ -31,7 +31,7 @@ final class GuestWelcomeState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu($session, $session_data);

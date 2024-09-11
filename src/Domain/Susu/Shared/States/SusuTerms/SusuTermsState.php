@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Susu\Shared\States\SusuTerms;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Susu\SusuMenu;
 use Domain\Susu\Shared\Menus\SusuTerms\SusuTermsMenu;
@@ -22,7 +22,7 @@ final class SusuTermsState
             $susu_state = ['class' => new SusuState, 'menu' => new SusuMenu];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($susu_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($susu_state['class']), session_data: $session_data);
 
             // Execute the SessionInputUpdateAction
             SessionInputUpdateAction::resetUserInputs(session: $session);

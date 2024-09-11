@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Shared\States\AboutSusuBox;
 
-use Domain\Shared\Action\AboutSusubox\AboutSusuboxAction;
+use Domain\Shared\Action\AboutSusuBox\AboutSusuboxAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Models\Session\Session;

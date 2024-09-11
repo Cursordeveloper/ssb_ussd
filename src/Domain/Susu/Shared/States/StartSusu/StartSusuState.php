@@ -8,7 +8,7 @@ use App\Common\Helpers;
 use App\Common\LinkedWallets;
 use App\Services\Susu\Requests\Customer\SusuServiceLinkAccountsRequest;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\BizSusu\Menus\Create\BizSusuCreateMenu;
 use Domain\Susu\BizSusu\States\Create\BizSusuCreateState;
@@ -56,7 +56,7 @@ final class StartSusuState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the SessionInputUpdateAction
             GetSusuSchemesAction::execute(session: $session, session_data: $session_data);

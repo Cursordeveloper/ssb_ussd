@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\User\Customer\States\MyAccount\LinkedWallet;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Menus\MyAccount\LinkedWallet\LinkedWalletMenu;
 use Domain\User\Customer\Menus\MyAccount\LinkedWallet\LinkedWalletsMenu;
@@ -47,7 +47,7 @@ final class LinkedWalletsState
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_network' => $user_data['linked_wallets'][$session_data->user_input]['network']]);
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: 'LinkedWalletState', session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: 'LinkedWalletState', session_data: $session_data);
 
             // Execute the SusuAccountState
             return LinkedWalletMenu::mainMenu(session: $session);
