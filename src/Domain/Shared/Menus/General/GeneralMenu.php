@@ -75,6 +75,25 @@ final class GeneralMenu
         );
     }
 
+    public static function cancelAccountNotification($session): JsonResponse
+    {
+        // Reset resetUserInputs and resetUserData
+        SessionInputUpdateAction::resetAll(session: $session);
+
+        return ResponseBuilder::infoResponseBuilder(
+            message: "Your susu account create process has been canceled successfully.\n",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidPinMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "The PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel.\n",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function acceptedSusuTermsMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(

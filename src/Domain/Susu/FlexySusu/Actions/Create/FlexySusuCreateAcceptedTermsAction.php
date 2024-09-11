@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\Actions\Create;
 
-use App\Services\Susu\Data\FlexySusu\FlexySusuCreateData;
-use App\Services\Susu\Requests\FlexySusu\FlexySusuCreateRequest;
+use App\Services\Susu\Data\FlexySusu\Create\FlexySusuCreateData;
+use App\Services\Susu\Requests\FlexySusu\Create\FlexySusuCreateRequest;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
