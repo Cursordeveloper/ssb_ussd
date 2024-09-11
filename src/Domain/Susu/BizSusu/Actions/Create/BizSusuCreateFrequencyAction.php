@@ -18,14 +18,13 @@ final class BizSusuCreateFrequencyAction
 
         // Return the invalidFrequencyMenu if user_input is not in $frequencies
         if (! array_key_exists(key: $session_data->user_input, array: $frequencies)) {
-            // return the invalid frequencyMenu
             return BizSusuCreateMenu::invalidFrequencyMenu(session: $session);
         }
 
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]['code']]);
 
-        // Return the chooseLinkedWalletMenu
-        return BizSusuCreateMenu::linkedWalletMenu(session: $session);
+        // Return the initialDepositMenu
+        return BizSusuCreateMenu::initialDepositMenu(session: $session);
     }
 }
