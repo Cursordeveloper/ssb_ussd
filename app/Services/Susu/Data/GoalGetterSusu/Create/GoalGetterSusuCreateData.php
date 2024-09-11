@@ -2,24 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Data\FlexySusu;
+namespace App\Services\Susu\Data\GoalGetterSusu\Create;
 
-final class FlexySusuCreateData
+final class GoalGetterSusuCreateData
 {
     public static function toArray(array $user_inputs): array
     {
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'FlexySusu',
+                'type' => 'GoalGetterSusu',
 
                 // Resource exposed attributes
                 'attributes' => [
                     'account_name' => $user_inputs['account_name'],
-                    'susu_amount' => $user_inputs['susu_amount'],
+                    'target_amount' => $user_inputs['target_amount'],
                     'initial_deposit' => $user_inputs['initial_deposit'],
 
+                    'start_date' => $user_inputs['start_date'],
+                    'duration' => $user_inputs['duration'],
                     'frequency' => $user_inputs['frequency'],
+
                     'accepted_terms' => true,
                 ],
 

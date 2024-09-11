@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Requests\PersonalSusu;
+namespace App\Services\Susu\Requests\BizSusu\Create;
 
 use App\Services\Susu\SusuService;
 use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class PersonalSusuApprovalRequest
+final class BizSusuApprovalRequest
 {
     public SusuService $service;
 
@@ -20,7 +20,7 @@ final class PersonalSusuApprovalRequest
     public function execute(Customer $customer, array $data, string $susu_resource): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
-            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/personal-susus/'.$susu_resource.'/approvals', data: $data)
+            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/biz-susus/'.$susu_resource.'/approvals', data: $data)
             ->json();
     }
 }

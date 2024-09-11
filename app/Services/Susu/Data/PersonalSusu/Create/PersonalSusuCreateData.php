@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Data\BizSusu;
+namespace App\Services\Susu\Data\PersonalSusu\Create;
 
-final class BizSusuCreateData
+final class PersonalSusuCreateData
 {
     public static function toArray(array $user_inputs): array
     {
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'BizSusu',
+                'type' => 'PersonalSusu',
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'account_name' => $user_inputs['business_name'],
+                    'account_name' => $user_inputs['account_name'],
                     'susu_amount' => $user_inputs['susu_amount'],
                     'initial_deposit' => $user_inputs['initial_deposit'],
 
-                    'frequency' => $user_inputs['frequency'],
+                    'rollover_debit' => $user_inputs['rollover'],
                     'accepted_terms' => true,
                 ],
 

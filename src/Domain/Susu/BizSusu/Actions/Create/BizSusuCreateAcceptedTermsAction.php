@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\Actions\Create;
 
-use App\Services\Susu\Data\BizSusu\BizSusuCreateData;
-use App\Services\Susu\Requests\BizSusu\BizSusuCreateRequest;
+use App\Services\Susu\Data\BizSusu\Create\BizSusuCreateData;
+use App\Services\Susu\Requests\BizSusu\Create\BizSusuCreateRequest;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
