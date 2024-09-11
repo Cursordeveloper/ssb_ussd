@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Requests\GoalGetterSusu;
+namespace App\Services\Susu\Requests\GoalGetterSusu\Create;
 
 use App\Services\Susu\SusuService;
 use Domain\User\Customer\Models\Customer;
@@ -19,9 +19,8 @@ final class GoalGetterSusuApprovalRequest
 
     public function execute(Customer $customer, array $data, string $susu_resource): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.'customers/'.$customer->resource_id.'/goal-getter-susus/'.$susu_resource.'/approvals',
-            data: $data,
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/goal-getter-susus/'.$susu_resource.'/approvals', data: $data)
+            ->json();
     }
 }

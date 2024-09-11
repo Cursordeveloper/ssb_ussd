@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Susu\Requests\FlexySusu;
+namespace App\Services\Susu\Requests\FlexySusu\Create;
 
 use App\Services\Susu\SusuService;
 use Domain\User\Customer\Models\Customer;
@@ -19,9 +19,8 @@ final class FlexySusuCreateRequest
 
     public function execute(Customer $customer, array $data): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.'customers/'.$customer->resource_id.'/flexy-susus',
-            data: $data,
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.'customers/'.$customer->resource_id.'/flexy-susus', data: $data)
+            ->json();
     }
 }

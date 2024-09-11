@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\Actions\Create;
 
-use App\Services\Susu\Data\PersonalSusu\PersonalSusuCreateData;
-use App\Services\Susu\Requests\PersonalSusu\PersonalSusuCreateRequest;
+use App\Services\Susu\Data\PersonalSusu\Create\PersonalSusuCreateData;
+use App\Services\Susu\Requests\PersonalSusu\Create\PersonalSusuCreateRequest;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
