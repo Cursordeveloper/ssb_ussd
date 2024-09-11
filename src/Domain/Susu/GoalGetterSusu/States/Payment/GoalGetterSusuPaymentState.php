@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\States\Payment;
 
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\GoalGetterSusu\Menus\Account\GoalGetterSusuAccountMenu;
 use Domain\Susu\GoalGetterSusu\Menus\Payment\GoalGetterSusuPaymentAmountMenu;
@@ -30,7 +30,7 @@ final class GoalGetterSusuPaymentState
             $payment_type_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($payment_type_state['state']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($payment_type_state['state']), session_data: $session_data);
 
             // Execute the state
             return $payment_type_state['menu']::mainMenu(session: $session);

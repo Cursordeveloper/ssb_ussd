@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\States\Create;
 
-use Domain\Shared\Action\Susu\CreateSusuRolloverAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateAcceptedTermsAction;
@@ -12,6 +11,7 @@ use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateAccountNameAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateApprovalAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateLinkedWalletAction;
 use Domain\Susu\PersonalSusu\Actions\Create\PersonalSusuCreateSusuAmountAction;
+use Domain\Susu\Shared\Actions\Common\CreateSusuRolloverAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuCreateState

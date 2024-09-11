@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\User\Customer\States\MyInsuranceAccounts;
 
-use App\Menus\ExistingCustomer\Insurance\MyInsuranceAccounts\MyInsuranceAccountsMenu;
 use Domain\Shared\Action\Common\ReturnToServiceAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\User\Customer\Menus\MyInsuranceAccounts\MyInsuranceAccountsMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MyInsuranceAccountsState

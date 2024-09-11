@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Susu\Shared\States\Statement;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
@@ -37,7 +37,7 @@ final class SusuMiniStatementState
 
         // If the user_input is '0', return back to PersonalSusuAccountState
         if ($session_data->user_input === '0') {
-            UpdateSessionStateAction::execute(session: $session, state: class_basename(class: PersonalSusuAccountState::class), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename(class: PersonalSusuAccountState::class), session_data: $session_data);
             return PersonalSusuAccountMenu::mainMenu(session: $session);
         }
 
