@@ -17,11 +17,16 @@ final class FlexySusuCreateAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Return the invalidAcceptedSusuTerms menu if user_input is not 1
-        if ($session_data->user_input !== '1') {
-            return GeneralMenu::invalidAcceptedSusuTerms(session: $session);
-        }
+        return match (true) {
+            $session_data->user_input === '1' => self::susuCreateRequest(session: $session),
+            $session_data->user_input === '2' => GeneralMenu::terminateSession(session: $session),
 
+            default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
+        };
+    }
+
+    public static function susuCreateRequest(Session $session): JsonResponse
+    {
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
 
@@ -31,8 +36,6 @@ final class FlexySusuCreateAcceptedTermsAction
         // Update the user_put and return the narrationMenu
         if (data_get($susu_created, key: 'code') === 200) {
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);
-
-            // Return the confirmTermsConditionsMenu
             return FlexySusuCreateMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
         }
 
