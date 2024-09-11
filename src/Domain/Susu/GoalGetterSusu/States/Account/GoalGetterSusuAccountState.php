@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\States\Account;
 
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\GoalGetterSusu\Menus\Account\GoalGetterSusuAccountMenu;
 use Domain\Susu\GoalGetterSusu\Menus\Collection\GoalGetterSusuCollectionMenu;
@@ -41,7 +41,7 @@ final class GoalGetterSusuAccountState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['state']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['state']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

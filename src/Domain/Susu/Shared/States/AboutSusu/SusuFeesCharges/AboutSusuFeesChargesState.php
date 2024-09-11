@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Susu\Shared\States\AboutSusu\SusuFeesCharges;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Susu\AboutSusu\BackToAboutSusuAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Actions\AboutSusu\BackToAboutSusuAction;
 use Domain\Susu\Shared\Menus\AboutSusu\SusuFeesCharges\AboutSusuFeesChargesMenu;
 use Domain\Susu\Shared\Menus\AboutSusu\SusuSchemes\AboutSusuSchemesMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;

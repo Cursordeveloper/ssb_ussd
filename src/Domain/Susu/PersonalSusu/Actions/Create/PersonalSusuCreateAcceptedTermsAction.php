@@ -28,8 +28,6 @@ final class PersonalSusuCreateAcceptedTermsAction
         // Execute the PersonalSusuCreateRequest HTTP request
         $susu_created = (new PersonalSusuCreateRequest)->execute(customer: $customer, data: PersonalSusuCreateData::toArray(json_decode($session->user_inputs, associative: true)));
 
-        logger($susu_created);
-
         // Update the user_put and return the narrationMenu
         if (data_get($susu_created, key: 'code') === 200) {
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'susu_resource' => data_get($susu_created, key: 'data.attributes.resource_id')]);

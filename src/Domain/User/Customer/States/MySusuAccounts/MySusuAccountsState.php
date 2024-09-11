@@ -8,7 +8,7 @@ use App\Common\Helpers;
 use App\Services\Susu\Requests\Susu\SusuServiceSusuRequest;
 use Domain\Shared\Action\Common\ReturnToServiceAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Domain\User\Customer\Menus\MySusuAccounts\MySusuAccountsMenu;
@@ -53,7 +53,7 @@ final class MySusuAccountsState
             $account_menu = Helpers::getSusuScheme(scheme_code: json_decode($session->user_inputs, associative: true)['scheme_code']);
 
             // Execute the (UpdateSessionStateAction) to update the state
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($account_menu['state']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($account_menu['state']), session_data: $session_data);
 
             // Execute and return the [mainMenu] for the [susu_account] option selected
             return $account_menu['menu']::mainMenu(session: $session);

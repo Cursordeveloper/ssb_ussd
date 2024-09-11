@@ -2,7 +2,7 @@
 
 namespace Domain\Shared\States\Welcome;
 
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Actions\Common\HasPinAction;
 use Domain\User\Customer\Actions\Common\IsActiveAction;
@@ -29,7 +29,7 @@ final class WelcomeState
         };
 
         // Update the session state
-        UpdateSessionStateAction::execute(session: $session, state: class_basename($customerState['class']), session_data: $session);
+        SessionStateUpdateAction::execute(session: $session, state: class_basename($customerState['class']), session_data: $session);
 
         // Return the mainMenu for the state
         return $customerState['menu'];

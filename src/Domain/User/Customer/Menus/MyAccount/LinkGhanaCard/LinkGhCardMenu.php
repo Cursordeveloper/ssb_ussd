@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\User\Customer\Menus\MyAccount\LinkGhanaCard;
 
 use App\Common\ResponseBuilder;
-use Domain\Shared\Action\Common\HasLinkedGhanaCardAction;
+use Domain\User\Customer\Actions\Common\HasLinkedGhanaCardAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkGhCardMenu

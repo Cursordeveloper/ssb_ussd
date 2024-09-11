@@ -76,6 +76,7 @@ return [
     'exclude' => [
         'app/States/StateManager/StateClasses.php',
         'app/Common/SusuResources.php',
+        'src/Domain/Shared/States/StateClasses.php',
         'phpinsights.php',
     ],
 

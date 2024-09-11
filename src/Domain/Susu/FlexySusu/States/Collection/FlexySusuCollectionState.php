@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\FlexySusu\States\Collection;
 
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\FlexySusu\Menus\Account\FlexySusuAccountMenu;
 use Domain\Susu\FlexySusu\Menus\Collection\FlexySusuCollectionMenu;
@@ -32,7 +32,7 @@ final class FlexySusuCollectionState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['state']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['state']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

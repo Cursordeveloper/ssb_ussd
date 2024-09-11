@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\User\Customer\States\MyAccount;
 
-use Domain\Shared\Action\Session\UpdateSessionStateAction;
+use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Menus\MyAccount\ChangePin\ChangePinMenu;
 use Domain\User\Customer\Menus\MyAccount\LinkedWallet\LinkedWalletsMenu;
@@ -38,7 +38,7 @@ final class MyAccountState
             $customer_state = $stateMappings[$session_data->user_input];
 
             // Update the customer session action
-            UpdateSessionStateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);
