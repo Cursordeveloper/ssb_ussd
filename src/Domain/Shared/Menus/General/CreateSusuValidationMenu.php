@@ -26,10 +26,18 @@ final class CreateSusuValidationMenu
         );
     }
 
-    public static function startWithIntegerMenu(Session $session): JsonResponse
+    public static function initialDepositAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The start with value must be a number. Try again\n",
+            message: "The initial deposit must be GHS5.00 and above. Try again\n",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function isNumericMenu(Session $session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "The value must be a number. Try again\n",
             session_id: $session->session_id,
         );
     }
