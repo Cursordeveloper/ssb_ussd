@@ -17,11 +17,16 @@ final class PersonalSusuCreateLinkedWalletAction
         // Get the linked wallets
         $linked_wallets = json_decode($session->user_data, associative: true)['linked_wallets'];
 
-        // Return invalid response if duration is not in $duration array
-        if (! array_key_exists(key: $session_data->user_input, array: $linked_wallets)) {
-            return PersonalSusuCreateMenu::invalidLinkedWalletMenu(session: $session);
-        }
+        // Validate the user_input (susu_amount)
+        return match (true) {
+            ! array_key_exists(key: $session_data->user_input, array: $linked_wallets) => PersonalSusuCreateMenu::invalidLinkedWalletMenu(session: $session),
 
+            default => self::linkedWalletStore(session: $session, session_data: $session_data, linked_wallets: $linked_wallets)
+        };
+    }
+
+    public static function linkedWalletStore(Session $session, $session_data, $linked_wallets): JsonResponse
+    {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['linked_wallet' => $linked_wallets[$session_data->user_input]['resource_id']]);
 

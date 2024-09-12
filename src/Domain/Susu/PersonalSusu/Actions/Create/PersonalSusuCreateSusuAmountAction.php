@@ -17,7 +17,8 @@ final class PersonalSusuCreateSusuAmountAction
     {
         // Validate the user_input (susu_amount)
         return match (true) {
-            CreateSusuValidationAction::amountValid($session_data->user_input) === false => CreateSusuValidationMenu::susuAmountValidMenu(session: $session),
+            CreateSusuValidationAction::isNumeric($session_data->user_input) === false => CreateSusuValidationMenu::isNumericMenu(session: $session),
+            CreateSusuValidationAction::susuAmountValid($session_data->user_input) === false => CreateSusuValidationMenu::susuAmountValidMenu(session: $session),
 
             default => self::susuAmountStore(session: $session, session_data: $session_data)
         };
