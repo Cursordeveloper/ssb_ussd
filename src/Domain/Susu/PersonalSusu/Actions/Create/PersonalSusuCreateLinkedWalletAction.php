@@ -7,7 +7,6 @@ namespace Domain\Susu\PersonalSusu\Actions\Create;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Menus\Create\PersonalSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuCreateLinkedWalletAction
@@ -19,7 +18,7 @@ final class PersonalSusuCreateLinkedWalletAction
 
         // Validate the user_input (susu_amount)
         return match (true) {
-            ! array_key_exists(key: $session_data->user_input, array: $linked_wallets) => PersonalSusuCreateMenu::invalidLinkedWalletMenu(session: $session),
+            ! array_key_exists(key: $session_data->user_input, array: $linked_wallets) => GeneralMenu::invalidLinkedWalletMenu(session: $session),
 
             default => self::linkedWalletStore(session: $session, session_data: $session_data, linked_wallets: $linked_wallets)
         };

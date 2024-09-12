@@ -26,8 +26,8 @@ final class BizSusuCreateState
         return match (true) {
             ! array_key_exists(key: 'business_name', array: $process_flow) => BizSusuCreateBusinessNameAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'susu_amount', array: $process_flow) => BizSusuCreateSusuAmountAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'frequency', array: $process_flow) => BizSusuCreateFrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'initial_deposit', array: $process_flow) => BizSusuCreateInitialDepositAction::execute(session: $session, session_data: $session_data),
+            ! array_key_exists(key: 'frequency', array: $process_flow) => BizSusuCreateFrequencyAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'linked_wallet', array: $process_flow) => BizSusuCreateLinkedWalletAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'accepted_terms', array: $process_flow) => BizSusuCreateAcceptedTermsAction::execute(session: $session, session_data: $session_data),
             ! array_key_exists(key: 'approval', array: $process_flow) => BizSusuCreateApprovalAction::execute(session: $session, session_data: $session_data),

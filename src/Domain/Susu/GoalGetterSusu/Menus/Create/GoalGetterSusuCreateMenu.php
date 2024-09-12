@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Susu\GoalGetterSusu\Menus\Create;
 
-use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Domain\Shared\Models\Session\Session;
@@ -40,28 +39,6 @@ final class GoalGetterSusuCreateMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Start with (amount)',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function durationMenu($session): JsonResponse
-    {
-        // Get the durations from the session->user_data
-        $durations = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose duration\n".SusuResources::formatDurationsForMenu(durations: $durations['durations']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidDurationMenu($session): JsonResponse
-    {
-        // Get the durations from the session->user_data
-        $durations = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid duration\n".SusuResources::formatDurationsForMenu(durations: $durations['durations']),
             session_id: $session->session_id,
         );
     }
@@ -105,18 +82,7 @@ final class GoalGetterSusuCreateMenu
         $frequencies = json_decode($session->user_data, associative: true);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid frequency\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function linkedWalletMenu($session): JsonResponse
-    {
-        // Get the linked_wallets from the session->user_data
-        $linked_wallets = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
+            message: "Invalid choice, try again\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
             session_id: $session->session_id,
         );
     }

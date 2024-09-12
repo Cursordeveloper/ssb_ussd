@@ -16,11 +16,16 @@ final class GoalGetterSusuCreateDurationAction
         // Get the durations
         $duration = json_decode($session->user_data, associative: true)['durations'];
 
-        // Return invalid response if duration is not in $duration array
-        if (! array_key_exists(key: $session_data->user_input, array: $duration)) {
-            return GoalGetterSusuCreateMenu::invalidDurationMenu(session: $session);
-        }
+        // Validate the user_input (susu_amount)
+        return match (true) {
+            ! array_key_exists(key: $session_data->user_input, array: $duration) => GoalGetterSusuCreateMenu::invalidDurationMenu(session: $session),
 
+            default => self::durationStore(session: $session, session_data: $session_data, duration: $duration)
+        };
+    }
+
+    public static function durationStore(Session $session, $session_data, $duration): JsonResponse
+    {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['duration' => $duration[$session_data->user_input]['code']]);
 

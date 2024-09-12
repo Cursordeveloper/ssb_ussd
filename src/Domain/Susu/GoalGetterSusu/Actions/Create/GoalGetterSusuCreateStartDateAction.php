@@ -16,11 +16,16 @@ final class GoalGetterSusuCreateStartDateAction
         // Get the start_dates
         $start_dates = json_decode($session->user_data, associative: true)['start_dates'];
 
-        // Return invalid response if duration is not in $duration array
-        if (! array_key_exists(key: $session_data->user_input, array: $start_dates)) {
-            return GoalGetterSusuCreateMenu::invalidStartDateMenu(session: $session);
-        }
+        // Validate the user_input (susu_amount)
+        return match (true) {
+            ! array_key_exists(key: $session_data->user_input, array: $start_dates) => GoalGetterSusuCreateMenu::invalidStartDateMenu(session: $session),
 
+            default => self::startDateStore(session: $session, session_data: $session_data, start_dates: $start_dates)
+        };
+    }
+
+    public static function startDateStore(Session $session, $session_data, $start_dates): JsonResponse
+    {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['start_date' => $start_dates[$session_data->user_input]['code']]);
 

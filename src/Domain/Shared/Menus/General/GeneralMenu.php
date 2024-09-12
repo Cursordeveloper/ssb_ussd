@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Menus\General;
 
+use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
+use App\Common\SusuResources;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -86,10 +88,76 @@ final class GeneralMenu
         );
     }
 
+    public static function frequencyMenu($session): JsonResponse
+    {
+        // Get the frequencies from the session->user_data
+        $frequencies = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Choose frequency\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidFrequencyMenu($session): JsonResponse
+    {
+        // Get the frequencies from the session->user_data
+        $frequencies = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid option, try again\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function durationMenu($session): JsonResponse
+    {
+        // Get the durations from the session->user_data
+        $durations = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Choose duration\n".SusuResources::formatDurationsForMenu(durations: $durations['durations']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidDurationMenu($session): JsonResponse
+    {
+        // Get the durations from the session->user_data
+        $durations = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid duration\n".SusuResources::formatDurationsForMenu(durations: $durations['durations']),
+            session_id: $session->session_id,
+        );
+    }
+
     public static function invalidPinMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "The PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel.\n",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function linkedWalletMenu($session): JsonResponse
+    {
+        // Get the linked_wallets from the session->user_data
+        $linked_wallets = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidLinkedWalletMenu($session): JsonResponse
+    {
+        // Get the linked_wallets from the session->user_data
+        $linked_wallets = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice, try again\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
             session_id: $session->session_id,
         );
     }

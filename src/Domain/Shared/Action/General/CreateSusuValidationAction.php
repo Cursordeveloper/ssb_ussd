@@ -16,12 +16,17 @@ final class CreateSusuValidationAction
         return ! ((float) $user_input < 5);
     }
 
+    public static function targetAmountValid(string $user_input): bool
+    {
+        return ! ((float) $user_input < 500);
+    }
+
     public static function initialDepositAmountValid(string $user_input): bool
     {
         return ! ((float) $user_input < 5);
     }
 
-    public static function isNumeric(string $user_input): bool
+    public static function isNumericValid(string $user_input): bool
     {
         return is_numeric($user_input);
     }

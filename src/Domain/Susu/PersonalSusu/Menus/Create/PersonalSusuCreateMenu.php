@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\Menus\Create;
 
-use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,28 +30,6 @@ final class PersonalSusuCreateMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Start with (days)',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function linkedWalletMenu($session): JsonResponse
-    {
-        // Get the linked wallets from the session->user_data
-        $linked_wallets = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidLinkedWalletMenu($session): JsonResponse
-    {
-        // Get the linked wallets from the session->user_data
-        $linked_wallets = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
             session_id: $session->session_id,
         );
     }
