@@ -19,7 +19,7 @@ final class PersonalSusuCreateLinkedWalletAction
 
         // Return invalid response if duration is not in $duration array
         if (! array_key_exists(key: $session_data->user_input, array: $linked_wallets)) {
-            return PersonalSusuCreateMenu::linkedWalletMenu(session: $session);
+            return PersonalSusuCreateMenu::invalidLinkedWalletMenu(session: $session);
         }
 
         // Update the user inputs (steps)
