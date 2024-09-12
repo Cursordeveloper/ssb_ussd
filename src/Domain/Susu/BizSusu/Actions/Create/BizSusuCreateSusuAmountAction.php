@@ -17,7 +17,7 @@ final class BizSusuCreateSusuAmountAction
     {
         // Validate the user_input (susu_amount)
         return match (true) {
-            CreateSusuValidationAction::isNumeric($session_data->user_input) === false => CreateSusuValidationMenu::isNumericMenu(session: $session),
+            CreateSusuValidationAction::isNumericValid($session_data->user_input) === false => CreateSusuValidationMenu::isNumericMenu(session: $session),
             CreateSusuValidationAction::susuAmountValid($session_data->user_input) === false => CreateSusuValidationMenu::susuAmountValidMenu(session: $session),
 
             default => self::susuAmountStore(session: $session, session_data: $session_data)
@@ -29,7 +29,7 @@ final class BizSusuCreateSusuAmountAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
 
-        // Return the chooseLinkedWalletMenu
-        return BizSusuCreateMenu::frequencyMenu(session: $session);
+        // Return the initialDepositMenu
+        return BizSusuCreateMenu::initialDepositMenu(session: $session);
     }
 }
