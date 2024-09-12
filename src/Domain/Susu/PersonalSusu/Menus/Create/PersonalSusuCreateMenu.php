@@ -46,6 +46,17 @@ final class PersonalSusuCreateMenu
         );
     }
 
+    public static function invalidLinkedWalletMenu($session): JsonResponse
+    {
+        // Get the linked wallets from the session->user_data
+        $linked_wallets = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice, try again.\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
+            session_id: $session->session_id,
+        );
+    }
+
     public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
