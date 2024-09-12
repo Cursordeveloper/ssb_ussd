@@ -26,6 +26,14 @@ final class CreateSusuValidationMenu
         );
     }
 
+    public static function targetAmountMenu(Session $session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "The target amount should be GHS500.00 and above. Try again\n",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function initialDepositAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(

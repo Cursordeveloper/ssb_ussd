@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Susu\BizSusu\Actions\Create;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\BizSusu\Menus\Create\BizSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuCreateFrequencyAction
@@ -18,7 +18,7 @@ final class BizSusuCreateFrequencyAction
 
         // Validate the user_input (susu_amount)
         return match (true) {
-            ! array_key_exists(key: $session_data->user_input, array: $frequencies) => BizSusuCreateMenu::invalidFrequencyMenu(session: $session),
+            ! array_key_exists(key: $session_data->user_input, array: $frequencies) => GeneralMenu::invalidFrequencyMenu(session: $session),
 
             default => self::frequencyStore(session: $session, session_data: $session_data, frequencies: $frequencies)
         };
@@ -30,6 +30,6 @@ final class BizSusuCreateFrequencyAction
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$session_data->user_input]['code']]);
 
         // Return the initialDepositMenu
-        return BizSusuCreateMenu::initialDepositMenu(session: $session);
+        return GeneralMenu::linkedWalletMenu(session: $session);
     }
 }

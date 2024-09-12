@@ -7,7 +7,6 @@ namespace Domain\Susu\GoalGetterSusu\Actions\Create;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateLinkedWalletAction
@@ -17,11 +16,16 @@ final class GoalGetterSusuCreateLinkedWalletAction
         // Get the linked_wallets
         $linked_wallets = json_decode($session->user_data, associative: true)['linked_wallets'];
 
-        // Return invalid response if linked wallet is not in $linked_wallets array
-        if (! array_key_exists(key: $session_data->user_input, array: $linked_wallets)) {
-            return GoalGetterSusuCreateMenu::linkedWalletMenu(session: $session);
-        }
+        // Validate the user_input (susu_amount)
+        return match (true) {
+            ! array_key_exists(key: $session_data->user_input, array: $linked_wallets) => GeneralMenu::invalidLinkedWalletMenu(session: $session),
 
+            default => self::linkedWalletStore(session: $session, session_data: $session_data, linked_wallets: $linked_wallets)
+        };
+    }
+
+    public static function linkedWalletStore(Session $session, $session_data, $linked_wallets): JsonResponse
+    {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['linked_wallet' => $linked_wallets[$session_data->user_input]['resource_id']]);
 

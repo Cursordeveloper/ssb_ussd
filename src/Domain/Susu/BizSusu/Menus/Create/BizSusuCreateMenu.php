@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\Menus\Create;
 
-use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
-use App\Common\SusuResources;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Actions\Common\GetSusuFrequenciesAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,43 +30,10 @@ final class BizSusuCreateMenu
         );
     }
 
-    public static function frequencyMenu($session): JsonResponse
-    {
-        // Get the frequencies from the session->user_data
-        $frequencies = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose frequency\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidFrequencyMenu($session): JsonResponse
-    {
-        // Get the frequencies from the session->user_data
-        $frequencies = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid option, try again\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
-            session_id: $session->session_id,
-        );
-    }
-
     public static function initialDepositMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Start with (amount)',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function linkedWalletMenu($session): JsonResponse
-    {
-        // Get the linked wallets from the session->user_data
-        $linked_wallets = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
             session_id: $session->session_id,
         );
     }
