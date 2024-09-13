@@ -17,32 +17,33 @@ final class PersonalSusuPaymentAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Return the invalidAcceptedSusuTerms menu if user_input is not 1
-        if ($session_data->user_input !== '1') {
-            return GeneralMenu::invalidAcceptedSusuTerms(session: $session);
-        }
+        // Validate and process the user_input
+        return match (true) {
+            $session_data->user_input === '1' => self::susuPaymentProcessor(session: $session),
+            $session_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
 
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true]);
+            default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
+        };
+    }
 
+    public static function susuPaymentProcessor(Session $session): JsonResponse
+    {
         // Get the process flow array from the customer session (user inputs)
         $user_inputs = json_decode($session->user_inputs, associative: true);
 
-        // Get the customer
+        // Execute and return the customer data
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the createPersonalSusu HTTP request
-        $response = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
+        // Execute the SusuServicePersonalSusuPaymentRequest HTTP request
+        $payment_data = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
 
-        // Terminate session if $get_balance request status is false
-        if (data_get(target: $response, key: 'code') !== 200) {
-            return GeneralMenu::invalidInput(session: $session);
+        // Update the user_put and return the narrationMenu
+        if (data_get($payment_data, key: 'code') === 200) {
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'payment_resource' => data_get(target: $payment_data, key: 'data.attributes.resource_id')]);
+            return PersonalSusuPaymentMenu::narrationMenu(session: $session, payment_data: $payment_data);
         }
 
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserData(session: $session, user_data: ['payment_data' => data_get(target: $response, key: 'data.attributes')]);
-
-        // Return the noSususAccount
-        return PersonalSusuPaymentMenu::narrationMenu(session: $session, payment_data: $response);
+        // Return the invalidInput
+        return GeneralMenu::systemErrorNotification(session: $session);
     }
 }

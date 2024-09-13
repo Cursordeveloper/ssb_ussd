@@ -8,7 +8,7 @@ use App\Common\ResponseBuilder;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class CreateSusuValidationMenu
+final class SusuValidationMenu
 {
     public static function accountNameLengthMenu(Session $session): JsonResponse
     {
@@ -37,7 +37,7 @@ final class CreateSusuValidationMenu
     public static function isNumericMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The value must be a number. Try again\n",
+            message: "Invalid input\nThe value must be a valid number. Please correct your input and try again\n",
             session_id: $session->session_id,
         );
     }
@@ -46,14 +46,6 @@ final class CreateSusuValidationMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Initial deposit\nThe initial deposit must be GHS5.00 and above. Try again\n",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function startWithTotalMenu(Session $session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Start with\nThe start with value cannot be more than 10 frequencies. Try again\n",
             session_id: $session->session_id,
         );
     }

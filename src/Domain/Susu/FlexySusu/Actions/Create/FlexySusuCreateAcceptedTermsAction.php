@@ -17,9 +17,10 @@ final class FlexySusuCreateAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
+        // Validate and process the user_input
         return match (true) {
             $session_data->user_input === '1' => self::susuCreateRequest(session: $session),
-            $session_data->user_input === '2' => GeneralMenu::terminateSession(session: $session),
+            $session_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
@@ -39,7 +40,7 @@ final class FlexySusuCreateAcceptedTermsAction
             return FlexySusuCreateMenu::narrationMenu(session: $session, susu_data: data_get($susu_created, key: 'data.attributes'), linked_account: data_get($susu_created, key: 'data.included.wallet.attributes'));
         }
 
-        // Return system error menu
+        // Return the invalidInput
         return GeneralMenu::invalidInput(session: $session);
     }
 }

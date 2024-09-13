@@ -77,13 +77,35 @@ final class GeneralMenu
         );
     }
 
+    public static function paymentNotificationMenu($session): JsonResponse
+    {
+        // Reset resetUserInputs and resetUserData
+        SessionInputUpdateAction::resetAll(session: $session);
+
+        return ResponseBuilder::infoResponseBuilder(
+            message: "Your payment is being processed. You will receive a notification to confirm status.\n",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function processTerminatedMenu($session): JsonResponse
+    {
+        // Reset resetUserInputs and resetUserData
+        SessionInputUpdateAction::resetAll(session: $session);
+
+        return ResponseBuilder::infoResponseBuilder(
+            message: "The process has been successfully terminated. You can start again at any time.\n",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function processCancelNotification($session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "Your process has been successfully canceled. You can start again at any time.\n",
+            message: "The process has been successfully canceled. You can start again at any time.\n",
             session_id: $session->session_id,
         );
     }
