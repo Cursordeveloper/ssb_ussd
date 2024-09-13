@@ -7,7 +7,6 @@ namespace Domain\Susu\GoalGetterSusu\Actions\Create;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateFrequencyAction
@@ -19,7 +18,7 @@ final class GoalGetterSusuCreateFrequencyAction
 
         // Validate the user_input (susu_amount)
         return match (true) {
-            ! array_key_exists(key: $session_data->user_input, array: $frequencies) => GoalGetterSusuCreateMenu::invalidFrequencyMenu(session: $session),
+            ! array_key_exists(key: $session_data->user_input, array: $frequencies) => GeneralMenu::invalidFrequencyMenu(session: $session),
 
             default => self::frequencyStore(session: $session, session_data: $session_data, frequencies: $frequencies)
         };

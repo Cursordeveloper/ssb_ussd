@@ -6,7 +6,7 @@ namespace Domain\Shared\Action\General;
 
 final class CreateSusuValidationAction
 {
-    public static function accountNameLength(string $user_input): bool
+    public static function accountNameLengthValid(string $user_input): bool
     {
         return ! (strlen($user_input) > 20);
     }
@@ -31,7 +31,7 @@ final class CreateSusuValidationAction
         return is_numeric($user_input);
     }
 
-    public static function startWithTotal(string $user_input): bool
+    public static function startWithTotalValid(string $user_input): bool
     {
         return ! ((int) $user_input > 5);
     }

@@ -88,6 +88,22 @@ final class GeneralMenu
         );
     }
 
+    public static function susuAmountMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: 'Enter susu amount',
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function initialDepositMenu($session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: 'Start with (amount)',
+            session_id: $session->session_id,
+        );
+    }
+
     public static function frequencyMenu($session): JsonResponse
     {
         // Get the frequencies from the session->user_data
@@ -95,6 +111,28 @@ final class GeneralMenu
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Choose frequency\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function startDateMenu($session): JsonResponse
+    {
+        // Get the durations from the session->user_data
+        $start_dates = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Start from\n".SusuResources::formatStartDatesForMenu(start_dates: $start_dates['start_dates']),
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function invalidStartDateMenu($session): JsonResponse
+    {
+        // Get the start_dates from the session->user_data
+        $start_dates = json_decode($session->user_data, associative: true);
+
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Invalid choice\n".SusuResources::formatStartDatesForMenu(start_dates: $start_dates['start_dates']),
             session_id: $session->session_id,
         );
     }

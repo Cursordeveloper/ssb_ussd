@@ -18,14 +18,6 @@ final class PersonalSusuCreateMenu
         );
     }
 
-    public static function susuAmountMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter susu amount',
-            session_id: $session->session_id,
-        );
-    }
-
     public static function initialDepositMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Susu\GoalGetterSusu\Menus\Create;
 
 use App\Common\ResponseBuilder;
-use App\Common\SusuResources;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Actions\Common\GetSusuDurationsAction;
 use Domain\Susu\Shared\Actions\Common\GetSusuFrequenciesAction;
@@ -31,58 +30,6 @@ final class GoalGetterSusuCreateMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'What is your target amount?',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function initialDepositMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Start with (amount)',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function startDateMenu($session): JsonResponse
-    {
-        // Get the durations from the session->user_data
-        $start_dates = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Start from\n".SusuResources::formatStartDatesForMenu(start_dates: $start_dates['start_dates']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidStartDateMenu($session): JsonResponse
-    {
-        // Get the start_dates from the session->user_data
-        $start_dates = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice\n".SusuResources::formatStartDatesForMenu(start_dates: $start_dates['start_dates']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function frequencyMenu($session): JsonResponse
-    {
-        // Get the frequencies from the session->user_data
-        $frequencies = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose debit frequency\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function invalidFrequencyMenu($session): JsonResponse
-    {
-        // Get the frequencies from the session->user_data
-        $frequencies = json_decode($session->user_data, associative: true);
-
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n".SusuResources::formatFrequenciesForMenu(start_dates: $frequencies['frequencies']),
             session_id: $session->session_id,
         );
     }

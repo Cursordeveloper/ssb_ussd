@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Susu\GoalGetterSusu\Actions\Create;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\GoalGetterSusu\Menus\Create\GoalGetterSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateStartDateAction
@@ -18,7 +18,7 @@ final class GoalGetterSusuCreateStartDateAction
 
         // Validate the user_input (susu_amount)
         return match (true) {
-            ! array_key_exists(key: $session_data->user_input, array: $start_dates) => GoalGetterSusuCreateMenu::invalidStartDateMenu(session: $session),
+            ! array_key_exists(key: $session_data->user_input, array: $start_dates) => GeneralMenu::invalidStartDateMenu(session: $session),
 
             default => self::startDateStore(session: $session, session_data: $session_data, start_dates: $start_dates)
         };
@@ -29,7 +29,7 @@ final class GoalGetterSusuCreateStartDateAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['start_date' => $start_dates[$session_data->user_input]['code']]);
 
-        // Return the enterSusuAmountMenu
-        return GoalGetterSusuCreateMenu::frequencyMenu(session: $session);
+        // Return the frequencyMenu
+        return GeneralMenu::frequencyMenu(session: $session);
     }
 }
