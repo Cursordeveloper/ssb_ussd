@@ -18,7 +18,7 @@ final class PersonalSusuCreateInitialDepositAction
         // Validate the user_input (susu_amount)
         return match (true) {
             CreateSusuValidationAction::isNumericValid($session_data->user_input) === false => CreateSusuValidationMenu::isNumericMenu(session: $session),
-            CreateSusuValidationAction::startWithTotal($session_data->user_input) === false => CreateSusuValidationMenu::startWithTotalMenu(session: $session),
+            CreateSusuValidationAction::startWithTotalValid($session_data->user_input) === false => CreateSusuValidationMenu::startWithTotalMenu(session: $session),
 
             default => self::initialDepositStore(session: $session, session_data: $session_data)
         };

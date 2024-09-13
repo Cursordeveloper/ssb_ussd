@@ -13,7 +13,7 @@ final class CreateSusuValidationMenu
     public static function accountNameLengthMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The account name cannot be more than 20 characters. Try again\n",
+            message: "Account name\nThe account name cannot be more than 20 characters. Try again\n",
             session_id: $session->session_id,
         );
     }
@@ -21,7 +21,7 @@ final class CreateSusuValidationMenu
     public static function susuAmountValidMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The minimum contribution is GHS5.00 and above. Try again\n",
+            message: "Susu amount\nThe minimum contribution is GHS5.00 and above. Try again\n",
             session_id: $session->session_id,
         );
     }
@@ -29,15 +29,7 @@ final class CreateSusuValidationMenu
     public static function targetAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The target amount should be GHS500.00 and above. Try again\n",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function initialDepositAmountMenu(Session $session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The initial deposit must be GHS5.00 and above. Try again\n",
+            message: "Target amount\nThe target amount should be GHS500.00 and above. Try again\n",
             session_id: $session->session_id,
         );
     }
@@ -50,10 +42,18 @@ final class CreateSusuValidationMenu
         );
     }
 
+    public static function initialDepositAmountMenu(Session $session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Initial deposit\nThe initial deposit must be GHS5.00 and above. Try again\n",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function startWithTotalMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The start with value cannot be more than 10 frequencies. Try again\n",
+            message: "Start with\nThe start with value cannot be more than 10 frequencies. Try again\n",
             session_id: $session->session_id,
         );
     }

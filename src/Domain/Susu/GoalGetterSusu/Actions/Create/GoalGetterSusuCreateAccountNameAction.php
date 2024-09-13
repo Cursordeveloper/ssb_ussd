@@ -17,7 +17,7 @@ final class GoalGetterSusuCreateAccountNameAction
     {
         // Validate the user_input (account_name)
         return match (true) {
-            CreateSusuValidationAction::accountNameLength($session_data->user_input) === false => CreateSusuValidationMenu::accountNameLengthMenu(session: $session),
+            CreateSusuValidationAction::accountNameLengthValid($session_data->user_input) === false => CreateSusuValidationMenu::accountNameLengthMenu(session: $session),
 
             default => self::accountNameStore(session: $session, session_data: $session_data)
         };

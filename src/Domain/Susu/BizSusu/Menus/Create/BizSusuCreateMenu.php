@@ -22,22 +22,6 @@ final class BizSusuCreateMenu
         );
     }
 
-    public static function susuAmountMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter susu amount',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function initialDepositMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Start with (amount)',
-            session_id: $session->session_id,
-        );
-    }
-
     public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(

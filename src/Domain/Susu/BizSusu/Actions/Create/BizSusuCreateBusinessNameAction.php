@@ -7,8 +7,8 @@ namespace Domain\Susu\BizSusu\Actions\Create;
 use Domain\Shared\Action\General\CreateSusuValidationAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\CreateSusuValidationMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\BizSusu\Menus\Create\BizSusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuCreateBusinessNameAction
@@ -17,7 +17,7 @@ final class BizSusuCreateBusinessNameAction
     {
         // Validate the user_input (account_name)
         return match (true) {
-            CreateSusuValidationAction::accountNameLength($session_data->user_input) === false => CreateSusuValidationMenu::accountNameLengthMenu(session: $session),
+            CreateSusuValidationAction::accountNameLengthValid($session_data->user_input) === false => CreateSusuValidationMenu::accountNameLengthMenu(session: $session),
 
             default => self::accountNameStore(session: $session, session_data: $session_data)
         };
@@ -28,7 +28,7 @@ final class BizSusuCreateBusinessNameAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['business_name' => $session_data->user_input]);
 
-        // Return the enterSusuAmountMenu
-        return BizSusuCreateMenu::susuAmountMenu(session: $session);
+        // Return the susuAmountMenu
+        return GeneralMenu::susuAmountMenu(session: $session);
     }
 }
