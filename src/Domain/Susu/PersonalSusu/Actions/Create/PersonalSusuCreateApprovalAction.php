@@ -32,7 +32,7 @@ final class PersonalSusuCreateApprovalAction
 
         return match (true) {
             data_get($response, key: 'code') === 200 => GeneralMenu::createAccountNotification(session: $session),
-            data_get($response, key: 'code') === 401 => GeneralMenu::invalidPinMenu(session: $session),
+            data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
 
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
@@ -62,6 +62,6 @@ final class PersonalSusuCreateApprovalAction
         (new PersonalSusuCancellationRequest)->execute(customer: $customer, data: PersonalSusuCancellationData::toArray(), susu_resource: $user_inputs);
 
         // Return the cancelAccountNotification and terminate the session
-        return GeneralMenu::cancelAccountNotification(session: $session);
+        return GeneralMenu::processCancelNotification(session: $session);
     }
 }
