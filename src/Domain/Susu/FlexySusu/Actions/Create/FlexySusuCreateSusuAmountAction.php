@@ -7,8 +7,8 @@ namespace Domain\Susu\FlexySusu\Actions\Create;
 use Domain\Shared\Action\General\CreateSusuValidationAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\CreateSusuValidationMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\FlexySusu\Menus\Create\FlexySusuCreateMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCreateSusuAmountAction
@@ -29,7 +29,7 @@ final class FlexySusuCreateSusuAmountAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
 
-        // Return the initialDeposit
-        return FlexySusuCreateMenu::initialDeposit(session: $session);
+        // Return the initialDepositMenu
+        return GeneralMenu::initialDepositMenu(session: $session);
     }
 }
