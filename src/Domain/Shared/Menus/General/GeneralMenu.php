@@ -50,7 +50,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "There was a problem. Try again later.\n",
+            message: "An unexpected error occurred while processing your request. Please try again later.\n",
             session_id: $session->session_id,
         );
     }
@@ -77,13 +77,13 @@ final class GeneralMenu
         );
     }
 
-    public static function cancelAccountNotification($session): JsonResponse
+    public static function processCancelNotification($session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "Your susu account create process has been canceled successfully.\n",
+            message: "Your process has been successfully canceled. You can start again at any time.\n",
             session_id: $session->session_id,
         );
     }
@@ -170,10 +170,10 @@ final class GeneralMenu
         );
     }
 
-    public static function invalidPinMenu($session): JsonResponse
+    public static function incorrectPinMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel.\n",
+            message: "Incorrect PIN\nThe PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel.\n",
             session_id: $session->session_id,
         );
     }
