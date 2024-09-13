@@ -17,9 +17,10 @@ final class PersonalSusuCreateAcceptedTermsAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
+        // Validate and process the user_input
         return match (true) {
             $session_data->user_input === '1' => self::susuCreateRequest(session: $session),
-            $session_data->user_input === '2' => GeneralMenu::terminateSession(session: $session),
+            $session_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };

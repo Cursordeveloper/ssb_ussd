@@ -30,6 +30,7 @@ final class PersonalSusuCreateApprovalAction
         // Execute the approvalRequest and return the response data
         $response = self::approvalRequest(session: $session, session_data: $session_data);
 
+        // Process response and return menu
         return match (true) {
             data_get($response, key: 'code') === 200 => GeneralMenu::createAccountNotification(session: $session),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
