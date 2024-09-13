@@ -19,7 +19,7 @@ final class GoalGetterSusuCreateAcceptedTermsAction
     {
         return match (true) {
             $session_data->user_input === '1' => self::susuCreateRequest(session: $session),
-            $session_data->user_input === '2' => GeneralMenu::terminateSession(session: $session),
+            $session_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };

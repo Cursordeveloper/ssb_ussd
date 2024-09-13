@@ -14,7 +14,7 @@ final class PersonalSusuPaymentMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter day(s)',
+            message: 'Pay for how many day(s)?',
             session_id: $session->session_id,
         );
     }
