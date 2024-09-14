@@ -195,7 +195,7 @@ final class GeneralMenu
     public static function incorrectPinMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Incorrect PIN\nThe PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel",
+            message: 'The PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel',
             session_id: $session->session_id,
         );
     }
