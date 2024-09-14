@@ -23,7 +23,6 @@ final class PersonalSusuSettlementState
             '1' => ['state' => new PersonalSusuSettlementPendingState, 'menu' => new PersonalSusuSettlementPendingMenu],
             '2' => ['state' => new PersonalSusuSettlementAllPendingState, 'menu' => new PersonalSusuSettlementAllPendingMenu],
             '3' => ['state' => new PersonalSusuSettlementZeroOutState, 'menu' => new PersonalSusuSettlementZeroOutMenu],
-
             '0' => ['state' => new PersonalSusuAccountState, 'menu' => new PersonalSusuAccountMenu],
         ];
 

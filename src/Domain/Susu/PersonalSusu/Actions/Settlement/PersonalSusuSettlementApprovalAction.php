@@ -15,7 +15,7 @@ use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class PersonalSusuSettlementPendingApprovalAction
+final class PersonalSusuSettlementApprovalAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
@@ -33,7 +33,7 @@ final class PersonalSusuSettlementPendingApprovalAction
         // Execute and return the customer data
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the SusuServicePersonalSusuPaymentApprovalRequest and return the response
+        // Execute the SusuServicePersonalSusuSettlementApprovalRequest and return the response
         $approval_response = (new SusuServicePersonalSusuSettlementApprovalRequest)->execute(
             customer: $customer,
             data: PinApprovalData::toArray($session_data->user_input),
@@ -55,7 +55,7 @@ final class PersonalSusuSettlementPendingApprovalAction
         // Execute the GetCustomerAction and return the data
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the SusuServicePersonalSusuPaymentCancellationRequest HTTP request
+        // Execute the SusuServicePersonalSusuSettlementCancellationRequest HTTP request
         $cancel_response = (new SusuServicePersonalSusuSettlementCancellationRequest)->execute(
             customer: $customer,
             data: SusuServicePersonalSusuSettlementCancellationData::toArray(),
