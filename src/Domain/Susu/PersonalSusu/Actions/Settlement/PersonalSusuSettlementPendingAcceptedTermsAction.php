@@ -28,7 +28,7 @@ final class PersonalSusuSettlementPendingAcceptedTermsAction
 
     public static function susuSettlementProcessor(Session $session, array $user_inputs): JsonResponse
     {
-        // Get the customer
+        // Execute the GetCustomerAction and return the data
         $customer = GetCustomerAction::execute($session->phone_number);
 
         // Execute the createPersonalSusu HTTP request
