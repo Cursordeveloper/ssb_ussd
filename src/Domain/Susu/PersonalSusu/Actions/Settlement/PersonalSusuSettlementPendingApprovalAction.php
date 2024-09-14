@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\Actions\Settlement;
 
+use App\Services\Susu\Data\PersonalSusu\Settlement\SusuServicePersonalSusuSettlementCancellationData;
 use App\Services\Susu\Requests\PersonalSusu\Settlement\SusuServicePersonalSusuSettlementApprovalRequest;
-use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use App\Services\Susu\Requests\PersonalSusu\Settlement\SusuServicePersonalSusuSettlementCancellationRequest;
+use Domain\Shared\Action\General\SusuValidationAction;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
+use Domain\Shared\Menus\General\SusuValidationMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,30 +19,55 @@ final class PersonalSusuSettlementPendingApprovalAction
 {
     public static function execute(Session $session, $session_data): JsonResponse
     {
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true]);
+        // Execute and return the response (menu)
+        return match (true) {
+            $session_data->user_input === '2' => self::settlementCancellation(session: $session),
+            SusuValidationAction::pinLengthValid($session_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
 
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-        $user_data = json_decode($session->user_data, associative: true);
+            default => self::settlementApproval(session: $session, session_data: $session_data)
+        };
+    }
 
-        // Get the customer
+    public static function settlementApproval(Session $session, $session_data): JsonResponse
+    {
+        // Execute and return the customer data
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the createPersonalSusu HTTP request
-        $balance = (new SusuServicePersonalSusuSettlementApprovalRequest)->execute(
+        // Execute the SusuServicePersonalSusuPaymentApprovalRequest and return the response
+        $approval_response = (new SusuServicePersonalSusuSettlementApprovalRequest)->execute(
             customer: $customer,
             data: PinApprovalData::toArray($session_data->user_input),
-            susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'),
-            settlement_resource: data_get(target: $user_data, key: 'settlement_data.resource_id'),
+            susu_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'susu_account.attributes.resource_id'),
+            settlement_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'settlement_resource'),
         );
 
-        // Terminate session if $get_balance request status is false
-        if (data_get(target: $balance, key: 'code') !== 200) {
-            return GeneralMenu::invalidInput(session: $session);
-        }
+        // Process response and return menu
+        return match (true) {
+            data_get($approval_response, key: 'code') === 200 => GeneralMenu::paymentNotificationMenu(session: $session),
+            data_get($approval_response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
 
-        // Return the requestNotification and terminate the session
-        return GeneralMenu::requestNotification(session: $session);
+            default => GeneralMenu::systemErrorNotification(session: $session)
+        };
+    }
+
+    public static function settlementCancellation(Session $session): JsonResponse
+    {
+        // Execute the GetCustomerAction and return the data
+        $customer = GetCustomerAction::execute($session->phone_number);
+
+        // Execute the SusuServicePersonalSusuPaymentCancellationRequest HTTP request
+        $cancel_response = (new SusuServicePersonalSusuSettlementCancellationRequest)->execute(
+            customer: $customer,
+            data: SusuServicePersonalSusuSettlementCancellationData::toArray(),
+            susu_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'susu_account.attributes.resource_id'),
+            settlement_resource: json_decode($session->user_inputs, associative: true)['settlement_resource']
+        );
+
+        // Process response and return menu
+        return match (true) {
+            data_get($cancel_response, key: 'code') === 200 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $cancel_response, key: 'description')),
+
+            default => GeneralMenu::systemErrorNotification(session: $session)
+        };
     }
 }

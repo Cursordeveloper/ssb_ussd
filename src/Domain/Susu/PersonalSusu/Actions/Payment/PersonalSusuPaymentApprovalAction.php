@@ -30,7 +30,7 @@ final class PersonalSusuPaymentApprovalAction
         // Execute and return the customer data
         $customer = GetCustomerAction::execute($session->phone_number);
 
-        // Execute the createPersonalSusu HTTP request
+        // Execute the SusuServicePersonalSusuPaymentApprovalRequest and return the response
         $approval_response = (new SusuServicePersonalSusuPaymentApprovalRequest)->execute(
             customer: $customer,
             data: PinApprovalData::toArray($session_data->user_input),
