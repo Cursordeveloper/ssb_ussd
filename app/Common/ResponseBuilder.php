@@ -35,7 +35,7 @@ final class ResponseBuilder
     {
         return response()->json([
             'Type' => 'release',
-            'SessionId' => $session_id."\n",
+            'SessionId' => $session_id,
             'Message' => $message,
         ]);
     }
@@ -45,7 +45,7 @@ final class ResponseBuilder
         return response()->json([
             'Type' => 'release',
             'SessionId' => $session_id,
-            'Message' => "Thank you for using SusuBox. See you soon.\n",
+            'Message' => 'Thank you for using SusuBox. See you soon',
         ]);
     }
 }
