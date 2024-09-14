@@ -6,6 +6,7 @@ namespace Domain\Susu\PersonalSusu\Menus\Settlement;
 
 use App\Common\ResponseBuilder;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\Settlement\SusuSettlementMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuSettlementPendingMenu
@@ -17,11 +18,11 @@ final class PersonalSusuSettlementPendingMenu
 
         // Match statement to determine the menu to return
         return match (true) {
-            data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements') < 1 => self::noPendingSettlementMenu(session: $session),
-            data_get(target: $user_inputs, key: 'susu_account.attributes.settlement_status') === 'locked' => self::settlementLockedMenu(session: $session),
+            data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements') < 1 => SusuSettlementMenu::noPendingSettlementMenu(session: $session),
+            data_get(target: $user_inputs, key: 'susu_account.attributes.settlement_status') === 'locked' => SusuSettlementMenu::settlementLockedMenu(session: $session),
 
             default => ResponseBuilder::ussdResourcesResponseBuilder(
-                message: data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements')." pending cycle. How many would you like to settle?\n",
+                message: data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements').' pending cycle. How many would you like to settle?',
                 session_id: $session->session_id
             ),
         };
@@ -30,25 +31,7 @@ final class PersonalSusuSettlementPendingMenu
     public static function invalidTotalCycle(Session $session, int $pending_settlements): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\nThe value must not be more than ".$pending_settlements.". Please correct your input and try again\n",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function noPendingSettlementMenu(Session $session): JsonResponse
-    {
-        // Return the menu for the susu_scheme
-        return ResponseBuilder::infoResponseBuilder(
-            message: 'You do not have any pending settlement.',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function settlementLockedMenu(Session $session): JsonResponse
-    {
-        // Return the menu for the susu_scheme
-        return ResponseBuilder::infoResponseBuilder(
-            message: 'The susu account has been locked. Settlement is suspended.',
+            message: 'The value must not be more than '.$pending_settlements.". Please correct your input and try again\n",
             session_id: $session->session_id,
         );
     }
