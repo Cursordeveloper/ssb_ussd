@@ -18,7 +18,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "There was a problem with your request. Try again later.\n",
+            message: 'There was a problem with your request. Try again later',
             session_id: $session->session_id,
         );
     }
@@ -50,7 +50,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "An unexpected error occurred while processing your request. Please try again later.\n",
+            message: 'An unexpected error occurred while processing your request. Please try again later',
             session_id: $session->session_id,
         );
     }
@@ -61,7 +61,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "Your request is being processed. You will receive a notification to confirm status.\n",
+            message: 'Your request is being processed. You will receive a notification to confirm status',
             session_id: $session->session_id,
         );
     }
@@ -72,7 +72,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "Your account is being processed. You will receive a notification to confirm status.\n",
+            message: 'Your account is being processed. You will receive a notification to confirm status',
             session_id: $session->session_id,
         );
     }
@@ -83,7 +83,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "Your payment is being processed. You will receive a notification to confirm status.\n",
+            message: 'Your payment is being processed. You will receive a notification to confirm status',
             session_id: $session->session_id,
         );
     }
@@ -94,7 +94,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "The process has been successfully terminated. You can start again at any time.\n",
+            message: 'The process has been successfully terminated. You can start again at any time',
             session_id: $session->session_id,
         );
     }
@@ -105,7 +105,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: "The process has been successfully canceled. You can start again at any time.\n",
+            message: 'The process has been successfully canceled. You can start again at any time',
             session_id: $session->session_id,
         );
     }
@@ -195,7 +195,7 @@ final class GeneralMenu
     public static function incorrectPinMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Incorrect PIN\nThe PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel.\n",
+            message: "Incorrect PIN\nThe PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel",
             session_id: $session->session_id,
         );
     }
