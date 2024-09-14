@@ -233,7 +233,7 @@ final class GeneralMenu
     public static function invalidAcceptedSusuTerms($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            message: "Invalid choice, try again\nhttps://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
             session_id: $session->session_id,
         );
     }

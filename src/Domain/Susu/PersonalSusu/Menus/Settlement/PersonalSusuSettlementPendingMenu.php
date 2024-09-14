@@ -21,24 +21,16 @@ final class PersonalSusuSettlementPendingMenu
             data_get(target: $user_inputs, key: 'susu_account.attributes.settlement_status') === 'locked' => self::settlementLockedMenu(session: $session),
 
             default => ResponseBuilder::ussdResourcesResponseBuilder(
-                message: data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements')." pending. How many cycle?\n",
+                message: data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements')." pending cycle. How many would you like to settle?\n",
                 session_id: $session->session_id
             ),
         };
     }
 
-    public static function invalidTotalCycle($session): JsonResponse
+    public static function invalidTotalCycle(Session $session, int $pending_settlements): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function narrationMenu($session, $data): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Settlement Amount: GHS'.data_get(target: $data, key: 'data.attributes.amount').'. Commission: GHS'.data_get(target: $data, key: 'data.attributes.fees').'. Settlement Wallet: '.data_get(target: $data, key: 'data.included.wallet.attributes.account_number').'. Enter pin to confirm or 2 to Cancel.',
+            message: "Invalid input\nThe value must not be more than ".$pending_settlements.". Please correct your input and try again\n",
             session_id: $session->session_id,
         );
     }
@@ -57,6 +49,14 @@ final class PersonalSusuSettlementPendingMenu
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
             message: 'The susu account has been locked. Settlement is suspended.',
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function narrationMenu($session, $data): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: 'Settlement Amount: GHS'.data_get(target: $data, key: 'data.attributes.amount').'. Commission: GHS'.data_get(target: $data, key: 'data.attributes.fees').'. Settlement Wallet: '.data_get(target: $data, key: 'data.included.wallet.attributes.account_number').'. Enter pin to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

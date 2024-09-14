@@ -16,6 +16,11 @@ final class SusuValidationAction
         return ! ((float) $user_input < 5);
     }
 
+    public static function pinLengthValid(string $user_input): bool
+    {
+        return ! (strlen($user_input) < 4);
+    }
+
     public static function targetAmountValid(string $user_input): bool
     {
         return ! ((float) $user_input < 500);

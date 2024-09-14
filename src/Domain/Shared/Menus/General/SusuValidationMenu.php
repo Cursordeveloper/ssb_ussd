@@ -42,6 +42,14 @@ final class SusuValidationMenu
         );
     }
 
+    public static function pinLengthMenu(Session $session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "The PIN length is invalid. Please correct your input and try again\n",
+            session_id: $session->session_id,
+        );
+    }
+
     public static function initialDepositAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(

@@ -4,20 +4,32 @@ declare(strict_types=1);
 
 namespace Domain\Susu\PersonalSusu\Actions\Settlement;
 
+use Domain\Shared\Action\General\SusuValidationAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
+use Domain\Shared\Menus\General\SusuValidationMenu;
+use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Settlement\PersonalSusuSettlementPendingMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuSettlementPendingTotalCycleAction
 {
-    public static function execute($session, $user_inputs, $session_data): JsonResponse
+    public static function execute(Session $session, $user_inputs, $session_data): JsonResponse
     {
-        // Return the invalidTotalCycle if user_input is more than [pending_settlements]
-        if ((int) $session_data->user_input > data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements')) {
-            return PersonalSusuSettlementPendingMenu::invalidTotalCycle(session: $session);
-        }
+        // Get the [pending_settlements] data
+        $pending_settlements = data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements');
 
+        // Validate and process the user_input
+        return match (true) {
+            SusuValidationAction::isNumericValid($session_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+            (int) $session_data->user_input > $pending_settlements => PersonalSusuSettlementPendingMenu::invalidTotalCycle(session: $session, pending_settlements: $pending_settlements),
+
+            default => self::pendingTotalCycleStore(session: $session, session_data: $session_data)
+        };
+    }
+
+    public static function pendingTotalCycleStore(Session $session, $session_data): JsonResponse
+    {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['total_cycle' => $session_data->user_input]);
 
