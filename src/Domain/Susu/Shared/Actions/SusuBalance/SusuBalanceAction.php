@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Domain\Susu\Shared\Actions\SusuBalance;
 
 use App\Services\Susu\Requests\Susu\SusuServiceSusuBalanceRequest;
+use Domain\Shared\Action\General\SusuValidationAction;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
+use Domain\Shared\Menus\General\SusuValidationMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Balance\SusuBalanceMenu;
 use Domain\User\Customer\Actions\Common\GetCustomerAction;
@@ -19,6 +21,7 @@ final class SusuBalanceAction
         // Execute and return the response (menu)
         return match (true) {
             $session_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
+            SusuValidationAction::pinLengthValid($session_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
 
             default => self::processApproval(session: $session, session_data: $session_data)
         };

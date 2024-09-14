@@ -13,7 +13,7 @@ final class SusuValidationMenu
     public static function accountNameLengthMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Account name\nThe account name cannot be more than 20 characters. Try again\n",
+            message: 'The account name must not exceed 20 characters. Please shorten it and try again.',
             session_id: $session->session_id,
         );
     }
@@ -21,7 +21,7 @@ final class SusuValidationMenu
     public static function susuAmountValidMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Susu amount\nThe minimum contribution is GHS5.00 and above. Try again\n",
+            message: 'The minimum contribution must be GHS5.00 or more. Please adjust your amount and try again.',
             session_id: $session->session_id,
         );
     }
@@ -29,7 +29,7 @@ final class SusuValidationMenu
     public static function targetAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Target amount\nThe target amount should be GHS500.00 and above. Try again\n",
+            message: 'The target amount must be GHS500.00 or higher. Please adjust your input and try again.',
             session_id: $session->session_id,
         );
     }
@@ -37,7 +37,7 @@ final class SusuValidationMenu
     public static function isNumericMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid input\nThe value must be a valid number. Please correct your input and try again\n",
+            message: 'The value must be a valid number. Please correct your input and try again.',
             session_id: $session->session_id,
         );
     }
@@ -45,7 +45,7 @@ final class SusuValidationMenu
     public static function pinLengthMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "The PIN length is invalid. Please correct your input and try again\n",
+            message: 'The PIN length is invalid. Please correct your input and try again.',
             session_id: $session->session_id,
         );
     }
@@ -53,7 +53,7 @@ final class SusuValidationMenu
     public static function initialDepositAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Initial deposit\nThe initial deposit must be GHS5.00 and above. Try again\n",
+            message: 'The initial deposit must be GHS5.00 and above. Try again.',
             session_id: $session->session_id,
         );
     }
