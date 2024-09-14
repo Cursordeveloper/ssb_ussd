@@ -35,7 +35,7 @@ final class PersonalSusuSettlementPendingMenu
         );
     }
 
-    public static function noPendingSettlementMenu($session): JsonResponse
+    public static function noPendingSettlementMenu(Session $session): JsonResponse
     {
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
@@ -44,7 +44,7 @@ final class PersonalSusuSettlementPendingMenu
         );
     }
 
-    public static function settlementLockedMenu($session): JsonResponse
+    public static function settlementLockedMenu(Session $session): JsonResponse
     {
         // Return the menu for the susu_scheme
         return ResponseBuilder::infoResponseBuilder(
@@ -53,7 +53,7 @@ final class PersonalSusuSettlementPendingMenu
         );
     }
 
-    public static function narrationMenu($session, $data): JsonResponse
+    public static function narrationMenu(Session $session, array $data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Settlement Amount: GHS'.data_get(target: $data, key: 'data.attributes.amount').'. Commission: GHS'.data_get(target: $data, key: 'data.attributes.fees').'. Settlement Wallet: '.data_get(target: $data, key: 'data.included.wallet.attributes.account_number').'. Enter pin to confirm or 2 to Cancel.',
