@@ -15,21 +15,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ConfirmNewPinAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirm_pin' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirm_pin' => $service_data->user_input]);
 
         // Get the process flow array from the customer session (user inputs)
         $user_inputs = json_decode($session->user_inputs, associative: true);
 
         // Validate the user input
-        if (! ValidatePinAction::execute($session_data->user_input)) {
+        if (! ValidatePinAction::execute($service_data->user_input)) {
             return ChangePinMenu::invalidConfirmNewPin(session: $session);
         }
 
         // Check if new_pin and confirm_new_pin match
-        if ($session_data->user_input !== data_get(target: $user_inputs, key: 'new_pin')) {
+        if ($service_data->user_input !== data_get(target: $user_inputs, key: 'new_pin')) {
             return ChangePinMenu::invalidConfirmNewPin(session: $session);
         }
 

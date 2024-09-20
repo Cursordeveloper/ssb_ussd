@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuSettlementAllPendingConfirmationAction
 {
-    public static function execute($session, $session_data): JsonResponse
+    public static function execute($session, $service_data): JsonResponse
     {
         // Validate and process the user_input
         return match (true) {
-            $session_data->user_input === '1' => self::susuSettlementConfirmationProcessor(session: $session),
-            $session_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
+            $service_data->user_input === '1' => self::susuSettlementConfirmationProcessor(session: $session),
+            $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
 
             default => SusuSettlementMenu::invalidConfirmationMenu(session: $session)
         };

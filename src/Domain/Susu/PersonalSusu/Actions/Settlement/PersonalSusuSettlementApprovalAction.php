@@ -12,23 +12,24 @@ use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Menus\General\SusuValidationMenu;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Menus\Settlement\SusuSettlementMenu;
 use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuSettlementApprovalAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Execute and return the response (menu)
         return match (true) {
-            $session_data->user_input === '2' => self::settlementCancellation(session: $session),
-            SusuValidationAction::pinLengthValid($session_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
+            $service_data->user_input === '2' => self::settlementCancellation(session: $session),
+            SusuValidationAction::pinLengthValid($service_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
 
-            default => self::settlementApproval(session: $session, session_data: $session_data)
+            default => self::settlementApproval(session: $session, service_data: $service_data)
         };
     }
 
-    public static function settlementApproval(Session $session, $session_data): JsonResponse
+    public static function settlementApproval(Session $session, $service_data): JsonResponse
     {
         // Execute and return the customer data
         $customer = GetCustomerAction::execute($session->phone_number);
@@ -36,14 +37,14 @@ final class PersonalSusuSettlementApprovalAction
         // Execute the SusuServicePersonalSusuSettlementApprovalRequest and return the response
         $approval_response = (new SusuServicePersonalSusuSettlementApprovalRequest)->execute(
             customer: $customer,
-            data: PinApprovalData::toArray($session_data->user_input),
+            data: PinApprovalData::toArray($service_data->user_input),
             susu_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'susu_account.attributes.resource_id'),
             settlement_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'settlement_resource'),
         );
 
         // Process response and return menu
         return match (true) {
-            data_get($approval_response, key: 'code') === 200 => GeneralMenu::paymentNotificationMenu(session: $session),
+            data_get($approval_response, key: 'code') === 200 => SusuSettlementMenu::settlementNotificationMenu(session: $session),
             data_get($approval_response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
 
             default => GeneralMenu::systemErrorNotification(session: $session)

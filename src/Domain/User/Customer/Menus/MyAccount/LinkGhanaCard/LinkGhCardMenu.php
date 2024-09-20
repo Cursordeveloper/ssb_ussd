@@ -24,15 +24,7 @@ final class LinkGhCardMenu
     public static function enterIDMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter id number',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function enterPinMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter Susubox pin',
+            message: 'Enter Ghana Card number',
             session_id: $session->session_id,
         );
     }

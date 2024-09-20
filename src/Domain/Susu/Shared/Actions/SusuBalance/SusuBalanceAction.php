@@ -11,26 +11,25 @@ use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Menus\General\SusuValidationMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Balance\SusuBalanceMenu;
-use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuBalanceAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Execute and return the response (menu)
         return match (true) {
-            $session_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
-            SusuValidationAction::pinLengthValid($session_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
+            $service_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
+            SusuValidationAction::pinLengthValid($service_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
 
-            default => self::processApproval(session: $session, session_data: $session_data)
+            default => self::processApproval(session: $session, service_data: $service_data)
         };
     }
 
-    public static function processApproval(Session $session, $session_data): JsonResponse
+    public static function processApproval(Session $session, $service_data): JsonResponse
     {
         // Execute the approvalRequest and return the response data
-        $response = self::approvalRequest(session: $session, session_data: $session_data);
+        $response = (new SusuServiceSusuBalanceRequest)->execute(customer: $session->customer, susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'), data: PinApprovalData::toArray($service_data->user_input));
 
         return match (true) {
             data_get($response, key: 'code') === 200 => SusuBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $response, key: 'data')),
@@ -38,17 +37,5 @@ final class SusuBalanceAction
 
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
-    }
-
-    public static function approvalRequest(Session $session, $session_data): array
-    {
-        // Execute the GetCustomerAction and return the data
-        $customer = GetCustomerAction::execute($session->phone_number);
-
-        // Get the process flow array from the customer session (user inputs)
-        $susu_account = json_decode($session->user_inputs, associative: true);
-
-        // Execute the createPersonalSusu HTTP request
-        return (new SusuServiceSusuBalanceRequest)->execute(customer: $customer, susu_resource: data_get(target: $susu_account, key: 'susu_account.attributes.resource_id'), data: PinApprovalData::toArray($session_data->user_input));
     }
 }

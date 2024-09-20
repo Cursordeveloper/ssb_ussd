@@ -16,23 +16,23 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MySusuAccountsState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Return to the SusuState if user_input is (0)
-        if ($session_data->user_input === '0') {
-            return ReturnToServiceAction::execute(session: $session, session_data: $session_data, service: 'susu');
+        if ($service_data->user_input === '0') {
+            return ReturnToServiceAction::execute(session: $session, service_data: $service_data, service: 'susu');
         }
 
         // Get the session->user_data
         $user_data = json_decode($session->user_data, associative: true);
 
         // Return the invalidSusuAccountsMenu (if user_input does not exist)
-        if (! array_key_exists(key: $session_data->user_input, array: data_get(target: $user_data, key: 'susu_accounts'))) {
+        if (! array_key_exists(key: $service_data->user_input, array: data_get(target: $user_data, key: 'susu_accounts'))) {
             return MySusuAccountsMenu::invalidSusuAccountsMenu(session: $session, susu_data: $user_data['susu_accounts']);
         }
 
         // Update the updateUserInputs with the [susu_account] option selected
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['scheme_code' => $user_data['susu_accounts'][$session_data->user_input]['susu_scheme_code']]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['scheme_code' => $user_data['susu_accounts'][$service_data->user_input]['susu_scheme_code']]);
 
         // Get the customer
         $customer = GetCustomerAction::execute($session->phone_number);
@@ -40,8 +40,8 @@ final class MySusuAccountsState
         // Get the susu_account from the SusuService
         $susu_account = (new SusuServiceSusuRequest)->execute(
             customer: $customer,
-            susu_resource: $user_data['susu_accounts'][$session_data->user_input]['susu_resource'],
-            scheme_code: $user_data['susu_accounts'][$session_data->user_input]['susu_scheme_code']
+            susu_resource: $user_data['susu_accounts'][$service_data->user_input]['susu_resource'],
+            scheme_code: $user_data['susu_accounts'][$service_data->user_input]['susu_scheme_code']
         );
 
         // Execute the following actions if (SusuServiceSusuRequest) is successful
@@ -53,7 +53,7 @@ final class MySusuAccountsState
             $account_menu = Helpers::getSusuScheme(scheme_code: json_decode($session->user_inputs, associative: true)['scheme_code']);
 
             // Execute the (UpdateSessionStateAction) to update the state
-            SessionStateUpdateAction::execute(session: $session, state: class_basename($account_menu['state']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($account_menu['state']), service_data: $service_data);
 
             // Execute and return the [mainMenu] for the [susu_account] option selected
             return $account_menu['menu']::mainMenu(session: $session);

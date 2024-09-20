@@ -10,10 +10,6 @@ final class SessionGetAction
 {
     public static function execute(string $session_id): Session
     {
-        return Session::where(
-            column: 'session_id',
-            operator: '=',
-            value: $session_id,
-        )->first();
+        return Session::where(column: 'session_id', operator: '=', value: $session_id)->first();
     }
 }

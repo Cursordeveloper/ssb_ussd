@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuWithdrawalPartialAmountAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_amount' => $service_data->user_input]);
 
         // Return the acceptedSusuTermsMenu
         return GeneralMenu::acceptedSusuTermsMenu(session: $session);

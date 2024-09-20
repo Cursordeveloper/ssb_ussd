@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Models\Session;
 
+use Domain\User\Customer\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Session extends Model
 {
@@ -20,6 +22,7 @@ class Session extends Model
 
     protected $fillable = [
         'id',
+        'customer_id',
         'session_id',
         'msisdn',
         'phone_number',
@@ -28,4 +31,22 @@ class Session extends Model
         'user_data',
         'state',
     ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(
+            related: Customer::class,
+            foreignKey: 'customer_id'
+        );
+    }
+
+    public function userInputs(): array
+    {
+        return json_decode($this->user_inputs, associative: true);
+    }
+
+    public function userData(): array
+    {
+        return json_decode($this->user_data, associative: true);
+    }
 }

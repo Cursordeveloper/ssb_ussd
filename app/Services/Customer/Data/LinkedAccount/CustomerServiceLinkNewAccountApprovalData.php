@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Customer\Data\MyAccount\LinkedWallet;
+namespace App\Services\Customer\Data\LinkedAccount;
 
-final class LinkWalletData
+final class CustomerServiceLinkNewAccountApprovalData
 {
     public static function toArray(string $phone_number, string $resource_id): array
     {
