@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuPaymentFrequencyAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $service_data->user_input]);
 
         // Return the noSususAccount
         return GeneralMenu::acceptedSusuTermsMenu(session: $session);

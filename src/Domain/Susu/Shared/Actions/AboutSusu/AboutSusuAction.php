@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AboutSusuAction
 {
-    public static function execute(Session $session, $session_data, $user_inputs): JsonResponse
+    public static function execute(Session $session, $service_data, $user_inputs): JsonResponse
     {
         // Validate inputs and update the session input
         return match (true) {

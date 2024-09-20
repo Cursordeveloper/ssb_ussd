@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Customer\Requests\Kyc;
+namespace App\Services\Customer\Requests\LinkedAccount;
 
 use App\Services\Customer\CustomerService;
 use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class LinkKycApprovalRequest
+final class CustomerServiceLinkNewAccountCancellationRequest
 {
     public CustomerService $service;
 
@@ -17,10 +17,10 @@ final class LinkKycApprovalRequest
         $this->service = new CustomerService;
     }
 
-    public function execute(Customer $customer, string $kyc_resource, array $data): array
+    public function execute(Customer $customer, string $linked_account, array $data): array
     {
         return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
-            ->post(url: $this->service->base_url.$customer->resource_id.'/kycs/'.$kyc_resource.'/approvals', data: $data)
+            ->post(url: $this->service->base_url.$customer->resource_id.'/linked-accounts/'.$linked_account.'/cancellations', data: $data)
             ->json();
     }
 }

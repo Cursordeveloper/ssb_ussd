@@ -8,11 +8,21 @@ use App\Common\LinkedWallets;
 use App\Common\ResponseBuilder;
 use App\Common\SusuResources;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Actions\Common\GetSusuDurationsAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GeneralMenu
 {
-    public static function invalidInput($session): JsonResponse
+    public static function terminateService(string $session_id): JsonResponse
+    {
+        return ResponseBuilder::infoResponseBuilder(
+            message: 'Service is temporally unavailable. You will be notified soon.',
+            session_id: $session_id,
+        );
+    }
+
+    public static function invalidInput(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -23,7 +33,7 @@ final class GeneralMenu
         );
     }
 
-    public static function infoNotification($session, string $message): JsonResponse
+    public static function infoNotification(Session $session, string $message): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -34,7 +44,7 @@ final class GeneralMenu
         );
     }
 
-    public static function terminateSession($session): JsonResponse
+    public static function terminateSession(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -44,7 +54,7 @@ final class GeneralMenu
         );
     }
 
-    public static function systemErrorNotification($session): JsonResponse
+    public static function systemErrorNotification(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -55,7 +65,7 @@ final class GeneralMenu
         );
     }
 
-    public static function requestNotification($session): JsonResponse
+    public static function requestNotification(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -66,7 +76,7 @@ final class GeneralMenu
         );
     }
 
-    public static function createAccountNotification($session): JsonResponse
+    public static function createAccountNotification(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -77,7 +87,7 @@ final class GeneralMenu
         );
     }
 
-    public static function paymentNotificationMenu($session): JsonResponse
+    public static function paymentNotificationMenu(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -88,7 +98,7 @@ final class GeneralMenu
         );
     }
 
-    public static function processTerminatedMenu($session): JsonResponse
+    public static function processTerminatedMenu(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -99,7 +109,7 @@ final class GeneralMenu
         );
     }
 
-    public static function processCancelNotification($session): JsonResponse
+    public static function processCancelNotification(Session $session): JsonResponse
     {
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
@@ -110,7 +120,7 @@ final class GeneralMenu
         );
     }
 
-    public static function susuAmountMenu($session): JsonResponse
+    public static function susuAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter susu amount',
@@ -118,7 +128,7 @@ final class GeneralMenu
         );
     }
 
-    public static function initialDepositMenu($session): JsonResponse
+    public static function initialDepositMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Start with (amount)',
@@ -126,7 +136,7 @@ final class GeneralMenu
         );
     }
 
-    public static function frequencyMenu($session): JsonResponse
+    public static function frequencyMenu(Session $session): JsonResponse
     {
         // Get the frequencies from the session->user_data
         $frequencies = json_decode($session->user_data, associative: true);
@@ -137,7 +147,7 @@ final class GeneralMenu
         );
     }
 
-    public static function startDateMenu($session): JsonResponse
+    public static function startDateMenu(Session $session): JsonResponse
     {
         // Get the durations from the session->user_data
         $start_dates = json_decode($session->user_data, associative: true);
@@ -148,7 +158,7 @@ final class GeneralMenu
         );
     }
 
-    public static function invalidStartDateMenu($session): JsonResponse
+    public static function invalidStartDateMenu(Session $session): JsonResponse
     {
         // Get the start_dates from the session->user_data
         $start_dates = json_decode($session->user_data, associative: true);
@@ -159,7 +169,7 @@ final class GeneralMenu
         );
     }
 
-    public static function invalidFrequencyMenu($session): JsonResponse
+    public static function invalidFrequencyMenu(Session $session): JsonResponse
     {
         // Get the frequencies from the session->user_data
         $frequencies = json_decode($session->user_data, associative: true);
@@ -170,29 +180,34 @@ final class GeneralMenu
         );
     }
 
-    public static function durationMenu($session): JsonResponse
+    public static function durationMenu(Session $session): JsonResponse
     {
-        // Get the durations from the session->user_data
-        $durations = json_decode($session->user_data, associative: true);
+        // Execute the GetSusuDurationsAction and return the data
+        (new GetSusuDurationsAction)::execute(session: $session);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose duration\n".SusuResources::formatDurationsForMenu(durations: $durations['durations']),
+            message: "Choose duration\n".SusuResources::formatDurationsForMenu(durations: $session->userData()['durations']),
             session_id: $session->session_id,
         );
     }
 
-    public static function invalidDurationMenu($session): JsonResponse
+    public static function invalidDurationMenu(Session $session): JsonResponse
     {
-        // Get the durations from the session->user_data
-        $durations = json_decode($session->user_data, associative: true);
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid duration\n".SusuResources::formatDurationsForMenu(durations: $durations['durations']),
+            message: "Invalid duration\n".SusuResources::formatDurationsForMenu(durations: $session->userData()['durations']),
             session_id: $session->session_id,
         );
     }
 
-    public static function incorrectPinMenu($session): JsonResponse
+    public static function pinMenu(Session $session): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: "Enter SusuBox PIN code to confirm or 2 to cancel\n",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function incorrectPinMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'The PIN you entered is incorrect. Enter the correct PIN to confirm or 2 to Cancel',
@@ -200,7 +215,7 @@ final class GeneralMenu
         );
     }
 
-    public static function linkedWalletMenu($session): JsonResponse
+    public static function linkedWalletMenu(Session $session): JsonResponse
     {
         // Get the linked_wallets from the session->user_data
         $linked_wallets = json_decode($session->user_data, associative: true);
@@ -211,7 +226,7 @@ final class GeneralMenu
         );
     }
 
-    public static function invalidLinkedWalletMenu($session): JsonResponse
+    public static function invalidLinkedWalletMenu(Session $session): JsonResponse
     {
         // Get the linked_wallets from the session->user_data
         $linked_wallets = json_decode($session->user_data, associative: true);
@@ -222,7 +237,7 @@ final class GeneralMenu
         );
     }
 
-    public static function acceptedSusuTermsMenu($session): JsonResponse
+    public static function acceptedSusuTermsMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
@@ -230,7 +245,7 @@ final class GeneralMenu
         );
     }
 
-    public static function invalidAcceptedSusuTerms($session): JsonResponse
+    public static function invalidAcceptedSusuTerms(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid choice, try again\nhttps://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
@@ -238,7 +253,7 @@ final class GeneralMenu
         );
     }
 
-    public static function rollOverDebitMenu($session): JsonResponse
+    public static function rollOverDebitMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Rollover debit?\n1. Yes\n2. no",
@@ -246,7 +261,7 @@ final class GeneralMenu
         );
     }
 
-    public static function invalidRollOverDebitMenu($session): JsonResponse
+    public static function invalidRollOverDebitMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid choice, try again\nRollover debit?\n1. Yes\n2. no",

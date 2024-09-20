@@ -13,21 +13,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCreateInitialDepositAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Validate the user_input (susu_amount)
         return match (true) {
-            SusuValidationAction::isNumericValid($session_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
-            SusuValidationAction::initialDepositAmountValid($session_data->user_input) === false => SusuValidationMenu::initialDepositAmountMenu(session: $session),
+            SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+            SusuValidationAction::initialDepositAmountValid($service_data->user_input) === false => SusuValidationMenu::initialDepositAmountMenu(session: $session),
 
-            default => self::initialDepositAmountStore(session: $session, session_data: $session_data)
+            default => self::initialDepositAmountStore(session: $session, service_data: $service_data)
         };
     }
 
-    public static function initialDepositAmountStore(Session $session, $session_data): JsonResponse
+    public static function initialDepositAmountStore(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $service_data->user_input]);
 
         // Return the linkedWalletMenu
         return GeneralMenu::frequencyMenu(session: $session);

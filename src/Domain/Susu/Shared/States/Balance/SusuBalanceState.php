@@ -10,9 +10,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuBalanceState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Evaluate the process flow and execute the corresponding action
-        return SusuBalanceAction::execute(session: $session, session_data: $session_data);
+        return SusuBalanceAction::execute(session: $session, service_data: $service_data);
     }
 }

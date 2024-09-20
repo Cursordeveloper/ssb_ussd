@@ -18,7 +18,7 @@ final class RegistrationMenu
         );
     }
 
-    public static function lastName(Session $session): JsonResponse
+    public static function lastNameMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter last name.',
@@ -37,7 +37,7 @@ final class RegistrationMenu
     public static function choosePin(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Choose 4 digit Susubox pin.',
+            message: 'Choose 4 digit SusuBox PIN code.',
             session_id: $session->session_id,
         );
     }

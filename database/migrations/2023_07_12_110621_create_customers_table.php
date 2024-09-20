@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string(column: 'phone_number')->unique()->index();
 
             $table->boolean(column: 'has_pin')->default(value: false);
+            $table->boolean(column: 'has_kyc')->default(value: false);
             $table->boolean(column: 'accepted_terms')->default(value: false);
 
             $table->string(column: 'status')->default(CustomerStatus::Pending->value);

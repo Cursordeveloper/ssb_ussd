@@ -8,7 +8,7 @@ use App\Services\Customer\CustomerService;
 use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class LinkKycRequest
+final class CustomerServiceLinkGhanaCardRequest
 {
     public CustomerService $service;
 

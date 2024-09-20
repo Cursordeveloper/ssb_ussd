@@ -29,7 +29,7 @@ final class WelcomeState
         };
 
         // Update the session state
-        SessionStateUpdateAction::execute(session: $session, state: class_basename($customerState['class']), session_data: $session);
+        SessionStateUpdateAction::execute(session: $session, state: class_basename($customerState['class']), service_data: $session);
 
         // Return the mainMenu for the state
         return $customerState['menu'];

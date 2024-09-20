@@ -13,21 +13,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateTargetAmountAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Validate the user_input (susu_amount)
         return match (true) {
-            SusuValidationAction::isNumericValid($session_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
-            SusuValidationAction::targetAmountValid($session_data->user_input) === false => SusuValidationMenu::targetAmountMenu(session: $session),
+            SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+            SusuValidationAction::targetAmountValid($service_data->user_input) === false => SusuValidationMenu::targetAmountMenu(session: $session),
 
-            default => self::targetAmountStore(session: $session, session_data: $session_data)
+            default => self::targetAmountStore(session: $session, service_data: $service_data)
         };
     }
 
-    public static function targetAmountStore(Session $session, $session_data): JsonResponse
+    public static function targetAmountStore(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['target_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['target_amount' => $service_data->user_input]);
 
         // Return the initialDepositMenu
         return GeneralMenu::initialDepositMenu(session: $session);

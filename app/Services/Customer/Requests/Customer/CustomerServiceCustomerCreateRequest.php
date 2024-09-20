@@ -18,9 +18,8 @@ final class CustomerServiceCustomerCreateRequest
 
     public function execute(array $data): void
     {
-        Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.'registrations',
-            data: $data
-        )->json();
+        Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.'registrations', data: $data)
+            ->json();
     }
 }

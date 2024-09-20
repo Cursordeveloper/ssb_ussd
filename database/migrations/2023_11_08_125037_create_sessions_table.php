@@ -14,10 +14,13 @@ return new class extends Migration
             // Table ids
             $table->id();
 
+            // Related fields
+            $table->unsignedBigInteger(column: 'customer_id')->index()->nullable();
+
             // Table main attributes
-            $table->string(column: 'session_id')->unique();
+            $table->string(column: 'session_id')->unique()->index();
             $table->string(column: 'msisdn');
-            $table->string(column: 'phone_number');
+            $table->string(column: 'phone_number')->index();
             $table->string(column: 'sequence')->nullable();
             $table->string(column: 'state')->nullable();
             $table->json(column: 'user_inputs')->nullable();
@@ -25,6 +28,9 @@ return new class extends Migration
 
             // Table timestamps
             $table->timestamps();
+
+            // Foreign key field
+            $table->foreign(columns: 'customer_id')->references(columns: 'id')->on(table: 'customers')->onDelete(action: 'cascade');
         });
     }
 

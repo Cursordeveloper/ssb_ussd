@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GuestWelcomeState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Define a mapping between customer input and states
         $stateMappings = [
@@ -27,14 +27,14 @@ final class GuestWelcomeState
         ];
 
         // Check if the customer input is a valid option
-        if (array_key_exists($session_data->user_input, $stateMappings)) {
-            $customer_state = $stateMappings[$session_data->user_input];
+        if (array_key_exists($service_data->user_input, $stateMappings)) {
+            $customer_state = $stateMappings[$service_data->user_input];
 
             // Update the customer session action
-            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), service_data: $service_data);
 
             // Execute the state
-            return $customer_state['menu']::mainMenu($session, $session_data);
+            return $customer_state['menu']::mainMenu($session, $service_data);
         }
 
         // The customer input is invalid

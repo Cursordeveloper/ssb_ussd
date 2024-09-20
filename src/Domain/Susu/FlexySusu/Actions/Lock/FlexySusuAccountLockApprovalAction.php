@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuAccountLockApprovalAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true]);
@@ -28,7 +28,7 @@ final class FlexySusuAccountLockApprovalAction
         // Execute the SusuServiceFlexySusuAccountLockApprovalRequest HTTP request and return the response
         $balance = (new SusuServiceFlexySusuAccountLockApprovalRequest)->execute(
             customer: $customer,
-            data: PinApprovalData::toArray($session_data->user_input),
+            data: PinApprovalData::toArray($service_data->user_input),
             susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'),
             lock_resource: data_get(target: $user_inputs, key: 'account_lock_data.resource'),
         );

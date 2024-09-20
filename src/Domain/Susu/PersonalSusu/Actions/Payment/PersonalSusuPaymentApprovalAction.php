@@ -15,17 +15,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuPaymentApprovalAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Execute and return the response (menu)
         return match (true) {
-            $session_data->user_input === '2' => self::paymentCancellation(session: $session),
+            $service_data->user_input === '2' => self::paymentCancellation(session: $session),
 
-            default => self::paymentApproval(session: $session, session_data: $session_data)
+            default => self::paymentApproval(session: $session, service_data: $service_data)
         };
     }
 
-    public static function paymentApproval(Session $session, $session_data): JsonResponse
+    public static function paymentApproval(Session $session, $service_data): JsonResponse
     {
         // Execute and return the customer data
         $customer = GetCustomerAction::execute($session->phone_number);
@@ -33,7 +33,7 @@ final class PersonalSusuPaymentApprovalAction
         // Execute the SusuServicePersonalSusuPaymentApprovalRequest and return the response
         $approval_response = (new SusuServicePersonalSusuPaymentApprovalRequest)->execute(
             customer: $customer,
-            data: PinApprovalData::toArray($session_data->user_input),
+            data: PinApprovalData::toArray($service_data->user_input),
             susu_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'susu_account.attributes.resource_id'),
             payment_resource: data_get(target: json_decode($session->user_inputs, associative: true), key: 'payment_resource'),
         );
@@ -63,7 +63,6 @@ final class PersonalSusuPaymentApprovalAction
         // Process response and return menu
         return match (true) {
             data_get($cancel_response, key: 'code') === 200 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $cancel_response, key: 'description')),
-
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

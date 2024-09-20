@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class TermsAndConditionsAction
 {
-    public static function execute(Session $session, $session_data, $user_inputs): JsonResponse
+    public static function execute(Session $session, $service_data, $user_inputs): JsonResponse
     {
         // Terminate the session if user_inputs array has (end) and user_input is (#)
-        if (array_key_exists('end', $user_inputs) && $session_data->user_input === '#') {
+        if (array_key_exists('end', $user_inputs) && $service_data->user_input === '#') {
             // Return the terminateResponseBuilder
             return GeneralMenu::terminateSession(session: $session);
         }

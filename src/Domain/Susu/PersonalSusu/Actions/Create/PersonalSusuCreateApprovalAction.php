@@ -15,20 +15,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuCreateApprovalAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Execute and return the response (menu)
         return match (true) {
-            $session_data->user_input === '2' => self::susuCancel(session: $session),
+            $service_data->user_input === '2' => self::susuCancel(session: $session),
 
-            default => self::susuApproval(session: $session, session_data: $session_data)
+            default => self::susuApproval(session: $session, service_data: $service_data)
         };
     }
 
-    public static function susuApproval(Session $session, $session_data): JsonResponse
+    public static function susuApproval(Session $session, $service_data): JsonResponse
     {
         // Execute the approvalRequest and return the response data
-        $response = self::approvalRequest(session: $session, session_data: $session_data);
+        $response = self::approvalRequest(session: $session, service_data: $service_data);
 
         // Process response and return menu
         return match (true) {
@@ -39,7 +39,7 @@ final class PersonalSusuCreateApprovalAction
         };
     }
 
-    public static function approvalRequest(Session $session, $session_data): array
+    public static function approvalRequest(Session $session, $service_data): array
     {
         // Execute the GetCustomerAction and return the data
         $customer = GetCustomerAction::execute($session->phone_number);
@@ -48,7 +48,7 @@ final class PersonalSusuCreateApprovalAction
         $user_inputs = json_decode($session->user_inputs, associative: true)['susu_resource'];
 
         // Execute the createPersonalSusu HTTP request
-        return (new PersonalSusuApprovalRequest)->execute(customer: $customer, data: PinApprovalData::toArray($session_data->user_input), susu_resource: $user_inputs);
+        return (new PersonalSusuApprovalRequest)->execute(customer: $customer, data: PinApprovalData::toArray($service_data->user_input), susu_resource: $user_inputs);
     }
 
     public static function susuCancel(Session $session): JsonResponse

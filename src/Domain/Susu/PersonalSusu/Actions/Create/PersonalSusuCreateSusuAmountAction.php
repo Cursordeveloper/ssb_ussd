@@ -13,21 +13,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuCreateSusuAmountAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Validate the user_input (susu_amount)
         return match (true) {
-            SusuValidationAction::isNumericValid($session_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
-            SusuValidationAction::susuAmountValid($session_data->user_input) === false => SusuValidationMenu::susuAmountValidMenu(session: $session),
+            SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+            SusuValidationAction::susuAmountValid($service_data->user_input) === false => SusuValidationMenu::susuAmountValidMenu(session: $session),
 
-            default => self::susuAmountStore(session: $session, session_data: $session_data)
+            default => self::susuAmountStore(session: $session, service_data: $service_data)
         };
     }
 
-    public static function susuAmountStore(Session $session, $session_data): JsonResponse
+    public static function susuAmountStore(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['susu_amount' => $service_data->user_input]);
 
         // Return the initialDepositMenu
         return PersonalSusuCreateMenu::initialDepositMenu(session: $session);

@@ -6,21 +6,18 @@ namespace Domain\User\Customer\States\MyAccount\LinkGhanaCard;
 
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\User\Customer\Actions\MyAccount\LinkGhanaCard\IDNumberAction;
-use Domain\User\Customer\Actions\MyAccount\LinkGhanaCard\PinConfirmationAction;
+use Domain\User\Customer\Actions\MyAccount\LinkGhanaCard\LinkGhanaCardApprovalAction;
+use Domain\User\Customer\Actions\MyAccount\LinkGhanaCard\LinkGhanaCardIDNumberAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkGhanaCardState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'id_number', array: $user_inputs) => IDNumberAction::execute(session: $session, session_data: $session_data),
-            ! array_key_exists(key: 'pin_confirmation', array: $user_inputs) => PinConfirmationAction::execute(session: $session, session_data: $session_data, user_inputs: $user_inputs),
+            ! array_key_exists(key: 'id_number', array: $session->userInputs()) => LinkGhanaCardIDNumberAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'approval', array: $session->userInputs()) => LinkGhanaCardApprovalAction::execute(session: $session, service_data: $service_data),
 
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
