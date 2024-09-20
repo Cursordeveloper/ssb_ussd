@@ -13,20 +13,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuPaymentFrequencyAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Validate and process the user_input
         return match (true) {
-            SusuValidationAction::isNumericValid($session_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+            SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
 
-            default => self::initialDepositStore(session: $session, session_data: $session_data)
+            default => self::initialDepositStore(session: $session, service_data: $service_data)
         };
     }
 
-    public static function initialDepositStore(Session $session, $session_data): JsonResponse
+    public static function initialDepositStore(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $service_data->user_input]);
 
         // Return the noSususAccount
         return GeneralMenu::acceptedSusuTermsMenu(session: $session);

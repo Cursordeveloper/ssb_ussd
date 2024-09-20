@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuMiniStatementState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Get the process flow array from the customer session (user inputs)
         $user_inputs = json_decode($session->user_inputs, associative: true);
@@ -31,13 +31,13 @@ final class SusuMiniStatementState
         }
 
         // Execute the SusuMiniStatementAction and return the transactions
-        if ($session_data->user_input === '#') {
+        if ($service_data->user_input === '#') {
             return SusuMiniStatementAction::nextTransaction(session: $session, customer: $customer, user_inputs: $user_inputs, page: data_get(target: $user_inputs, key: 'page'));
         }
 
         // If the user_input is '0', return back to PersonalSusuAccountState
-        if ($session_data->user_input === '0') {
-            SessionStateUpdateAction::execute(session: $session, state: class_basename(class: PersonalSusuAccountState::class), session_data: $session_data);
+        if ($service_data->user_input === '0') {
+            SessionStateUpdateAction::execute(session: $session, state: class_basename(class: PersonalSusuAccountState::class), service_data: $service_data);
             return PersonalSusuAccountMenu::mainMenu(session: $session);
         }
 

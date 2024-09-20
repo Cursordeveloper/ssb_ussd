@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuCollectionPauseApprovalAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true]);
@@ -29,7 +29,7 @@ final class FlexySusuCollectionPauseApprovalAction
         // Execute the createPersonalSusu HTTP request
         $balance = (new SusuServiceFlexySusuCollectionPauseApprovalRequest)->execute(
             customer: $customer,
-            data: PinApprovalData::toArray($session_data->user_input),
+            data: PinApprovalData::toArray($service_data->user_input),
             susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'),
             pause_resource: data_get(target: $user_data, key: 'collection_pause_data.resource'),
         );

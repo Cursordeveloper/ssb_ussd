@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Customer\Data\MyAccount\LinkGhanaCard;
+namespace App\Services\Customer\Data\Kyc;
 
-final class LinkGhanaCardApprovalData
+final class CustomerServiceLinkGhanaCardData
 {
-    public static function toArray(string $pin): array
+    public static function toArray(string $id_number): array
     {
         return [
             'data' => [
                 // Resource type and id
-                'type' => 'Pin',
+                'type' => 'Kyc',
 
                 // Resource exposed attributes
                 'attributes' => [
-                    'pin' => $pin,
+                    'id_number' => $id_number,
                 ],
             ],
         ];

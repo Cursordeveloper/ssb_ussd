@@ -8,7 +8,7 @@ use App\Services\Customer\CustomerService;
 use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class LinkNewAccountApprovalRequest
+final class CustomerServiceLinkNewAccountApprovalRequest
 {
     public CustomerService $service;
 

@@ -15,10 +15,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkedWalletsState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Return back to MyAccountMenu if user_input is (0)
-        if ($session_data->user_input === '0') {
+        if ($service_data->user_input === '0') {
             $state = ['class' => new MyAccountState, 'menu' => new MyAccountMenu];
 
             // Execute the SessionInputUpdateAction(reset)
@@ -36,18 +36,18 @@ final class LinkedWalletsState
         $user_data = json_decode($session->user_data, associative: true);
 
         // Execute the LinkedWallet if user input is valid
-        if (array_key_exists(key: $session_data->user_input, array: $user_data['linked_wallets'])) {
+        if (array_key_exists(key: $service_data->user_input, array: $user_data['linked_wallets'])) {
             // Reset user data and input
             SessionInputUpdateAction::resetUserData(session: $session);
             SessionInputUpdateAction::resetUserInputs(session: $session);
 
             // Update the SessionInputUpdateAction user_data field
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_resource' => $user_data['linked_wallets'][$session_data->user_input]['wallet_resource']]);
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_number' => $user_data['linked_wallets'][$session_data->user_input]['wallet']]);
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_network' => $user_data['linked_wallets'][$session_data->user_input]['network']]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_resource' => $user_data['linked_wallets'][$service_data->user_input]['wallet_resource']]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_number' => $user_data['linked_wallets'][$service_data->user_input]['wallet']]);
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['wallet_network' => $user_data['linked_wallets'][$service_data->user_input]['network']]);
 
             // Update the customer session action
-            SessionStateUpdateAction::execute(session: $session, state: 'LinkedWalletState', session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: 'LinkedWalletState', service_data: $service_data);
 
             // Execute the SusuAccountState
             return LinkedWalletMenu::mainMenu(session: $session);

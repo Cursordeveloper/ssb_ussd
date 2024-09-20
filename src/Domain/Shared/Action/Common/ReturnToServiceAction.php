@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ReturnToServiceAction
 {
-    public static function execute(Session $session, $session_data, string $service): JsonResponse
+    public static function execute(Session $session, $service_data, string $service): JsonResponse
     {
         // Define the return_state array
         $susubox_service = [
@@ -36,7 +36,7 @@ final class ReturnToServiceAction
         $return_state = $susubox_service[$service];
 
         // Update the customer session action
-        SessionStateUpdateAction::execute(session: $session, state: class_basename($return_state['class']), session_data: $session_data);
+        SessionStateUpdateAction::execute(session: $session, state: class_basename($return_state['class']), service_data: $service_data);
 
         SessionInputUpdateAction::resetUserData(session: $session);
         SessionInputUpdateAction::resetUserInputs(session: $session);

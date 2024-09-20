@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CurrentPinAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Validate the user input
-        if (ValidatePinAction::execute($session_data->user_input)) {
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['current_pin' => $session_data->user_input]);
+        if (ValidatePinAction::execute($service_data->user_input)) {
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['current_pin' => $service_data->user_input]);
 
             // Return the enterNewPin
             return ChangePinMenu::enterNewPin(session: $session);

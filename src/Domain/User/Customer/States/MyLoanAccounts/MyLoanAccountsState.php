@@ -12,18 +12,18 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class MyLoanAccountsState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Return to the LoanState if user input is (0)
-        if ($session_data->user_input === '0') {
-            return ReturnToServiceAction::execute(session: $session, session_data: $session_data, service: 'loan');
+        if ($service_data->user_input === '0') {
+            return ReturnToServiceAction::execute(session: $session, service_data: $service_data, service: 'loan');
         }
 
         // Get the session user_data
         $user_data = json_decode($session->user_data, associative: true);
 
         // Execute the SusuAccountState if user input is valid
-        if (array_key_exists(key: $session_data->user_input, array: $user_data['loan_accounts'])) {
+        if (array_key_exists(key: $service_data->user_input, array: $user_data['loan_accounts'])) {
             // Reset user data and input
             SessionInputUpdateAction::resetUserData(session: $session);
         }

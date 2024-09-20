@@ -6,17 +6,16 @@ namespace Domain\Susu\Shared\Menus\Statement;
 
 use App\Common\ResponseBuilder;
 use App\Common\Transactions;
+use Domain\Shared\Menus\General\GeneralMenu;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuMiniStatementMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         // Prepare and return the narration
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter Susubox pin',
-            session_id: $session->session_id,
-        );
+        return GeneralMenu::pinMenu(session: $session);
     }
 
     public static function susuMiniStatementMenu($session, $transactions): JsonResponse

@@ -13,13 +13,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BackToAboutSusuAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Define the return state and menu
         $susu_state = ['class' => new AboutSusuState, 'menu' => new AboutSusuMenu];
 
         // Update the customer session action
-        SessionStateUpdateAction::execute(session: $session, state: class_basename($susu_state['class']), session_data: $session_data);
+        SessionStateUpdateAction::execute(session: $session, state: class_basename($susu_state['class']), service_data: $service_data);
 
         // Execute the SessionInputUpdateAction
         SessionInputUpdateAction::resetUserInputs(session: $session);

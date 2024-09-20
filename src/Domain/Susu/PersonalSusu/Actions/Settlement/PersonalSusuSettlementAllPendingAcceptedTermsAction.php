@@ -15,12 +15,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuSettlementAllPendingAcceptedTermsAction
 {
-    public static function execute($session, $user_inputs, $session_data): JsonResponse
+    public static function execute($session, $user_inputs, $service_data): JsonResponse
     {
         // Validate and process the user_input
         return match (true) {
-            $session_data->user_input === '1' => self::susuSettlementProcessor(session: $session, user_inputs: $user_inputs),
-            $session_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
+            $service_data->user_input === '1' => self::susuSettlementProcessor(session: $session, user_inputs: $user_inputs),
+            $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };

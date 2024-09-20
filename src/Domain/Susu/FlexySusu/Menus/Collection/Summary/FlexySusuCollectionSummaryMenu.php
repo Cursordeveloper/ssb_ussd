@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Susu\FlexySusu\Menus\Collection\Summary;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -12,10 +13,7 @@ final class FlexySusuCollectionSummaryMenu
 {
     public static function mainMenu(Session $session): JsonResponse
     {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Enter SusuBox pin\n",
-            session_id: $session->session_id,
-        );
+        return GeneralMenu::pinMenu(session: $session);
     }
 
     public static function narrationMenu($session): JsonResponse

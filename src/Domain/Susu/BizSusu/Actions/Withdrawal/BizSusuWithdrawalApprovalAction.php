@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuWithdrawalApprovalAction
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true]);
@@ -28,7 +28,7 @@ final class BizSusuWithdrawalApprovalAction
         // Execute the SusuServiceBizSusuWithdrawalApprovalRequest HTTP request response
         $response = (new SusuServiceBizSusuWithdrawalApprovalRequest)->execute(
             customer: $customer,
-            data: PinApprovalData::toArray($session_data->user_input),
+            data: PinApprovalData::toArray($service_data->user_input),
             susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'),
             withdrawal_resource: data_get(target: $user_inputs, key: 'withdrawal_data.resource_id'),
         );

@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AboutInvestmentState
 {
-    public static function execute(Session $session, $session_data): JsonResponse
+    public static function execute(Session $session, $service_data): JsonResponse
     {
         // Define a mapping between customer input and states
         $stateMappings = [
@@ -36,12 +36,12 @@ final class AboutInvestmentState
         ];
 
         // Check if the customer input is a valid option
-        if (array_key_exists(key: $session_data->user_input, array: $stateMappings)) {
+        if (array_key_exists(key: $service_data->user_input, array: $stateMappings)) {
             // Get the customer option state
-            $customer_state = $stateMappings[$session_data->user_input];
+            $customer_state = $stateMappings[$service_data->user_input];
 
             // Update the customer session action
-            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), session_data: $session_data);
+            SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['class']), service_data: $service_data);
 
             // Execute the state
             return $customer_state['menu']::mainMenu(session: $session);

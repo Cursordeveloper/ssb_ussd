@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuWithdrawalConfirmationAction
 {
-    public static function execute($session, $session_data): JsonResponse
+    public static function execute($session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_amount' => $session_data->user_input]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_amount' => $service_data->user_input]);
 
         // Detailed code to post code to susu_service goes here
 

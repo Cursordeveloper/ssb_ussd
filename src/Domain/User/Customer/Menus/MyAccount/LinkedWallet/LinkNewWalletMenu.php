@@ -41,14 +41,6 @@ final class LinkNewWalletMenu
         );
     }
 
-    public static function enterPinMenu($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter Susubox pin',
-            session_id: $session->session_id,
-        );
-    }
-
     public static function noLinkedAccountMenu($session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Susu\GoalGetterSusu\Menus\Collection\Summary;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -12,13 +13,10 @@ final class GoalGetterSusuCollectionSummaryMenu
 {
     public static function mainMenu(Session $session): JsonResponse
     {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Enter SusuBox pin\n",
-            session_id: $session->session_id,
-        );
+        return GeneralMenu::pinMenu(session: $session);
     }
 
-    public static function narrationMenu($session): JsonResponse
+    public static function narrationMenu(Session $session): JsonResponse
     {
         // Get the process flow array from the customer session (user inputs)
         $user_inputs = json_decode($session->user_inputs, associative: true);
