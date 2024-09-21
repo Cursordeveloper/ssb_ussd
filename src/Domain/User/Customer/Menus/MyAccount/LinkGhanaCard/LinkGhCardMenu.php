@@ -5,23 +5,21 @@ declare(strict_types=1);
 namespace Domain\User\Customer\Menus\MyAccount\LinkGhanaCard;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Models\Session\Session;
 use Domain\User\Customer\Actions\Common\HasLinkedGhanaCardAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkGhCardMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
-        // Execute and return enterIDMenu
-        if (! HasLinkedGhanaCardAction::execute(session: $session)) {
-            return self::enterIDMenu(session: $session);
-        }
-
-        // Terminate session if customer has Kyc
-        return self::hasKycMenu(session: $session);
+        return match (true) {
+            ! HasLinkedGhanaCardAction::execute(session: $session) => self::enterIDMenu(session: $session),
+            default => self::hasKycMenu(session: $session)
+        };
     }
 
-    public static function enterIDMenu($session): JsonResponse
+    public static function enterIDMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter Ghana Card number',
@@ -29,7 +27,7 @@ final class LinkGhCardMenu
         );
     }
 
-    public static function noKycMenu($session): JsonResponse
+    public static function noKycMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
             message: "You have not linked your Ghana Card to your Susubox account. Select option 3 on 'My Account' to link your Ghana Card.",
@@ -37,7 +35,7 @@ final class LinkGhCardMenu
         );
     }
 
-    public static function hasKycMenu($session): JsonResponse
+    public static function hasKycMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
             message: 'You have already linked your Ghana Card.',
