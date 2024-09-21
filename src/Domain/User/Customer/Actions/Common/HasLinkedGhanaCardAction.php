@@ -11,11 +11,8 @@ final class HasLinkedGhanaCardAction
 {
     public static function execute(Session $session): bool
     {
-        // Execute the GetCustomerAction
-        $customer = GetCustomerAction::execute(resource: $session->phone_number);
-
-        // Execute GetKYCRequest
-        $kyc = (new GetKYCRequest)->execute(customer: $customer);
+        // Execute the GetKYCRequest return the response
+        $kyc = (new GetKYCRequest)->execute(customer: $session->customer);
 
         // Return true if $kyc is not empty
         if (! empty(data_get(target: $kyc, key: 'data'))) {
