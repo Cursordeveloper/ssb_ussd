@@ -7,11 +7,12 @@ namespace Domain\User\Customer\Menus\MyAccount\LinkedWallet;
 use App\Common\CustomerServiceResources;
 use App\Common\ResponseBuilder;
 use Domain\Shared\Action\Common\GetLinkedAccountSchemesAction;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class LinkNewWalletMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         // Execute the LinkedAccountSchemes
         GetLinkedAccountSchemesAction::execute(session: $session);
@@ -23,7 +24,7 @@ final class LinkNewWalletMenu
         );
     }
 
-    public static function invalidMainMenu($session): JsonResponse
+    public static function invalidMainMenu(Session $session): JsonResponse
     {
         $linked_account_schemes = json_decode($session->user_data, associative: true);
 
@@ -33,7 +34,7 @@ final class LinkNewWalletMenu
         );
     }
 
-    public static function enterNumberMenu($session): JsonResponse
+    public static function enterNumberMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter mobile money number',
@@ -41,10 +42,10 @@ final class LinkNewWalletMenu
         );
     }
 
-    public static function noLinkedAccountMenu($session): JsonResponse
+    public static function noLinkedAccountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::infoResponseBuilder(
-            message: "You have no linked wallet(s). Select option 2 on 'My Account' to link a wallet.",
+            message: 'You have no linked wallet(s). Select option 2 on My Account to link a wallet.',
             session_id: $session->session_id,
         );
     }
