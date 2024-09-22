@@ -217,22 +217,16 @@ final class GeneralMenu
 
     public static function linkedWalletMenu(Session $session): JsonResponse
     {
-        // Get the linked_wallets from the session->user_data
-        $linked_wallets = json_decode($session->user_data, associative: true);
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
+            message: "Choose wallet\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $session->userData()['linked_wallets']),
             session_id: $session->session_id,
         );
     }
 
     public static function invalidLinkedWalletMenu(Session $session): JsonResponse
     {
-        // Get the linked_wallets from the session->user_data
-        $linked_wallets = json_decode($session->user_data, associative: true);
-
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $linked_wallets['linked_wallets']),
+            message: "Invalid choice, try again\n".LinkedWallets::formatLinkedWalletForMenu(linked_wallets: $session->userData()['linked_wallets']),
             session_id: $session->session_id,
         );
     }
