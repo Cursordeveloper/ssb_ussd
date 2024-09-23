@@ -15,15 +15,14 @@ final class PersonalSusuCreateAccountNameAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Validate the user_input (account_name)
+        // Validate the user_input and execute the state
         return match (true) {
             SusuValidationAction::accountNameLengthValid($service_data->user_input) === false => SusuValidationMenu::accountNameLengthMenu(session: $session),
-
-            default => self::accountNameStore(session: $session, service_data: $service_data)
+            default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function accountNameStore(Session $session, $service_data): JsonResponse
+    public static function stateExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['account_name' => $service_data->user_input]);
