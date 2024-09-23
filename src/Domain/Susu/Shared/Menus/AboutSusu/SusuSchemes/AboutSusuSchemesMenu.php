@@ -16,7 +16,7 @@ final class AboutSusuSchemesMenu
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['content' => 1]);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://susubox.app/susu/susu-schemes\n#. Next or 0. Main menu",
+            message: "https://susubox.app/susu/susu-schemes\n#. Next or 0. Back",
             session_id: $session->session_id,
         );
     }
@@ -24,7 +24,7 @@ final class AboutSusuSchemesMenu
     public static function nextContentMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.\n#. Next or 0. Main menu",
+            message: "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.\n#. Next or 0. Back",
             session_id: $session->session_id,
         );
     }
@@ -32,7 +32,7 @@ final class AboutSusuSchemesMenu
     public static function invalidChoiceMenu($session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://susubox.app/susu/about\n#. Next or 0. Main menu",
+            message: "https://susubox.app/susu/about\n#. Next or 0. Back",
             session_id: $session->session_id,
         );
     }
