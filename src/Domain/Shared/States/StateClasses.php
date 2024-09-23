@@ -130,12 +130,13 @@ final class StateClasses
 
             // Customer Welcome states
             class_basename(new CustomerWelcomeState) => new CustomerWelcomeState,
+            class_basename(new MyAccountState) => new MyAccountState,
+
             class_basename(new MySusuAccountsState) => new MySusuAccountsState,
             class_basename(new MyLoanAccountsState) => new MyLoanAccountsState,
             class_basename(new MyInvestmentAccountsState) => new MyInvestmentAccountsState,
             class_basename(new MyInsuranceAccountsState) => new MyInsuranceAccountsState,
             class_basename(new MyPensionAccountsState) => new MyPensionAccountsState,
-            class_basename(new MyAccountState) => new MyAccountState,
 
             class_basename(new LinkedWalletsState) => new LinkedWalletsState,
             class_basename(new LinkNewWalletState) => new LinkNewWalletState,

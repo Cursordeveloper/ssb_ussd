@@ -49,7 +49,8 @@ final class GeneralMenu
         // Reset resetUserInputs and resetUserData
         SessionInputUpdateAction::resetAll(session: $session);
 
-        return ResponseBuilder::terminateSession(
+        return ResponseBuilder::infoResponseBuilder(
+            message: 'Thank you for using SusuBox. See you soon',
             session_id: $session->session_id,
         );
     }

@@ -39,13 +39,4 @@ final class ResponseBuilder
             'Message' => $message,
         ]);
     }
-
-    public static function terminateSession(string $session_id): JsonResponse
-    {
-        return response()->json([
-            'Type' => 'release',
-            'SessionId' => $session_id,
-            'Message' => 'Thank you for using SusuBox. See you soon',
-        ]);
-    }
 }
