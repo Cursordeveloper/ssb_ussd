@@ -7,10 +7,9 @@ namespace Domain\Susu\PersonalSusu\Actions\Settlement;
 use App\Services\Susu\Data\PersonalSusu\Settlement\SusuServicePersonalSusuSettlementCancellationData;
 use App\Services\Susu\Requests\PersonalSusu\Settlement\SusuServicePersonalSusuSettlementApprovalRequest;
 use App\Services\Susu\Requests\PersonalSusu\Settlement\SusuServicePersonalSusuSettlementCancellationRequest;
-use Domain\Shared\Action\General\SusuValidationAction;
+use Domain\Shared\Action\General\GeneralValidation;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
-use Domain\Shared\Menus\General\SusuValidationMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Settlement\SusuSettlementMenu;
 use Domain\User\Customer\Actions\Common\GetCustomerAction;
@@ -23,8 +22,7 @@ final class PersonalSusuSettlementApprovalAction
         // Execute and return the response (menu)
         return match (true) {
             $service_data->user_input === '2' => self::settlementCancellation(session: $session),
-            SusuValidationAction::pinLengthValid($service_data->user_input) === false => SusuValidationMenu::pinLengthMenu(session: $session),
-
+            GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
             default => self::settlementApproval(session: $session, service_data: $service_data)
         };
     }
