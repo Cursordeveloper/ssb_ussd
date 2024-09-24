@@ -11,37 +11,40 @@ use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Account\PersonalSusuAccountMenu;
 use Domain\Susu\PersonalSusu\States\Account\PersonalSusuAccountState;
 use Domain\Susu\Shared\Actions\SusuMiniStatement\SusuMiniStatementAction;
-use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class SusuMiniStatementState
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
+        // Evaluate the process flow and execute the corresponding action
+        return match (true) {
+            ! array_key_exists(key: 'approval', array: $session->userInputs()) => self::approvalExecution(session: $session),
+            $service_data->user_input === '#' => self::nextStatementExecution(session: $session),
+            $service_data->user_input === '0' => self::exitStatementExecution(session: $session, service_data: $service_data),
+            default => GeneralMenu::invalidInput(session: $session),
+        };
+    }
 
-        // Get the customer
-        $customer = GetCustomerAction::execute($session->phone_number);
+    public static function approvalExecution(Session $session): JsonResponse
+    {
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true, 'page' => 1]);
+        return SusuMiniStatementAction::newTransaction(session: $session, customer: $session->customer, user_inputs: $session->userInputs());
+    }
 
-        // Execute the SessionInputUpdateAction, SusuMiniStatementAction and return the transactions
-        if (! array_key_exists(key: 'approval', array: $user_inputs)) {
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true, 'page' => 1]);
-            return SusuMiniStatementAction::newTransaction(session: $session, customer: $customer, user_inputs: $user_inputs);
-        }
+    public static function nextStatementExecution(Session $session): JsonResponse
+    {
+        return SusuMiniStatementAction::nextTransaction(
+            session: $session,
+            customer: $session->customer,
+            user_inputs: $session->userInputs(),
+            page: data_get(target: $session->userInputs(), key: 'page')
+        );
+    }
 
-        // Execute the SusuMiniStatementAction and return the transactions
-        if ($service_data->user_input === '#') {
-            return SusuMiniStatementAction::nextTransaction(session: $session, customer: $customer, user_inputs: $user_inputs, page: data_get(target: $user_inputs, key: 'page'));
-        }
-
-        // If the user_input is '0', return back to PersonalSusuAccountState
-        if ($service_data->user_input === '0') {
-            SessionStateUpdateAction::execute(session: $session, state: class_basename(class: PersonalSusuAccountState::class), service_data: $service_data);
-            return PersonalSusuAccountMenu::mainMenu(session: $session);
-        }
-
-        // Return the systemErrorNotification and terminate the session
-        return GeneralMenu::invalidInput($session);
+    public static function exitStatementExecution(Session $session, $service_data): JsonResponse
+    {
+        SessionStateUpdateAction::execute(session: $session, state: class_basename(class: PersonalSusuAccountState::class), service_data: $service_data);
+        return PersonalSusuAccountMenu::mainMenu(session: $session);
     }
 }
