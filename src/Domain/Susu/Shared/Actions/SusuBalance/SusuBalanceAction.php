@@ -27,12 +27,15 @@ final class SusuBalanceAction
     public static function approvalExecution(Session $session, $service_data): JsonResponse
     {
         // Execute the approvalRequest and return the response data
-        $response = (new SusuServiceSusuBalanceRequest)->execute(customer: $session->customer, susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'), data: PinApprovalData::toArray($service_data->user_input));
+        $response = (new SusuServiceSusuBalanceRequest)->execute(
+            customer: $session->customer,
+            susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'),
+            data: PinApprovalData::toArray($service_data->user_input)
+        );
 
         return match (true) {
             data_get($response, key: 'code') === 200 => SusuBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $response, key: 'data')),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
-
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

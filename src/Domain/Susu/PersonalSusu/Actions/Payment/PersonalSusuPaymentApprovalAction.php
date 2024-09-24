@@ -18,15 +18,15 @@ final class PersonalSusuPaymentApprovalAction
     {
         // Execute and return the response (menu)
         return match (true) {
-            $service_data->user_input === '2' => self::paymentCancellation(session: $session),
-            default => self::paymentApproval(session: $session, service_data: $service_data)
+            $service_data->user_input === '2' => self::cancellationExecution(session: $session),
+            default => self::approvalExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function paymentApproval(Session $session, $service_data): JsonResponse
+    public static function approvalExecution(Session $session, $service_data): JsonResponse
     {
         // Execute the SusuServicePersonalSusuPaymentApprovalRequest and return the response
-        $approval_response = (new SusuServicePersonalSusuPaymentApprovalRequest)->execute(
+        $response = (new SusuServicePersonalSusuPaymentApprovalRequest)->execute(
             customer: $session->customer,
             data: PinApprovalData::toArray($service_data->user_input),
             susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'),
@@ -35,16 +35,16 @@ final class PersonalSusuPaymentApprovalAction
 
         // Process response and return menu
         return match (true) {
-            data_get($approval_response, key: 'code') === 200 => GeneralMenu::paymentNotificationMenu(session: $session),
-            data_get($approval_response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+            data_get($response, key: 'code') === 200 => GeneralMenu::paymentNotificationMenu(session: $session),
+            data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }
 
-    public static function paymentCancellation(Session $session): JsonResponse
+    public static function cancellationExecution(Session $session): JsonResponse
     {
         // Execute the SusuServicePersonalSusuPaymentCancellationRequest HTTP request
-        $cancel_response = (new SusuServicePersonalSusuPaymentCancellationRequest)->execute(
+        $response = (new SusuServicePersonalSusuPaymentCancellationRequest)->execute(
             customer: $session->customer,
             data: SusuServicePersonalSusuPaymentCancellationData::toArray(),
             susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'),
@@ -53,7 +53,7 @@ final class PersonalSusuPaymentApprovalAction
 
         // Process response and return menu
         return match (true) {
-            data_get($cancel_response, key: 'code') === 200 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $cancel_response, key: 'description')),
+            data_get($response, key: 'code') === 200 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $response, key: 'description')),
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

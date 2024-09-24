@@ -10,32 +10,27 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Settlement\PersonalSusuSettlementAllPendingMenu;
-use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuSettlementAllPendingAcceptedTermsAction
 {
-    public static function execute($session, $user_inputs, $service_data): JsonResponse
+    public static function execute($session, $service_data): JsonResponse
     {
         // Validate and process the user_input
         return match (true) {
-            $service_data->user_input === '1' => self::susuSettlementProcessor(session: $session, user_inputs: $user_inputs),
+            $service_data->user_input === '1' => self::susuSettlementProcessor(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
-
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }
 
-    public static function susuSettlementProcessor(Session $session, array $user_inputs): JsonResponse
+    public static function susuSettlementProcessor(Session $session): JsonResponse
     {
-        // Execute the GetCustomerAction and return the data
-        $customer = GetCustomerAction::execute($session->phone_number);
-
         // Execute the createPersonalSusu HTTP request
         $settlement_data = (new SusuServicePersonalSusuSettlementAllPendingRequest)->execute(
-            customer: $customer,
-            data: SusuServicePersonalSusuSettlementData::toArray(user_inputs: $user_inputs),
-            susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id')
+            customer: $session->customer,
+            data: SusuServicePersonalSusuSettlementData::toArray(user_inputs: $session->userInputs()),
+            susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id')
         );
 
         // Update the user_put and return the narrationMenu

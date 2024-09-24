@@ -16,14 +16,13 @@ final class PersonalSusuSettlementAllPendingConfirmationAction
     {
         // Validate and process the user_input
         return match (true) {
-            $service_data->user_input === '1' => self::susuSettlementConfirmationProcessor(session: $session),
+            $service_data->user_input === '1' => self::stateExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
-
             default => SusuSettlementMenu::invalidConfirmationMenu(session: $session)
         };
     }
 
-    public static function susuSettlementConfirmationProcessor(Session $session): JsonResponse
+    public static function stateExecution(Session $session): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirmation' => true]);
