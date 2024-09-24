@@ -10,7 +10,6 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\PersonalSusu\Menus\Payment\PersonalSusuPaymentMenu;
-use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuPaymentAcceptedTermsAction
@@ -19,23 +18,16 @@ final class PersonalSusuPaymentAcceptedTermsAction
     {
         // Validate and process the user_input
         return match (true) {
-            $service_data->user_input === '1' => self::susuPaymentProcessor(session: $session),
+            $service_data->user_input === '1' => self::stateExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
-
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }
 
-    public static function susuPaymentProcessor(Session $session): JsonResponse
+    public static function stateExecution(Session $session): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
-        // Execute and return the customer data
-        $customer = GetCustomerAction::execute($session->phone_number);
-
         // Execute the SusuServicePersonalSusuPaymentRequest HTTP request
-        $payment_data = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
+        $payment_data = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $session->customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $session->userInputs()), susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'));
 
         // Update the user_put and return the narrationMenu
         if (data_get($payment_data, key: 'code') === 200) {
