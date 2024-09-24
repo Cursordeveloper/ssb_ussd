@@ -16,12 +16,11 @@ final class PersonalSusuPauseDurationAction
         // Validate the user_input (account_name)
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $session->userData()['durations']) => GeneralMenu::invalidDurationMenu(session: $session),
-
-            default => self::durationStore(session: $session, service_data: $service_data)
+            default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function durationStore(Session $session, $service_data): JsonResponse
+    public static function stateExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['duration' => $session->userData()['durations'][$service_data->user_input]['code']]);

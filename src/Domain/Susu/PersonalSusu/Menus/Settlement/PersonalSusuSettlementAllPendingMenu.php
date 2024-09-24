@@ -13,15 +13,11 @@ final class PersonalSusuSettlementAllPendingMenu
 {
     public static function mainMenu(Session $session): JsonResponse
     {
-        // Get the process flow array from the customer session (user_inputs, user_data)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
         // Match statement to determine the menu to return
         return match (true) {
-            data_get(target: $user_inputs, key: 'susu_account.included.stats.settlement.attributes.pending_settlements') < 1 => SusuSettlementMenu::noPendingSettlementMenu(session: $session),
-            data_get(target: $user_inputs, key: 'susu_account.attributes.settlement_status') === 'locked' => SusuSettlementMenu::settlementLockedMenu(session: $session),
-
-            default => self::confirmationMenu(session: $session, data: $user_inputs),
+            data_get(target: $session->userInputs(), key: 'susu_account.included.stats.settlement.attributes.pending_settlements') < 1 => SusuSettlementMenu::noPendingSettlementMenu(session: $session),
+            data_get(target: $session->userInputs(), key: 'susu_account.attributes.settlement_status') === 'locked' => SusuSettlementMenu::settlementLockedMenu(session: $session),
+            default => self::confirmationMenu(session: $session, data: $session->userInputs()),
         };
     }
 
