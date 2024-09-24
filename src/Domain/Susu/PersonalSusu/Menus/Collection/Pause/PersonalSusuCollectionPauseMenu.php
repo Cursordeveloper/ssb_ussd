@@ -31,7 +31,7 @@ final class PersonalSusuCollectionPauseMenu
     public static function narrationMenu(Session $session, array $response): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Pause date: '.Carbon::parse(data_get(target: $response, key: 'data.attributes.paused_at'))->isoFormat(format: 'MM/DD/YYYY').'. Resume date:'.Carbon::parse(data_get(target: $response, key: 'data.attributes.resumed_at'))->isoFormat(format: 'MM/DD/YYYY').'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Pause date: '.Carbon::parse(data_get(target: $response, key: 'data.attributes.paused_at'))->isoFormat(format: 'MM/DD/YYYY').'. Resume date:'.Carbon::parse(data_get(target: $response, key: 'data.attributes.resumed_at'))->isoFormat(format: 'MM/DD/YYYY').'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
