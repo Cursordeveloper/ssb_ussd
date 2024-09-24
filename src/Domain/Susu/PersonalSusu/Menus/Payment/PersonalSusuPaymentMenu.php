@@ -22,7 +22,7 @@ final class PersonalSusuPaymentMenu
     public static function narrationMenu(Session $session, array $payment_data): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Total frequencies: '.data_get(target: $payment_data, key: 'data.attributes.frequencies').'. Total payment: GHS'.data_get(target: $payment_data, key: 'data.attributes.payment_amount').'. Fee GHS:'.data_get(target: $payment_data, key: 'data.attributes.charges').'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Total frequencies: '.data_get(target: $payment_data, key: 'data.attributes.frequencies').'. Total payment: GHS'.data_get(target: $payment_data, key: 'data.attributes.payment_amount').'. Fee GHS:'.data_get(target: $payment_data, key: 'data.attributes.charges').'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
