@@ -7,6 +7,7 @@ namespace Domain\Susu\PersonalSusu\Actions\Payment;
 use App\Services\Susu\Data\PersonalSusu\Payment\SusuServicePersonalSusuPaymentCancellationData;
 use App\Services\Susu\Requests\PersonalSusu\Payment\SusuServicePersonalSusuPaymentApprovalRequest;
 use App\Services\Susu\Requests\PersonalSusu\Payment\SusuServicePersonalSusuPaymentCancellationRequest;
+use Domain\Shared\Action\General\GeneralValidation;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
@@ -19,12 +20,13 @@ final class PersonalSusuPaymentApprovalAction
         // Execute and return the response (menu)
         return match (true) {
             $service_data->user_input === '2' => self::cancellationExecution(session: $session),
+            GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
 
             default => self::approvalExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function approvalExecution(Session $session, $service_data): JsonResponse
+    private static function approvalExecution(Session $session, $service_data): JsonResponse
     {
         // Execute the SusuServicePersonalSusuPaymentApprovalRequest and return the response
         $response = (new SusuServicePersonalSusuPaymentApprovalRequest)->execute(
@@ -43,7 +45,7 @@ final class PersonalSusuPaymentApprovalAction
         };
     }
 
-    public static function cancellationExecution(Session $session): JsonResponse
+    private static function cancellationExecution(Session $session): JsonResponse
     {
         // Execute the SusuServicePersonalSusuPaymentCancellationRequest HTTP request
         $response = (new SusuServicePersonalSusuPaymentCancellationRequest)->execute(
