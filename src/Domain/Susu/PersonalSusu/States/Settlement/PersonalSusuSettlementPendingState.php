@@ -20,6 +20,7 @@ final class PersonalSusuSettlementPendingState
             ! array_key_exists(key: 'total_cycle', array: $session->userInputs()) => PersonalSusuSettlementPendingTotalCycleAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'accepted_terms', array: $session->userInputs()) => PersonalSusuSettlementPendingAcceptedTermsAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'approved', array: $session->userInputs()) => PersonalSusuSettlementApprovalAction::execute(session: $session, service_data: $service_data),
+
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

@@ -18,6 +18,7 @@ final class PersonalSusuCreateInitialDepositAction
         // Validate the user_input and execute the state
         return match (true) {
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+
             default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }

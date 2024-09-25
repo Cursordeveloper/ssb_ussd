@@ -23,6 +23,7 @@ final class PersonalSusuSettlementPendingTotalCycleAction
         return match (true) {
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             (int) $service_data->user_input > $pending_settlements => PersonalSusuSettlementPendingMenu::invalidTotalCycle(session: $session, pending_settlements: $pending_settlements),
+
             default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }

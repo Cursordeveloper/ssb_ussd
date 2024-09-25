@@ -20,6 +20,7 @@ final class PersonalSusuCollectionPauseState
             ! array_key_exists(key: 'duration', array: $session->userInputs()) => PersonalSusuPauseDurationAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'accepted_terms', array: $session->userInputs()) => PersonalSusuCollectionPauseAcceptedTermsAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'approval', array: $session->userInputs()) => PersonalSusuCollectionPauseApprovalAction::execute(session: $session, service_data: $service_data),
+
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

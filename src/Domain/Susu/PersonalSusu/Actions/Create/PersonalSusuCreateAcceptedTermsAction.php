@@ -20,6 +20,7 @@ final class PersonalSusuCreateAcceptedTermsAction
         return match (true) {
             $service_data->user_input === '1' => self::susuCreateRequest(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
+
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }
@@ -27,7 +28,10 @@ final class PersonalSusuCreateAcceptedTermsAction
     public static function susuCreateRequest(Session $session): JsonResponse
     {
         // Execute the PersonalSusuCreateRequest HTTP request
-        $response = (new PersonalSusuCreateRequest)->execute(customer: $session->customer, data: PersonalSusuCreateData::toArray(json_decode($session->user_inputs, associative: true)));
+        $response = (new PersonalSusuCreateRequest)->execute(
+            customer: $session->customer,
+            data: PersonalSusuCreateData::toArray(json_decode($session->user_inputs, associative: true))
+        );
 
         // Update the user_put and return the narrationMenu
         if (data_get($response, key: 'code') === 200) {

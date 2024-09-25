@@ -7,6 +7,7 @@ namespace Domain\Susu\PersonalSusu\Actions\Create;
 use App\Services\Susu\Data\PersonalSusu\Create\PersonalSusuCancellationData;
 use App\Services\Susu\Requests\PersonalSusu\Create\PersonalSusuApprovalRequest;
 use App\Services\Susu\Requests\PersonalSusu\Create\PersonalSusuCancellationRequest;
+use Domain\Shared\Action\General\GeneralValidation;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
@@ -20,6 +21,8 @@ final class PersonalSusuCreateApprovalAction
         // Execute and return the response (menu)
         return match (true) {
             $service_data->user_input === '2' => self::cancelExecution(session: $session),
+            GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
+
             default => self::approvalExecution(session: $session, service_data: $service_data)
         };
     }
@@ -33,6 +36,7 @@ final class PersonalSusuCreateApprovalAction
         return match (true) {
             data_get($response, key: 'code') === 200 => GeneralMenu::createAccountNotification(session: $session),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }
@@ -48,7 +52,7 @@ final class PersonalSusuCreateApprovalAction
         // Execute the PersonalSusuCancellationRequest HTTP request
         (new PersonalSusuCancellationRequest)->execute(customer: $customer, data: PersonalSusuCancellationData::toArray(), susu_resource: $user_inputs);
 
-        // Return the cancelAccountNotification and terminate the session
+        // Return the processCancelNotification and terminate the session
         return GeneralMenu::processCancelNotification(session: $session);
     }
 }

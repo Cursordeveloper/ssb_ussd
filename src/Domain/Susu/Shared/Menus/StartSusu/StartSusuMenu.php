@@ -22,6 +22,7 @@ final class StartSusuMenu
 
         return match (true) {
             empty(data_get(target: $linked_wallets, key: 'data')) => LinkNewWalletMenu::noLinkedAccountMenu(session: $session),
+
             default => self::susuSchemesMenu(session: $session, linked_wallets: $linked_wallets)
         };
     }

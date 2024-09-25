@@ -18,6 +18,7 @@ final class PersonalSusuCreateAccountNameAction
         // Validate the user_input and execute the state
         return match (true) {
             SusuValidationAction::accountNameLengthValid($service_data->user_input) === false => SusuValidationMenu::accountNameLengthMenu(session: $session),
+
             default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }
