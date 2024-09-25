@@ -38,7 +38,7 @@ final class SusuPaymentMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Total frequencies: '.data_get(target: $payment_data, key: 'data.attributes.frequencies').'. Total payment: GHS'.data_get(target: $payment_data, key: 'data.attributes.payment_amount').'. Fee GHS'.data_get(target: $payment_data, key: 'data.attributes.charges').'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Total frequencies: '.data_get(target: $payment_data, key: 'data.attributes.frequencies').'. Total payment: GHS'.data_get(target: $payment_data, key: 'data.attributes.payment_amount').'. Fee GHS'.data_get(target: $payment_data, key: 'data.attributes.charges').'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
@@ -47,7 +47,7 @@ final class SusuPaymentMenu
     {
         // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Total payment: GHS'.data_get(target: $payment_data, key: 'data.attributes.payment_amount').'. Fee GHS'.data_get(target: $payment_data, key: 'data.attributes.charges').'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Total payment: GHS'.data_get(target: $payment_data, key: 'data.attributes.payment_amount').'. Fee GHS'.data_get(target: $payment_data, key: 'data.attributes.charges').'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
