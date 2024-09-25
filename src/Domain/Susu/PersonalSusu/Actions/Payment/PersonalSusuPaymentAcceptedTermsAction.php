@@ -25,15 +25,15 @@ final class PersonalSusuPaymentAcceptedTermsAction
         };
     }
 
-    public static function stateExecution(Session $session): JsonResponse
+    private static function stateExecution(Session $session): JsonResponse
     {
         // Execute the SusuServicePersonalSusuPaymentRequest HTTP request
-        $payment_data = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $session->customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $session->userInputs()), susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'));
+        $response = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $session->customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $session->userInputs()), susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'));
 
         // Update the user_put and return the narrationMenu
-        if (data_get($payment_data, key: 'code') === 200) {
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'payment_resource' => data_get(target: $payment_data, key: 'data.attributes.resource_id')]);
-            return PersonalSusuPaymentMenu::narrationMenu(session: $session, payment_data: $payment_data);
+        if (data_get($response, key: 'code') === 200) {
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'payment_resource' => data_get(target: $response, key: 'data.attributes.resource_id')]);
+            return PersonalSusuPaymentMenu::narrationMenu(session: $session, payment_data: $response);
         }
 
         // Return the invalidInput
