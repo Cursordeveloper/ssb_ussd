@@ -21,6 +21,7 @@ final class FlexySusuAccountLockMenu
         // Match statement to determine the menu to return
         return match (true) {
             data_get(target: $user_inputs, key: 'susu_account.attributes.withdrawal_status') === 'locked' => self::withdrawalLockedMenu(session: $session),
+
             default => self::durationMenu(session: $session)
         };
     }

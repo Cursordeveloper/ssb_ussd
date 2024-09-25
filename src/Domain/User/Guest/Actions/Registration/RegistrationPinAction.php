@@ -34,6 +34,7 @@ final class RegistrationPinAction
         // Process response and return menu
         return match (true) {
             data_get($response, key: 'code') === 200 => RegistrationMenu::successResponse(session: $session),
+
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

@@ -17,6 +17,7 @@ final class PersonalSusuAccountLockMenu
     {
         return match (true) {
             data_get(target: $session->userInputs(), key: 'susu_account.attributes.settlement_status') === 'locked' => self::settlementLockedMenu(session: $session),
+
             default => self::durationMenu(session: $session)
         };
     }

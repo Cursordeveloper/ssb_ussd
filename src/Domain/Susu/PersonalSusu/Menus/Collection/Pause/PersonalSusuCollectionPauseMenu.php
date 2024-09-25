@@ -16,6 +16,7 @@ final class PersonalSusuCollectionPauseMenu
     {
         return match (true) {
             data_get(target: $session->userInputs(), key: 'susu_account.attributes.collection_status') === 'paused' => self::collectionPausedMenu(session: $session),
+
             default => GeneralMenu::durationMenu(session: $session)
         };
     }

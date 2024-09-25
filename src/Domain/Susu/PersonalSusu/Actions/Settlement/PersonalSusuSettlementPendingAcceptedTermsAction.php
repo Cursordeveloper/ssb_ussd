@@ -20,6 +20,7 @@ final class PersonalSusuSettlementPendingAcceptedTermsAction
         return match (true) {
             $service_data->user_input === '1' => self::stateExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
+
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }

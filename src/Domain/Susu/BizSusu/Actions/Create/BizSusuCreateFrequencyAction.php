@@ -13,23 +13,20 @@ final class BizSusuCreateFrequencyAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the frequencies from the $session->user_data
-        $frequencies = json_decode($session->user_data, associative: true)['frequencies'];
-
         // Validate the user_input (susu_amount)
         return match (true) {
-            ! array_key_exists(key: $service_data->user_input, array: $frequencies) => GeneralMenu::invalidFrequencyMenu(session: $session),
+            ! array_key_exists(key: $service_data->user_input, array: $session->userData()['frequencies']) => GeneralMenu::invalidFrequencyMenu(session: $session),
 
-            default => self::frequencyStore(session: $session, service_data: $service_data, frequencies: $frequencies)
+            default => self::stateExecution(session: $session, service_data: $service_data, frequencies: $session->userData()['frequencies'])
         };
     }
 
-    public static function frequencyStore(Session $session, $service_data, $frequencies): JsonResponse
+    public static function stateExecution(Session $session, $service_data, $frequencies): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$service_data->user_input]['code']]);
 
         // Return the initialDepositMenu
-        return GeneralMenu::linkedWalletMenu(session: $session);
+        return GeneralMenu::initialDepositMenu(session: $session);
     }
 }

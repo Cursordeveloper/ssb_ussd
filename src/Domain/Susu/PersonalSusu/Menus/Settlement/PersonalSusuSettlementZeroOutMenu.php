@@ -17,6 +17,7 @@ final class PersonalSusuSettlementZeroOutMenu
         return match (true) {
             data_get(target: $session->userInputs(), key: 'susu_account.attributes.settlement_status') === 'locked' => SusuSettlementMenu::settlementLockedMenu(session: $session),
             data_get(target: $session->userInputs(), key: 'susu_account.included.stats.cycle.attributes.current_cycle') < 2 => SusuSettlementMenu::lowCurrentCycleMenu(session: $session),
+
             default => self::confirmationMenu(session: $session, data: $session->userInputs()),
         };
     }

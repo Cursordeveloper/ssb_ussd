@@ -21,6 +21,7 @@ final class MySusuAccountsState
         return match (true) {
             $service_data->user_input === '0' => ReturnToServiceAction::execute(session: $session, service_data: $service_data, service: 'susu'),
             ! array_key_exists(key: $service_data->user_input, array: data_get(target: $session->userData(), key: 'susu_accounts')) => MySusuAccountsMenu::invalidSusuAccountsMenu(session: $session, susu_data: $session->userData()['susu_accounts']),
+
             default => self::stateExecution(session: $session, service_data: $service_data),
         };
     }

@@ -15,6 +15,7 @@ final class LinkGhCardMenu
     {
         return match (true) {
             ! HasLinkedGhanaCardAction::execute(session: $session) => self::enterIDMenu(session: $session),
+
             default => self::hasKycMenu(session: $session)
         };
     }

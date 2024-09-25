@@ -22,6 +22,7 @@ final class PersonalSusuSettlementApprovalAction
         return match (true) {
             $service_data->user_input === '2' => self::cancelExecution(session: $session),
             GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
+
             default => self::approvalExecution(session: $session, service_data: $service_data)
         };
     }
@@ -40,6 +41,7 @@ final class PersonalSusuSettlementApprovalAction
         return match (true) {
             data_get($response, key: 'code') === 200 => SusuSettlementMenu::settlementNotificationMenu(session: $session),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }
@@ -57,6 +59,7 @@ final class PersonalSusuSettlementApprovalAction
         // Process response and return menu
         return match (true) {
             data_get($response, key: 'code') === 200 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $response, key: 'description')),
+
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

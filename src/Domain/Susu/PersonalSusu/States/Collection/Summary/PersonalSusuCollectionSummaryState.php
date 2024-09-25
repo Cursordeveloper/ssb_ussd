@@ -16,6 +16,7 @@ final class PersonalSusuCollectionSummaryState
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
             ! array_key_exists(key: 'approval', array: $session->userInputs()) => PersonalSusuCollectionSummaryApprovalAction::execute(session: $session, service_data: $service_data),
+
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

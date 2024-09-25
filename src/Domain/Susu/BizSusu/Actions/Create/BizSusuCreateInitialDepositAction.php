@@ -20,16 +20,16 @@ final class BizSusuCreateInitialDepositAction
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             SusuValidationAction::initialDepositAmountValid($service_data->user_input) === false => SusuValidationMenu::initialDepositAmountMenu(session: $session),
 
-            default => self::initialDepositAmountStore(session: $session, service_data: $service_data)
+            default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function initialDepositAmountStore(Session $session, $service_data): JsonResponse
+    public static function stateExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $service_data->user_input]);
 
-        // Return the frequencyMenu
-        return GeneralMenu::frequencyMenu(session: $session);
+        // Return the initialDepositMenu
+        return GeneralMenu::linkedWalletMenu(session: $session);
     }
 }
