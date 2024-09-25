@@ -16,6 +16,7 @@ final class PersonalSusuCreateLinkedWalletAction
         // Validate the user_input and execute the state
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $session->userData()['linked_wallets']) => GeneralMenu::invalidLinkedWalletMenu(session: $session),
+
             default => self::stateExecution(session: $session, service_data: $service_data, linked_wallets: $session->userData()['linked_wallets'])
         };
     }

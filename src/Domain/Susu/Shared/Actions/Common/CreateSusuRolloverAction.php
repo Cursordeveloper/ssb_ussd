@@ -16,6 +16,7 @@ final class CreateSusuRolloverAction
         // Validate the user_input and execute the state
         return match (true) {
             $service_data->user_input === '1' || $service_data->user_input === '2' => self::stateExecution(session: $session, service_data: $service_data),
+
             default => GeneralMenu::invalidRollOverDebitMenu(session: $session),
         };
     }

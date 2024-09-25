@@ -20,6 +20,7 @@ final class PersonalSusuCollectionSummaryApprovalAction
         return match (true) {
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
             GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
+
             default => self::approvalExecution(session: $session, service_data: $service_data)
         };
     }
@@ -33,6 +34,7 @@ final class PersonalSusuCollectionSummaryApprovalAction
         return match (true) {
             data_get($response, key: 'code') === 200 => PersonalSusuCollectionSummaryMenu::narrationMenu(session: $session),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

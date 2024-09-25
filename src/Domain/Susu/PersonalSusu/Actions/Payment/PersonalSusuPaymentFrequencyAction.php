@@ -18,6 +18,7 @@ final class PersonalSusuPaymentFrequencyAction
         // Validate and process the user_input
         return match (true) {
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
+
             default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }

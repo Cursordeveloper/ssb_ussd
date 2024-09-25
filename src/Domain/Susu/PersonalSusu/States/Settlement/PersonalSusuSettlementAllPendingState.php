@@ -20,6 +20,7 @@ final class PersonalSusuSettlementAllPendingState
             ! array_key_exists(key: 'confirmation', array: $session->userInputs()) => PersonalSusuSettlementAllPendingConfirmationAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'accepted_terms', array: $session->userInputs()) => PersonalSusuSettlementAllPendingAcceptedTermsAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'approval', array: $session->userInputs()) => PersonalSusuSettlementApprovalAction::execute(session: $session, service_data: $service_data),
+
             default => GeneralMenu::systemErrorNotification(session: $session),
         };
     }

@@ -19,6 +19,7 @@ final class LinkNewWalletApprovalAction
         // Execute and return the response (menu)
         return match (true) {
             $service_data->user_input === '2' => self::cancellation(session: $session),
+
             default => self::approval(session: $session, service_data: $service_data)
         };
     }

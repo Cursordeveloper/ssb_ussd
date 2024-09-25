@@ -20,6 +20,7 @@ final class SusuBalanceAction
         return match (true) {
             $service_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
             GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
+
             default => self::approvalExecution(session: $session, service_data: $service_data)
         };
     }
@@ -36,6 +37,7 @@ final class SusuBalanceAction
         return match (true) {
             data_get($response, key: 'code') === 200 => SusuBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $response, key: 'data')),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }

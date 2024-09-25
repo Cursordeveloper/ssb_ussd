@@ -17,6 +17,7 @@ final class PersonalSusuSettlementAllPendingMenu
         return match (true) {
             data_get(target: $session->userInputs(), key: 'susu_account.included.stats.settlement.attributes.pending_settlements') < 1 => SusuSettlementMenu::noPendingSettlementMenu(session: $session),
             data_get(target: $session->userInputs(), key: 'susu_account.attributes.settlement_status') === 'locked' => SusuSettlementMenu::settlementLockedMenu(session: $session),
+
             default => self::confirmationMenu(session: $session, data: $session->userInputs()),
         };
     }

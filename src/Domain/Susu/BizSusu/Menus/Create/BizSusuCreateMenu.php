@@ -25,7 +25,7 @@ final class BizSusuCreateMenu
     public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['business_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: '.strtolower($susu_data['frequency']).'. Wallet: '.$linked_account['account_number'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['business_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: '.strtolower($susu_data['frequency']).'. Wallet: '.$linked_account['account_number'].'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
