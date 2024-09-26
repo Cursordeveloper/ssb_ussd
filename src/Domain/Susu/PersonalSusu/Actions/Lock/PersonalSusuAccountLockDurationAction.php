@@ -16,6 +16,7 @@ final class PersonalSusuAccountLockDurationAction
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $session->userData()['durations']) => GeneralMenu::invalidDurationMenu(session: $session),
+
             default => self::stateExecution(session: $session, service_data: $service_data),
         };
     }
