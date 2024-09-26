@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Domain\Susu\PersonalSusu\Actions\Collection\Summary;
+namespace Domain\Susu\BizSusu\Actions\Collection\Summary;
 
 use App\Services\Customer\Requests\Pin\CustomerServicePinApprovalRequest;
 use Domain\Shared\Action\General\GeneralValidation;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\PersonalSusu\Menus\Collection\Summary\PersonalSusuCollectionSummaryMenu;
+use Domain\Susu\BizSusu\Menus\Collection\Summary\BizSusuCollectionSummaryMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class PersonalSusuCollectionSummaryApprovalAction
+final class BizSusuCollectionSummaryApprovalAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
@@ -32,7 +32,7 @@ final class PersonalSusuCollectionSummaryApprovalAction
 
         // Process response and return menu
         return match (true) {
-            data_get($response, key: 'code') === 200 => PersonalSusuCollectionSummaryMenu::narrationMenu(session: $session),
+            data_get($response, key: 'code') === 200 => BizSusuCollectionSummaryMenu::narrationMenu(session: $session),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
 
             default => GeneralMenu::systemErrorNotification(session: $session)
