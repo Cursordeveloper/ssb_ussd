@@ -10,39 +10,37 @@ use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Susu\Shared\Menus\Withdrawal\SusuWithdrawalMenu;
-use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuWithdrawalPartialAcceptedTermsAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Return the invalidAcceptedSusuTerms menu if user_input is not 1
-        if ($service_data->user_input !== '1') {
-            return GeneralMenu::invalidAcceptedSusuTerms(session: $session);
+        // Validate and process the user_input
+        return match (true) {
+            $service_data->user_input === '1' => self::stateExecution(session: $session),
+            $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
+
+            default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
+        };
+    }
+
+    public static function stateExecution(Session $session): JsonResponse
+    {
+        // Execute the SusuServiceBizSusuWithdrawalPartialRequest HTTP request
+        $response = (new SusuServiceBizSusuWithdrawalPartialRequest)->execute(
+            customer: $session->customer,
+            data: SusuServiceBizSusuWithdrawalPartialData::toArray(user_inputs: $session->userInputs()),
+            susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id')
+        );
+
+        // Update the user_put and return the narrationMenu
+        if (data_get($response, key: 'code') === 200) {
+            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'withdrawal_resource' => data_get(target: $response, key: 'data.attributes.resource_id')]);
+            return SusuWithdrawalMenu::withdrawalNarrationMenu(session: $session, withdrawal_data: $response);
         }
 
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true]);
-
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
-        // Get the customer
-        $customer = GetCustomerAction::execute($session->phone_number);
-
-        // Execute the SusuServiceBizSusuWithdrawalPartialRequest HTTP request and return the response
-        $response = (new SusuServiceBizSusuWithdrawalPartialRequest)->execute(customer: $customer, data: SusuServiceBizSusuWithdrawalPartialData::toArray(user_inputs: $user_inputs), susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'));
-
-        // Terminate session if $get_balance request status is false
-        if (data_get(target: $response, key: 'code') !== 200) {
-            return GeneralMenu::invalidInput(session: $session);
-        }
-
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['withdrawal_data' => data_get(target: $response, key: 'data.attributes')]);
-
-        // Return the withdrawalAmountNarrationMenu
-        return SusuWithdrawalMenu::withdrawalNarrationMenu(session: $session, withdrawal_data: $response);
+        // Return the invalidInput
+        return GeneralMenu::systemErrorNotification(session: $session);
     }
 }

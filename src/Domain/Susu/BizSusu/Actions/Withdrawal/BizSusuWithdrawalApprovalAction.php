@@ -4,41 +4,62 @@ declare(strict_types=1);
 
 namespace Domain\Susu\BizSusu\Actions\Withdrawal;
 
+use App\Services\Susu\Data\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalCancellationData;
 use App\Services\Susu\Requests\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalApprovalRequest;
-use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use App\Services\Susu\Requests\BizSusu\Withdrawal\SusuServiceBizSusuWithdrawalCancellationRequest;
+use Domain\Shared\Action\General\GeneralValidation;
 use Domain\Shared\Data\Common\PinApprovalData;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\User\Customer\Actions\Common\GetCustomerAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuWithdrawalApprovalAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['approval' => true]);
+        // Execute and return the response (menu)
+        return match (true) {
+            $service_data->user_input === '2' => self::cancellationExecution(session: $session),
+            GeneralValidation::pinLengthValid($service_data->user_input) === false => GeneralMenu::pinLengthMenu(session: $session),
 
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
+            default => self::approvalExecution(session: $session, service_data: $service_data)
+        };
+    }
 
-        // Get the customer
-        $customer = GetCustomerAction::execute($session->phone_number);
-
-        // Execute the SusuServiceBizSusuWithdrawalApprovalRequest HTTP request response
+    private static function approvalExecution(Session $session, $service_data): JsonResponse
+    {
+        // Execute the SusuServiceBizSusuWithdrawalApprovalRequest and return the response
         $response = (new SusuServiceBizSusuWithdrawalApprovalRequest)->execute(
-            customer: $customer,
+            customer: $session->customer,
             data: PinApprovalData::toArray($service_data->user_input),
-            susu_resource: data_get(target: $user_inputs, key: 'susu_account.attributes.resource_id'),
-            withdrawal_resource: data_get(target: $user_inputs, key: 'withdrawal_data.resource_id'),
+            susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'),
+            withdrawal_resource: data_get(target: $session->userInputs(), key: 'withdrawal_resource'),
         );
 
-        // Terminate session if $get_balance request status is false
-        if (data_get(target: $response, key: 'code') !== 200) {
-            return GeneralMenu::invalidInput(session: $session);
-        }
+        // Process response and return menu
+        return match (true) {
+            data_get($response, key: 'code') === 200 => GeneralMenu::requestNotification(session: $session),
+            data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
 
-        // Return the requestNotification and terminate the session
-        return GeneralMenu::requestNotification(session: $session);
+            default => GeneralMenu::systemErrorNotification(session: $session)
+        };
+    }
+
+    private static function cancellationExecution(Session $session): JsonResponse
+    {
+        // Execute the SusuServiceBizSusuWithdrawalCancellationRequest HTTP request
+        $response = (new SusuServiceBizSusuWithdrawalCancellationRequest)->execute(
+            customer: $session->customer,
+            data: SusuServiceBizSusuWithdrawalCancellationData::toArray(),
+            susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'),
+            withdrawal_resource: data_get(target: $session->userInputs(), key: 'withdrawal_resource'),
+        );
+
+        // Process response and return menu
+        return match (true) {
+            data_get($response, key: 'code') === 200 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $response, key: 'description')),
+
+            default => GeneralMenu::systemErrorNotification(session: $session)
+        };
     }
 }
