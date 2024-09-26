@@ -34,7 +34,7 @@ final class BizSusuCollectionState
             // Update the customer session action
             SessionStateUpdateAction::execute(session: $session, state: class_basename($customer_state['state']), service_data: $service_data);
 
-            // Execute the state
+            // Return the mainMenu
             return $customer_state['menu']::mainMenu(session: $session);
         }
 
