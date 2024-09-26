@@ -19,7 +19,7 @@ final class BizSusuCollectionMenu
         );
     }
 
-    public static function invalidMainMenu($session): JsonResponse
+    public static function invalidMainMenu(Session $session): JsonResponse
     {
         // Return the account main menu
         return ResponseBuilder::ussdResourcesResponseBuilder(
