@@ -28,7 +28,11 @@ final class BizSusuPaymentAmountAcceptedTermsAction
     private static function stateExecution(Session $session): JsonResponse
     {
         // Execute the SusuServiceBizSusuPaymentAmountRequest HTTP request
-        $response = (new SusuServiceBizSusuPaymentAmountRequest)->execute(customer: $session->customer, data: SusuServiceBizSusuPaymentAmountData::toArray(user_inputs: $session->userInputs()), susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'));
+        $response = (new SusuServiceBizSusuPaymentAmountRequest)->execute(
+            customer: $session->customer,
+            data: SusuServiceBizSusuPaymentAmountData::toArray(user_inputs: $session->userInputs()),
+            susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id')
+        );
 
         // Update the user_put and return the narrationMenu
         if (data_get($response, key: 'code') === 200) {
