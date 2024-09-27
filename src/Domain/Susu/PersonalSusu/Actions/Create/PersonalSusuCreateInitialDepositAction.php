@@ -28,7 +28,7 @@ final class PersonalSusuCreateInitialDepositAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $service_data->user_input]);
 
-        // Return the linkedWalletMenu
-        return GeneralMenu::linkedWalletMenu(session: $session);
+        // Return the rollOverDebitMenu
+        return GeneralMenu::rollOverDebitMenu(session: $session);
     }
 }

@@ -26,7 +26,7 @@ final class CreateSusuRolloverAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['rollover' => $service_data->user_input === '1']);
 
-        // Return the acceptedSusuTermsMenu
-        return GeneralMenu::acceptedSusuTermsMenu(session: $session);
+        // Return the linkedWalletMenu
+        return GeneralMenu::linkedWalletMenu(session: $session);
     }
 }

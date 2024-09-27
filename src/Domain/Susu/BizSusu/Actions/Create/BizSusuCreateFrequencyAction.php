@@ -13,7 +13,7 @@ final class BizSusuCreateFrequencyAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Validate the user_input (susu_amount)
+        // Validate the user_input and execute the state
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $session->userData()['frequencies']) => GeneralMenu::invalidFrequencyMenu(session: $session),
 

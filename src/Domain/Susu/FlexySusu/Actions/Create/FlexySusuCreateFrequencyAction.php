@@ -16,15 +16,15 @@ final class FlexySusuCreateFrequencyAction
         // Get the frequencies
         $frequencies = json_decode($session->user_data, associative: true)['frequencies'];
 
-        // Validate the user_input (susu_amount)
+        // Validate the user_input and execute the state
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $frequencies) => GeneralMenu::invalidFrequencyMenu(session: $session),
 
-            default => self::frequencyStore(session: $session, service_data: $service_data, frequencies: $frequencies)
+            default => self::stateExecution(session: $session, service_data: $service_data, frequencies: $frequencies)
         };
     }
 
-    public static function frequencyStore(Session $session, $service_data, $frequencies): JsonResponse
+    public static function stateExecution(Session $session, $service_data, $frequencies): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$service_data->user_input]['code']]);

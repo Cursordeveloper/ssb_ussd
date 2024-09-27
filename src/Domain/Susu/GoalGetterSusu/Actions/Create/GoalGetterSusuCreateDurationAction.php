@@ -13,18 +13,15 @@ final class GoalGetterSusuCreateDurationAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the durations
-        $duration = json_decode($session->user_data, associative: true)['durations'];
-
-        // Validate the user_input (susu_amount)
+        // Validate the user_input and execute the state
         return match (true) {
-            ! array_key_exists(key: $service_data->user_input, array: $duration) => GeneralMenu::invalidDurationMenu(session: $session),
+            ! array_key_exists(key: $service_data->user_input, array: $session->userData()['durations']) => GeneralMenu::invalidDurationMenu(session: $session),
 
-            default => self::durationStore(session: $session, service_data: $service_data, duration: $duration)
+            default => self::stateExecution(session: $session, service_data: $service_data, duration: $session->userData()['durations'])
         };
     }
 
-    public static function durationStore(Session $session, $service_data, $duration): JsonResponse
+    public static function stateExecution(Session $session, $service_data, $duration): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['duration' => $duration[$service_data->user_input]['code']]);
