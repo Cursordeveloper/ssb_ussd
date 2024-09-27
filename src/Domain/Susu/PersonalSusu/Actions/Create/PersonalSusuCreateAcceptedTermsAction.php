@@ -16,7 +16,7 @@ final class PersonalSusuCreateAcceptedTermsAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Validate and process the user_input
+        // Validate the user_input and execute the state
         return match (true) {
             $service_data->user_input === '1' => self::susuCreateRequest(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processCancelNotification(session: $session),
@@ -30,7 +30,7 @@ final class PersonalSusuCreateAcceptedTermsAction
         // Execute the PersonalSusuCreateRequest HTTP request
         $response = (new PersonalSusuCreateRequest)->execute(
             customer: $session->customer,
-            data: PersonalSusuCreateData::toArray(json_decode($session->user_inputs, associative: true))
+            data: PersonalSusuCreateData::toArray(user_inputs: $session->userInputs())
         );
 
         // Update the user_put and return the narrationMenu

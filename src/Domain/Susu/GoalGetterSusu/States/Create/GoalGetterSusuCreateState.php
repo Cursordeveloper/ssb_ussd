@@ -21,20 +21,17 @@ final class GoalGetterSusuCreateState
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $process_flow = json_decode($session->user_inputs, associative: true);
-
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'account_name', array: $process_flow) => GoalGetterSusuCreateAccountNameAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'target_amount', array: $process_flow) => GoalGetterSusuCreateTargetAmountAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'initial_deposit', array: $process_flow) => GoalGetterSusuCreateInitialDepositAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'duration', array: $process_flow) => GoalGetterSusuCreateDurationAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'start_date', array: $process_flow) => GoalGetterSusuCreateStartDateAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'frequency', array: $process_flow) => GoalGetterSusuCreateFrequencyAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'linked_wallet', array: $process_flow) => GoalGetterSusuCreateLinkedWalletAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'accepted_terms', array: $process_flow) => GoalGetterSusuCreateAcceptedTermsAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'approval', array: $process_flow) => GoalGetterSusuCreateApprovalAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'account_name', array: $session->userInputs()) => GoalGetterSusuCreateAccountNameAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'target_amount', array: $session->userInputs()) => GoalGetterSusuCreateTargetAmountAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'initial_deposit', array: $session->userInputs()) => GoalGetterSusuCreateInitialDepositAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'duration', array: $session->userInputs()) => GoalGetterSusuCreateDurationAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'start_date', array: $session->userInputs()) => GoalGetterSusuCreateStartDateAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'frequency', array: $session->userInputs()) => GoalGetterSusuCreateFrequencyAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'linked_wallet', array: $session->userInputs()) => GoalGetterSusuCreateLinkedWalletAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'accepted_terms', array: $session->userInputs()) => GoalGetterSusuCreateAcceptedTermsAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'approval', array: $session->userInputs()) => GoalGetterSusuCreateApprovalAction::execute(session: $session, service_data: $service_data),
 
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

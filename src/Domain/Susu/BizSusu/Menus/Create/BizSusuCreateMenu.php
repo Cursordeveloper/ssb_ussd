@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuCreateMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         // Execute the GetFrequencies
         GetSusuFrequenciesAction::execute(session: $session);

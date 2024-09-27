@@ -26,7 +26,7 @@ final class PersonalSusuCreateLinkedWalletAction
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['linked_wallet' => $linked_wallets[$service_data->user_input]['resource_id']]);
 
-        // Return the rollOverDebitMenu
-        return GeneralMenu::rollOverDebitMenu(session: $session);
+        // Return the acceptedSusuTermsMenu
+        return GeneralMenu::acceptedSusuTermsMenu(session: $session);
     }
 }
