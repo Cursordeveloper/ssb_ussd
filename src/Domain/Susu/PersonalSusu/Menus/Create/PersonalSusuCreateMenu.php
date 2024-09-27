@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuCreateMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Enter account name',
@@ -18,7 +18,7 @@ final class PersonalSusuCreateMenu
         );
     }
 
-    public static function initialDepositMenu($session): JsonResponse
+    public static function initialDepositMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'Start with (days)',
@@ -29,7 +29,7 @@ final class PersonalSusuCreateMenu
     public static function narrationMenu(Session $session, array $susu_data, array $linked_account): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Account name: '.$susu_data['account_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: daily. Wallet: '.$linked_account['account_number'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Account name: '.$susu_data['account_name'].'. Amount: GHS'.$susu_data['susu_amount'].'. Frequency: daily. Wallet: '.$linked_account['account_number'].'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }

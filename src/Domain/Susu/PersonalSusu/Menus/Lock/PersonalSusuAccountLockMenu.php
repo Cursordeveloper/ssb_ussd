@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Domain\Susu\PersonalSusu\Menus\Lock;
 
 use App\Common\ResponseBuilder;
-use App\Common\SusuResources;
 use Carbon\Carbon;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\Susu\Shared\Actions\Common\GetSusuDurationsAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PersonalSusuAccountLockMenu

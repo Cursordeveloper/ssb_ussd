@@ -24,8 +24,8 @@ final class PersonalSusuCreateState
             ! array_key_exists(key: 'account_name', array: $session->userInputs()) => PersonalSusuCreateAccountNameAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'susu_amount', array: $session->userInputs()) => PersonalSusuCreateSusuAmountAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'initial_deposit', array: $session->userInputs()) => PersonalSusuCreateInitialDepositAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'linked_wallet', array: $session->userInputs()) => PersonalSusuCreateLinkedWalletAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'rollover', array: $session->userInputs()) => CreateSusuRolloverAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'linked_wallet', array: $session->userInputs()) => PersonalSusuCreateLinkedWalletAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'accepted_terms', array: $session->userInputs()) => PersonalSusuCreateAcceptedTermsAction::execute(session: $session, service_data: $service_data),
             ! array_key_exists(key: 'approval', array: $session->userInputs()) => PersonalSusuCreateApprovalAction::execute(session: $session, service_data: $service_data),
 

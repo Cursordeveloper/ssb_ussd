@@ -15,16 +15,16 @@ final class FlexySusuCreateInitialDepositAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Validate the user_input (susu_amount)
+        // Validate the user_input and execute the state
         return match (true) {
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             SusuValidationAction::initialDepositAmountValid($service_data->user_input) === false => SusuValidationMenu::initialDepositAmountMenu(session: $session),
 
-            default => self::initialDepositAmountStore(session: $session, service_data: $service_data)
+            default => self::stateExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function initialDepositAmountStore(Session $session, $service_data): JsonResponse
+    public static function stateExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $service_data->user_input]);

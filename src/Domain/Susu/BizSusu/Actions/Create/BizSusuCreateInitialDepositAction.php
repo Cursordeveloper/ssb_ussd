@@ -15,7 +15,7 @@ final class BizSusuCreateInitialDepositAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Validate the user_input (susu_amount)
+        // Validate the user_input and execute the state
         return match (true) {
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             SusuValidationAction::initialDepositAmountValid($service_data->user_input) === false => SusuValidationMenu::initialDepositAmountMenu(session: $session),

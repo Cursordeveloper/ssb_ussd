@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class GoalGetterSusuCreateMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         // Execute the CreateGoalGetterSusu resources
         (new GetSusuDurationsAction)::execute(session: $session);
@@ -26,7 +26,7 @@ final class GoalGetterSusuCreateMenu
         );
     }
 
-    public static function targetAmountMenu($session): JsonResponse
+    public static function targetAmountMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: 'What is your target amount?',
@@ -37,7 +37,7 @@ final class GoalGetterSusuCreateMenu
     public static function narrationMenu(Session $session, array $susu_data, array $linked_account, array $duration): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Goal: '.$susu_data['account_name'].'. Target: GHS'.$susu_data['target_amount'].'. Duration: '.$duration['name'].'. Frequency: '.$susu_data['frequency'].'. Debit: GHS'.$susu_data['susu_amount'].'. Wallet '.$linked_account['account_number'].'. Enter pin to confirm or 2 to Cancel.',
+            message: 'Goal: '.$susu_data['account_name'].'. Target: GHS'.$susu_data['target_amount'].'. Duration: '.$duration['name'].'. Frequency: '.$susu_data['frequency'].'. Debit: GHS'.$susu_data['susu_amount'].'. Wallet '.$linked_account['account_number'].'. Enter PIN to confirm or 2 to Cancel.',
             session_id: $session->session_id,
         );
     }
