@@ -18,14 +18,14 @@ final class PersonalSusuPaymentAcceptedTermsAction
     {
         // Validate and process the user_input
         return match (true) {
-            $service_data->user_input === '1' => self::stateExecution(session: $session),
+            $service_data->user_input === '1' => self::actionExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }
 
-    private static function stateExecution(Session $session): JsonResponse
+    private static function actionExecution(Session $session): JsonResponse
     {
         // Execute the SusuServicePersonalSusuPaymentRequest HTTP request
         $response = (new SusuServicePersonalSusuPaymentRequest)->execute(customer: $session->customer, data: SusuServicePersonalSusuPaymentData::toArray(user_inputs: $session->userInputs()), susu_resource: data_get(target: $session->userInputs(), key: 'susu_account.attributes.resource_id'));

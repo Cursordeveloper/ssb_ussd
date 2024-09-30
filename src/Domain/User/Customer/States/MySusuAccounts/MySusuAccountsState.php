@@ -22,11 +22,11 @@ final class MySusuAccountsState
             $service_data->user_input === '0' => ReturnToServiceAction::execute(session: $session, service_data: $service_data, service: 'susu'),
             ! array_key_exists(key: $service_data->user_input, array: data_get(target: $session->userData(), key: 'susu_accounts')) => MySusuAccountsMenu::invalidSusuAccountsMenu(session: $session, susu_data: $session->userData()['susu_accounts']),
 
-            default => self::stateExecution(session: $session, service_data: $service_data),
+            default => self::actionExecution(session: $session, service_data: $service_data),
         };
     }
 
-    private static function stateExecution(Session $session, $service_data): JsonResponse
+    private static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Update the updateUserInputs with the [susu_account] option selected
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['scheme_code' => $session->userData()['susu_accounts'][$service_data->user_input]['susu_scheme_code']]);

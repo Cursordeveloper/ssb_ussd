@@ -20,11 +20,11 @@ final class GoalGetterSusuCreateInitialDepositAction
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             SusuValidationAction::initialDepositAmountValid($service_data->user_input) === false => SusuValidationMenu::initialDepositAmountMenu(session: $session),
 
-            default => self::stateExecution(session: $session, service_data: $service_data)
+            default => self::actionExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function stateExecution(Session $session, $service_data): JsonResponse
+    public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['initial_deposit' => $service_data->user_input]);

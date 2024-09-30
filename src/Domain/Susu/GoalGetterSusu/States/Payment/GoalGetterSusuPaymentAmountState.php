@@ -15,14 +15,11 @@ final class GoalGetterSusuPaymentAmountState
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
-
         // Evaluate the process flow and execute the corresponding action
         return match (true) {
-            ! array_key_exists(key: 'amount', array: $user_inputs) => GoalGetterSusuPaymentAmountAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'accepted_terms', array: $user_inputs) => GoalGetterSusuPaymentAmountAcceptedTermsAction::execute(session: $session, service_data: $service_data),
-            ! array_key_exists(key: 'approval', array: $user_inputs) => GoalGetterSusuPaymentApprovalAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'amount', array: $session->userInputs()) => GoalGetterSusuPaymentAmountAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'accepted_terms', array: $session->userInputs()) => GoalGetterSusuPaymentAmountAcceptedTermsAction::execute(session: $session, service_data: $service_data),
+            ! array_key_exists(key: 'approval', array: $session->userInputs()) => GoalGetterSusuPaymentApprovalAction::execute(session: $session, service_data: $service_data),
 
             default => GeneralMenu::systemErrorNotification(session: $session),
         };

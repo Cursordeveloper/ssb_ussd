@@ -15,13 +15,13 @@ final class CreateSusuRolloverAction
     {
         // Validate the user_input and execute the state
         return match (true) {
-            $service_data->user_input === '1' || $service_data->user_input === '2' => self::stateExecution(session: $session, service_data: $service_data),
+            $service_data->user_input === '1' || $service_data->user_input === '2' => self::actionExecution(session: $session, service_data: $service_data),
 
             default => GeneralMenu::invalidRollOverDebitMenu(session: $session),
         };
     }
 
-    public static function stateExecution(Session $session, $service_data): JsonResponse
+    public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['rollover' => $service_data->user_input === '1']);

@@ -14,31 +14,27 @@ final class SusuMiniStatementMenu
 {
     public static function mainMenu(Session $session): JsonResponse
     {
-        // Prepare and return the narration
         return GeneralMenu::pinMenu(session: $session);
     }
 
-    public static function susuMiniStatementMenu($session, $transactions): JsonResponse
+    public static function susuMiniStatementMenu(Session $session, array $transactions): JsonResponse
     {
-        // Prepare and return the narration
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: Transactions::formatTransactionsForMenu(data_get(target: $transactions, key: 'data')).'#. Next or 0 Back',
             session_id: $session->session_id,
         );
     }
 
-    public static function susuMiniStatementEndMenu($session, $transactions): JsonResponse
+    public static function susuMiniStatementEndMenu(Session $session, array $transactions): JsonResponse
     {
-        // Prepare and return the narration
         return ResponseBuilder::infoResponseBuilder(
             message: Transactions::formatTransactionsForMenu(data_get(target: $transactions, key: 'data')),
             session_id: $session->session_id,
         );
     }
 
-    public static function susuNoMiniStatementMenu($session): JsonResponse
+    public static function susuNoMiniStatementMenu(Session $session): JsonResponse
     {
-        // Prepare and return the narration
         return ResponseBuilder::infoResponseBuilder(
             message: 'Sorry! no more transactions for this account.',
             session_id: $session->session_id,
