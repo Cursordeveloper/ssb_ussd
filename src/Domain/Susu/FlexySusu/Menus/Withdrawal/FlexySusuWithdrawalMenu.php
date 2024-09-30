@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuWithdrawalMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
         // Prepare and return the withdrawalMainMenu
         return SusuWithdrawalMenu::mainMenu(session: $session);
