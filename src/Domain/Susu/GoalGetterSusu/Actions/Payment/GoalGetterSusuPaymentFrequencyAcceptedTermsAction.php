@@ -37,6 +37,7 @@ final class GoalGetterSusuPaymentFrequencyAcceptedTermsAction
         // Update the user_put and return the narrationMenu
         if (data_get($response, key: 'code') === 200) {
             SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['accepted_terms' => true, 'payment_resource' => data_get(target: $response, key: 'data.attributes.resource_id')]);
+
             return SusuPaymentMenu::paymentFrequencyNarrationMenu(session: $session, payment_data: $response);
         }
 
