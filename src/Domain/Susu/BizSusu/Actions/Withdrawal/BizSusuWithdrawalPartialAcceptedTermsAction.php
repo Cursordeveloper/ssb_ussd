@@ -18,14 +18,14 @@ final class BizSusuWithdrawalPartialAcceptedTermsAction
     {
         // Validate and process the user_input
         return match (true) {
-            $service_data->user_input === '1' => self::stateExecution(session: $session),
+            $service_data->user_input === '1' => self::actionExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }
 
-    public static function stateExecution(Session $session): JsonResponse
+    public static function actionExecution(Session $session): JsonResponse
     {
         // Execute the SusuServiceBizSusuWithdrawalPartialRequest HTTP request
         $response = (new SusuServiceBizSusuWithdrawalPartialRequest)->execute(

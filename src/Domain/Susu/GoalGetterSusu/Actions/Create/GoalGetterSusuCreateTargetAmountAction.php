@@ -20,11 +20,11 @@ final class GoalGetterSusuCreateTargetAmountAction
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             SusuValidationAction::targetAmountValid($service_data->user_input) === false => SusuValidationMenu::targetAmountMenu(session: $session),
 
-            default => self::stateExecution(session: $session, service_data: $service_data)
+            default => self::actionExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function stateExecution(Session $session, $service_data): JsonResponse
+    public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['target_amount' => $service_data->user_input]);

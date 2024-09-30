@@ -20,11 +20,11 @@ final class FlexySusuCreateFrequencyAction
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $frequencies) => GeneralMenu::invalidFrequencyMenu(session: $session),
 
-            default => self::stateExecution(session: $session, service_data: $service_data, frequencies: $frequencies)
+            default => self::actionExecution(session: $session, service_data: $service_data, frequencies: $frequencies)
         };
     }
 
-    public static function stateExecution(Session $session, $service_data, $frequencies): JsonResponse
+    public static function actionExecution(Session $session, $service_data, $frequencies): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['frequency' => $frequencies[$service_data->user_input]['code']]);

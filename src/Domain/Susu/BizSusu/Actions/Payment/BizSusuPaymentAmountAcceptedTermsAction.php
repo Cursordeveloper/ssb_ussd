@@ -18,14 +18,14 @@ final class BizSusuPaymentAmountAcceptedTermsAction
     {
         // Validate and process the user_input
         return match (true) {
-            $service_data->user_input === '1' => self::stateExecution(session: $session),
+            $service_data->user_input === '1' => self::actionExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::processTerminatedMenu(session: $session),
 
             default => GeneralMenu::invalidAcceptedSusuTerms(session: $session)
         };
     }
 
-    private static function stateExecution(Session $session): JsonResponse
+    private static function actionExecution(Session $session): JsonResponse
     {
         // Execute the SusuServiceBizSusuPaymentAmountRequest HTTP request
         $response = (new SusuServiceBizSusuPaymentAmountRequest)->execute(

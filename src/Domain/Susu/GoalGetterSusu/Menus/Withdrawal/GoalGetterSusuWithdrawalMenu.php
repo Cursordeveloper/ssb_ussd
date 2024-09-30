@@ -12,13 +12,11 @@ final class GoalGetterSusuWithdrawalMenu
 {
     public static function mainMenu(Session $session): JsonResponse
     {
-        // Prepare and return the withdrawalMainMenu
         return SusuWithdrawalMenu::mainMenu(session: $session);
     }
 
     public static function invalidMainMenu(Session $session): JsonResponse
     {
-        // Prepare and return the withdrawalMainMenu
         return SusuWithdrawalMenu::invalidMainMenu(session: $session);
     }
 }

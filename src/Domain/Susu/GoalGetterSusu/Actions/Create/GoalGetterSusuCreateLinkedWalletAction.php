@@ -17,11 +17,11 @@ final class GoalGetterSusuCreateLinkedWalletAction
         return match (true) {
             ! array_key_exists(key: $service_data->user_input, array: $session->userData()['linked_wallets']) => GeneralMenu::invalidLinkedWalletMenu(session: $session),
 
-            default => self::stateExecution(session: $session, service_data: $service_data, linked_wallets: $session->userData()['linked_wallets'])
+            default => self::actionExecution(session: $session, service_data: $service_data, linked_wallets: $session->userData()['linked_wallets'])
         };
     }
 
-    public static function stateExecution(Session $session, $service_data, $linked_wallets): JsonResponse
+    public static function actionExecution(Session $session, $service_data, $linked_wallets): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['linked_wallet' => $linked_wallets[$service_data->user_input]['resource_id']]);
