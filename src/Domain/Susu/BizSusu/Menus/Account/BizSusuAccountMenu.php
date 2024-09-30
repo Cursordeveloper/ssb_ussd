@@ -13,7 +13,7 @@ final class BizSusuAccountMenu
     public static function mainMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: data_get(target: $session->userInputs(), key: 'susu_account.business_name')."\n1. Check Balance\n2. Make Payment\n3. Withdrawals\n4. Collections\n5. Mini Statement\n6. Lock Account\n0. Back",
+            message: data_get(target: $session->userInputs(), key: 'susu_account.attributes.business_name')."\n1. Check Balance\n2. Make Payment\n3. Withdrawals\n4. Collections\n5. Mini Statement\n6. Lock Account\n0. Back",
             session_id: $session->session_id,
         );
     }
