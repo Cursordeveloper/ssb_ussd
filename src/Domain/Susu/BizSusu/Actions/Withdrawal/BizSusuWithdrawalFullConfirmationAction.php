@@ -14,14 +14,14 @@ final class BizSusuWithdrawalFullConfirmationAction
     public static function execute(Session $session, $service_data): JsonResponse
     {
         return match (true) {
-            $service_data->user_input === '1' => self::stateExecution(session: $session),
+            $service_data->user_input === '1' => self::actionExecution(session: $session),
             $service_data->user_input === '2' => GeneralMenu::terminateSession(session: $session),
 
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
     }
 
-    public static function stateExecution(Session $session): JsonResponse
+    public static function actionExecution(Session $session): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['confirmation' => true]);

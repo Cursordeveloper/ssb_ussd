@@ -24,11 +24,11 @@ final class PersonalSusuSettlementPendingTotalCycleAction
             SusuValidationAction::isNumericValid($service_data->user_input) === false => SusuValidationMenu::isNumericMenu(session: $session),
             (int) $service_data->user_input > $pending_settlements => PersonalSusuSettlementPendingMenu::invalidTotalCycle(session: $session, pending_settlements: $pending_settlements),
 
-            default => self::stateExecution(session: $session, service_data: $service_data)
+            default => self::actionExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function stateExecution(Session $session, $service_data): JsonResponse
+    public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['total_cycle' => $service_data->user_input]);

@@ -32,13 +32,13 @@ final class StartSusuState
 
         // Evaluate the condition and execute the corresponding action
         return match (true) {
-            array_key_exists(key: $service_data->user_input, array: $stateMappings) => self::stateExecution(session: $session, service_data: $service_data, stateMappings: $stateMappings),
+            array_key_exists(key: $service_data->user_input, array: $stateMappings) => self::actionExecution(session: $session, service_data: $service_data, stateMappings: $stateMappings),
 
             default => StartSusuMenu::invalidSusuSchemesMenu(session: $session),
         };
     }
 
-    private static function stateExecution(Session $session, $service_data, $stateMappings): JsonResponse
+    private static function actionExecution(Session $session, $service_data, $stateMappings): JsonResponse
     {
         // Get the customer option state
         $customer_state = $stateMappings[$service_data->user_input];

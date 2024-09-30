@@ -6,9 +6,11 @@ namespace Domain\Susu\BizSusu\States\Payment;
 
 use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\BizSusu\Menus\Account\BizSusuAccountMenu;
 use Domain\Susu\BizSusu\Menus\Payment\BizSusuPaymentAmountMenu;
 use Domain\Susu\BizSusu\Menus\Payment\BizSusuPaymentFrequencyMenu;
 use Domain\Susu\BizSusu\Menus\Payment\BizSusuPaymentMenu;
+use Domain\Susu\BizSusu\States\Account\BizSusuAccountState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class BizSusuPaymentState
@@ -19,6 +21,7 @@ final class BizSusuPaymentState
         $stateMappings = [
             '1' => ['state' => new BizSusuPaymentFrequencyState, 'menu' => new BizSusuPaymentFrequencyMenu],
             '2' => ['state' => new BizSusuPaymentAmountState, 'menu' => new BizSusuPaymentAmountMenu],
+            '0' => ['state' => new BizSusuAccountState, 'menu' => new BizSusuAccountMenu],
         ];
 
         // Check if the customer input is a valid option
