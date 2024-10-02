@@ -6,9 +6,11 @@ namespace Domain\Susu\FlexySusu\States\Withdrawal;
 
 use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\FlexySusu\Menus\Account\FlexySusuAccountMenu;
 use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuWithdrawalFullMenu;
 use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuWithdrawalMenu;
 use Domain\Susu\FlexySusu\Menus\Withdrawal\FlexySusuWithdrawalPartialMenu;
+use Domain\Susu\FlexySusu\States\Account\FlexySusuAccountState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class FlexySusuWithdrawalState
@@ -19,6 +21,7 @@ final class FlexySusuWithdrawalState
         $stateMappings = [
             '1' => ['state' => new FlexySusuWithdrawalPartialState, 'menu' => new FlexySusuWithdrawalPartialMenu],
             '2' => ['state' => new FlexySusuWithdrawalFullState, 'menu' => new FlexySusuWithdrawalFullMenu],
+            '0' => ['state' => new FlexySusuAccountState, 'menu' => new FlexySusuAccountMenu],
         ];
 
         // Check if the customer input is a valid option
