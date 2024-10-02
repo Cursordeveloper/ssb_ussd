@@ -14,16 +14,18 @@ final class FlexySusuAccountLockDurationAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the durations
-        $duration = json_decode($session->user_data, associative: true)['durations'];
+        // Evaluate the process flow and execute the corresponding action
+        return match (true) {
+            ! array_key_exists(key: $service_data->user_input, array: $session->userData()['durations']) => GeneralMenu::invalidDurationMenu(session: $session),
 
-        // Return invalid response if duration is not in $duration array
-        if (! array_key_exists(key: $service_data->user_input, array: $duration)) {
-            return FlexySusuAccountLockMenu::invalidDurationMenu(session: $session);
-        }
+            default => self::actionExecution(session: $session, service_data: $service_data),
+        };
+    }
 
+    private static function actionExecution(Session $session, $service_data): JsonResponse
+    {
         // Update the user inputs (steps)
-        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['duration' => $duration[$service_data->user_input]['code']]);
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['duration' => $session->userData()['durations'][$service_data->user_input]['code']]);
 
         // Return the acceptedSusuTermsMenu
         return GeneralMenu::acceptedSusuTermsMenu(session: $session);
