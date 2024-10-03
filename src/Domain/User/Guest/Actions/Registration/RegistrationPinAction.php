@@ -22,11 +22,11 @@ final class RegistrationPinAction
             RegistrationValidationAction::isNumericValid($service_data->user_input) === false => RegistrationValidationMenu::isNumericMenu(session: $session),
             RegistrationValidationAction::isPinLengthValid($service_data->user_input) === false => RegistrationValidationMenu::isPinLengthMenu(session: $session),
 
-            default => self::registrationPin(session: $session, service_data: $service_data)
+            default => self::actionExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function registrationPin(Session $session, $service_data): JsonResponse
+    public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Execute and return the PinCreateRequest
         $response = (new PinCreateRequest)->execute(customer: $session->customer, request: PinCreateData::toArray($service_data->user_input));
