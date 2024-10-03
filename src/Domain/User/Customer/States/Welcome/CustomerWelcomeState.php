@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\User\Customer\States\Welcome;
 
-use Domain\Insurance\Shared\Menus\Insurance\InsuranceMenu;
-use Domain\Insurance\Shared\States\Insurance\InsuranceState;
-use Domain\Investment\Shared\Menus\Investment\InvestmentMenu;
-use Domain\Investment\Shared\States\Investment\InvestmentState;
-use Domain\Loan\Shared\Menus\Loan\LoanMenu;
-use Domain\Loan\Shared\States\Loan\LoanState;
-use Domain\Pension\Shared\Menus\Pension\PensionMenu;
-use Domain\Pension\Shared\States\Pension\PensionState;
 use Domain\Shared\Action\Session\SessionStateUpdateAction;
 use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
+use Domain\Shared\Menus\General\GeneralMenu;
+use Domain\Shared\Menus\TermsAndConditions\TermsAndConditionsMenu;
 use Domain\Shared\Models\Session\Session;
 use Domain\Shared\States\AboutSusuBox\AboutSusuboxState;
+use Domain\Shared\States\TermsAndConditions\TermsAndConditionsState;
 use Domain\Susu\Shared\Menus\Susu\SusuMenu;
 use Domain\Susu\Shared\States\Susu\SusuState;
 use Domain\User\Customer\Menus\MyAccount\MyAccountMenu;
@@ -27,15 +22,21 @@ final class CustomerWelcomeState
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
+        return match (true) {
+            $service_data->user_input === '0' => GeneralMenu::terminateSession(session: $session),
+
+            default => self::stateExecution(session: $session, service_data: $service_data),
+        };
+    }
+
+    private static function stateExecution(Session $session, $service_data): JsonResponse
+    {
         // Define a mapping between customer input and states
         $stateMappings = [
             '1' => ['class' => new SusuState, 'menu' => new SusuMenu],
-            '2' => ['class' => new LoanState, 'menu' => new LoanMenu],
-            '3' => ['class' => new InvestmentState, 'menu' => new InvestmentMenu],
-            '4' => ['class' => new InsuranceState, 'menu' => new InsuranceMenu],
-            '5' => ['class' => new PensionState, 'menu' => new PensionMenu],
-            '6' => ['class' => new AboutSusuboxState, 'menu' => new AboutSusuboxMenu],
-            '7' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
+            '2' => ['class' => new AboutSusuboxState, 'menu' => new AboutSusuboxMenu],
+            '3' => ['class' => new TermsAndConditionsState, 'menu' => new TermsAndConditionsMenu],
+            '4' => ['class' => new MyAccountState, 'menu' => new MyAccountMenu],
         ];
 
         // Check if the customer input is a valid option
@@ -50,7 +51,7 @@ final class CustomerWelcomeState
             return $customer_state['menu']::mainMenu(session: $session);
         }
 
-        // The customer input is invalid
+        // Return the invalidMainMenu
         return CustomerWelcomeMenu::invalidMainMenu(session: $session);
     }
 }
