@@ -13,7 +13,7 @@ final class RegistrationValidationAction
 
     public static function isNameStringValid(string $user_input): bool
     {
-        return (bool) preg_match(pattern: "/^([a-zA-Z' ]+)$/", subject: $user_input);
+        return (bool) preg_match(pattern: "/^([a-zA-Z'.-]+)$/", subject: $user_input);
     }
 
     public static function isNumericValid(string $user_input): bool

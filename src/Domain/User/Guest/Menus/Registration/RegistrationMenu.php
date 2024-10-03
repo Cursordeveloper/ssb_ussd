@@ -13,7 +13,7 @@ final class RegistrationMenu
     public static function mainMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter first name.',
+            message: 'Enter first name',
             session_id: $session->session_id,
         );
     }
@@ -21,15 +21,7 @@ final class RegistrationMenu
     public static function lastNameMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'Enter last name.',
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function acceptedTerms(Session $session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://thesusubox.com/policies/terms-and-conditions\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            message: 'Enter last name',
             session_id: $session->session_id,
         );
     }

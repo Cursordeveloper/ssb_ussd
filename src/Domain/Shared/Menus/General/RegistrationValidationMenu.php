@@ -21,7 +21,7 @@ final class RegistrationValidationMenu
     public static function isNameStringMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: 'The name must be a string type. Please shorten it and try again.',
+            message: 'The input you provided is invalid. Please check it and try again.',
             session_id: $session->session_id,
         );
     }
