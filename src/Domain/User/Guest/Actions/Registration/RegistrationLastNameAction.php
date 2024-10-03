@@ -20,11 +20,11 @@ final class RegistrationLastNameAction
             RegistrationValidationAction::isNameLengthValid(user_input: $service_data->user_input) === false => RegistrationValidationMenu::isNameLengthMenu(session: $session),
             RegistrationValidationAction::isNameStringValid(user_input: $service_data->user_input) === false => RegistrationValidationMenu::isNameStringMenu(session: $session),
 
-            default => self::lastNameStore(session: $session, service_data: $service_data)
+            default => self::actionExecution(session: $session, service_data: $service_data)
         };
     }
 
-    public static function lastNameStore(Session $session, $service_data): JsonResponse
+    public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Update the user inputs (steps)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['last_name' => $service_data->user_input]);
