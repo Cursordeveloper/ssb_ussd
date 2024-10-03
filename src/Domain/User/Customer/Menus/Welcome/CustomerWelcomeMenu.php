@@ -13,7 +13,7 @@ final class CustomerWelcomeMenu
     public static function mainMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Menu\n1. Susu\n2. About SusuBox\n3. Terms & Conditions\n4. My Account\n0. Exit",
+            message: "Menu\n1. Susu\n2. About SusuBox\n3. Terms and Conditions\n4. My Account\n0. Exit",
             session_id: $session->session_id,
         );
     }
@@ -21,7 +21,7 @@ final class CustomerWelcomeMenu
     public static function invalidMainMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again.\n1. Susu\n2. About SusuBox\n3. Terms & Conditions\n4. My Account\n0. Exit",
+            message: "Invalid choice, try again.\n1. Susu\n2. About SusuBox\n3. Terms and Conditions\n4. My Account\n0. Exit",
             session_id: $session->session_id,
         );
     }
