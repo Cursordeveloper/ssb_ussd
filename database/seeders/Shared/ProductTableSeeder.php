@@ -6,7 +6,7 @@ use Database\Seeders\Shared\Traits\TruncateTable;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProductTableSeeder extends Seeder
+final class ProductTableSeeder extends Seeder
 {
     use TruncateTable;
 

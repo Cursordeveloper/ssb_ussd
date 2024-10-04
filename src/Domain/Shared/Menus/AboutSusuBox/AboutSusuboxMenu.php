@@ -5,19 +5,25 @@ declare(strict_types=1);
 namespace Domain\Shared\Menus\AboutSusuBox;
 
 use App\Common\ResponseBuilder;
+use Domain\Shared\Action\Session\SessionInputUpdateAction;
+use Domain\Shared\Models\Policy\Policy;
+use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class AboutSusuboxMenu
 {
-    public static function mainMenu($session): JsonResponse
+    public static function mainMenu(Session $session): JsonResponse
     {
+        $policy = Policy::where('name', 'About SusuBox')->first();
+        SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['page' => 0]);
+
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://susubox.app/about-susubox\n#. Next or 0. Main menu",
+            message: $policy->url."\n#. Next or 0. Main menu",
             session_id: $session->session_id,
         );
     }
 
-    public static function invalidInputMenu($session): JsonResponse
+    public static function invalidInputMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid choice, try again.\n#. Next or 0. Main menu",
@@ -25,34 +31,10 @@ final class AboutSusuboxMenu
         );
     }
 
-    public static function aboutOne($session): JsonResponse
+    public static function nextTextMenu(Session $session, string $content): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.\n#. Next or 0. Main menu",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function aboutTwo($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "2. When an unknown printer took a galley of type and scrambled it to make a type specimen book.\n#. Next or 0. Main menu",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function aboutThree($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "3. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum.\n#. Next or 0. Main menu",
-            session_id: $session->session_id,
-        );
-    }
-
-    public static function aboutLast($session): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "4. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece.\n#. Cancel or 0. Main menu",
+            message: $content."\n#. Next or 0 Back",
             session_id: $session->session_id,
         );
     }
