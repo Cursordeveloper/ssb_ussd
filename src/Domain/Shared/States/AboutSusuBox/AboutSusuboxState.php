@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Shared\States\AboutSusuBox;
 
-use Domain\Shared\Action\AboutSusuBox\AboutSusuboxAction;
+use Domain\Shared\Action\AboutSusuBox\AboutSusuBoxAction;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Models\Session\Session;
@@ -15,27 +15,21 @@ final class AboutSusuboxState
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
+        // Evaluate the process flow and execute the corresponding action
+        return match (true) {
+            $service_data->user_input === '#' => AboutSusuBoxAction::execute(session: $session, service_data: $service_data),
+            $service_data->user_input === '0' => self::exitExecution(session: $session),
 
-        // Expected user input array
-        $options = ['#', '0'];
+            default => AboutSusuboxMenu::invalidInputMenu($session),
+        };
+    }
 
-        // Validate the user input
-        if (! empty($user_inputs) && ! in_array($service_data->user_input, $options)) {
-            return AboutSusuboxMenu::invalidInputMenu($session);
-        }
+    private static function exitExecution(Session $session): JsonResponse
+    {
+        // Execute the SessionInputUpdateAction
+        SessionInputUpdateAction::resetUserInputs(session: $session);
 
-        // If the user_input is '0', return back to home menu
-        if ($service_data->user_input === '0') {
-            // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::resetUserInputs(session: $session);
-
-            // Return the WelcomeState
-            return WelcomeState::execute(session: $session);
-        }
-
-        // Execute the TermsAndConditionsAction
-        return AboutSusuboxAction::execute(session: $session, service_data: $service_data, user_inputs: $user_inputs);
+        // Return the WelcomeState
+        return WelcomeState::execute(session: $session);
     }
 }
