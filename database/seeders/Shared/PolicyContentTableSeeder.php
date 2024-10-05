@@ -16,16 +16,31 @@ final class PolicyContentTableSeeder extends Seeder
 
         DB::table(table: 'policy_contents')->insert([[
             'policy_id' => 1,
-            'text' => 'Susubox modernizes the traditional susu savings system with a cashless solution, ensuring convenience and security.',
+            'text' => 'SusuBox is approved by the Bank of Ghana, ensuring compliance, credibility, and customer trust.',
         ], [
             'policy_id' => 1,
-            'text' => 'Offers customized susu schemes for individuals, groups, businesses, and bill payment needs.',
+            'text' => 'SusuBox modernizes traditional susu savings with a cashless solution for convenience and security.',
         ], [
             'policy_id' => 1,
-            'text' => 'As a licensed platform, SusuBox operates under the regulatory framework of the Bank of Ghana, ensuring legal compliance, credibility, and customer trust.',
+            'text' => 'Offers customized susu schemes for individuals, groups, businesses, and bill payments.',
         ], [
             'policy_id' => 1,
-            'text' => 'Leverages cutting-edge technology to modernize and secure susu collection, reducing risks linked to traditional methods.',
+            'text' => 'SusuBox provides savings options for both short- and long-term financial goals.',
+        ], [
+            'policy_id' => 1,
+            'text' => 'Focuses on financial empowerment, promoting self-sufficiency and economic stability.',
+        ], [
+            'policy_id' => 1,
+            'text' => 'SusuBox user-friendly channels include USSD, mobile apps, and web apps for easy management.',
+        ], [
+            'policy_id' => 1,
+            'text' => 'Ensures fund safety with transparent accounting and reduced cash-handling risks.',
+        ], [
+            'policy_id' => 1,
+            'text' => 'Provides a streamlined approach for users to achieve financial stability and confidence.',
+        ], [
+            'policy_id' => 1,
+            'text' => 'Customers enjoy enhanced security, transparency, and ease of use, setting new financial standards.',
         ]]);
     }
 }
