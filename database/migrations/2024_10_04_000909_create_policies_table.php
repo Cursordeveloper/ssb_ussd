@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
 
             // Table main attributes
-            $table->string(column: 'name')->unique();
+            $table->string(column: 'name');
+            $table->string(column: 'code')->unique();
             $table->string(column: 'url');
 
             // Foreign key field
