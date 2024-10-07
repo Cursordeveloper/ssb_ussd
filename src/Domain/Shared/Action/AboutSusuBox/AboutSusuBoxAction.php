@@ -15,7 +15,7 @@ final class AboutSusuBoxAction
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        //
+        // Execute the PolicyText and return the policy
         $content = PolicyText::aboutSusuBox(session: $session);
 
         return match (true) {

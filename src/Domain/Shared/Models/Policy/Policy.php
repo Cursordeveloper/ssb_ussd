@@ -20,6 +20,7 @@ final class Policy extends Model
 
     protected $fillable = [
         'id',
+        'code',
         'name',
         'url',
     ];
