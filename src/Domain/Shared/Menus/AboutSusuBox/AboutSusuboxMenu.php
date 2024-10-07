@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Menus\AboutSusuBox;
 
+use App\Common\PolicyText;
 use App\Common\ResponseBuilder;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Models\Policy\Policy;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -14,11 +14,11 @@ final class AboutSusuboxMenu
 {
     public static function mainMenu(Session $session): JsonResponse
     {
-        $policy = Policy::where('name', 'About SusuBox')->first();
+        // Update the user_inputs (page)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['page' => 0]);
 
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: $policy->url."\n#. Next or 0. Main menu",
+            message: PolicyText::getPolicyUrl(policy: 'about-susubox')."\n#. Next or 0. Main menu",
             session_id: $session->session_id,
         );
     }

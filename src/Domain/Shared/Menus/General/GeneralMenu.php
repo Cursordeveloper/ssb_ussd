@@ -50,7 +50,7 @@ final class GeneralMenu
         SessionInputUpdateAction::resetAll(session: $session);
 
         return ResponseBuilder::infoResponseBuilder(
-            message: 'Thank you for using SusuBox. See you soon',
+            message: 'Thank you for using SusuBox. See you soon.',
             session_id: $session->session_id,
         );
     }
