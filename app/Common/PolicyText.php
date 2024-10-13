@@ -19,4 +19,9 @@ final class PolicyText
     {
         return PolicyContent::query()->where(column: 'policy_id', operator: '=', value: 1)->skip(value: (int) $session->userInputs()['page'])->take(value: 1)->value(column: 'text');
     }
+
+    public static function termsAndConditions(Session $session): ?string
+    {
+        return PolicyContent::query()->where(column: 'policy_id', operator: '=', value: 2)->skip(value: (int) $session->userInputs()['page'])->take(value: 1)->value(column: 'text');
+    }
 }

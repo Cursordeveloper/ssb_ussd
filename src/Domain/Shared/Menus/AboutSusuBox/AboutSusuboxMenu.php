@@ -30,12 +30,4 @@ final class AboutSusuboxMenu
             session_id: $session->session_id,
         );
     }
-
-    public static function nextTextMenu(Session $session, string $content): JsonResponse
-    {
-        return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: $content."\n#. Next or 0 Back",
-            session_id: $session->session_id,
-        );
-    }
 }
