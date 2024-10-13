@@ -6,7 +6,6 @@ namespace Domain\Shared\Action\AboutSusuBox;
 
 use App\Common\PolicyText;
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
-use Domain\Shared\Menus\AboutSusuBox\AboutSusuboxMenu;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,6 +29,6 @@ final class AboutSusuBoxAction
         // Update the user_inputs (page)
         SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['page' => (int) $session->userInputs()['page'] + 1]);
 
-        return AboutSusuboxMenu::nextTextMenu(session: $session, content: $content);
+        return GeneralMenu::nextTextMenu(session: $session, content: $content);
     }
 }

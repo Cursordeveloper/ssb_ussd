@@ -243,7 +243,7 @@ final class GeneralMenu
     public static function acceptedSusuTermsMenu(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "https://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            message: "https://thesusubox.com/policies/susu\nAccept Terms and Conditions?\n1. Yes\n2. no",
             session_id: $session->session_id,
         );
     }
@@ -251,7 +251,7 @@ final class GeneralMenu
     public static function invalidAcceptedSusuTerms(Session $session): JsonResponse
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
-            message: "Invalid choice, try again\nhttps://thesusubox.com/policies/susu\nAccept Terms & Conditions?\n1. Yes\n2. no",
+            message: "Invalid choice, try again\nhttps://thesusubox.com/policies/susu\nAccept Terms and Conditions?\n1. Yes\n2. no",
             session_id: $session->session_id,
         );
     }
@@ -268,6 +268,14 @@ final class GeneralMenu
     {
         return ResponseBuilder::ussdResourcesResponseBuilder(
             message: "Invalid choice, try again\nRollover debit?\n1. Yes\n2. no",
+            session_id: $session->session_id,
+        );
+    }
+
+    public static function nextTextMenu(Session $session, string $content): JsonResponse
+    {
+        return ResponseBuilder::ussdResourcesResponseBuilder(
+            message: $content."\n#. Next or 0 Back",
             session_id: $session->session_id,
         );
     }
