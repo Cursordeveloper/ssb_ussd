@@ -14,14 +14,11 @@ final class PolicyTableSeeder extends Seeder
     {
         $this->truncateTable(table: 'policies');
 
-        DB::table(table: 'policies')->insert([[
-            'code' => 'about-susubox',
-            'name' => 'About SusuBox',
-            'url' => 'https://susubox.app/about-susubox',
-        ], [
-            'code' => 'terms-and-conditions',
-            'name' => 'Terms and Conditions',
-            'url' => 'https://susubox.app/terms-and-conditions',
-        ]]);
+        DB::table(table: 'policies')->insert([
+            ['code' => 'about-susubox', 'name' => 'About SusuBox', 'url' => 'https://susubox.app/about-susubox'],
+            ['code' => 'terms-and-conditions', 'name' => 'Terms and Conditions', 'url' => 'https://susubox.app/terms-and-conditions'],
+            ['code' => 'about-susu', 'name' => 'About SusuBox', 'url' => 'https://susubox.app/susu'],
+            ['code' => 'susu-terms', 'name' => 'Susu Terms', 'url' => 'https://susubox.app/susu/terms'],
+        ]);
     }
 }

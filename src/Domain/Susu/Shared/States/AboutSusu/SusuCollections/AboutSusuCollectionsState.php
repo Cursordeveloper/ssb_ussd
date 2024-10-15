@@ -32,6 +32,6 @@ final class AboutSusuCollectionsState
         }
 
         // Execute MySusuAccountsAction action
-        return AboutSusuSchemesMenu::invalidChoiceMenu(session: $session);
+        return AboutSusuSchemesMenu::invalidInputMenu(session: $session);
     }
 }
