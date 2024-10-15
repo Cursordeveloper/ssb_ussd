@@ -6,6 +6,7 @@ namespace Domain\Susu\Shared\States\AboutSusu\SusuSchemes;
 
 use Domain\Shared\Action\Session\SessionInputUpdateAction;
 use Domain\Shared\Models\Session\Session;
+use Domain\Susu\Shared\Actions\AboutSusu\AboutSusuSchemesAction;
 use Domain\Susu\Shared\Actions\AboutSusu\BackToAboutSusuAction;
 use Domain\Susu\Shared\Menus\AboutSusu\SusuSchemes\AboutSusuSchemesMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,24 +15,21 @@ final class AboutSusuSchemesState
 {
     public static function execute(Session $session, $service_data): JsonResponse
     {
-        // Return to the AboutSusuState if user input is (0)
-        if ($service_data->user_input === '0') {
-            return BackToAboutSusuAction::execute(session: $session, service_data: $service_data);
-        }
+        // Evaluate the process flow and execute the corresponding action
+        return match (true) {
+            $service_data->user_input === '#' => AboutSusuSchemesAction::execute(session: $session, service_data: $service_data),
+            $service_data->user_input === '0' => self::exitExecution(session: $session, service_data: $service_data),
 
-        // Get the process flow array from the customer session (user inputs)
-        $user_inputs = json_decode($session->user_inputs, associative: true);
+            default => AboutSusuSchemesMenu::invalidInputMenu(session: $session),
+        };
+    }
 
-        // Return the next content if user input is (#)
-        if ($service_data->user_input === '#') {
-            // Execute the SessionInputUpdateAction
-            SessionInputUpdateAction::updateUserInputs(session: $session, user_input: ['content' => (int) $user_inputs['content'] + 1]);
+    private static function exitExecution(Session $session, $service_data): JsonResponse
+    {
+        // Execute the SessionInputUpdateAction
+        SessionInputUpdateAction::resetUserInputs(session: $session);
 
-            // Return the next nextContentMenu
-            return AboutSusuSchemesMenu::nextContentMenu(session: $session);
-        }
-
-        // Execute MySusuAccountsAction action
-        return AboutSusuSchemesMenu::invalidChoiceMenu(session: $session);
+        // Return the WelcomeState
+        return BackToAboutSusuAction::execute(session: $session, service_data: $service_data);
     }
 }
