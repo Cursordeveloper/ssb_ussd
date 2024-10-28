@@ -8,7 +8,7 @@ use App\Services\Customer\CustomerService;
 use Domain\User\Customer\Models\Customer;
 use Illuminate\Support\Facades\Http;
 
-final class PinCreateRequest
+final class CustomerServicePinCreateRequest
 {
     public CustomerService $service;
 
@@ -19,9 +19,8 @@ final class PinCreateRequest
 
     public function execute(Customer $customer, array $request): array
     {
-        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])->post(
-            url: $this->service->base_url.$customer->resource_id.'/pins',
-            data: $request,
-        )->json();
+        return Http::withHeaders(['Content-Type' => 'application/vnd.api+json', 'Accept' => 'application/vnd.api+json'])
+            ->post(url: $this->service->base_url.$customer->resource_id.'/pins', data: $request)
+            ->json();
     }
 }
