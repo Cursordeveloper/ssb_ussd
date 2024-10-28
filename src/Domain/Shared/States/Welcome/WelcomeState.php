@@ -10,7 +10,9 @@ use Domain\User\Customer\Actions\Common\IsNotActiveAction;
 use Domain\User\Customer\Menus\Welcome\CustomerWelcomeMenu;
 use Domain\User\Customer\States\Welcome\CustomerWelcomeState;
 use Domain\User\Guest\Menus\Registration\RegistrationMenu;
+use Domain\User\Guest\Menus\Registration\RegistrationPinMenu;
 use Domain\User\Guest\Menus\Welcome\GuestWelcomeMenu;
+use Domain\User\Guest\States\Registration\RegistrationPinState;
 use Domain\User\Guest\States\Registration\RegistrationState;
 use Domain\User\Guest\States\Welcome\GuestWelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,7 +24,7 @@ final class WelcomeState
         // Execute the state which matches the true statements below
         $customerState = match (true) {
             IsNotActiveAction::execute(session: $session) => ['class' => new CustomerWelcomeState, 'menu' => (new CustomerWelcomeMenu)::inactiveAccount(session: $session)],
-            HasPinAction::execute(session: $session) => ['class' => new RegistrationState, 'menu' => (new RegistrationMenu)::choosePin(session: $session)],
+            HasPinAction::execute(session: $session) => ['class' => new RegistrationPinState, 'menu' => (new RegistrationPinMenu)::choosePin(session: $session)],
             IsActiveAction::execute(session: $session) => ['class' => new CustomerWelcomeState, 'menu' => (new CustomerWelcomeMenu)::mainMenu(session: $session)],
 
             default => ['class' => new GuestWelcomeState, 'menu' => (new GuestWelcomeMenu)::mainMenu(session: $session)],

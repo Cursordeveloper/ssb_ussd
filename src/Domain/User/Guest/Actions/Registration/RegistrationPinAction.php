@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\User\Guest\Actions\Registration;
 
-use App\Services\Customer\Requests\Pin\PinCreateRequest;
+use App\Services\Customer\Requests\Pin\CustomerServicePinCreateRequest;
 use Domain\Shared\Action\General\RegistrationValidationAction;
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Menus\General\RegistrationValidationMenu;
@@ -29,7 +29,7 @@ final class RegistrationPinAction
     public static function actionExecution(Session $session, $service_data): JsonResponse
     {
         // Execute and return the PinCreateRequest
-        $response = (new PinCreateRequest)->execute(customer: $session->customer, request: PinCreateData::toArray($service_data->user_input));
+        $response = (new CustomerServicePinCreateRequest)->execute(customer: $session->customer, request: PinCreateData::toArray($service_data->user_input));
 
         // Process response and return menu
         return match (true) {

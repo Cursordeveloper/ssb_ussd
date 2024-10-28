@@ -21,11 +21,9 @@ use Throwable;
 
 final class Handler extends ExceptionHandler
 {
-    protected $levels = [
-    ];
+    protected $levels = [];
 
-    protected $dontReport = [
-    ];
+    protected $dontReport = [];
 
     protected $dontFlash = [
         'current_password',
@@ -67,8 +65,5 @@ final class Handler extends ExceptionHandler
     {
         $this->reportable(static function (Throwable $e): void {
         });
-
-        //        $this->reportable(function (MethodNotAllowedHttpException $e): void {});
-        //        $this->reportable(function (): void {});
     }
 }

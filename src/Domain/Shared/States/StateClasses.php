@@ -116,6 +116,7 @@ use Domain\User\Customer\States\MyLoanAccounts\MyLoanAccountsState;
 use Domain\User\Customer\States\MyPensionAccounts\MyPensionAccountsState;
 use Domain\User\Customer\States\MySusuAccounts\MySusuAccountsState;
 use Domain\User\Customer\States\Welcome\CustomerWelcomeState;
+use Domain\User\Guest\States\Registration\RegistrationPinState;
 use Domain\User\Guest\States\Registration\RegistrationState;
 use Domain\User\Guest\States\Welcome\GuestWelcomeState;
 
@@ -127,6 +128,7 @@ final class StateClasses
             // Guest welcome states
             class_basename(new GuestWelcomeState) => new GuestWelcomeState,
             class_basename(new RegistrationState) => new RegistrationState,
+            class_basename(new RegistrationPinState) => new RegistrationPinState,
 
             // Customer Welcome states
             class_basename(new CustomerWelcomeState) => new CustomerWelcomeState,
