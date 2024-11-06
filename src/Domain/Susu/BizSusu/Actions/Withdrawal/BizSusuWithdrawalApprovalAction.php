@@ -40,6 +40,7 @@ final class BizSusuWithdrawalApprovalAction
         return match (true) {
             data_get($response, key: 'code') === 200 => GeneralMenu::requestNotification(session: $session),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+            data_get($response, key: 'code') === 403 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $response, key: 'description')),
 
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
