@@ -6,9 +6,6 @@ namespace Domain\User\Guest\States\Registration;
 
 use Domain\Shared\Menus\General\GeneralMenu;
 use Domain\Shared\Models\Session\Session;
-use Domain\User\Guest\Actions\Registration\RegistrationAcceptedTermsAction;
-use Domain\User\Guest\Actions\Registration\RegistrationFirstNameAction;
-use Domain\User\Guest\Actions\Registration\RegistrationLastNameAction;
 use Domain\User\Guest\Actions\Registration\RegistrationPinAction;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
