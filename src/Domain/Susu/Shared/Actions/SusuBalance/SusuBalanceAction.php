@@ -37,6 +37,7 @@ final class SusuBalanceAction
         return match (true) {
             data_get($response, key: 'code') === 200 => SusuBalanceMenu::susuBalanceMenu(session: $session, susu_data: data_get(target: $response, key: 'data')),
             data_get($response, key: 'code') === 401 => GeneralMenu::incorrectPinMenu(session: $session),
+            data_get($response, key: 'code') === 403 => GeneralMenu::infoNotification(session: $session, message: data_get(target: $response, key: 'description')),
 
             default => GeneralMenu::systemErrorNotification(session: $session)
         };
