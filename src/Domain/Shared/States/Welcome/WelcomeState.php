@@ -9,11 +9,9 @@ use Domain\User\Customer\Actions\Common\IsActiveAction;
 use Domain\User\Customer\Actions\Common\IsNotActiveAction;
 use Domain\User\Customer\Menus\Welcome\CustomerWelcomeMenu;
 use Domain\User\Customer\States\Welcome\CustomerWelcomeState;
-use Domain\User\Guest\Menus\Registration\RegistrationMenu;
 use Domain\User\Guest\Menus\Registration\RegistrationPinMenu;
 use Domain\User\Guest\Menus\Welcome\GuestWelcomeMenu;
 use Domain\User\Guest\States\Registration\RegistrationPinState;
-use Domain\User\Guest\States\Registration\RegistrationState;
 use Domain\User\Guest\States\Welcome\GuestWelcomeState;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
