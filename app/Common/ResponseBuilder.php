@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common;
 
-use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class ResponseBuilder
 {
